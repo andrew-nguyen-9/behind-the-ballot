@@ -55,9 +55,10 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.3.1-fec-connector** (env key `DATA_GOV_API_KEY`, fixture-tested via
-injected transport reusing CachingFetcher). Then v1.4.1-poll-connector (538, keyless),
-v1.5.1-acs-connector, v1.6.x. v1.1.5-member-roster (keyless YAML) also eligible now.
+Build RESUME: **v1.4.1-poll-connector** (538 CSV, keyless — fully runnable live, just
+no deploy). Then v1.1.5-member-roster (keyless YAML), v1.5.1-acs-connector,
+v1.6.x (env-keyed, fixture-tested). v1.3.1-fec-connector code-complete (live pends
+`DATA_GOV_API_KEY`).
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
@@ -106,7 +107,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.2.4-district-map-island | v1.1.2 | pending |
 | v1.2.5-find-my-district | v1.1.4 | pending |
 | v1.2.6-race-index | v1.2.3 | pending |
-| v1.3.1-fec-connector | v1.1.1 | pending |
+| v1.3.1-fec-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.3.2-candidate-committee-link | v1.3.1 | pending |
 | v1.3.3-finance-aggregates | v1.3.2 | pending |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
@@ -197,6 +198,11 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   [R4a], CachingFetcher (conditional GET + 304 + transport-failure last-good)
   [R10a,R8a], transport injected for full fixture testing. pytest 17/17, ruff.
   → dev. **Credential wall reached — autonomous loop paused (see RESUME).** — iter 16
+- iter 16: user chose "provision accounts" → wrote ACCOUNTS provisioning checklist,
+  pivoted loop to env-keyed fixture-tested connectors.
+- v1.3.1-fec-connector: OpenFEC totals connector (env key, FecTotals model, upsert,
+  bake integrity-clean), 5 fixture tests, no live calls. pytest 22/22, ruff. Code
+  done; live run pends DATA_GOV_API_KEY. → dev. — iter 17
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
