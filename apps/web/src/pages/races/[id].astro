@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { allRaces, partyColorClass, partyLabel } from "../../lib/races";
 import { financeForRace, fmtUSD } from "../../lib/finance";
+import { pollingForRace } from "../../lib/polling";
 import type { RaceConfig } from "../../config/schema";
 
 // One SSG page per race config [F4c]. Real finance/polling/forecast figures attach in
@@ -23,6 +24,11 @@ const finance = financeForRace(race.id);
 const financeByFec = new Map((finance ?? []).map((f) => [f.candidate_id, f]));
 const maxReceipts = Math.max(1, ...(finance ?? []).map((f) => f.receipts));
 const coverage = finance?.[0]?.coverage_end_date ?? null;
+
+// Polling average [H1a] — per-party weighted average; 0-JS bars on a 0–100 scale.
+// ponytail: headline average now; a trend sparkline (needs snapshot history) is a later
+// island. partyColorClass reused for the bar fill.
+const polling = pollingForRace(race.id);
 ---
 
 <Layout title={race.title} description={`${officeLabel} race — ${race.title}.`}>
@@ -89,8 +95,38 @@ const coverage = finance?.[0]?.coverage_end_date ?? null;
     </section>
   )}
 
+  {polling && polling.averages.length > 0 && (
+    <section class="mt-10" aria-labelledby="polling">
+      <h2 id="polling" class="font-serif text-xl">Polling average</h2>
+      <p class="mt-1 text-sm text-muted">
+        Weighted average as of {polling.as_of} ({polling.averages[0].n_polls} polls). Source:
+        <a href="/sources" class="underline">538</a>.
+      </p>
+      <ul class="mt-4 space-y-3" role="list">
+        {polling.averages.map((a) => (
+          <li>
+            <div class="flex justify-between text-sm">
+              <span class="font-medium">{partyLabel(a.party)}</span>
+              <span class="tabular-nums text-muted">{a.avg_pct.toFixed(1)}%</span>
+            </div>
+            <div
+              class="mt-1 h-2 rounded-sm bg-surface"
+              role="img"
+              aria-label={`${partyLabel(a.party)}: ${a.avg_pct.toFixed(1)} percent`}
+            >
+              <div
+                class={`h-2 rounded-sm ${partyColorClass(a.party)}`}
+                style={`width:${Math.min(100, a.avg_pct)}%`}
+              ></div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
   <p class="mt-10 text-sm text-muted">
-    Polling and forecast figures attach as their data lands — each will trace to a
+    Forecast figures attach as their data lands — each will trace to a
     <a href="/sources" class="underline">source</a>.
   </p>
 </Layout>

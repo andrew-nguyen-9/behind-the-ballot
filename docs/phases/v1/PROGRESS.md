@@ -172,7 +172,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
 | v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
 | v1.4.3-aggregation | v1.4.2 | done (math; live join pends data) |
-| v1.4.4-polling-ui | v1.4.3, v1.2.3 | pending |
+| v1.4.4-polling-ui | v1.4.3, v1.2.3 | done (local gate; sample artifact; live 538 keyless-ready) |
 | v1.5.1-acs-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.5.2-district-aggregates | v1.5.1, v1.1.3 | done (math; direct to dev) |
 | v1.5.3-urbanization | v1.5.2 | done (math; direct to dev) |
@@ -328,6 +328,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   cash-on-hand, "through <coverage_end_date>" + FEC source link [G13a]); finance.ts
   loader + fmtUSD; sample OH artifact; candidates linked by fecCandidateId. Local gate:
   check 0/0/0, build, links, 0 JS, tests 12/12. Live FEC pends key. dev. — iter 37
+- v1.4.4-polling-ui: polling-average section on race detail (per-party 0-JS bars, as_of,
+  538 source); polling.ts loader; sample OH artifact. Trend sparkline (needs snapshot
+  history) deferred. Local gate: check 0/0/0, build, links, 0 JS, tests 14/14. — iter 38
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
