@@ -55,6 +55,16 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
+### ⚠️ INCIDENT (iter 28) + FIX — worker switched HEAD to main
+A dispatched cold worker ran a `git` command that switched HEAD `unit/v1.8.4-backtest →
+main`, leaving dev's files untracked + pyproject.toml missing from the working tree. **No
+data lost** (all commits intact; recovered via `git switch --discard-changes dev`, 2
+uncommitted backtest files preserved to scratchpad first). **FIX: dispatch all future
+cold workers with `isolation: "worktree"`** so they operate in an isolated git worktree
+and can never touch the main repo's HEAD/branch. Workers are also told "do NOT run git"
+but isolation is the real guardrail. Verify branch (`git branch --show-current`) after
+any worker returns before gating.
+
 Build RESUME: **v1.8.1-baseline-fundamentals** (per-district CPVI-style partisan lean +
 fundamentals features — pure transform, fixture-testable [N3a]) then **v1.8.2-race-model**
 (combine polls avg + fundamentals → per-race Dem win prob + margin + range [N4a]; feeds
@@ -136,7 +146,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.8.1-baseline-fundamentals | v1.5.2 | done (math; live inputs pend data) |
 | v1.8.2-race-model | v1.8.1, v1.4.3, v1.3.3 | done (math; live inputs pend data) |
 | v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
-| v1.8.4-backtest-calibration | v1.8.2 | pending |
+| v1.8.4-backtest-calibration | v1.8.2 | done (math; live backtest data pends) |
 | v1.8.5-ml-challenger | v1.8.4 | pending |
 | v1.8.6-forecast-ui | v1.8.3 | pending |
 | v1.8.7-snapshot-store | v1.8.3 | pending |
@@ -242,6 +252,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   margins → win_prob/margin/range (stdlib erf), predict_races feeds the MC sim
   (end-to-end forecast integration tested). Forecast engine chain complete: baseline →
   race-model → montecarlo. Cold worker, orchestrator-gated. pytest 92, ruff. — iter 28
+- v1.8.4-backtest-calibration: backtest.py — Brier/log-loss/ECE/accuracy + is_calibrated
+  gate helper [N9a]. Worker incident (switched HEAD→main) recovered, no data lost; files
+  preserved + re-gated full suite. pytest 104, ruff. → dev. Future workers use
+  isolation:worktree. — iter 29
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
