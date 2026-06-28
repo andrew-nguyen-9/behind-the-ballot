@@ -1,20 +1,50 @@
 @import "tailwindcss";
 
-/* Design tokens seeded in design-system/README.md [C4a,C5a]; full token wiring is
-   v1.0.7-design-tokens. ponytail: minimal base here, expand when tokens unit lands. */
-:root {
+/* Design tokens [C4a,C5a,C7a]. Canonical spec: /design-system/README.md.
+   ponytail: tokens live here (the file Tailwind v4 consumes via @theme) — one source,
+   README documents intent. Fonts use a named-first stack; actual web-font loading is
+   wired in v1.0.8-base-layout-seo, falls back to system until then. */
+
+@theme {
+  /* Type [C7a] */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, ui-serif, serif;
+
+  /* Party / data-viz ONLY [C4a] — colorblind-safe blue/red (ColorBrewer RdBu),
+     purple for independents/margin midpoint [C5a]. Patterns add redundant encoding
+     in charts (handled in viz units), not here. */
+  --color-party-dem: #2166ac;
+  --color-party-rep: #b2182b;
+  --color-party-ind: #5a4fa0;
+
+  /* Civic neutral chrome [C4a] — semantic, light defaults; dark overrides below. */
   --color-bg: #ffffff;
+  --color-surface: #f6f8fa;
+  --color-border: #d0d7de;
   --color-text: #1f2328;
+  --color-muted: #636c76;
+  --color-accent: #0969da; /* links/CTA, non-party */
 }
+
+/* Dark theme [C6a]: override the semantic neutrals; party colors stay constant. */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: #0d1117;
+    --color-surface: #161b22;
+    --color-border: #30363d;
     --color-text: #e6edf3;
+    --color-muted: #9198a1;
+    --color-accent: #4493f8;
   }
 }
-html { background: var(--color-bg); color: var(--color-text); }
 
-/* Rich transitions allowed [C13b] but reduced-motion honored (a11y gate). */
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+/* Rich transitions allowed [C13b] but reduced-motion honored (a11y gate, WCAG 2.2). */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
