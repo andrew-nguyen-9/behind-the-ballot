@@ -55,3 +55,5 @@ jobs:
       - uses: astral-sh/setup-uv@e58605a9b6da7c637471fab8847a5e5a6b8df081 # v5
       - run: uv sync --project pipeline
       - run: uv run --project pipeline ruff check pipeline
+      - run: uv run --project pipeline pytest pipeline/tests -q
+      - run: uv run --project pipeline python -m btb_pipeline.integrity  # data-integrity gate [R14a]
