@@ -41,12 +41,15 @@ API keys, 2FA) are human-only → mark `blocked`, log, build code-only units mea
 ## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
 
 All `pending`. Pick first eligible whose prereq is `done`. Detail per unit lives in the
-matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B):
-`v1.0.1-repo-scaffold`.
+matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): `v1.0.2-ci-gate` (or any eligible code-only unit: 0.3, 0.5,
+0.7). Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
+human provisions: **v1.0.4-datastore-wiring** and every data connector
+(v1.1.x/v1.3.x/v1.4.x/v1.5.x/v1.6.x) + live-preview gate parts.
+Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 
 | Unit | Prereq | Status |
 |---|---|---|
-| v1.0.1-repo-scaffold | — | pending |
+| v1.0.1-repo-scaffold | — | done |
 | v1.0.2-ci-gate | v1.0.1 | pending |
 | v1.0.3-config-schema | v1.0.1 | pending |
 | v1.0.4-datastore-wiring | v1.0.1 | pending |
@@ -128,6 +131,11 @@ matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase 
 - P11–P12: LOOP_PROMPT.md (self-contained build contract: Step 0, loop, gate,
   main-wall, token/session sleep rules, completion) + seeded 60-unit build ledger
   above (v1.0.1–v1.10.5) with prereq DAG. — iter 7
+- **Phase B start** v1.0.1-repo-scaffold: pnpm monorepo (apps/web Astro 5 + React
+  islands + Tailwind v4 + TS strict + shadcn-ready cn util) + Python pipeline (uv).
+  Gate: pnpm build green, astro check 0/0/0, static index ships 0 JS. Branch
+  unit/v1.0.1 → merged dev. main untouched. Env note: PRs merged locally (no
+  remote); gh-PR flow applies once a remote exists. — iter 9
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
