@@ -55,15 +55,13 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.8.3-montecarlo-chamber** OR **v1.8.1-baseline-fundamentals** — the
-forecast core is pure math (heuristic + Monte Carlo), fixture-testable, the signature
-module [N1a,N5a]. Dispatch to cold worker; seed RNG for determinism [N13a]. Note v1.8.2
-race-model depends on aggregation (done) + finance/demographics aggregates (transforms
-not yet built) — may build v1.3.3/v1.5.2 transforms first, or have the forecast take
-inputs as fixtures. UI + live data + deploy gate remain blocked on provisioning.
-Code-done (fixture-tested): fec, polls_538, members, census_acs, voteview,
-pollster_ratings connectors + compactness + fairness + aggregation math.
-`dev` ahead of `origin/dev` — push pending user OK.
+Build RESUME: **v1.8.1-baseline-fundamentals** (per-district CPVI-style partisan lean +
+fundamentals features — pure transform, fixture-testable [N3a]) then **v1.8.2-race-model**
+(combine polls avg + fundamentals → per-race Dem win prob + margin + range [N4a]; feeds
+the MC sim, now built). Dispatch to cold workers. After the forecast math chain, the
+remaining units are UI (need Cloudflare deploy) + live data runs → blocked on
+provisioning. Code-done (fixture-tested): 6 connectors + compactness + fairness +
+aggregation + montecarlo-chamber. `dev` ahead of `origin/dev` — push pending user OK.
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
@@ -137,7 +135,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.7.5-methodology-page | v1.7.2 | pending |
 | v1.8.1-baseline-fundamentals | v1.5.2 | pending |
 | v1.8.2-race-model | v1.8.1, v1.4.3, v1.3.3 | pending |
-| v1.8.3-montecarlo-chamber | v1.8.2 | pending |
+| v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
 | v1.8.4-backtest-calibration | v1.8.2 | pending |
 | v1.8.5-ml-challenger | v1.8.4 | pending |
 | v1.8.6-forecast-ui | v1.8.3 | pending |
@@ -234,6 +232,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.4.3-aggregation: aggregate.py — recency (30d half-life) × pollster weighted mean
   per (state,party), AggregateRow; published heuristic. Cold worker, orchestrator-gated
   (arithmetic verified 46.67/47.5). pytest 66/66, ruff. → dev. — iter 25
+- v1.8.3-montecarlo-chamber: montecarlo.py — numpy-vectorized seat sim, shared national
+  swing on logit scale [N6a], seeded [N13a]; seat dist + control prob + p10/50/90. numpy
+  dep. Cold worker, orchestrator-gated. pytest 74 passed, ruff. → dev. — iter 26
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
