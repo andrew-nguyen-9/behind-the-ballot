@@ -371,6 +371,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   TIGER source, as_of); geo.ts ringToSvg projector. MapLibre+PMTiles interactive map
   [P8a] deferred until R2 hosting. Local gate: check 0/0/0, 14 pages, links, 0 JS, tests
   32/32. — iter 49
+- Repo README.md (overview, layout, develop commands, forecast methodology,
+  neutrality) + full-suite verification snapshot: 153 tests green (121 py + 32 web),
+  astro check 0/0/0, 14 pages, links ok. — iter 51
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
