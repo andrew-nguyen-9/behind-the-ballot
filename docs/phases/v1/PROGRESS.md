@@ -159,9 +159,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.1.4-geocoder | v1.1.1 | pending |
 | v1.1.5-member-roster | v1.1.1 | done (code; keyless) |
 | v1.1.6-artifact-bake | v1.1.1 | pending |
-| v1.2.1-race-config | v1.0.3 | pending |
-| v1.2.2-candidate-roster | v1.1.5 | pending |
-| v1.2.3-race-page | v1.2.1, v1.2.2 | pending |
+| v1.2.1-race-config | v1.0.3 | done (schema + 2 validated race configs) |
+| v1.2.2-candidate-roster | v1.1.5 | partial: config-embedded candidates; live FEC/Congress roster join pends data |
+| v1.2.3-race-page | v1.2.1, v1.2.2 | done (local gate; CI lhci/axe on push) |
 | v1.2.4-district-map-island | v1.1.2 | pending |
 | v1.2.5-find-my-district | v1.1.4 | pending |
 | v1.2.6-race-index | v1.2.3 | pending |
@@ -316,6 +316,11 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.5.3-urbanization: urbanization.py — classify districts urban/suburban/rural by
   Census urbanized-area share. Direct to dev. pytest 121, ruff. — iter 34.
   **All pure-compute + data-prep V1 units now done; remainder is UI/deploy/QA only.**
+- **UI phase start** v1.2.3-race-page: config-driven SSG race detail pages
+  (src/pages/races/[id].astro via getStaticPaths over race configs), candidates with
+  colorblind-safe party tokens + incumbent badge + status; races.ts loader/validator;
+  2 sample races (OH-Sen, PA-05). v1.2.1 config done. Local gate: check 0/0/0, vitest
+  9/9, build 7 pages, links ok, 0 JS. CI lhci/axe runs on push. Direct to dev. — iter 35
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

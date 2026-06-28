@@ -8,5 +8,8 @@
   "senateClass": 3,
   "status": "upcoming",
   "sources": ["fec", "polling", "forecast"],
-  "candidates": []
+  "candidates": [
+    { "id": "jane-doe", "name": "Jane Doe", "party": "D", "incumbent": true },
+    { "id": "john-roe", "name": "John Roe", "party": "R", "incumbent": false }
+  ]
 }
