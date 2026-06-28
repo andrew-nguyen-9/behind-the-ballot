@@ -149,7 +149,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.4.3-aggregation | v1.4.2 | done (math; live join pends data) |
 | v1.4.4-polling-ui | v1.4.3, v1.2.3 | pending |
 | v1.5.1-acs-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
-| v1.5.2-district-aggregates | v1.5.1, v1.1.3 | pending |
+| v1.5.2-district-aggregates | v1.5.1, v1.1.3 | done (math; direct to dev) |
 | v1.5.3-urbanization | v1.5.2 | pending |
 | v1.5.4-demographics-ui | v1.5.2, v1.2.3 | pending |
 | v1.6.1-member-profiles | v1.1.5 | pending |
@@ -282,6 +282,12 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.8.6 (runner): forecast.py run_forecast composes race_model → win-probs →
   montecarlo into one reproducible bundle [N1a]. In-thread. pytest 113, ruff. → dev.
   Forecast UI pends deploy. — iter 31
+- v1.3.3-finance-aggregates: build_finance (FEC↔candidate-meta join, burn_rate,
+  coverage_end_date) + rollup_by_race. Direct to dev (HEAD-switch workaround). pytest
+  115. — iter 32
+- v1.5.2-district-aggregates: demographics.py — build_district_demographics (tags
+  geometry_as_of [L547]) + rollup_by_state (pop-weighted income). Direct to dev. pytest
+  118, ruff. — iter 33
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
