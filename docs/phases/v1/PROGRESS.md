@@ -358,6 +358,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   data-pagefind-body, nav "Search" link. Local gate: check 0/0/0, links ok (/pagefind/*
   resolve), tests 29/29. ponytail: pagefind-ui works; Component UI is the upgrade path.
   — iter 45
+- v1.9.5-home-nav: real landing — value prop, CTA buttons (dynamic race count +
+  Senate-control headline from forecast), section cards to all modules. Local gate:
+  check 0/0/0, 12 pages, links, 0 JS. — iter 46
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

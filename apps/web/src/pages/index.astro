@@ -1,26 +1,51 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { allRaces } from "../lib/races";
+import { allChamberForecasts } from "../lib/forecast";
+
+const raceCount = allRaces().length;
+const senate = allChamberForecasts().find((c) => c.chamber === "Senate");
+
+const sections = [
+  { href: "/races", title: "Race tracker", body: "Every 2026 House, Senate, and Governor race — candidates, finance, polling, forecast." },
+  { href: "/forecast", title: "Forecast", body: "Transparent heuristic + Monte Carlo model. Win probabilities, predicted margins, chamber control." },
+  { href: "/members", title: "Members", body: "Profiles for members of Congress — party, district, ideology, voting record." },
+  { href: "/gerrymander", title: "Maps & fairness", body: "District compactness and partisan-fairness metrics — several measures, with caveats." },
+];
 ---
 
 <Layout>
-  <h1 class="text-3xl font-bold">Behind the Ballot</h1>
-  <p class="mt-3 max-w-prose text-balance text-muted">
-    Non-partisan election tracking &amp; analytics for the 2026 midterms and every
-    election after. Every figure traces to a public source.
-  </p>
+  <section class="py-6">
+    <h1 class="text-4xl font-bold tracking-tight">Behind the Ballot</h1>
+    <p class="mt-3 max-w-prose text-lg text-balance">
+      Non-partisan tracking and analytics for the 2026 U.S. midterms — and every election
+      after. Every figure traces to a public <a href="/sources" class="underline">source</a>.
+    </p>
+    <div class="mt-5 flex flex-wrap gap-3 text-sm">
+      <a href="/races" class="rounded bg-[var(--color-accent)] px-4 py-2 font-medium text-white">
+        Browse {raceCount} races
+      </a>
+      <a href="/forecast" class="rounded border border-[var(--color-border)] px-4 py-2 font-medium">
+        See the forecast
+      </a>
+    </div>
+    {senate && (
+      <p class="mt-4 text-sm text-muted">
+        Latest model: Democrats have a {Math.round(senate.dem_control_prob * 100)}% chance of
+        Senate control (as of {senate.as_of}).
+      </p>
+    )}
+  </section>
 
-  <section class="mt-10" aria-label="Party color tokens">
-    <h2 class="font-serif text-xl">Design tokens</h2>
-    <ul class="mt-4 flex gap-4" role="list">
-      <li class="flex items-center gap-2">
-        <span class="size-5 rounded-sm bg-party-dem" aria-hidden="true"></span>Dem
-      </li>
-      <li class="flex items-center gap-2">
-        <span class="size-5 rounded-sm bg-party-rep" aria-hidden="true"></span>Rep
-      </li>
-      <li class="flex items-center gap-2">
-        <span class="size-5 rounded-sm bg-party-ind" aria-hidden="true"></span>Ind
-      </li>
-    </ul>
+  <section class="mt-6 grid gap-4 sm:grid-cols-2" aria-label="Explore">
+    {sections.map((s) => (
+      <a
+        href={s.href}
+        class="rounded-lg border border-[var(--color-border)] p-5 transition-colors hover:border-[var(--color-accent)]"
+      >
+        <h2 class="font-serif text-xl">{s.title}</h2>
+        <p class="mt-1 text-sm text-muted">{s.body}</p>
+      </a>
+    ))}
   </section>
 </Layout>
