@@ -55,10 +55,12 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.1.5-member-roster** (congress-legislators YAML, keyless). Then
-v1.5.1-acs-connector + v1.6.2-rollcall (env-keyed), v1.6.3-ideology (Voteview, keyless).
-Connectors done so far: fec (env), polls_538 (keyless). All fixture-tested; live data
-pends keys, deploy pends Cloudflare.
+Build RESUME: **v1.5.1-acs-connector** (env-keyed) — and going forward **dispatch each
+connector unit to a cold sub-agent** (fork) so the orchestrator window stays lean per the
+~90% rule. Then v1.6.3-ideology (Voteview, keyless), v1.6.2-rollcall (env-keyed),
+v1.7.1-compactness (TIGER geometry, keyless). Connectors done: fec (env), polls_538
+(keyless), members (keyless). All fixture-tested; live data pends keys, deploy pends
+Cloudflare. Local `dev` ahead of `origin/dev` — push pending user OK.
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
@@ -99,7 +101,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.1.2-geo-tiles | v1.0.4 | pending |
 | v1.1.3-district-equivalency | v1.1.2 | pending |
 | v1.1.4-geocoder | v1.1.1 | pending |
-| v1.1.5-member-roster | v1.1.1 | pending |
+| v1.1.5-member-roster | v1.1.1 | done (code; keyless) |
 | v1.1.6-artifact-bake | v1.1.1 | pending |
 | v1.2.1-race-config | v1.0.3 | pending |
 | v1.2.2-candidate-roster | v1.1.5 | pending |
@@ -206,6 +208,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.4.1-poll-connector: 538 CSV connector (keyless), PollRow validation, composite-key
   upsert, last-good, bake (polls_538, 3d floor). 3 fixture tests. pytest 25/25, ruff.
   → dev. — iter 18
+- v1.1.5-member-roster: congress-legislators JSON connector (keyless), MemberRow from
+  current term, upsert by bioguide_id, bake (members, 14d). 2 fixture tests. pytest
+  27/27, ruff. → dev. — iter 19. (Honoring new ~90% context rule: ending turn here,
+  future connector units to be dispatched to cold sub-agents.)
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
