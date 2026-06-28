@@ -41,9 +41,9 @@ API keys, 2FA) are human-only → mark `blocked`, log, build code-only units mea
 ## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
 
 All `pending`. Pick first eligible whose prereq is `done`. Detail per unit lives in the
-matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): `v1.0.6-data-integrity-check` (then 0.8 base-layout-seo).
-0.4 datastore is account-blocked. After Phase 0: Phase 1 has account-blocked data
-units; eligible code-only ones thin out — expect more `blocked` rows ahead. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
+matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): `v1.0.8-base-layout-seo` — last code-only Phase-0 unit.
+After it, Phase 0 is done except `v1.0.4-datastore-wiring` (account-blocked). Phase 1+
+is data-connector-heavy + account-gated; eligible code-only units thin out sharply. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
 human provisions: **v1.0.4-datastore-wiring** and every data connector
 (v1.1.x/v1.3.x/v1.4.x/v1.5.x/v1.6.x) + live-preview gate parts.
 Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
@@ -55,7 +55,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.0.3-config-schema | v1.0.1 | done |
 | v1.0.4-datastore-wiring | v1.0.1 | pending |
 | v1.0.5-etl-skeleton | v1.0.1 | done |
-| v1.0.6-data-integrity-check | v1.0.5 | pending |
+| v1.0.6-data-integrity-check | v1.0.5 | done |
 | v1.0.7-design-tokens | v1.0.1 | done |
 | v1.0.8-base-layout-seo | v1.0.1, v1.0.7 | pending |
 | v1.1.1-etl-framework | v1.0.5 | pending |
@@ -150,6 +150,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.0.7-design-tokens: Tailwind v4 @theme — party blue/red/purple [C5a], civic
   neutrals w/ dark override [C4a,C6a], sans+serif, reduced-motion. Tokens verified
   compiled into output CSS; index showcases swatches. Gate green. → dev. — iter 13
+- v1.0.6-data-integrity-check: pipeline/integrity.py — source registry (10 rows)
+  with check_doc_sync vs DATA_SOURCES.md [R14a] + assert_artifact freshness [R5a] +
+  scan_gold; wired into CI. Gate: pytest 10/10, ruff, CLI green. → dev. — iter 14
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
