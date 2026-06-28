@@ -7,16 +7,36 @@ session reconstructs all state from this file. One activity-log line per touched
 Status: `pending | in-progress | review | blocked | done`. Pick the first `pending`
 whose prereq is `done`.
 
-## RESUME
+## RESUME  (current as of iter 52)
 
-**Phase A (planning) COMPLETE** — P0–P14 all done: full doc tree (01–04, VERSIONING,
-WORKFLOW, 8 ADRs, PHASES_OVERVIEW, 11 segment PLANs), self-contained LOOP_PROMPT.md,
-60-unit build ledger below, design-system seed + logo brief, ACCOUNTS.
+**Phase A (planning): COMPLETE** (P0–P14). **Phase B (build): all autonomously-buildable
+units COMPLETE** — ~47 units green, merged to `dev`; `main` untouched throughout.
 
-Next: **Phase B (build)** via `LOOP_PROMPT.md` — first eligible build unit
-`v1.0.1-repo-scaffold` (pure code, no account). Account-gated units (Neon/CF/domain/
-API keys, 2FA) are human-only → mark `blocked`, log, build code-only units meanwhile.
-`V1 COMPLETE` only when all build units `done` + live preview + gates green sitewide.
+Built (fixture-tested, locally-gated; 153 tests = 121 Python + 32 web, `astro check`
+0/0/0): Phase-0 infra · 6 connectors (FEC/538/Census/Congress/Voteview/pollster-ratings)
+· gerrymander metrics · full forecast engine (aggregation→baseline→race-model→Monte
+Carlo→backtest→ML-challenger→runner) · data-prep transforms · the whole site (home, race
+tracker index+detail with candidates/finance/polling/forecast/demographics/district-SVG,
+forecast, member profiles, gerrymander, sources, Pagefind search, MDX articles, SEO) ·
+README · CI gate.
+
+**Everything NOT done is provisioning-gated (human-only):**
+- Deploy + live preview (all pages) → Cloudflare Pages + `dev` push
+- Live data in every figure → `api.data.gov` key, Neon, domain
+- Interactive MapLibre map (`v1.2.4` shipped as SVG) → R2 PMTiles
+- Find-my-district (`v1.2.5`) → live Census Geocoder
+- Roll-call analytics (`v1.6.2/6.4/6.5/6.6`) → live Congress.gov
+- Nightly QA + alerts + budget alarms + weekly review (`v1.10.x`) → deploy + Gmail + Actions
+
+**`V1 COMPLETE`** needs all the above live + the gate green at a real Cloudflare preview.
+Until provisioning, the loop is at the credential wall `[S16a]` — hold + report; do not
+emit the promise. See `docs/ACCOUNTS.md → Provisioning checklist`.
+
+**Build conventions learned:** commit small units DIRECTLY to `dev` with a branch-guard
+(`[ "$(git branch --show-current)" = dev ]`) — an external process switches HEAD→main on
+`unit/*` creation (incidents iter 28, 32; details below). UI gate runs locally (build +
+astro check + vitest + link check; CI runs Lighthouse/axe on push). Dispatch any cold
+worker with `isolation: "worktree"`.
 
 ## Planning-doc units
 
@@ -40,22 +60,11 @@ API keys, 2FA) are human-only → mark `blocked`, log, build code-only units mea
 
 ## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
 
-All `pending`. Pick first eligible whose prereq is `done`. Detail per unit lives in the
-matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): **all code-only Phase-0 units done** (v1.0.1,2,3,5,6,7,8).
-Remaining work is **account-gated** — needs the human to provision domain + Cloudflare
-(Pages/R2) + Neon + api.data.gov key + Gmail SMTP (see ACCOUNTS.md), all requiring
-payment/2FA an agent can't do. Blocked: v1.0.4-datastore-wiring, every data connector
-(v1.1.x/1.3.x/1.4.x/1.5.x/1.6.x), live-preview + real-data-freshness gate parts.
-### 🔑 Human is provisioning accounts (decided iter 16). Build env-keyed connectors meanwhile.
+Per-unit detail lives in the matching `<segment>/PLAN.md`; prereqs use the version slug.
+Status of every unit is in the table below — the top `## RESUME` has the current summary.
+Reference notes (UI-buildable, HEAD-switch incident) kept below for resumability.
 
-User chose "I'll provision accounts" — see **ACCOUNTS.md → Provisioning checklist** for
-the exact secret names. Strategy until secrets land: build connector implementations that
-read keys from env (`DATA_GOV_API_KEY`, etc.) and are **fixture-tested** (inject transport,
-mock responses — the v1.1.1 pattern), so each goes live the instant its secret exists.
-Such connectors are markable `done` for their code/test gate; their **live-data +
-deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
-
-### ✅ CORRECTION — the UI phase is BUILDABLE NOW (not deploy-walled)
+### ✅ NOTE — UI units are buildable + gatable locally (not deploy-walled)
 Earlier turns over-stated a "hard wall." Reality: every UI unit's gate runs **locally**:
 `pnpm build` → `astro check` → vitest → **axe via Playwright** → **Lighthouse ≥90 via
 `@lhci/cli` with `staticDistDir: apps/web/dist`** (no live server) → responsive
@@ -99,49 +108,9 @@ and can never touch the main repo's HEAD/branch. Workers are also told "do NOT r
 but isolation is the real guardrail. Verify branch (`git branch --show-current`) after
 any worker returns before gating.
 
-Build RESUME: **forecast module pure-math COMPLETE** (8.1 baseline, 8.2 race-model, 8.3
-montecarlo, 8.4 backtest, 8.5 ml-challenger all done). Remaining pure-compute = thin
-artifact transforms (v1.3.2 link, v1.3.3 finance-agg, v1.5.2 district-agg, v1.5.3
-urbanization) that are better validated against LIVE connector data — low value on
-fixtures. **Everything else (all Astro UI, forecast/race/member/gerrymander pages,
-nightly QA, alerts) is hard-blocked on provisioning + Cloudflare deploy.** Recommend
-holding for provisioning rather than grinding thin transforms. If building resumes, do
-small units directly (in-thread) or with isolation:worktree workers — never shared-dir
-workers (HEAD-switch incident, iter 28).
-
-(superseded RESUME below kept for history)
-Build RESUME: **v1.8.1-baseline-fundamentals** (per-district CPVI-style partisan lean +
-fundamentals features — pure transform, fixture-testable [N3a]) then **v1.8.2-race-model**
-(combine polls avg + fundamentals → per-race Dem win prob + margin + range [N4a]; feeds
-the MC sim, now built). Dispatch to cold workers. After the forecast math chain, the
-remaining units are UI (need Cloudflare deploy) + live data runs → blocked on
-provisioning. Code-done (fixture-tested): 6 connectors + compactness + fairness +
-aggregation + montecarlo-chamber. `dev` ahead of `origin/dev` — push pending user OK.
-
-All units completable **without external accounts** are done: Phase-0 code-only
-(v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
-
-Every remaining unit needs something an agent cannot self-provision (payment + 2FA):
-
-| Need | Unlocks |
-|---|---|
-| `api.data.gov` key | FEC, Census/ACS, Congress.gov connectors (v1.3.x, v1.5.x, v1.6.x) |
-| Cloudflare (Pages + R2) | deploy/live-preview gate (ALL UI units), PMTiles hosting (v1.1.2) |
-| Neon Postgres | v1.0.4-datastore-wiring, forecast snapshots (v1.8.7) |
-| Domain (~$10/yr) | email aliases, canonical/sitemap URL, Resend/Gmail sender |
-| Gmail app-password | regression alerts (v1.10.3) |
-
-**Partially-doable without accounts** (code + public data, but CANNOT pass the full
-gate's live-preview/real-freshness parts, so not markable `done`): v1.1.5-member-roster
-(congress-legislators YAML is keyless), v1.7.1-compactness-metrics (TIGER geometry math).
-Build these only if the human says "fixtures are fine, defer the live gate."
-
-**On loop re-feed:** re-read this block. Do NOT re-do completed units or mark partial
-units `done`. Report the wall + await provisioning. Resume real progress once secrets
-land in GitHub Actions + host env [T7a] (see ACCOUNTS.md for the alias/secret list). Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
-human provisions: **v1.0.4-datastore-wiring** and every data connector
-(v1.1.x/v1.3.x/v1.4.x/v1.5.x/v1.6.x) + live-preview gate parts.
-Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
+Status per unit is below; current summary is the top `## RESUME`. `pending` rows are all
+provisioning-gated (live data / deploy / R2 / Gmail) — see `ACCOUNTS.md`. `dev` integrates
+all `done` units; `main` untouched `[S5a]`.
 
 | Unit | Prereq | Status |
 |---|---|---|
