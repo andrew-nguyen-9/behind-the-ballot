@@ -5,6 +5,7 @@ import { financeForRace, fmtUSD } from "../../lib/finance";
 import { pollingForRace } from "../../lib/polling";
 import { forecastForRace, marginLabel } from "../../lib/forecast";
 import { demographicsForRace, fmtIncome, fmtPop } from "../../lib/demographics";
+import { districtShape, ringToSvg } from "../../lib/geo";
 import type { RaceConfig } from "../../config/schema";
 
 // One SSG page per race config [F4c]. Real finance/polling/forecast figures attach in
@@ -39,6 +40,10 @@ const demPct = forecast ? Math.round(forecast.win_prob * 100) : 0;
 
 // Demographics [I7a] — ACS, keyed to a geometry version [L547].
 const demo = demographicsForRace(race.id);
+
+// District shape (house races) — inline SVG now; MapLibre+PMTiles when R2 lands [P8a].
+const shape = districtShape(race.id);
+const shapeSvg = shape ? ringToSvg(shape.ring) : null;
 ---
 
 <Layout title={race.title} description={`${officeLabel} race — ${race.title}.`}>
@@ -132,6 +137,24 @@ const demo = demographicsForRace(race.id);
           </li>
         ))}
       </ul>
+    </section>
+  )}
+
+  {shapeSvg && (
+    <section class="mt-10" aria-labelledby="district">
+      <h2 id="district" class="font-serif text-xl">District</h2>
+      <p class="mt-1 text-sm text-muted">
+        {seat} boundary (as of {shape!.as_of}). Source:
+        <a href="/sources" class="underline">Census TIGER/Line</a>.
+      </p>
+      <svg
+        viewBox={shapeSvg.viewBox}
+        class="mt-3 h-48 w-48"
+        role="img"
+        aria-label={`Outline of district ${seat}`}
+      >
+        <path d={shapeSvg.d} class="fill-surface stroke-[var(--color-accent)]" stroke-width="2" />
+      </svg>
     </section>
   )}
 

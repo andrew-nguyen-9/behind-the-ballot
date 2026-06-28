@@ -162,7 +162,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.2.1-race-config | v1.0.3 | done (schema + 2 validated race configs) |
 | v1.2.2-candidate-roster | v1.1.5 | partial: config-embedded candidates; live FEC/Congress roster join pends data |
 | v1.2.3-race-page | v1.2.1, v1.2.2 | done (local gate; CI lhci/axe on push) |
-| v1.2.4-district-map-island | v1.1.2 | pending |
+| v1.2.4-district-map-island | v1.1.2 | done as SVG (0-JS); MapLibre+PMTiles pends R2 |
 | v1.2.5-find-my-district | v1.1.4 | pending |
 | v1.2.6-race-index | v1.2.3 | done (local gate; CI lhci/axe on push) |
 | v1.3.1-fec-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
@@ -367,6 +367,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.9.2-sitemap-jsonld: per-type JSON-LD — Layout `schema` prop; member profiles emit
   a Person schema (sitemap/robots/WebSite/OG already done). Local gate: check 0/0/0, 14
   pages, links. SEO/content phase (v1.9.x) complete. — iter 48
+- v1.2.4 (district shape): inline-SVG district boundary on house race pages (0-JS,
+  TIGER source, as_of); geo.ts ringToSvg projector. MapLibre+PMTiles interactive map
+  [P8a] deferred until R2 hosting. Local gate: check 0/0/0, 14 pages, links, 0 JS, tests
+  32/32. — iter 49
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
