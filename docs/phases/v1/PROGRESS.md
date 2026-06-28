@@ -159,7 +159,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
 | v1.8.4-backtest-calibration | v1.8.2 | done (math; live backtest data pends) |
 | v1.8.5-ml-challenger | v1.8.4 | done (math; real backtest decision pends live data) |
-| v1.8.6-forecast-ui | v1.8.3 | pending |
+| v1.8.6-forecast-ui | v1.8.3 | partial: runner done (math); UI pends deploy |
 | v1.8.7-snapshot-store | v1.8.3 | pending |
 | v1.9.1-search | phases 2–8 | pending |
 | v1.9.2-sitemap-jsonld | phases 2–8 | pending |
@@ -270,6 +270,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.8.5-ml-challenger: numpy logistic regression + choose_model (adopt ML only if it
   beats heuristic Brier on same holdout [N8a]). Built in-thread (post-incident, no
   worker). pytest 110, ruff. → dev. **Forecast module pure-math complete.** — iter 30
+- v1.8.6 (runner): forecast.py run_forecast composes race_model → win-probs →
+  montecarlo into one reproducible bundle [N1a]. In-thread. pytest 113, ruff. → dev.
+  Forecast UI pends deploy. — iter 31
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
