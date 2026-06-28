@@ -196,7 +196,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.8.6-forecast-ui | v1.8.3 | done (runner + per-race + chamber /forecast; local gate) |
 | v1.8.7-snapshot-store | v1.8.3 | pending |
 | v1.9.1-search | phases 2–8 | done (Pagefind static index; local gate) |
-| v1.9.2-sitemap-jsonld | phases 2–8 | pending |
+| v1.9.2-sitemap-jsonld | phases 2–8 | done (sitemap+robots+WebSite+OG+per-type Person) |
 | v1.9.3-articles-mdx | v1.0.8 | done (local gate) |
 | v1.9.4-sources-page | — | done (local gate) |
 | v1.9.5-home-nav | v1.9.1 | pending |
@@ -364,6 +364,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.9.3-articles-mdx: MDX article pipeline — content collection (zod frontmatter) +
   /articles index + /articles/[slug]; sample explainer; /mdx; "Articles" nav.
   Local gate: check 0/0/0, 14 pages, links, 0 JS. — iter 47
+- v1.9.2-sitemap-jsonld: per-type JSON-LD — Layout `schema` prop; member profiles emit
+  a Person schema (sitemap/robots/WebSite/OG already done). Local gate: check 0/0/0, 14
+  pages, links. SEO/content phase (v1.9.x) complete. — iter 48
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

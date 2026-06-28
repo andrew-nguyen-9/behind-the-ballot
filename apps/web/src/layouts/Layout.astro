@@ -7,11 +7,13 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  schema?: Record<string, unknown>; // optional per-type JSON-LD (Person, etc.) [U3a]
 }
 
 const {
   title = "Behind the Ballot",
   description = "Non-partisan 2026 midterm tracking & analytics.",
+  schema,
 } = Astro.props;
 
 const fullTitle = title === "Behind the Ballot" ? title : `${title} · Behind the Ballot`;
@@ -56,6 +58,9 @@ const nav = [
     <meta name="twitter:card" content="summary" />
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    {schema && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+    )}
   </head>
   <body class="min-h-dvh font-sans antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:p-2">Skip to content</a>
