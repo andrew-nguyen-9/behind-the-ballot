@@ -1,0 +1,12 @@
+{
+  "chamber": "Senate",
+  "as_of": "2026-03-15",
+  "n_sims": 10000,
+  "n_races": 35,
+  "majority": 51,
+  "expected_dem_seats": 50.2,
+  "dem_seat_p10": 47,
+  "dem_seat_p50": 50,
+  "dem_seat_p90": 53,
+  "dem_control_prob": 0.48
+}

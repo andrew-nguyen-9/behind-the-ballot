@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { forecastForRace, marginLabel } from "./forecast";
+import { allChamberForecasts, forecastForRace, marginLabel } from "./forecast";
 
 describe("forecast", () => {
   it("labels signed Dem margins", () => {
@@ -17,5 +17,12 @@ describe("forecast", () => {
 
   it("returns null for a race with no forecast", () => {
     expect(forecastForRace("us-house-2026-PA-05")).toBeNull();
+  });
+
+  it("loads chamber forecasts", () => {
+    const chambers = allChamberForecasts();
+    expect(chambers.length).toBeGreaterThanOrEqual(1);
+    const senate = chambers.find((c) => c.chamber === "Senate");
+    expect(senate?.dem_control_prob).toBeCloseTo(0.48);
   });
 });

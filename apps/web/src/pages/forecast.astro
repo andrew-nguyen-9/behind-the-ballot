@@ -1,9 +1,49 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// Stub — real forecast is the v1.8.x forecast module.
+import { allChamberForecasts } from "../lib/forecast";
+
+// Chamber forecast [N5a]: Monte Carlo seat distribution + control probability. Derived
+// figure — methodology + inputs noted [N12a,R14a]. 0-JS; a seat-distribution chart island
+// can come later.
+const chambers = allChamberForecasts();
+const pct = (p: number) => `${Math.round(p * 100)}%`;
 ---
 
-<Layout title="Forecast" description="Transparent, heuristic-first election forecast.">
-  <h1 class="text-2xl font-bold">Forecast</h1>
-  <p class="mt-3 text-muted">Forecast coming in the forecast module.</p>
+<Layout title="Forecast" description="Transparent heuristic + Monte Carlo election forecast.">
+  <h1 class="text-3xl font-bold">Forecast</h1>
+  <p class="mt-2 max-w-prose text-muted">
+    Transparent, heuristic-first model with a Monte Carlo chamber simulation (correlated
+    national swing). Inputs: polling averages + fundamentals (partisan lean, incumbency,
+    finance). Every figure traces to its <a href="/sources" class="underline">sources</a>.
+  </p>
+
+  {chambers.length === 0 ? (
+    <p class="mt-8 text-muted">Forecast runs publish here.</p>
+  ) : (
+    chambers.map((c) => (
+      <section class="mt-8 rounded-lg border border-[var(--color-border)] p-5" aria-labelledby={c.chamber}>
+        <h2 id={c.chamber} class="font-serif text-xl">{c.chamber}</h2>
+        <p class="mt-1 text-sm text-muted">As of {c.as_of} · {c.n_sims.toLocaleString()} simulations</p>
+        <div class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
+          <div>
+            <div class="text-3xl font-bold tabular-nums">{pct(c.dem_control_prob)}</div>
+            <div class="text-sm text-muted">Democratic control probability</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold tabular-nums">{c.expected_dem_seats.toFixed(1)}</div>
+            <div class="text-sm text-muted">expected Dem seats (need {c.majority})</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold tabular-nums">{c.dem_seat_p10}–{c.dem_seat_p90}</div>
+            <div class="text-sm text-muted">80% range (median {c.dem_seat_p50})</div>
+          </div>
+        </div>
+      </section>
+    ))
+  )}
+
+  <p class="mt-8 text-sm text-muted">
+    Methodology and inputs are published for neutrality; the model is backtested and
+    calibrated before publishing.
+  </p>
 </Layout>
