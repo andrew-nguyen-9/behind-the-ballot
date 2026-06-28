@@ -55,12 +55,12 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.6.3-ideology** (Voteview DW-NOMINATE CSV, keyless) — **dispatch to a
-cold worker**, orchestrator gates+merges (the proven pattern from v1.5.1). Then
-v1.6.2-rollcall (env-keyed), v1.7.1-compactness (TIGER geometry, keyless GeoPandas math).
-Connectors done: fec (env), polls_538 (keyless), members (keyless), census_acs (env).
-All fixture-tested; live data pends keys, deploy pends Cloudflare. Local `dev` ahead of
-`origin/dev` — push pending user OK.
+Build RESUME: **v1.6.2-rollcall** (Congress.gov roll-call, env-keyed) — dispatch to a
+cold worker, orchestrator gates+merges. Then v1.7.1-compactness (TIGER geometry, keyless
+GeoPandas/Shapely math — needs geopandas+shapely added to pyproject; heavier). Connectors
+done: fec (env), polls_538 (keyless), members (keyless), census_acs (env), voteview
+(keyless). All fixture-tested; live data pends keys, deploy pends Cloudflare. Local `dev`
+ahead of `origin/dev` — push pending user OK.
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
@@ -123,7 +123,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.5.4-demographics-ui | v1.5.2, v1.2.3 | pending |
 | v1.6.1-member-profiles | v1.1.5 | pending |
 | v1.6.2-rollcall-votes | v1.6.1 | pending |
-| v1.6.3-ideology | v1.6.1 | pending |
+| v1.6.3-ideology | v1.6.1 | done (code; keyless) |
 | v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | pending |
 | v1.6.6-chamber-view | v1.6.1 | pending |
@@ -215,6 +215,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.5.1-acs-connector: Census ACS5 connector (env-keyed) — header-array parse, AcsRow
   (geoid/pop/median_income, -666666666→None), upsert by geoid, bake (census_acs, 400d).
   **Built by a cold worker, orchestrator-gated** (pytest 32/32, ruff). → dev. — iter 20
+- v1.6.3-ideology: Voteview DW-NOMINATE connector (keyless), IdeologyRow, most-recent-
+  congress dedupe by bioguide_id, bake (voteview, event-driven floor). Cold worker,
+  orchestrator-gated. pytest 36/36, ruff. → dev. — iter 21
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
