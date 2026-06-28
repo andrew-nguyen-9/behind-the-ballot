@@ -1,0 +1,12 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-OH",
+  "cycle": 2026,
+  "title": "Ohio U.S. Senate 2026",
+  "office": "senate",
+  "state": "OH",
+  "senateClass": 3,
+  "status": "upcoming",
+  "sources": ["fec", "polling", "forecast"],
+  "candidates": []
+}
