@@ -9,7 +9,9 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: write `docs/02_ARCHITECTURE.md` deps, then `03_DATA_SOURCES.md`. (01 + ledger done.)
+Next: `docs/03_DATA_SOURCES.md` (seed every V1 module's sources), then
+`04_DEFINITION_OF_DONE.md` + `VERSIONING.md` + `WORKFLOW.md`, then ADRs (P8).
+(Ledger, 01_PRODUCT_VISION, 02_ARCHITECTURE done.)
 
 ## Planning-doc units
 
@@ -18,7 +20,7 @@ Next: write `docs/02_ARCHITECTURE.md` deps, then `03_DATA_SOURCES.md`. (01 + led
 | P0 | branch `planning/v1-docs` | — | done |
 | P1 | `docs/phases/v1/PROGRESS.md` (this ledger) | P0 | done |
 | P2 | `docs/01_PRODUCT_VISION.md` | P1 | done |
-| P3 | `docs/02_ARCHITECTURE.md` | P2 | pending |
+| P3 | `docs/02_ARCHITECTURE.md` | P2 | done |
 | P4 | `docs/03_DATA_SOURCES.md` | P2 | pending |
 | P5 | `docs/04_DEFINITION_OF_DONE.md` | P2 | pending |
 | P6 | `docs/VERSIONING.md` | P2 | pending |
