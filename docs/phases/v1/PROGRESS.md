@@ -9,9 +9,9 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: `docs/phases/v1/PHASES_OVERVIEW.md` (P9, the spine). Then per-segment PLANs
-(P10), LOOP_PROMPT (P11), build ledger (P12), design-system (P13), ACCOUNTS (P14).
-(P0–P8 done: ledger, 01–04, VERSIONING, WORKFLOW, 8 ADRs.)
+Next: per-segment `PLAN.md`s (P10) for the 11 phases/segments in PHASES_OVERVIEW.
+Then LOOP_PROMPT (P11), build ledger (P12), design-system (P13), ACCOUNTS (P14).
+(P0–P9 done: ledger, 01–04, VERSIONING, WORKFLOW, 8 ADRs, PHASES_OVERVIEW.)
 
 ## Planning-doc units
 
@@ -26,7 +26,7 @@ Next: `docs/phases/v1/PHASES_OVERVIEW.md` (P9, the spine). Then per-segment PLAN
 | P6 | `docs/VERSIONING.md` | P2 | done |
 | P7 | `docs/WORKFLOW.md` | P2 | done |
 | P8 | `docs/adr/` (framework, datastore+tiering, no-PostGIS geo, forecast, email/alias, search/bloom, redistricting, loop-architecture) | P3 | done |
-| P9 | `docs/phases/v1/PHASES_OVERVIEW.md` (the spine) | P3,P4,P5 | pending |
+| P9 | `docs/phases/v1/PHASES_OVERVIEW.md` (the spine) | P3,P4,P5 | done |
 | P10 | `docs/phases/v1/<segment>/PLAN.md` (per segment) | P9 | pending |
 | P11 | `docs/phases/v1/LOOP_PROMPT.md` (build loop + gate + token/session rules) | P9 | pending |
 | P12 | seed build-loop ledger rows into a build `PROGRESS.md` | P11 | pending |
@@ -44,3 +44,6 @@ Next: `docs/phases/v1/PHASES_OVERVIEW.md` (P9, the spine). Then per-segment PLAN
   Corrected outbound email to Gmail SMTP [S9c/T4b], not Resend. — iter 2
 - P8: 8 ADRs + index (framework, datastore-tiering, geo-no-postgis, forecast,
   email-alias, search, redistricting-versioning, loop-architecture). — iter 3
+- P9: PHASES_OVERVIEW — 11 phases (0 bootstrap → 1 data foundation → 2–7 module
+  slices → 8 forecast → 9 SEO/search → 10 loop-scale), scope in/out, why-order,
+  locked decisions, cross-cutting AC, Phase-0 contents. — iter 4
