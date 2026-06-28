@@ -55,12 +55,12 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.6.2-rollcall** (Congress.gov roll-call OR GovTrack, env-keyed —
-dispatch to cold worker; brief it carefully, the Congress.gov vote API shape is less
-standard). Then v1.3.3-finance-aggregates (pure transform over the FEC gold artifact).
-After those, the remaining units are UI (need Cloudflare deploy) or forecast (need all
-live inputs) → **firm wall** until provisioning. Code-done (fixture-tested, no deploy):
-fec, polls_538, members, census_acs, voteview connectors + compactness + fairness math.
+Build RESUME: **v1.4.3-aggregation** (weighted polling average per race — pure math over
+poll rows + pollster-ratings weights, fixture-testable, feeds forecast; dispatch to cold
+worker). Then v1.8.x forecast core (heuristic + Monte Carlo, pure math). v1.6.2-rollcall
+(env, uncertain API) lower priority. UI units + live data + forecast deploy gate remain
+blocked on provisioning. Code-done (fixture-tested, no deploy): fec, polls_538, members,
+census_acs, voteview, pollster_ratings connectors + compactness + fairness math.
 `dev` ahead of `origin/dev` — push pending user OK.
 
 All units completable **without external accounts** are done: Phase-0 code-only
@@ -115,7 +115,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.3.3-finance-aggregates | v1.3.2 | pending |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
 | v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
-| v1.4.2-pollster-ratings | v1.4.1 | pending |
+| v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
 | v1.4.3-aggregation | v1.4.2 | pending |
 | v1.4.4-polling-ui | v1.4.3, v1.2.3 | pending |
 | v1.5.1-acs-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
@@ -225,6 +225,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.7.2-fairness-metrics: fairness.py — efficiency gap, mean-median, seats-votes,
   compute_fairness report; two-party caveat [L8a]. Cold worker, orchestrator-gated
   (hand-computed expectations verified). pytest 51/51, ruff. → dev. — iter 23
+- v1.4.2-pollster-ratings: 538 ratings connector (keyless), RatingRow, column-variant
+  robust (numeric_grade→pollscore fallback), upsert by pollster, bake (pollster_ratings,
+  30d). Cold worker self-corrected a test to match the spec'd fallback; orchestrator-
+  gated. pytest 57 passed, ruff. → dev. — iter 24
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
