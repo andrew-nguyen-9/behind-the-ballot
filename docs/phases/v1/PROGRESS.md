@@ -9,9 +9,10 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: `docs/phases/v1/LOOP_PROMPT.md` (P11, self-contained build loop + gate +
-token/session rules). Then build ledger (P12), design-system (P13), ACCOUNTS (P14).
-(P0–P10 done: full doc spine incl. all 11 segment PLANs.)
+Next: `design-system/` seed + logo brief (P13), then `docs/ACCOUNTS.md` (P14) —
+the last two planning units. (P0–P12 done: full doc spine, LOOP_PROMPT, build
+ledger seeded below.) After P14: planning self-check → `PLANNING COMPLETE`, then
+Phase B build begins from the build ledger via LOOP_PROMPT.md.
 
 ## Planning-doc units
 
@@ -28,10 +29,79 @@ token/session rules). Then build ledger (P12), design-system (P13), ACCOUNTS (P1
 | P8 | `docs/adr/` (framework, datastore+tiering, no-PostGIS geo, forecast, email/alias, search/bloom, redistricting, loop-architecture) | P3 | done |
 | P9 | `docs/phases/v1/PHASES_OVERVIEW.md` (the spine) | P3,P4,P5 | done |
 | P10 | `docs/phases/v1/<segment>/PLAN.md` (per segment) | P9 | done (11 segments) |
-| P11 | `docs/phases/v1/LOOP_PROMPT.md` (build loop + gate + token/session rules) | P9 | pending |
-| P12 | seed build-loop ledger rows into a build `PROGRESS.md` | P11 | pending |
+| P11 | `docs/phases/v1/LOOP_PROMPT.md` (build loop + gate + token/session rules) | P9 | done |
+| P12 | seed build-loop ledger rows (## Build ledger below) | P11 | done |
 | P13 | `design-system/` seed + logo brief | P2 | pending |
 | P14 | `docs/ACCOUNTS.md` | P4 | pending |
+
+## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
+
+All `pending`. Pick first eligible whose prereq is `done`. Detail per unit lives in the
+matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B):
+`v1.0.1-repo-scaffold`.
+
+| Unit | Prereq | Status |
+|---|---|---|
+| v1.0.1-repo-scaffold | — | pending |
+| v1.0.2-ci-gate | v1.0.1 | pending |
+| v1.0.3-config-schema | v1.0.1 | pending |
+| v1.0.4-datastore-wiring | v1.0.1 | pending |
+| v1.0.5-etl-skeleton | v1.0.1 | pending |
+| v1.0.6-data-integrity-check | v1.0.5 | pending |
+| v1.0.7-design-tokens | v1.0.1 | pending |
+| v1.0.8-base-layout-seo | v1.0.1, v1.0.7 | pending |
+| v1.1.1-etl-framework | v1.0.5 | pending |
+| v1.1.2-geo-tiles | v1.0.4 | pending |
+| v1.1.3-district-equivalency | v1.1.2 | pending |
+| v1.1.4-geocoder | v1.1.1 | pending |
+| v1.1.5-member-roster | v1.1.1 | pending |
+| v1.1.6-artifact-bake | v1.1.1 | pending |
+| v1.2.1-race-config | v1.0.3 | pending |
+| v1.2.2-candidate-roster | v1.1.5 | pending |
+| v1.2.3-race-page | v1.2.1, v1.2.2 | pending |
+| v1.2.4-district-map-island | v1.1.2 | pending |
+| v1.2.5-find-my-district | v1.1.4 | pending |
+| v1.2.6-race-index | v1.2.3 | pending |
+| v1.3.1-fec-connector | v1.1.1 | pending |
+| v1.3.2-candidate-committee-link | v1.3.1 | pending |
+| v1.3.3-finance-aggregates | v1.3.2 | pending |
+| v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
+| v1.4.1-poll-connector | v1.1.1 | pending |
+| v1.4.2-pollster-ratings | v1.4.1 | pending |
+| v1.4.3-aggregation | v1.4.2 | pending |
+| v1.4.4-polling-ui | v1.4.3, v1.2.3 | pending |
+| v1.5.1-acs-connector | v1.1.1 | pending |
+| v1.5.2-district-aggregates | v1.5.1, v1.1.3 | pending |
+| v1.5.3-urbanization | v1.5.2 | pending |
+| v1.5.4-demographics-ui | v1.5.2, v1.2.3 | pending |
+| v1.6.1-member-profiles | v1.1.5 | pending |
+| v1.6.2-rollcall-votes | v1.6.1 | pending |
+| v1.6.3-ideology | v1.6.1 | pending |
+| v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
+| v1.6.5-member-crosslink | v1.6.1, v1.3.3 | pending |
+| v1.6.6-chamber-view | v1.6.1 | pending |
+| v1.7.1-compactness-metrics | v1.1.2 | pending |
+| v1.7.2-fairness-metrics | v1.7.1 | pending |
+| v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | pending |
+| v1.7.4-leaderboard | v1.7.1 | pending |
+| v1.7.5-methodology-page | v1.7.2 | pending |
+| v1.8.1-baseline-fundamentals | v1.5.2 | pending |
+| v1.8.2-race-model | v1.8.1, v1.4.3, v1.3.3 | pending |
+| v1.8.3-montecarlo-chamber | v1.8.2 | pending |
+| v1.8.4-backtest-calibration | v1.8.2 | pending |
+| v1.8.5-ml-challenger | v1.8.4 | pending |
+| v1.8.6-forecast-ui | v1.8.3 | pending |
+| v1.8.7-snapshot-store | v1.8.3 | pending |
+| v1.9.1-search | phases 2–8 | pending |
+| v1.9.2-sitemap-jsonld | phases 2–8 | pending |
+| v1.9.3-articles-mdx | v1.0.8 | pending |
+| v1.9.4-sources-page | — | pending |
+| v1.9.5-home-nav | v1.9.1 | pending |
+| v1.10.1-coverage-configs | phases 2–8 | pending |
+| v1.10.2-nightly-qa | v1.10.1 | pending |
+| v1.10.3-regression-alerts | v1.10.2 | pending |
+| v1.10.4-budget-alarms | v1.10.2 | pending |
+| v1.10.5-weekly-review-routine | v1.10.2 | pending |
 
 ## Activity log
 
@@ -51,3 +121,6 @@ token/session rules). Then build ledger (P12), design-system (P13), ACCOUNTS (P1
   3 finance, 4 polling — each with acceptance criteria + unit table. — iter 5
 - P10 (rest): PLAN.md for phases 5 demographics, 6 members/chamber, 7
   gerrymander-lite, 8 forecast, 9 SEO/search, 10 loop-scale. All 11 done. — iter 6
+- P11–P12: LOOP_PROMPT.md (self-contained build contract: Step 0, loop, gate,
+  main-wall, token/session sleep rules, completion) + seeded 60-unit build ledger
+  above (v1.0.1–v1.10.5) with prereq DAG. — iter 7
