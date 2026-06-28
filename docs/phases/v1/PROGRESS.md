@@ -198,7 +198,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.9.1-search | phases 2–8 | pending |
 | v1.9.2-sitemap-jsonld | phases 2–8 | pending |
 | v1.9.3-articles-mdx | v1.0.8 | pending |
-| v1.9.4-sources-page | — | pending |
+| v1.9.4-sources-page | — | done (local gate) |
 | v1.9.5-home-nav | v1.9.1 | pending |
 | v1.10.1-coverage-configs | phases 2–8 | pending |
 | v1.10.2-nightly-qa | v1.10.1 | pending |
@@ -350,6 +350,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.5.4-demographics-ui: demographics panel on race detail (population, median income,
   urbanization, ACS release + Census source); demographics.ts loader. Local gate: check
   0/0/0, 11 pages, links, 0 JS, tests 27/27. — iter 43
+- v1.9.4-sources-page: real /sources renders the DATA_SOURCES contract table (9 sources:
+  provider/license/cadence/freshness-floor/modules) [R14a]; sources.ts. Local gate: check
+  0/0/0, 11 pages, links, 0 JS, tests 29/29. — iter 44
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

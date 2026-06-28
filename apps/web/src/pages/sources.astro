@@ -1,12 +1,47 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// Stub — the full DATA_SOURCES contract table renders here in v1.9.4-sources-page.
+import { SOURCES } from "../lib/sources";
 ---
 
-<Layout title="Sources" description="Every figure traces to a public data source.">
-  <h1 class="text-2xl font-bold">Sources</h1>
-  <p class="mt-3 max-w-prose text-muted">
-    Behind the Ballot is non-partisan: every published figure traces to a public source
-    with a freshness floor. The full source table renders here.
+<Layout title="Sources" description="Every figure on Behind the Ballot traces to a public data source.">
+  <h1 class="text-3xl font-bold">Sources</h1>
+  <p class="mt-2 max-w-prose text-muted">
+    Behind the Ballot is non-partisan: <strong>every published figure traces to a public
+    data source</strong> with a freshness floor. If data goes stale past its floor, the
+    figure is flagged rather than shown silently. This is the data contract.
+  </p>
+
+  <div class="mt-6 overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead class="text-left text-muted">
+        <tr>
+          <th class="py-2 pr-4">Data</th>
+          <th class="pr-4">Provider</th>
+          <th class="pr-4">License</th>
+          <th class="pr-4">Cadence</th>
+          <th class="pr-4">Freshness floor</th>
+          <th>Used by</th>
+        </tr>
+      </thead>
+      <tbody>
+        {SOURCES.map((s) => (
+          <tr class="border-t border-[var(--color-border)] align-top">
+            <td class="py-2 pr-4 font-medium">{s.label}</td>
+            <td class="pr-4">
+              <a href={s.url} class="underline" rel="noopener">{s.provider}</a>
+            </td>
+            <td class="pr-4 text-muted">{s.license}</td>
+            <td class="pr-4 text-muted">{s.cadence}</td>
+            <td class="pr-4 tabular-nums text-muted">{s.freshnessFloor}</td>
+            <td class="text-muted">{s.modules}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mt-6 text-xs text-muted">
+    Government sources (FEC, Census, Congress.gov, Geocoder, TIGER) are US public domain.
+    Wikipedia content is CC BY-SA; Voteview and GovTrack are credited per their terms.
   </p>
 </Layout>
