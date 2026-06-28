@@ -1,0 +1,10 @@
+# Cloudflare Pages security headers [V5a]. ponytail: CSP starts strict; loosen per
+# directive only when an island/embed proves it needs it (script-src for hydration is
+# self-hosted, so 'self' holds). Revisit when MapLibre/Plot islands ship.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'

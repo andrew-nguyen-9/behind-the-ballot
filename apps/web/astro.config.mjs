@@ -1,10 +1,13 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-// Static-first; React islands hydrate only where needed [P1a,P5a].
+// `site` feeds sitemap + canonical/OG URLs [U4a,U5a]. Placeholder until the domain is
+// provisioned (account-blocked, see ACCOUNTS.md); finalize in v1.0.4 era.
 export default defineConfig({
-  integrations: [react()],
+  site: "https://behindtheballot.org",
+  integrations: [react(), sitemap()],
   vite: { plugins: [tailwindcss()] },
 });

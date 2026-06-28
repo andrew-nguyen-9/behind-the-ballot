@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://behindtheballot.org/sitemap-index.xml

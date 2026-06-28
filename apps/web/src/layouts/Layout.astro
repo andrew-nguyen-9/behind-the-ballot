@@ -1,0 +1,78 @@
+---
+import "../styles/global.css";
+
+// Base shell: meta + OG + JSON-LD + nav + footer [U3a,U5a]. Every page renders through
+// this. ponytail: static default OG now; per-page generated OG cards [C14a] land in a
+// later SEO unit (v1.9.2).
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Behind the Ballot",
+  description = "Non-partisan 2026 midterm tracking & analytics.",
+} = Astro.props;
+
+const fullTitle = title === "Behind the Ballot" ? title : `${title} · Behind the Ballot`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// ponytail: per-page OG card images [C14a] land in v1.9.2; until then no og:image meta
+// (pointing at a missing asset is worse than omitting it).
+
+// JSON-LD WebSite [U3a]. Per-type schema (Person/Place/etc.) added per module.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Behind the Ballot",
+  url: Astro.site?.toString(),
+  description,
+};
+
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/races", label: "Races" },
+  { href: "/members", label: "Members" },
+  { href: "/forecast", label: "Forecast" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-dvh font-sans antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:p-2">Skip to content</a>
+    <header class="border-b border-[var(--color-border)]">
+      <nav class="mx-auto flex max-w-4xl items-center gap-6 px-6 py-4" aria-label="Primary">
+        <a href="/" class="font-bold">Behind the Ballot</a>
+        <ul class="flex gap-4 text-sm" role="list">
+          {nav.slice(1).map((l) => (
+            <li><a href={l.href} class="text-muted hover:text-[var(--color-accent)]">{l.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="mx-auto max-w-4xl px-6 py-12">
+      <slot />
+    </main>
+
+    <footer class="mx-auto max-w-4xl px-6 py-10 text-sm text-muted">
+      <p>Non-partisan. Every figure traces to a source — see <a class="underline" href="/sources">sources</a>.</p>
+    </footer>
+  </body>
+</html>
