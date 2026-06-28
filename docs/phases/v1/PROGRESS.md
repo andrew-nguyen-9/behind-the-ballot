@@ -46,8 +46,13 @@ Remaining work is **account-gated** — needs the human to provision domain + Cl
 (Pages/R2) + Neon + api.data.gov key + Gmail SMTP (see ACCOUNTS.md), all requiring
 payment/2FA an agent can't do. Blocked: v1.0.4-datastore-wiring, every data connector
 (v1.1.x/1.3.x/1.4.x/1.5.x/1.6.x), live-preview + real-data-freshness gate parts.
-Next autonomous-eligible unit: scan for any remaining pure-code/fixture unit; if none,
-the loop is at a **budget/credential wall** [S16a] — report + await provisioning. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
+Next autonomous-eligible: **v1.1.1-etl-framework** — connector base (cache, backoff,
+conditional requests, upsert-by-natural-key, last-good) is pure logic, fixture/mock
+tested, no live network or account. After that the remaining units genuinely need live
+API keys + deploy creds; the loop reaches the **credential wall** [S16a] and should
+report + await provisioning. Note: Lighthouse/axe/screenshots CAN run locally against
+the static `dist` (lhci staticDistDir), so the perf/a11y gate is not itself the wall —
+only live-data + deployed-preview are. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
 human provisions: **v1.0.4-datastore-wiring** and every data connector
 (v1.1.x/v1.3.x/v1.4.x/v1.5.x/v1.6.x) + live-preview gate parts.
 Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
