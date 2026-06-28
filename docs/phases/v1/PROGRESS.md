@@ -55,10 +55,10 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.4.1-poll-connector** (538 CSV, keyless — fully runnable live, just
-no deploy). Then v1.1.5-member-roster (keyless YAML), v1.5.1-acs-connector,
-v1.6.x (env-keyed, fixture-tested). v1.3.1-fec-connector code-complete (live pends
-`DATA_GOV_API_KEY`).
+Build RESUME: **v1.1.5-member-roster** (congress-legislators YAML, keyless). Then
+v1.5.1-acs-connector + v1.6.2-rollcall (env-keyed), v1.6.3-ideology (Voteview, keyless).
+Connectors done so far: fec (env), polls_538 (keyless). All fixture-tested; live data
+pends keys, deploy pends Cloudflare.
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
@@ -111,7 +111,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.3.2-candidate-committee-link | v1.3.1 | pending |
 | v1.3.3-finance-aggregates | v1.3.2 | pending |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
-| v1.4.1-poll-connector | v1.1.1 | pending |
+| v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
 | v1.4.2-pollster-ratings | v1.4.1 | pending |
 | v1.4.3-aggregation | v1.4.2 | pending |
 | v1.4.4-polling-ui | v1.4.3, v1.2.3 | pending |
@@ -203,6 +203,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.3.1-fec-connector: OpenFEC totals connector (env key, FecTotals model, upsert,
   bake integrity-clean), 5 fixture tests, no live calls. pytest 22/22, ruff. Code
   done; live run pends DATA_GOV_API_KEY. → dev. — iter 17
+- v1.4.1-poll-connector: 538 CSV connector (keyless), PollRow validation, composite-key
+  upsert, last-good, bake (polls_538, 3d floor). 3 fixture tests. pytest 25/25, ruff.
+  → dev. — iter 18
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
