@@ -1,9 +1,46 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// Stub — real race index is v1.2.6-race-index.
+import { allRaces, partyColorClass } from "../lib/races";
+
+// Browsable index of all race configs [F4c]. Grouped by office; each links to its detail
+// page. Real-time filtering can be a later island; static grouping is enough for V1 scale.
+const races = allRaces();
+const offices: { key: "senate" | "house" | "governor"; label: string }[] = [
+  { key: "senate", label: "U.S. Senate" },
+  { key: "house", label: "U.S. House" },
+  { key: "governor", label: "Governor" },
+];
+const seat = (r: (typeof races)[number]) =>
+  r.office === "house" ? `${r.state}-${String(r.district).padStart(2, "0")}` : r.state;
 ---
 
 <Layout title="Races" description="2026 House, Senate, and Governor races.">
-  <h1 class="text-2xl font-bold">Races</h1>
-  <p class="mt-3 text-muted">Race tracker coming in the tracker module.</p>
+  <h1 class="text-3xl font-bold">Races</h1>
+  <p class="mt-2 text-muted">{races.length} race{races.length === 1 ? "" : "s"} tracked for 2026.</p>
+
+  {offices.map(({ key, label }) => {
+    const group = races.filter((r) => r.office === key);
+    if (group.length === 0) return null;
+    return (
+      <section class="mt-8" aria-labelledby={key}>
+        <h2 id={key} class="font-serif text-xl">{label}</h2>
+        <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
+          {group.map((r) => (
+            <li>
+              <a href={`/races/${r.id}`} class="flex items-center gap-3 py-3 hover:text-[var(--color-accent)]">
+                <span class="w-16 text-sm tabular-nums text-muted">{seat(r)}</span>
+                <span class="flex-1 font-medium">{r.title}</span>
+                <span class="flex gap-1" aria-hidden="true">
+                  {r.candidates.map((c) => (
+                    <span class={`inline-block size-3 rounded-sm ${partyColorClass(c.party)}`}></span>
+                  ))}
+                </span>
+                <span class="text-sm capitalize text-muted">{r.status}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  })}
 </Layout>

@@ -164,7 +164,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.2.3-race-page | v1.2.1, v1.2.2 | done (local gate; CI lhci/axe on push) |
 | v1.2.4-district-map-island | v1.1.2 | pending |
 | v1.2.5-find-my-district | v1.1.4 | pending |
-| v1.2.6-race-index | v1.2.3 | pending |
+| v1.2.6-race-index | v1.2.3 | done (local gate; CI lhci/axe on push) |
 | v1.3.1-fec-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.3.2-candidate-committee-link | v1.3.1 | pending |
 | v1.3.3-finance-aggregates | v1.3.2 | done (math; committed direct to dev) |
@@ -321,6 +321,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   colorblind-safe party tokens + incumbent badge + status; races.ts loader/validator;
   2 sample races (OH-Sen, PA-05). v1.2.1 config done. Local gate: check 0/0/0, vitest
   9/9, build 7 pages, links ok, 0 JS. CI lhci/axe runs on push. Direct to dev. — iter 35
+- v1.2.6-race-index: real /races index (grouped by office, party-dot chips, status,
+  links to detail) replacing the stub. Local gate: check 0/0/0, build, links ok,
+  tests 9/9. Direct to dev. — iter 36
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
