@@ -24,6 +24,20 @@ export function memberById(id: string): Member | null {
 
 export const chamberLabel = (c: Member["chamber"]) => (c === "sen" ? "U.S. Senate" : "U.S. House");
 
+// Sitting members for a race's seat — geographic link [M8a]. House: same state + district;
+// Senate: the state's senators. Joins on real state/district fields (no FEC↔bioguide
+// identity crosswalk, which needs live data). ponytail: identity-level finance link lands
+// with that crosswalk; this is the source-honest geographic crosslink until then.
+export function membersForRace(state: string, office: string, district: number | null): Member[] {
+  if (office === "house") {
+    return allMembers().filter((m) => m.chamber === "rep" && m.state === state && m.district === district);
+  }
+  if (office === "senate") {
+    return allMembers().filter((m) => m.chamber === "sen" && m.state === state);
+  }
+  return []; // governor: no congressional seat
+}
+
 // Chamber composition: seat counts per party, computed from the roster [J?a].
 export interface Composition {
   chamber: Member["chamber"];

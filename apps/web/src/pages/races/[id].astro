@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { allRaces, partyColorClass, partyLabel } from "../../lib/races";
+import { membersForRace } from "../../lib/members";
 import { financeForRace, fmtUSD } from "../../lib/finance";
 import { pollingForRace } from "../../lib/polling";
 import { forecastForRace, marginLabel } from "../../lib/forecast";
@@ -44,6 +45,9 @@ const demo = demographicsForRace(race.id);
 // District shape (house races) — inline SVG now; MapLibre+PMTiles when R2 lands [P8a].
 const shape = districtShape(race.id);
 const shapeSvg = shape ? ringToSvg(shape.ring) : null;
+
+// Geographic crosslink [M8a]: sitting members for this seat (state/district join).
+const seatMembers = membersForRace(race.state, race.office, race.office === "house" ? race.district : null);
 ---
 
 <Layout title={race.title} description={`${officeLabel} race — ${race.title}.`}>
@@ -192,6 +196,24 @@ const shapeSvg = shape ? ringToSvg(shape.ring) : null;
           </div>
         </div>
       </div>
+    </section>
+  )}
+
+  {seatMembers.length > 0 && (
+    <section class="mt-10" aria-labelledby="members">
+      <h2 id="members" class="font-serif text-xl">Current officeholder{seatMembers.length === 1 ? "" : "s"}</h2>
+      <p class="mt-1 text-sm text-muted">Sitting member{seatMembers.length === 1 ? "" : "s"} for this seat.</p>
+      <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
+        {seatMembers.map((m) => (
+          <li>
+            <a href={`/members/${m.bioguide_id}`} class="flex items-center gap-3 py-3 hover:text-[var(--color-accent)]">
+              <span class={`inline-block size-3 rounded-sm ${partyColorClass(m.party)}`} aria-hidden="true"></span>
+              <span class="flex-1 font-medium">{m.name}</span>
+              <span class="text-sm text-muted">{partyLabel(m.party)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   )}
 </Layout>

@@ -1,13 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { allMembers, chamberLabel, ideologyLabel, type Member } from "../../lib/members";
-import { partyColorClass, partyLabel } from "../../lib/races";
+import { allRaces, partyColorClass, partyLabel } from "../../lib/races";
 
 export function getStaticPaths() {
   return allMembers().map((m) => ({ params: { id: m.bioguide_id }, props: { member: m } }));
 }
 
 const { member } = Astro.props as { member: Member };
+// Geographic crosslink [M8a]: 2026 races in this member's state.
+const stateRaces = allRaces().filter((r) => r.state === member.state);
 const seat =
   member.chamber === "rep"
     ? `${member.state}-${String(member.district).padStart(2, "0")}`
@@ -51,7 +53,24 @@ const personSchema = {
     )}
   </section>
 
+  {stateRaces.length > 0 && (
+    <section class="mt-8" aria-labelledby="races">
+      <h2 id="races" class="font-serif text-xl">2026 races in {member.state}</h2>
+      <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
+        {stateRaces.map((r) => (
+          <li>
+            <a href={`/races/${r.id}`} class="flex items-center justify-between py-3 hover:text-[var(--color-accent)]">
+              <span class="font-medium">{r.title}</span>
+              <span class="text-sm text-muted">View race →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
   <p class="mt-10 text-sm text-muted">
-    Committees, key votes, sponsorship, and finance links attach as their data lands.
+    Committees, key votes, sponsorship, and per-candidate finance links attach as their data
+    lands (the FEC↔bioguide crosswalk).
   </p>
 </Layout>
