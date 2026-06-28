@@ -65,9 +65,22 @@ attribution on git artifacts). This is the contract ADR 0008 describes.
 1. **Checkpoint atomic + frequent.** After each unit (and before any long step) flush
    state to `PROGRESS.md` (+ the file in progress). Important state lives on disk, never
    only in context.
-2. **Context ~98%** → finish the current atomic write, append a `RESUME:` note to
-   `PROGRESS.md`, then hand off to a fresh cold sub-agent / end the turn for the loop to
-   re-feed — rather than overflowing mid-thought.
+2. **Context handoff (start fresh, never compact).** Treat the context window as a
+   budget with two thresholds:
+   - **~90% — stop taking on new work.** Do **not** start a new unit. Finish the current
+     atomic write, update the `RESUME:` note, and **end the turn**. The ralph loop
+     re-feeds the same prompt and the next iteration re-derives from `PROGRESS.md` with a
+     smaller working set — this *is* the "continue in a fresh session" mechanism.
+   - **~98% — hard stop mid-flight.** Append `RESUME:` immediately and end the turn even
+     if a step is half-done; the cold continuation picks it up from disk.
+   Prefer **dispatching a cold sub-agent** for any unit expected to produce heavy
+   file/tool output, so the orchestrator's own window stays lean and rarely reaches the
+   threshold at all.
+   Note (capability limit): an agent cannot literally open a new Claude Code chat window
+   and close the old one — auto-compaction is the platform default at the ceiling. The
+   substitutes that achieve the same continuity are (a) cold sub-agents per unit, and
+   (b) checkpoint-then-end-turn / `ScheduleWakeup`, which the loop re-enters with a fresh
+   context. Because all load-bearing state is on disk, a fresh session loses nothing.
 3. **Usage session ~98%** → do **not** keep working. (a) Checkpoint + `RESUME:` note.
    (b) Find when the usage window resets. (c) Call **`ScheduleWakeup`** with
    `delaySeconds = (seconds until reset) + 60` — wake ~1 min after refresh — passing

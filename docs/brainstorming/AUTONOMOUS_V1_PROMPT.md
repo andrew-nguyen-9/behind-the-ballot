@@ -64,9 +64,17 @@ Never die mid-write; never burn into a hard stop.
 1. **Checkpoint is atomic + frequent.** After each unit (and before any long step)
    flush state to `PROGRESS.md` (+ the file in progress) so a cold restart loses
    nothing. Important state lives on disk, never only in context.
-2. **Context ~98%** → finish the current atomic write, append a `RESUME:` note to
-   `PROGRESS.md`, then **hand off to a fresh cold sub-agent** (or end the turn for the
-   loop to re-feed) rather than overflowing mid-thought.
+2. **Context handoff — start fresh, never compact.** Two thresholds:
+   - **~90%** → do **not** start a new unit. Finish the current atomic write, update
+     `RESUME:`, and **end the turn**; the loop re-feeds and the next iteration continues
+     from `PROGRESS.md` in a fresh, smaller context. This is the "continue in a new
+     session" behavior.
+   - **~98%** → hard stop mid-flight: write `RESUME:` and end immediately.
+   Prefer **dispatching a cold sub-agent** for heavy-output units so the orchestrator
+   window stays lean. (Capability limit: an agent can't literally open a new chat window
+   and close the old — auto-compaction is the platform default. Cold sub-agents +
+   checkpoint-then-end-turn / `ScheduleWakeup` give the same continuity since all state
+   is on disk.)
 3. **Usage session ~98%** → do **not** keep working. (a) Checkpoint + `RESUME:` note.
    (b) Determine when the usage window resets. (c) Call **`ScheduleWakeup`** with
    `delaySeconds = (seconds until that reset) + 60` — i.e. **wake ~1 minute after the
