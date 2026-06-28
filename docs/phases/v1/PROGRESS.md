@@ -55,6 +55,15 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
+### ⚠️ RECURRING: external process switches HEAD→main after `git switch -c unit/*` (iters 28, 32)
+Happens even with NO worker running (iter 32, in-thread build) — something external/
+concurrent checks out `main` right after a unit-branch create. **Mitigation: commit small
+units DIRECTLY to `dev`** (verify `git branch --show-current`==dev immediately before the
+commit) instead of the unit-branch→merge dance, which keeps getting interrupted. `main`
+stays untouched regardless. Always preserve uncommitted files to scratchpad first; recover
+with `git switch --discard-changes dev`. Root cause still unknown (possibly the ralph/loop
+harness or a concurrent session). All commits remain safe in git.
+
 ### ⚠️ INCIDENT (iter 28) + FIX — worker switched HEAD to main
 A dispatched cold worker ran a `git` command that switched HEAD `unit/v1.8.4-backtest →
 main`, leaving dev's files untracked + pyproject.toml missing from the working tree. **No
@@ -133,7 +142,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.2.6-race-index | v1.2.3 | pending |
 | v1.3.1-fec-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.3.2-candidate-committee-link | v1.3.1 | pending |
-| v1.3.3-finance-aggregates | v1.3.2 | pending |
+| v1.3.3-finance-aggregates | v1.3.2 | done (math; committed direct to dev) |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
 | v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
 | v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
