@@ -9,9 +9,8 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: `docs/03_DATA_SOURCES.md` (seed every V1 module's sources), then
-`04_DEFINITION_OF_DONE.md` + `VERSIONING.md` + `WORKFLOW.md`, then ADRs (P8).
-(Ledger, 01_PRODUCT_VISION, 02_ARCHITECTURE done.)
+Next: `docs/04_DEFINITION_OF_DONE.md` + `VERSIONING.md` + `WORKFLOW.md` (P5–P7),
+then ADRs (P8). (Ledger, 01_PRODUCT_VISION, 02_ARCHITECTURE, 03_DATA_SOURCES done.)
 
 ## Planning-doc units
 
@@ -21,7 +20,7 @@ Next: `docs/03_DATA_SOURCES.md` (seed every V1 module's sources), then
 | P1 | `docs/phases/v1/PROGRESS.md` (this ledger) | P0 | done |
 | P2 | `docs/01_PRODUCT_VISION.md` | P1 | done |
 | P3 | `docs/02_ARCHITECTURE.md` | P2 | done |
-| P4 | `docs/03_DATA_SOURCES.md` | P2 | pending |
+| P4 | `docs/03_DATA_SOURCES.md` | P2 | done |
 | P5 | `docs/04_DEFINITION_OF_DONE.md` | P2 | pending |
 | P6 | `docs/VERSIONING.md` | P2 | pending |
 | P7 | `docs/WORKFLOW.md` | P2 | pending |
@@ -36,3 +35,6 @@ Next: `docs/03_DATA_SOURCES.md` (seed every V1 module's sources), then
 ## Activity log
 
 - P0–P2: branched, seeded ledger, wrote Product Vision (cited to answers). — iter 1
+- P4: 03_DATA_SOURCES.md — master source table (FEC/538/Census/Congress.gov/
+  Voteview/congress-legislators/TIGER/Geocoder), keys, cadence, freshness floors,
+  pipeline contract. Flagged RCP/Wikipedia licensing as open Qs. — iter 2
