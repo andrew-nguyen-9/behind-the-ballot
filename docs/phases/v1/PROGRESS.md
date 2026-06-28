@@ -9,10 +9,14 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: `design-system/` seed + logo brief (P13), then `docs/ACCOUNTS.md` (P14) —
-the last two planning units. (P0–P12 done: full doc spine, LOOP_PROMPT, build
-ledger seeded below.) After P14: planning self-check → `PLANNING COMPLETE`, then
-Phase B build begins from the build ledger via LOOP_PROMPT.md.
+**Phase A (planning) COMPLETE** — P0–P14 all done: full doc tree (01–04, VERSIONING,
+WORKFLOW, 8 ADRs, PHASES_OVERVIEW, 11 segment PLANs), self-contained LOOP_PROMPT.md,
+60-unit build ledger below, design-system seed + logo brief, ACCOUNTS.
+
+Next: **Phase B (build)** via `LOOP_PROMPT.md` — first eligible build unit
+`v1.0.1-repo-scaffold` (pure code, no account). Account-gated units (Neon/CF/domain/
+API keys, 2FA) are human-only → mark `blocked`, log, build code-only units meanwhile.
+`V1 COMPLETE` only when all build units `done` + live preview + gates green sitewide.
 
 ## Planning-doc units
 
@@ -31,8 +35,8 @@ Phase B build begins from the build ledger via LOOP_PROMPT.md.
 | P10 | `docs/phases/v1/<segment>/PLAN.md` (per segment) | P9 | done (11 segments) |
 | P11 | `docs/phases/v1/LOOP_PROMPT.md` (build loop + gate + token/session rules) | P9 | done |
 | P12 | seed build-loop ledger rows (## Build ledger below) | P11 | done |
-| P13 | `design-system/` seed + logo brief | P2 | pending |
-| P14 | `docs/ACCOUNTS.md` | P4 | pending |
+| P13 | `design-system/` seed + logo brief | P2 | done |
+| P14 | `docs/ACCOUNTS.md` | P4 | done |
 
 ## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
 
@@ -124,3 +128,6 @@ matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase 
 - P11–P12: LOOP_PROMPT.md (self-contained build contract: Step 0, loop, gate,
   main-wall, token/session sleep rules, completion) + seeded 60-unit build ledger
   above (v1.0.1–v1.10.5) with prereq DAG. — iter 7
+- P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
+  palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
+  (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
