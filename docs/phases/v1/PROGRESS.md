@@ -15,6 +15,9 @@ units COMPLETE** — ~49 units green + 1 partial, merged to `dev`; `main` untouc
 source-honest slice of `v1.6.5-member-crosslink` — geographic member↔race links; its
 finance-identity join is the only remaining non-deploy work and it needs the live
 FEC↔bioguide crosswalk. **No remaining unit is buildable without provisioning.**)
+iter 56: ran the Lighthouse gate locally for the first time — perf/a11y/best-practices/SEO
+all ≥0.9 on the tested pages (incl. /chamber). The a11y/perf DoD bar is now evidenced, not
+just asserted. Full 15-page Lighthouse + real-data freshness still pend deploy.
 
 Built (fixture-tested, locally-gated; 153 tests = 121 Python + 32 web, `astro check`
 0/0/0): Phase-0 infra · 6 connectors (FEC/538/Census/Congress/Voteview/pollster-ratings)
@@ -352,6 +355,13 @@ all `done` units; `main` untouched `[S5a]`.
   Fixed a sort bug (`"DR".indexOf` returned -1 for I, sorting it first → ranked D/R/other).
   Also corrected stale ledger row v1.9.5-home-nav (shipped iter 46). Local gate: check
   0/0/0, vitest 34/34, build 15 pages, links ok, 0 JS. Direct to dev. — iter 53
+- iter 56: **first real Lighthouse run** (`pnpm dlx @lhci/cli autorun --config
+  apps/web/lighthouserc.json`, static `dist`, no live server). All four categories
+  (perf/a11y/best-practices/SEO) **≥0.9** — `All results processed!`, exit 0. lhci
+  default-caps auto-globbed URLs at 5, so it covered the distinct page types (home,
+  articles index, article detail, /chamber, forecast); full-page sweep runs at deploy CI.
+  This is the a11y/perf gate confirmed for the first time (was only ever CI-on-push, which
+  never ran without a remote). No code change; verification only.
 - v1.6.5-member-crosslink (partial): geographic member↔race crosslink — `membersForRace`
   joins on state/district; member profile lists 2026 races in their state, race page lists
   current officeholders for the seat. Finance-identity link (per-candidate $) still pends
