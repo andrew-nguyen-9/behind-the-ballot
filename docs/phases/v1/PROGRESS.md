@@ -55,13 +55,13 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.7.2-fairness-metrics** (efficiency gap + mean-median, pure math on
-vote-share inputs, keyless — dispatch to cold worker). Then v1.6.2-rollcall (env-keyed),
-v1.3.2/3.3 finance-aggregates (pure transforms over FEC artifact). After those the
-remaining units are UI (need deploy) or forecast (need all live inputs) → firmer wall.
-Code-done: fec, polls_538, members, census_acs, voteview connectors + compactness math.
-All fixture-tested; live data pends keys, deploy pends Cloudflare. `dev` ahead of
-`origin/dev` — push pending user OK.
+Build RESUME: **v1.6.2-rollcall** (Congress.gov roll-call OR GovTrack, env-keyed —
+dispatch to cold worker; brief it carefully, the Congress.gov vote API shape is less
+standard). Then v1.3.3-finance-aggregates (pure transform over the FEC gold artifact).
+After those, the remaining units are UI (need Cloudflare deploy) or forecast (need all
+live inputs) → **firm wall** until provisioning. Code-done (fixture-tested, no deploy):
+fec, polls_538, members, census_acs, voteview connectors + compactness + fairness math.
+`dev` ahead of `origin/dev` — push pending user OK.
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
@@ -129,7 +129,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | pending |
 | v1.6.6-chamber-view | v1.6.1 | pending |
 | v1.7.1-compactness-metrics | v1.1.2 | done (math; TIGER read+bake pends geo data) |
-| v1.7.2-fairness-metrics | v1.7.1 | pending |
+| v1.7.2-fairness-metrics | v1.7.1 | done (math; live results join pends data) |
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | pending |
 | v1.7.4-leaderboard | v1.7.1 | pending |
 | v1.7.5-methodology-page | v1.7.2 | pending |
@@ -222,6 +222,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.7.1-compactness-metrics: geometry.py — Polsby-Popper/Reock/convex-hull via shapely
   + compute_metrics; fixture-tested vs known shapes (unit square pp≈0.785). shapely dep
   added. Cold worker, orchestrator-gated. pytest 43/43, ruff. → dev. — iter 22
+- v1.7.2-fairness-metrics: fairness.py — efficiency gap, mean-median, seats-votes,
+  compute_fairness report; two-party caveat [L8a]. Cold worker, orchestrator-gated
+  (hand-computed expectations verified). pytest 51/51, ruff. → dev. — iter 23
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
