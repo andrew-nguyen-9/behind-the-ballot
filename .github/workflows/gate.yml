@@ -1,0 +1,57 @@
+# The verification gate [S4a] — runs on every PR into dev. Mirrors
+# docs/04_DEFINITION_OF_DONE.md. Actions pinned to commit SHAs [V4a]; Dependabot
+# keeps them current (.github/dependabot.yml [V3a]).
+name: gate
+
+on:
+  pull_request:
+    branches: [dev]
+  push:
+    branches: [dev]
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter web check        # astro check + tsc (strict)
+      - run: pnpm --filter web test         # vitest
+      - run: pnpm --filter web build        # astro build (static)
+      - run: node scripts/check-links.mjs apps/web/dist  # link/schema [S8a]
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: dist
+          path: apps/web/dist
+
+  lighthouse-a11y:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter web build
+      # Lighthouse CI: perf + a11y (axe-core) + best-practices + SEO >=0.9 mobile
+      # [U8a,W9a,U3a]. Assertions in apps/web/lighthouserc.json.
+      - run: pnpm dlx @lhci/cli@0.14.x autorun --config=apps/web/lighthouserc.json
+
+  pipeline-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: astral-sh/setup-uv@e58605a9b6da7c637471fab8847a5e5a6b8df081 # v5
+      - run: uv sync --project pipeline
+      - run: uv run --project pipeline ruff check pipeline
