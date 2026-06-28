@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+  byCompactness,
+  efficiencyGapLabel,
+  stateFairness,
+} from "../lib/gerrymander";
+
+// Multi-metric, caveated, NO single verdict [L8a]. Metrics computed offline from TIGER
+// [L6a]; full methodology below [L14a].
+const states = stateFairness();
+const leastCompact = byCompactness(true).slice(0, 3);
+const fmtSeat = (n: number) => `${Math.round(n * 100)}%`;
+---
+
+<Layout
+  title="Gerrymandering"
+  description="District compactness and partisan-fairness metrics — multiple measures, with caveats."
+>
+  <h1 class="text-3xl font-bold">Gerrymandering</h1>
+  <p class="mt-2 max-w-prose text-muted">
+    We report <strong>several</strong> measures of compactness and partisan fairness. They
+    often disagree, and no single number proves a map is gerrymandered — read them together
+    and with the caveats below. Metrics are computed offline from Census TIGER district
+    geometry. Source: <a href="/sources" class="underline">TIGER/Line</a>.
+  </p>
+
+  <section class="mt-8" aria-labelledby="fairness">
+    <h2 id="fairness" class="font-serif text-xl">Partisan fairness by state</h2>
+    <table class="mt-3 w-full text-sm">
+      <thead class="text-left text-muted">
+        <tr>
+          <th class="py-2">State</th><th>Efficiency gap</th><th>Mean–median</th>
+          <th>Seats / votes (D)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {states.map((s) => (
+          <tr class="border-t border-[var(--color-border)]">
+            <td class="py-2 font-medium">{s.state}</td>
+            <td>{efficiencyGapLabel(s.efficiency_gap)}</td>
+            <td class="tabular-nums">{(s.mean_median * 100).toFixed(1)} pts</td>
+            <td class="tabular-nums">{fmtSeat(s.dem_seat_share)} / {fmtSeat(s.dem_vote_share)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="mt-2 text-xs text-muted">
+      Efficiency gap &amp; mean–median have known limitations (sensitive to uncontested
+      seats, statewide lean); treat as signals, not verdicts.
+    </p>
+  </section>
+
+  <section class="mt-8" aria-labelledby="compact">
+    <h2 id="compact" class="font-serif text-xl">Least compact districts</h2>
+    <ul class="mt-3 space-y-2" role="list">
+      {leastCompact.map((d) => (
+        <li class="flex justify-between text-sm">
+          <span class="font-medium">{d.state}-{String(d.district).padStart(2, "0")}</span>
+          <span class="tabular-nums text-muted">
+            Polsby-Popper {d.polsby_popper.toFixed(2)} · Reock {d.reock.toFixed(2)} ·
+            convex-hull {d.convex_hull_ratio.toFixed(2)}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-8" aria-labelledby="method">
+    <h2 id="method" class="font-serif text-xl">Methodology</h2>
+    <p class="mt-2 max-w-prose text-sm text-muted">
+      Compactness: Polsby-Popper (4π·area/perimeter²), Reock (area / min-bounding-circle),
+      and convex-hull ratio — each 1.0 at most compact. Fairness: efficiency gap (wasted
+      votes) and mean–median (mean minus median district vote share). Boundaries are
+      versioned by <code>as_of</code> to track court-ordered changes. Ensemble/simulation
+      analysis is planned for a later release.
+    </p>
+  </section>
+</Layout>

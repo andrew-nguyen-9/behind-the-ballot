@@ -1,0 +1,5 @@
+[
+  { "geoid": "3903", "state": "OH", "district": 3, "polsby_popper": 0.21, "reock": 0.34, "convex_hull_ratio": 0.58 },
+  { "geoid": "3912", "state": "OH", "district": 12, "polsby_popper": 0.62, "reock": 0.55, "convex_hull_ratio": 0.88 },
+  { "geoid": "4205", "state": "PA", "district": 5, "polsby_popper": 0.47, "reock": 0.49, "convex_hull_ratio": 0.79 }
+]

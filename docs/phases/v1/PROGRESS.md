@@ -185,9 +185,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.6.6-chamber-view | v1.6.1 | pending |
 | v1.7.1-compactness-metrics | v1.1.2 | done (math; TIGER read+bake pends geo data) |
 | v1.7.2-fairness-metrics | v1.7.1 | done (math; live results join pends data) |
-| v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | pending |
-| v1.7.4-leaderboard | v1.7.1 | pending |
-| v1.7.5-methodology-page | v1.7.2 | pending |
+| v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | done (local gate) |
+| v1.7.4-leaderboard | v1.7.1 | done (on gerrymander page) |
+| v1.7.5-methodology-page | v1.7.2 | done (methodology section) |
 | v1.8.1-baseline-fundamentals | v1.5.2 | done (math; live inputs pend data) |
 | v1.8.2-race-model | v1.8.1, v1.4.3, v1.3.3 | done (math; live inputs pend data) |
 | v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
@@ -343,6 +343,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   ideology w/ plain-language band + Voteview source) + real /members index (by chamber);
   members.ts loader + ideologyLabel. Sample roster (3). Local gate: check 0/0/0, build
   10 pages, links, 0 JS, tests 21/21. — iter 41
+- v1.7.3+7.4+7.5-gerrymander: /gerrymander page — per-state fairness (efficiency gap+
+  mean-median, caveated [L8a]), least-compact leaderboard, methodology; gerrymander.ts
+  loader; nav link "Maps". Local gate: check 0/0/0, 11 pages, links, 0 JS, tests 24/24.
+  — iter 42
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
