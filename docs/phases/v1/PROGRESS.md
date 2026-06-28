@@ -195,7 +195,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.8.5-ml-challenger | v1.8.4 | done (math; real backtest decision pends live data) |
 | v1.8.6-forecast-ui | v1.8.3 | done (runner + per-race + chamber /forecast; local gate) |
 | v1.8.7-snapshot-store | v1.8.3 | pending |
-| v1.9.1-search | phases 2–8 | pending |
+| v1.9.1-search | phases 2–8 | done (Pagefind static index; local gate) |
 | v1.9.2-sitemap-jsonld | phases 2–8 | pending |
 | v1.9.3-articles-mdx | v1.0.8 | pending |
 | v1.9.4-sources-page | — | done (local gate) |
@@ -353,6 +353,11 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.9.4-sources-page: real /sources renders the DATA_SOURCES contract table (9 sources:
   provider/license/cadence/freshness-floor/modules) [R14a]; sources.ts. Local gate: check
   0/0/0, 11 pages, links, 0 JS, tests 29/29. — iter 44
+- v1.9.1-search: Pagefind static search [L891] — build runs `pagefind --site dist`,
+  /search page mounts PagefindUI (the one interactive island); main tagged
+  data-pagefind-body, nav "Search" link. Local gate: check 0/0/0, links ok (/pagefind/*
+  resolve), tests 29/29. ponytail: pagefind-ui works; Component UI is the upgrade path.
+  — iter 45
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
