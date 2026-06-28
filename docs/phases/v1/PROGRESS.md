@@ -193,7 +193,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
 | v1.8.4-backtest-calibration | v1.8.2 | done (math; live backtest data pends) |
 | v1.8.5-ml-challenger | v1.8.4 | done (math; real backtest decision pends live data) |
-| v1.8.6-forecast-ui | v1.8.3 | partial: runner done (math); UI pends deploy |
+| v1.8.6-forecast-ui | v1.8.3 | partial: runner + per-race forecast UI done; chamber /forecast page next |
 | v1.8.7-snapshot-store | v1.8.3 | pending |
 | v1.9.1-search | phases 2–8 | pending |
 | v1.9.2-sitemap-jsonld | phases 2–8 | pending |
@@ -331,6 +331,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.4.4-polling-ui: polling-average section on race detail (per-party 0-JS bars, as_of,
   538 source); polling.ts loader; sample OH artifact. Trend sparkline (needs snapshot
   history) deferred. Local gate: check 0/0/0, build, links, 0 JS, tests 14/14. — iter 38
+- v1.8.6 (per-race UI): forecast section on race detail (Dem win prob %, predicted
+  margin + 80% range, methodology link); forecast.ts loader + marginLabel; sample OH
+  artifact. Race detail now has candidates+finance+polling+forecast. Local gate: check
+  0/0/0, build, links, 0 JS, tests 17/17. Chamber /forecast page next. — iter 39
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
