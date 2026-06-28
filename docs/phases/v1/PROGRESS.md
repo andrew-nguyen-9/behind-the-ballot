@@ -7,12 +7,14 @@ session reconstructs all state from this file. One activity-log line per touched
 Status: `pending | in-progress | review | blocked | done`. Pick the first `pending`
 whose prereq is `done`.
 
-## RESUME  (current as of iter 53)
+## RESUME  (current as of iter 54)
 
 **Phase A (planning): COMPLETE** (P0–P14). **Phase B (build): all autonomously-buildable
-units COMPLETE** — ~49 units green, merged to `dev`; `main` untouched throughout.
-(iter 53 swept the ledger: built `v1.6.6-chamber-view`; corrected stale `v1.9.5-home-nav`
-row that was already shipped iter 46. No remaining unit is buildable without provisioning.)
+units COMPLETE** — ~49 units green + 1 partial, merged to `dev`; `main` untouched throughout.
+(iter 53 built `v1.6.6-chamber-view`, fixed stale `v1.9.5` row. iter 54 shipped the
+source-honest slice of `v1.6.5-member-crosslink` — geographic member↔race links; its
+finance-identity join is the only remaining non-deploy work and it needs the live
+FEC↔bioguide crosswalk. **No remaining unit is buildable without provisioning.**)
 
 Built (fixture-tested, locally-gated; 153 tests = 121 Python + 32 web, `astro check`
 0/0/0): Phase-0 infra · 6 connectors (FEC/538/Census/Congress/Voteview/pollster-ratings)
@@ -152,7 +154,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.2-rollcall-votes | v1.6.1 | pending |
 | v1.6.3-ideology | v1.6.1 | done (code; keyless) |
 | v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
-| v1.6.5-member-crosslink | v1.6.1, v1.3.3 | pending |
+| v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
 | v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
 | v1.7.1-compactness-metrics | v1.1.2 | done (math; TIGER read+bake pends geo data) |
 | v1.7.2-fairness-metrics | v1.7.1 | done (math; live results join pends data) |
@@ -350,6 +352,12 @@ all `done` units; `main` untouched `[S5a]`.
   Fixed a sort bug (`"DR".indexOf` returned -1 for I, sorting it first → ranked D/R/other).
   Also corrected stale ledger row v1.9.5-home-nav (shipped iter 46). Local gate: check
   0/0/0, vitest 34/34, build 15 pages, links ok, 0 JS. Direct to dev. — iter 53
+- v1.6.5-member-crosslink (partial): geographic member↔race crosslink — `membersForRace`
+  joins on state/district; member profile lists 2026 races in their state, race page lists
+  current officeholders for the seat. Finance-identity link (per-candidate $) still pends
+  the live FEC↔bioguide crosswalk — not faked in fixtures (source-traceability gate).
+  Local gate: check 0/0/0, vitest 35/35, build 15 pages, links ok, 0 JS. Direct to dev.
+  — iter 54
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
