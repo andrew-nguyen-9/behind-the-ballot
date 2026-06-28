@@ -168,7 +168,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.3.1-fec-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.3.2-candidate-committee-link | v1.3.1 | pending |
 | v1.3.3-finance-aggregates | v1.3.2 | done (math; committed direct to dev) |
-| v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
+| v1.3.4-finance-ui | v1.3.3, v1.2.3 | done (local gate; sample artifact; live FEC pends key) |
 | v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
 | v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
 | v1.4.3-aggregation | v1.4.2 | done (math; live join pends data) |
@@ -324,6 +324,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.2.6-race-index: real /races index (grouped by office, party-dot chips, status,
   links to detail) replacing the stub. Local gate: check 0/0/0, build, links ok,
   tests 9/9. Direct to dev. — iter 36
+- v1.3.4-finance-ui: finance section on race detail (accessible CSS bars, receipts +
+  cash-on-hand, "through <coverage_end_date>" + FEC source link [G13a]); finance.ts
+  loader + fmtUSD; sample OH artifact; candidates linked by fecCandidateId. Local gate:
+  check 0/0/0, build, links, 0 JS, tests 12/12. Live FEC pends key. dev. — iter 37
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

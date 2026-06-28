@@ -9,7 +9,7 @@
   "status": "upcoming",
   "sources": ["fec", "polling", "forecast"],
   "candidates": [
-    { "id": "jane-doe", "name": "Jane Doe", "party": "D", "incumbent": true },
-    { "id": "john-roe", "name": "John Roe", "party": "R", "incumbent": false }
+    { "id": "jane-doe", "name": "Jane Doe", "party": "D", "incumbent": true, "fecCandidateId": "S0OH00100" },
+    { "id": "john-roe", "name": "John Roe", "party": "R", "incumbent": false, "fecCandidateId": "S0OH00200" }
   ]
 }

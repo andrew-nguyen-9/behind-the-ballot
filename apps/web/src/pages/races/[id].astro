@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { allRaces, partyColorClass, partyLabel } from "../../lib/races";
+import { financeForRace, fmtUSD } from "../../lib/finance";
 import type { RaceConfig } from "../../config/schema";
 
 // One SSG page per race config [F4c]. Real finance/polling/forecast figures attach in
@@ -15,6 +16,13 @@ const officeLabel = { senate: "U.S. Senate", house: "U.S. House", governor: "Gov
 ];
 const seat =
   race.office === "house" ? `${race.state}-${String(race.district).padStart(2, "0")}` : race.state;
+
+// Finance figures [G13a] — join candidates by FEC id; bars scale to the max receipts.
+// ponytail: accessible CSS bars (0 JS) over a chart island for a 2-way money compare.
+const finance = financeForRace(race.id);
+const financeByFec = new Map((finance ?? []).map((f) => [f.candidate_id, f]));
+const maxReceipts = Math.max(1, ...(finance ?? []).map((f) => f.receipts));
+const coverage = finance?.[0]?.coverage_end_date ?? null;
 ---
 
 <Layout title={race.title} description={`${officeLabel} race — ${race.title}.`}>
@@ -47,8 +55,42 @@ const seat =
     )}
   </section>
 
+  {finance && finance.length > 0 && (
+    <section class="mt-10" aria-labelledby="finance">
+      <h2 id="finance" class="font-serif text-xl">Campaign finance</h2>
+      <p class="mt-1 text-sm text-muted">
+        Total receipts{coverage ? ` through ${coverage}` : ""}. Source:
+        <a href="/sources" class="underline">FEC</a> (public domain).
+      </p>
+      <ul class="mt-4 space-y-3" role="list">
+        {race.candidates.map((c) => {
+          const f = c.fecCandidateId ? financeByFec.get(c.fecCandidateId) : undefined;
+          if (!f) return null;
+          const pct = Math.round((f.receipts / maxReceipts) * 100);
+          return (
+            <li>
+              <div class="flex justify-between text-sm">
+                <span class="font-medium">{c.name}</span>
+                <span class="tabular-nums text-muted">
+                  {fmtUSD(f.receipts)} raised · {fmtUSD(f.cash_on_hand)} cash
+                </span>
+              </div>
+              <div
+                class="mt-1 h-2 rounded-sm bg-surface"
+                role="img"
+                aria-label={`${c.name}: ${fmtUSD(f.receipts)} raised`}
+              >
+                <div class={`h-2 rounded-sm ${partyColorClass(c.party)}`} style={`width:${pct}%`}></div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )}
+
   <p class="mt-10 text-sm text-muted">
-    Finance, polling, and forecast figures attach as their data lands — each will trace to a
+    Polling and forecast figures attach as their data lands — each will trace to a
     <a href="/sources" class="underline">source</a>.
   </p>
 </Layout>
