@@ -7,10 +7,12 @@ session reconstructs all state from this file. One activity-log line per touched
 Status: `pending | in-progress | review | blocked | done`. Pick the first `pending`
 whose prereq is `done`.
 
-## RESUME  (current as of iter 52)
+## RESUME  (current as of iter 53)
 
 **Phase A (planning): COMPLETE** (P0–P14). **Phase B (build): all autonomously-buildable
-units COMPLETE** — ~47 units green, merged to `dev`; `main` untouched throughout.
+units COMPLETE** — ~49 units green, merged to `dev`; `main` untouched throughout.
+(iter 53 swept the ledger: built `v1.6.6-chamber-view`; corrected stale `v1.9.5-home-nav`
+row that was already shipped iter 46. No remaining unit is buildable without provisioning.)
 
 Built (fixture-tested, locally-gated; 153 tests = 121 Python + 32 web, `astro check`
 0/0/0): Phase-0 infra · 6 connectors (FEC/538/Census/Congress/Voteview/pollster-ratings)
@@ -25,7 +27,7 @@ README · CI gate.
 - Live data in every figure → `api.data.gov` key, Neon, domain
 - Interactive MapLibre map (`v1.2.4` shipped as SVG) → R2 PMTiles
 - Find-my-district (`v1.2.5`) → live Census Geocoder
-- Roll-call analytics (`v1.6.2/6.4/6.5/6.6`) → live Congress.gov
+- Roll-call analytics (`v1.6.2/6.4/6.5`) → live Congress.gov (`6.6` chamber-view shipped)
 - Nightly QA + alerts + budget alarms + weekly review (`v1.10.x`) → deploy + Gmail + Actions
 
 **`V1 COMPLETE`** needs all the above live + the gate green at a real Cloudflare preview.
@@ -151,7 +153,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.3-ideology | v1.6.1 | done (code; keyless) |
 | v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | pending |
-| v1.6.6-chamber-view | v1.6.1 | pending |
+| v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
 | v1.7.1-compactness-metrics | v1.1.2 | done (math; TIGER read+bake pends geo data) |
 | v1.7.2-fairness-metrics | v1.7.1 | done (math; live results join pends data) |
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | done (local gate) |
@@ -168,7 +170,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.9.2-sitemap-jsonld | phases 2–8 | done (sitemap+robots+WebSite+OG+per-type Person) |
 | v1.9.3-articles-mdx | v1.0.8 | done (local gate) |
 | v1.9.4-sources-page | — | done (local gate) |
-| v1.9.5-home-nav | v1.9.1 | pending |
+| v1.9.5-home-nav | v1.9.1 | done (local gate; built iter 46) |
 | v1.10.1-coverage-configs | phases 2–8 | pending |
 | v1.10.2-nightly-qa | v1.10.1 | pending |
 | v1.10.3-regression-alerts | v1.10.2 | pending |
@@ -343,6 +345,11 @@ all `done` units; `main` untouched `[S5a]`.
 - Repo README.md (overview, layout, develop commands, forecast methodology,
   neutrality) + full-suite verification snapshot: 153 tests green (121 py + 32 web),
   astro check 0/0/0, 14 pages, links ok. — iter 51
+- v1.6.6-chamber-view: /chamber page — per-chamber party composition bars computed from
+  the roster + the 33 Class II 2026 Senate seats (static rota constant); nav "Chamber".
+  Fixed a sort bug (`"DR".indexOf` returned -1 for I, sorting it first → ranked D/R/other).
+  Also corrected stale ledger row v1.9.5-home-nav (shipped iter 46). Local gate: check
+  0/0/0, vitest 34/34, build 15 pages, links ok, 0 JS. Direct to dev. — iter 53
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
