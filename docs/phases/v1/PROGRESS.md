@@ -9,9 +9,10 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: per-segment `PLAN.md`s (P10) for the 11 phases/segments in PHASES_OVERVIEW.
+Next: finish P10 PLANs — phases 5 (demographics), 6 (caucus/members), 7
+(gerrymander-lite), 8 (forecast), 9 (SEO/search), 10 (loop-scale). Done: 0–4.
 Then LOOP_PROMPT (P11), build ledger (P12), design-system (P13), ACCOUNTS (P14).
-(P0–P9 done: ledger, 01–04, VERSIONING, WORKFLOW, 8 ADRs, PHASES_OVERVIEW.)
+(P0–P9 done; P10 in-progress: 5/11 PLANs.)
 
 ## Planning-doc units
 
@@ -27,7 +28,7 @@ Then LOOP_PROMPT (P11), build ledger (P12), design-system (P13), ACCOUNTS (P14).
 | P7 | `docs/WORKFLOW.md` | P2 | done |
 | P8 | `docs/adr/` (framework, datastore+tiering, no-PostGIS geo, forecast, email/alias, search/bloom, redistricting, loop-architecture) | P3 | done |
 | P9 | `docs/phases/v1/PHASES_OVERVIEW.md` (the spine) | P3,P4,P5 | done |
-| P10 | `docs/phases/v1/<segment>/PLAN.md` (per segment) | P9 | pending |
+| P10 | `docs/phases/v1/<segment>/PLAN.md` (per segment) | P9 | in-progress (0–4 done; 5–10 left) |
 | P11 | `docs/phases/v1/LOOP_PROMPT.md` (build loop + gate + token/session rules) | P9 | pending |
 | P12 | seed build-loop ledger rows into a build `PROGRESS.md` | P11 | pending |
 | P13 | `design-system/` seed + logo brief | P2 | pending |
@@ -47,3 +48,5 @@ Then LOOP_PROMPT (P11), build ledger (P12), design-system (P13), ACCOUNTS (P14).
 - P9: PHASES_OVERVIEW — 11 phases (0 bootstrap → 1 data foundation → 2–7 module
   slices → 8 forecast → 9 SEO/search → 10 loop-scale), scope in/out, why-order,
   locked decisions, cross-cutting AC, Phase-0 contents. — iter 4
+- P10 (part): PLAN.md for phases 0 bootstrap, 1 data-foundation, 2 tracker,
+  3 finance, 4 polling — each with acceptance criteria + unit table. — iter 5
