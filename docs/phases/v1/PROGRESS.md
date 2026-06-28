@@ -41,8 +41,8 @@ API keys, 2FA) are human-only → mark `blocked`, log, build code-only units mea
 ## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
 
 All `pending`. Pick first eligible whose prereq is `done`. Detail per unit lives in the
-matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): `v1.0.5-etl-skeleton` (or 0.7 design-tokens). 0.4 datastore
-is account-blocked. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
+matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): `v1.0.7-design-tokens` (then 0.6 data-integrity-check, 0.8
+base-layout-seo). 0.4 datastore is account-blocked. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
 human provisions: **v1.0.4-datastore-wiring** and every data connector
 (v1.1.x/v1.3.x/v1.4.x/v1.5.x/v1.6.x) + live-preview gate parts.
 Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
@@ -53,7 +53,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.0.2-ci-gate | v1.0.1 | done |
 | v1.0.3-config-schema | v1.0.1 | done |
 | v1.0.4-datastore-wiring | v1.0.1 | pending |
-| v1.0.5-etl-skeleton | v1.0.1 | pending |
+| v1.0.5-etl-skeleton | v1.0.1 | done |
 | v1.0.6-data-integrity-check | v1.0.5 | pending |
 | v1.0.7-design-tokens | v1.0.1 | pending |
 | v1.0.8-base-layout-seo | v1.0.1, v1.0.7 | pending |
@@ -143,6 +143,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.0.3-config-schema: zod UnitConfig discriminated union (race kind), cross-field
   rules, SourceBinding for integrity check, example OH-senate JSON, 4 schema tests.
   Gate: check 0/0/0, vitest 6/6, build, links. → merged dev. — iter 11
+- v1.0.5-etl-skeleton: pipeline core.py (SourceSpec, validate_records, is_fresh,
+  dry_run, bake gold+manifest) + sample source + CLI; hatchling build-system,
+  uv.lock. Gate: pytest 4/4, ruff clean, dry-run+bake verified. → dev. — iter 12
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
