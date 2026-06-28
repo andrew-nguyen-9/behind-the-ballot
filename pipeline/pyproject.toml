@@ -1,0 +1,19 @@
+[project]
+name = "btb-pipeline"
+version = "0.0.1"
+description = "Behind the Ballot ETL — Python data pipeline [R1c]"
+requires-python = ">=3.12"
+dependencies = [
+  "pandas>=2.2",
+  "requests>=2.32",
+  "pydantic>=2.9",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3", "ruff>=0.7"]
+
+[tool.ruff]
+line-length = 100
+
+# geopandas/shapely added in v1.1.2-geo-tiles (geo units only) [L6a].
+# Reproducible env via uv lock [R12a].

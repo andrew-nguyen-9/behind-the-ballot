@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* Design tokens seeded in design-system/README.md [C4a,C5a]; full token wiring is
+   v1.0.7-design-tokens. ponytail: minimal base here, expand when tokens unit lands. */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1f2328;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0d1117;
+    --color-text: #e6edf3;
+  }
+}
+html { background: var(--color-bg); color: var(--color-text); }
+
+/* Rich transitions allowed [C13b] but reduced-motion honored (a11y gate). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

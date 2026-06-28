@@ -1,0 +1,28 @@
+# node
+node_modules/
+dist/
+.astro/
+*.tsbuildinfo
+
+# python
+__pycache__/
+.venv/
+*.pyc
+
+# data artifacts (baked outputs go to CDN/R2, not git) [O4d,O6a]
+/data/bronze/
+/data/silver/
+/data/gold/
+
+# env / secrets (secrets live in Actions secrets [T7a])
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# os
+.DS_Store
+
+# local tooling state (not shared)
+.claude/ralph-loop.local.md
+.serena/
