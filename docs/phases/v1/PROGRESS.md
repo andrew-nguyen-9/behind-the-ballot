@@ -65,6 +65,17 @@ and can never touch the main repo's HEAD/branch. Workers are also told "do NOT r
 but isolation is the real guardrail. Verify branch (`git branch --show-current`) after
 any worker returns before gating.
 
+Build RESUME: **forecast module pure-math COMPLETE** (8.1 baseline, 8.2 race-model, 8.3
+montecarlo, 8.4 backtest, 8.5 ml-challenger all done). Remaining pure-compute = thin
+artifact transforms (v1.3.2 link, v1.3.3 finance-agg, v1.5.2 district-agg, v1.5.3
+urbanization) that are better validated against LIVE connector data — low value on
+fixtures. **Everything else (all Astro UI, forecast/race/member/gerrymander pages,
+nightly QA, alerts) is hard-blocked on provisioning + Cloudflare deploy.** Recommend
+holding for provisioning rather than grinding thin transforms. If building resumes, do
+small units directly (in-thread) or with isolation:worktree workers — never shared-dir
+workers (HEAD-switch incident, iter 28).
+
+(superseded RESUME below kept for history)
 Build RESUME: **v1.8.1-baseline-fundamentals** (per-district CPVI-style partisan lean +
 fundamentals features — pure transform, fixture-testable [N3a]) then **v1.8.2-race-model**
 (combine polls avg + fundamentals → per-race Dem win prob + margin + range [N4a]; feeds
@@ -147,7 +158,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.8.2-race-model | v1.8.1, v1.4.3, v1.3.3 | done (math; live inputs pend data) |
 | v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
 | v1.8.4-backtest-calibration | v1.8.2 | done (math; live backtest data pends) |
-| v1.8.5-ml-challenger | v1.8.4 | pending |
+| v1.8.5-ml-challenger | v1.8.4 | done (math; real backtest decision pends live data) |
 | v1.8.6-forecast-ui | v1.8.3 | pending |
 | v1.8.7-snapshot-store | v1.8.3 | pending |
 | v1.9.1-search | phases 2–8 | pending |
@@ -256,6 +267,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   gate helper [N9a]. Worker incident (switched HEAD→main) recovered, no data lost; files
   preserved + re-gated full suite. pytest 104, ruff. → dev. Future workers use
   isolation:worktree. — iter 29
+- v1.8.5-ml-challenger: numpy logistic regression + choose_model (adopt ML only if it
+  beats heuristic Brier on same holdout [N8a]). Built in-thread (post-incident, no
+  worker). pytest 110, ruff. → dev. **Forecast module pure-math complete.** — iter 30
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
