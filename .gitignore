@@ -26,3 +26,6 @@ __pycache__/
 # local tooling state (not shared)
 .claude/ralph-loop.local.md
 .serena/
+
+# Lighthouse CI local reports
+.lighthouseci/
