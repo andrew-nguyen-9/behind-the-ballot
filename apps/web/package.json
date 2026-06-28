@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
     "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.2.0",
     "astro": "^5.5.0",

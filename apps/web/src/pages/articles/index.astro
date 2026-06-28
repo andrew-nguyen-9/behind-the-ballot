@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles"))
+  .filter((a) => !a.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const fmtDate = (d: Date) => d.toLocaleDateString("en-US", { dateStyle: "medium" });
+---
+
+<Layout title="Articles" description="Analysis and explainers from Behind the Ballot.">
+  <h1 class="text-3xl font-bold">Articles</h1>
+  <p class="mt-2 text-muted">Analysis and explainers — every figure links to its source.</p>
+
+  <ul class="mt-6 space-y-5" role="list">
+    {articles.map((a) => (
+      <li>
+        <a href={`/articles/${a.id}`} class="block hover:text-[var(--color-accent)]">
+          <h2 class="font-serif text-xl">{a.data.title}</h2>
+          <p class="mt-1 text-sm text-muted">{fmtDate(a.data.date)} · {a.data.description}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>

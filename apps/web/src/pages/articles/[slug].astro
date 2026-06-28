@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const fmtDate = (d: Date) => d.toLocaleDateString("en-US", { dateStyle: "long" });
+---
+
+<Layout title={article.data.title} description={article.data.description}>
+  <article>
+    <nav class="text-sm text-muted"><a href="/articles" class="hover:underline">Articles</a></nav>
+    <h1 class="mt-2 text-3xl font-bold">{article.data.title}</h1>
+    <p class="mt-1 text-sm text-muted">{fmtDate(article.data.date)}</p>
+    <div class="prose mt-6 max-w-prose font-serif [&_a]:underline [&_h2]:mt-6 [&_h2]:font-sans [&_h2]:text-xl [&_h2]:font-bold [&_p]:mt-3">
+      <Content />
+    </div>
+  </article>
+</Layout>
