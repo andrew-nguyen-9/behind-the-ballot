@@ -46,7 +46,18 @@ Remaining work is **account-gated** — needs the human to provision domain + Cl
 (Pages/R2) + Neon + api.data.gov key + Gmail SMTP (see ACCOUNTS.md), all requiring
 payment/2FA an agent can't do. Blocked: v1.0.4-datastore-wiring, every data connector
 (v1.1.x/1.3.x/1.4.x/1.5.x/1.6.x), live-preview + real-data-freshness gate parts.
-### ⛔ CREDENTIAL WALL REACHED [S16a] — autonomous loop paused, awaiting human provisioning
+### 🔑 Human is provisioning accounts (decided iter 16). Build env-keyed connectors meanwhile.
+
+User chose "I'll provision accounts" — see **ACCOUNTS.md → Provisioning checklist** for
+the exact secret names. Strategy until secrets land: build connector implementations that
+read keys from env (`DATA_GOV_API_KEY`, etc.) and are **fixture-tested** (inject transport,
+mock responses — the v1.1.1 pattern), so each goes live the instant its secret exists.
+Such connectors are markable `done` for their code/test gate; their **live-data +
+deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
+
+Build RESUME: **v1.3.1-fec-connector** (env key `DATA_GOV_API_KEY`, fixture-tested via
+injected transport reusing CachingFetcher). Then v1.4.1-poll-connector (538, keyless),
+v1.5.1-acs-connector, v1.6.x. v1.1.5-member-roster (keyless YAML) also eligible now.
 
 All units completable **without external accounts** are done: Phase-0 code-only
 (v1.0.1,2,3,5,6,7,8) + v1.1.1-etl-framework. **9 build units green, merged to `dev`.**
