@@ -133,7 +133,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | pending |
 | v1.7.4-leaderboard | v1.7.1 | pending |
 | v1.7.5-methodology-page | v1.7.2 | pending |
-| v1.8.1-baseline-fundamentals | v1.5.2 | pending |
+| v1.8.1-baseline-fundamentals | v1.5.2 | done (math; live inputs pend data) |
 | v1.8.2-race-model | v1.8.1, v1.4.3, v1.3.3 | pending |
 | v1.8.3-montecarlo-chamber | v1.8.2 | done (math; race-prob inputs from fixtures) |
 | v1.8.4-backtest-calibration | v1.8.2 | pending |
@@ -235,6 +235,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.8.3-montecarlo-chamber: montecarlo.py — numpy-vectorized seat sim, shared national
   swing on logit scale [N6a], seeded [N13a]; seat dist + control prob + p10/50/90. numpy
   dep. Cold worker, orchestrator-gated. pytest 74 passed, ruff. → dev. — iter 26
+- v1.8.1-baseline-fundamentals: baseline.py — cook_pvi signed lean + BaselineRow
+  fundamentals feature layer (pvi/incumbent/open_seat/finance_net). Cold worker,
+  orchestrator-gated. pytest 79, ruff. → dev. — iter 27
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
