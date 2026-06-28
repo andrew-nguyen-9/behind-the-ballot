@@ -1,0 +1,5 @@
+[
+  { "bioguide_id": "D000001", "name": "Jane Q. Doe", "party": "D", "state": "OH", "chamber": "sen", "district": null, "nominate_dim1": -0.31 },
+  { "bioguide_id": "R000002", "name": "Robert Roe", "party": "R", "state": "PA", "chamber": "rep", "district": 5, "nominate_dim1": 0.42 },
+  { "bioguide_id": "I000003", "name": "Alex Stone", "party": "I", "state": "VT", "chamber": "sen", "district": null, "nominate_dim1": -0.46 }
+]

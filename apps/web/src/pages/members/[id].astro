@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { allMembers, chamberLabel, ideologyLabel, type Member } from "../../lib/members";
+import { partyColorClass, partyLabel } from "../../lib/races";
+
+export function getStaticPaths() {
+  return allMembers().map((m) => ({ params: { id: m.bioguide_id }, props: { member: m } }));
+}
+
+const { member } = Astro.props as { member: Member };
+const seat =
+  member.chamber === "rep"
+    ? `${member.state}-${String(member.district).padStart(2, "0")}`
+    : member.state;
+---
+
+<Layout title={member.name} description={`${member.name} — ${chamberLabel(member.chamber)}, ${member.state}.`}>
+  <nav class="text-sm text-muted"><a href="/members" class="hover:underline">Members</a> / {member.state}</nav>
+  <div class="mt-2 flex items-center gap-3">
+    <span class={`inline-block size-5 rounded-sm ${partyColorClass(member.party)}`} aria-hidden="true"></span>
+    <h1 class="text-3xl font-bold">{member.name}</h1>
+  </div>
+  <p class="mt-1 text-muted">{partyLabel(member.party)} · {chamberLabel(member.chamber)} · {seat}</p>
+
+  <section class="mt-8" aria-labelledby="ideology">
+    <h2 id="ideology" class="font-serif text-xl">Ideology</h2>
+    <p class="mt-1 text-sm text-muted">
+      DW-NOMINATE (1st dimension). Source: <a href="/sources" class="underline">Voteview</a>.
+    </p>
+    {member.nominate_dim1 === null ? (
+      <p class="mt-2 text-muted">Not yet scored.</p>
+    ) : (
+      <p class="mt-2">
+        <span class="text-2xl font-bold tabular-nums">{member.nominate_dim1.toFixed(2)}</span>
+        <span class="ml-2 text-muted">{ideologyLabel(member.nominate_dim1)}</span>
+      </p>
+    )}
+  </section>
+
+  <p class="mt-10 text-sm text-muted">
+    Committees, key votes, sponsorship, and finance links attach as their data lands.
+  </p>
+</Layout>

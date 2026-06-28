@@ -177,7 +177,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.5.2-district-aggregates | v1.5.1, v1.1.3 | done (math; direct to dev) |
 | v1.5.3-urbanization | v1.5.2 | done (math; direct to dev) |
 | v1.5.4-demographics-ui | v1.5.2, v1.2.3 | pending |
-| v1.6.1-member-profiles | v1.1.5 | pending |
+| v1.6.1-member-profiles | v1.1.5 | done (local gate; +v1.6.3 ideology shown) |
 | v1.6.2-rollcall-votes | v1.6.1 | pending |
 | v1.6.3-ideology | v1.6.1 | done (code; keyless) |
 | v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
@@ -339,6 +339,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   range per chamber (sample Senate); methodology/sources notes. allChamberForecasts
   loader. v1.8.6 now fully done. Local gate: check 0/0/0, build, links, 0 JS, tests
   18/18. — iter 40
+- v1.6.1-member-profiles: members/[id] profile pages (party, chamber, seat, DW-NOMINATE
+  ideology w/ plain-language band + Voteview source) + real /members index (by chamber);
+  members.ts loader + ideologyLabel. Sample roster (3). Local gate: check 0/0/0, build
+  10 pages, links, 0 JS, tests 21/21. — iter 41
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
