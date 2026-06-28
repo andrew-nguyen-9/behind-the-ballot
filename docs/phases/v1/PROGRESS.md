@@ -9,9 +9,9 @@ whose prereq is `done`.
 
 ## RESUME
 
-Next: `docs/adr/` (P8) — framework, datastore+tiering, no-PostGIS geo, forecast,
-email/alias, search, redistricting, loop-architecture. Then PHASES_OVERVIEW (P9).
-(P0–P7 done: ledger, 01–04, VERSIONING, WORKFLOW.)
+Next: `docs/phases/v1/PHASES_OVERVIEW.md` (P9, the spine). Then per-segment PLANs
+(P10), LOOP_PROMPT (P11), build ledger (P12), design-system (P13), ACCOUNTS (P14).
+(P0–P8 done: ledger, 01–04, VERSIONING, WORKFLOW, 8 ADRs.)
 
 ## Planning-doc units
 
@@ -25,7 +25,7 @@ email/alias, search, redistricting, loop-architecture. Then PHASES_OVERVIEW (P9)
 | P5 | `docs/04_DEFINITION_OF_DONE.md` | P2 | done |
 | P6 | `docs/VERSIONING.md` | P2 | done |
 | P7 | `docs/WORKFLOW.md` | P2 | done |
-| P8 | `docs/adr/` (framework, datastore+tiering, no-PostGIS geo, forecast, email/alias, search/bloom, redistricting, loop-architecture) | P3 | pending |
+| P8 | `docs/adr/` (framework, datastore+tiering, no-PostGIS geo, forecast, email/alias, search/bloom, redistricting, loop-architecture) | P3 | done |
 | P9 | `docs/phases/v1/PHASES_OVERVIEW.md` (the spine) | P3,P4,P5 | pending |
 | P10 | `docs/phases/v1/<segment>/PLAN.md` (per segment) | P9 | pending |
 | P11 | `docs/phases/v1/LOOP_PROMPT.md` (build loop + gate + token/session rules) | P9 | pending |
@@ -42,3 +42,5 @@ email/alias, search, redistricting, loop-architecture. Then PHASES_OVERVIEW (P9)
 - P5–P7: DEFINITION_OF_DONE (10-point gate + evidence), VERSIONING
   (v[phase].[segment].[task]), WORKFLOW (main-wall branch ritual, QA cadence).
   Corrected outbound email to Gmail SMTP [S9c/T4b], not Resend. — iter 2
+- P8: 8 ADRs + index (framework, datastore-tiering, geo-no-postgis, forecast,
+  email-alias, search, redistricting-versioning, loop-architecture). — iter 3
