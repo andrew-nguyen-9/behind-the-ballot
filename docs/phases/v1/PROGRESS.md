@@ -41,9 +41,13 @@ API keys, 2FA) are human-only → mark `blocked`, log, build code-only units mea
 ## Build ledger (Phase B — the units LOOP_PROMPT.md grinds)
 
 All `pending`. Pick first eligible whose prereq is `done`. Detail per unit lives in the
-matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): `v1.0.8-base-layout-seo` — last code-only Phase-0 unit.
-After it, Phase 0 is done except `v1.0.4-datastore-wiring` (account-blocked). Phase 1+
-is data-connector-heavy + account-gated; eligible code-only units thin out sharply. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
+matching `<segment>/PLAN.md`. Prereqs use the version slug. Build RESUME (Phase B): **all code-only Phase-0 units done** (v1.0.1,2,3,5,6,7,8).
+Remaining work is **account-gated** — needs the human to provision domain + Cloudflare
+(Pages/R2) + Neon + api.data.gov key + Gmail SMTP (see ACCOUNTS.md), all requiring
+payment/2FA an agent can't do. Blocked: v1.0.4-datastore-wiring, every data connector
+(v1.1.x/1.3.x/1.4.x/1.5.x/1.6.x), live-preview + real-data-freshness gate parts.
+Next autonomous-eligible unit: scan for any remaining pure-code/fixture unit; if none,
+the loop is at a **budget/credential wall** [S16a] — report + await provisioning. Account-gated units (need Neon/R2/domain/API keys + 2FA) → `blocked` until the
 human provisions: **v1.0.4-datastore-wiring** and every data connector
 (v1.1.x/v1.3.x/v1.4.x/v1.5.x/v1.6.x) + live-preview gate parts.
 Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
@@ -53,11 +57,11 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.0.1-repo-scaffold | — | done |
 | v1.0.2-ci-gate | v1.0.1 | done |
 | v1.0.3-config-schema | v1.0.1 | done |
-| v1.0.4-datastore-wiring | v1.0.1 | pending |
+| v1.0.4-datastore-wiring | v1.0.1 | blocked (needs Neon + R2 accounts) |
 | v1.0.5-etl-skeleton | v1.0.1 | done |
 | v1.0.6-data-integrity-check | v1.0.5 | done |
 | v1.0.7-design-tokens | v1.0.1 | done |
-| v1.0.8-base-layout-seo | v1.0.1, v1.0.7 | pending |
+| v1.0.8-base-layout-seo | v1.0.1, v1.0.7 | done |
 | v1.1.1-etl-framework | v1.0.5 | pending |
 | v1.1.2-geo-tiles | v1.0.4 | pending |
 | v1.1.3-district-equivalency | v1.1.2 | pending |
@@ -153,6 +157,10 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 - v1.0.6-data-integrity-check: pipeline/integrity.py — source registry (10 rows)
   with check_doc_sync vs DATA_SOURCES.md [R14a] + assert_artifact freshness [R5a] +
   scan_gold; wired into CI. Gate: pytest 10/10, ruff, CLI green. → dev. — iter 14
+- v1.0.8-base-layout-seo: Layout.astro (skip-link, nav, footer), @astrojs/sitemap,
+  robots.txt, WebSite JSON-LD, canonical/OG meta, CF Pages _headers (CSP/HSTS),
+  section stubs. Gate: check 0/0/0, 5 pages+sitemap, links ok, 0 JS. → dev. — iter 15
+  **Phase 0 code-only units complete; remainder is account-gated (credential wall).**
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
