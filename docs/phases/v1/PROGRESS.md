@@ -55,12 +55,14 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
-Build RESUME: **v1.4.3-aggregation** (weighted polling average per race — pure math over
-poll rows + pollster-ratings weights, fixture-testable, feeds forecast; dispatch to cold
-worker). Then v1.8.x forecast core (heuristic + Monte Carlo, pure math). v1.6.2-rollcall
-(env, uncertain API) lower priority. UI units + live data + forecast deploy gate remain
-blocked on provisioning. Code-done (fixture-tested, no deploy): fec, polls_538, members,
-census_acs, voteview, pollster_ratings connectors + compactness + fairness math.
+Build RESUME: **v1.8.3-montecarlo-chamber** OR **v1.8.1-baseline-fundamentals** — the
+forecast core is pure math (heuristic + Monte Carlo), fixture-testable, the signature
+module [N1a,N5a]. Dispatch to cold worker; seed RNG for determinism [N13a]. Note v1.8.2
+race-model depends on aggregation (done) + finance/demographics aggregates (transforms
+not yet built) — may build v1.3.3/v1.5.2 transforms first, or have the forecast take
+inputs as fixtures. UI + live data + deploy gate remain blocked on provisioning.
+Code-done (fixture-tested): fec, polls_538, members, census_acs, voteview,
+pollster_ratings connectors + compactness + fairness + aggregation math.
 `dev` ahead of `origin/dev` — push pending user OK.
 
 All units completable **without external accounts** are done: Phase-0 code-only
@@ -116,7 +118,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | pending |
 | v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
 | v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
-| v1.4.3-aggregation | v1.4.2 | pending |
+| v1.4.3-aggregation | v1.4.2 | done (math; live join pends data) |
 | v1.4.4-polling-ui | v1.4.3, v1.2.3 | pending |
 | v1.5.1-acs-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.5.2-district-aggregates | v1.5.1, v1.1.3 | pending |
@@ -229,6 +231,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   robust (numeric_grade→pollscore fallback), upsert by pollster, bake (pollster_ratings,
   30d). Cold worker self-corrected a test to match the spec'd fallback; orchestrator-
   gated. pytest 57 passed, ruff. → dev. — iter 24
+- v1.4.3-aggregation: aggregate.py — recency (30d half-life) × pollster weighted mean
+  per (state,party), AggregateRow; published heuristic. Cold worker, orchestrator-gated
+  (arithmetic verified 46.67/47.5). pytest 66/66, ruff. → dev. — iter 25
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
