@@ -55,6 +55,31 @@ mock responses — the v1.1.1 pattern), so each goes live the instant its secret
 Such connectors are markable `done` for their code/test gate; their **live-data +
 deploy-preview** gate parts stay flagged pending until secrets + Cloudflare are up.
 
+### ✅ CORRECTION — the UI phase is BUILDABLE NOW (not deploy-walled)
+Earlier turns over-stated a "hard wall." Reality: every UI unit's gate runs **locally**:
+`pnpm build` → `astro check` → vitest → **axe via Playwright** → **Lighthouse ≥90 via
+`@lhci/cli` with `staticDistDir: apps/web/dist`** (no live server) → responsive
+screenshots 360/768/1280 via Playwright. Pages consume **fixture/sample gold artifacts**
+(write a small `data/gold/<source>/<source>.json` fixture, or run a connector with the
+fixture transport). Only the literal *deployed Cloudflare URL* + *real-data freshness*
+need provisioning — everything else (the actual pages + local gate) is doable now.
+
+**NEXT PHASE = UI**, start at the tracker. Recipe per UI unit:
+1. Ensure/generate the gold-artifact fixture(s) the page reads.
+2. Build the Astro page + React island(s) (charts: Observable Plot; party colors from
+   design tokens; islands lazy-hydrated).
+3. Add a Vitest/Playwright test + an axe a11y check.
+4. Local gate: build, astro check, vitest, axe, `pnpm dlx @lhci/cli autorun
+   --config apps/web/lighthouserc.json`, screenshots. (Add @playwright/test +
+   @axe-core/playwright devDeps; `pnpm exec playwright install chromium`.)
+5. Commit DIRECTLY to `dev` with a branch-guard (`[ "$(git branch --show-current)" =
+   dev ]`) — do NOT use `unit/*` branches (HEAD-switch interference, below). Or dispatch
+   a worker with `isolation: "worktree"`.
+Build order: v1.2.3-race-page (core) → v1.2.4 map island → v1.2.6 race-index →
+finance/polling UI on race page (v1.3.4, v1.4.4) → v1.6.1 member-profiles → v1.8.6
+forecast-ui → v1.7.3 gerrymander-ui → demographics UI → v1.9.x SEO/search → v1.10.x
+(QA/alerts need accounts). Heavy units → fresh re-feed or isolated worker (context).
+
 ### ⚠️ RECURRING: external process switches HEAD→main after `git switch -c unit/*` (iters 28, 32)
 Happens even with NO worker running (iter 32, in-thread build) — something external/
 concurrent checks out `main` right after a unit-branch create. **Mitigation: commit small
