@@ -176,7 +176,7 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
 | v1.5.1-acs-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
 | v1.5.2-district-aggregates | v1.5.1, v1.1.3 | done (math; direct to dev) |
 | v1.5.3-urbanization | v1.5.2 | done (math; direct to dev) |
-| v1.5.4-demographics-ui | v1.5.2, v1.2.3 | pending |
+| v1.5.4-demographics-ui | v1.5.2, v1.2.3 | done (local gate; sample artifact) |
 | v1.6.1-member-profiles | v1.1.5 | done (local gate; +v1.6.3 ideology shown) |
 | v1.6.2-rollcall-votes | v1.6.1 | pending |
 | v1.6.3-ideology | v1.6.1 | done (code; keyless) |
@@ -347,6 +347,9 @@ Build branches: `dev` (integration) ← `unit/*`. `main` untouched `[S5a]`.
   mean-median, caveated [L8a]), least-compact leaderboard, methodology; gerrymander.ts
   loader; nav link "Maps". Local gate: check 0/0/0, 11 pages, links, 0 JS, tests 24/24.
   — iter 42
+- v1.5.4-demographics-ui: demographics panel on race detail (population, median income,
+  urbanization, ACS release + Census source); demographics.ts loader. Local gate: check
+  0/0/0, 11 pages, links, 0 JS, tests 27/27. — iter 43
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
