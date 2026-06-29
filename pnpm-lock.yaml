@@ -27,7 +27,7 @@ importers:
         version: 5.18.2(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.2)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       drizzle-orm:
         specifier: ^0.45.2
-        version: 0.45.2(@neondatabase/serverless@1.1.0)
+        version: 0.45.2(@electric-sql/pglite@0.5.3)(@neondatabase/serverless@1.1.0)
       react:
         specifier: ^19.0.0
         version: 19.2.7
@@ -41,6 +41,9 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.9(prettier@3.8.5)(typescript@5.9.3)
+      '@electric-sql/pglite':
+        specifier: ^0.5.3
+        version: 0.5.3
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.3.1(vite@6.4.3(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
@@ -219,6 +222,9 @@ packages:
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
+
+  '@electric-sql/pglite@0.5.3':
+    resolution: {integrity: sha512-iTTYbA5Uesrl+N7zss0J5LopT7KE4j9aymYo+EZZh+rZbARQCUQOs+n2pay64JRUpc3fCkpfrniTNJnvYzOE+g==}
 
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -3445,6 +3451,8 @@ snapshots:
 
   '@drizzle-team/brocli@0.10.2': {}
 
+  '@electric-sql/pglite@0.5.3': {}
+
   '@emmetio/abbreviation@2.3.3':
     dependencies:
       '@emmetio/scanner': 1.0.4
@@ -4658,8 +4666,9 @@ snapshots:
       esbuild: 0.25.12
       tsx: 4.22.4
 
-  drizzle-orm@0.45.2(@neondatabase/serverless@1.1.0):
+  drizzle-orm@0.45.2(@electric-sql/pglite@0.5.3)(@neondatabase/serverless@1.1.0):
     optionalDependencies:
+      '@electric-sql/pglite': 0.5.3
       '@neondatabase/serverless': 1.1.0
 
   dset@3.1.4: {}

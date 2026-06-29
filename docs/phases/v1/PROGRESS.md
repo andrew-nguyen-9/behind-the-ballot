@@ -21,7 +21,18 @@ code slices of the "unblocked" units (dispatch wiring, datastore client, join lo
 fixture-testable now; live invocation + deploy + freshness stay gated. **`V1 COMPLETE` cannot
 be emitted** — never lie to exit.
 
-## RESUME  (current as of iter 58)
+## RESUME  (current as of iter 59)
+
+iter 59: **built v1.8.7-snapshot-store.** `src/lib/db/snapshots.ts` — `writeSnapshot` /
+`recentSnapshots(unitId, limit)` (db injected, so prod uses getDb() + cron, tests use pglite).
+Verified against an in-process pglite Postgres (applies the real generated migration) — 2 tests,
+no live Neon needed. Gate: astro check 0/0/0, vitest 37, build 15 pages, links ok. Live writes
+pend DATABASE_URL (empty) + the v1.10.x cron that calls it. Three clean no-secret code slices now
+done (v1.1.6 dispatch, v1.0.4 schema/client, v1.8.7 store). **Remaining units genuinely need
+secrets or bulk data to even verify:** geo chain (R2/TIGER), live joins (live APIs), v1.10.x
+crons (deploy+Actions+Gmail), live bake + deploy + freshness (the ⚠️ BLOCKER — `.env` empty).
+
+## RESUME  (iter 58)
 
 iter 58: **built v1.0.4-datastore-wiring code slice.** Drizzle + Neon-http added; one table
 `forecast_snapshots` (the V1 snapshot consumer), lazy client throwing on absent DATABASE_URL,
@@ -214,7 +225,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.8.4-backtest-calibration | v1.8.2 | done (math; live backtest data pends) |
 | v1.8.5-ml-challenger | v1.8.4 | done (math; real backtest decision pends live data) |
 | v1.8.6-forecast-ui | v1.8.3 | done (runner + per-race + chamber /forecast; local gate) |
-| v1.8.7-snapshot-store | v1.8.3 | pending |
+| v1.8.7-snapshot-store | v1.8.3 | done (write/read store, pglite-tested; live writes pend DATABASE_URL + cron) |
 | v1.9.1-search | phases 2–8 | done (Pagefind static index; local gate) |
 | v1.9.2-sitemap-jsonld | phases 2–8 | done (sitemap+robots+WebSite+OG+per-type Person) |
 | v1.9.3-articles-mdx | v1.0.8 | done (local gate) |
