@@ -6,4 +6,6 @@ export default defineConfig({
   schema: "./src/lib/db/schema.ts",
   out: "./drizzle",
   dialect: "postgresql",
+  // Only used by push/migrate (not generate). Empty string keeps `generate` working with no env.
+  dbCredentials: { url: process.env.DATABASE_URL ?? "" },
 });
