@@ -85,6 +85,22 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 71)
+
+iter 71: **live-preview sweep started — fixed a real redirect regression.** Curled the live
+Worker: security headers all present (CSP/HSTS/X-Frame/X-CTO/Referrer/Permissions — `_headers`
+IS honored on Workers Static Assets ✓), all pages reachable, BUT `/races` `/forecast` `/sources`
+etc. returned **307 → /races/**: Astro emits directory-format pages while every internal nav link
+is slashless, and wrangler's default `auto-trailing-slash` redirected each → a hop on every nav
+(perf/SEO papercut; local link-checker missed it, resolves on disk). **Fix:** `wrangler.jsonc`
+`assets.html_handling: "drop-trailing-slash"` (confirmed valid enum via CF docs) → serves the
+index at the slashless path (200, no redirect), matching the links. jsonc valid; no build/test
+impact (runtime Worker config). Direct to dev → Workers Build redeploys. **Verify next iter:**
+re-curl `/races` should be 200 (no 307). No styled 404 page exists (Astro has none) → left
+`not_found_handling` default (live 404 returns 404 code); styled-404 → BACKLOG. **Sweep remaining:**
+re-curl confirms post-deploy + lighthouse-at-live-URL. **Next eligible:** finish sweep; forecast
+(Open Q#3 PVI source); geo chain; v1.10.3/4/5 alerts.
+
 ## RESUME  (current as of iter 70)
 
 iter 70: **built the nightly live-join refresh Action** (the workflow the ledger kept deferring
@@ -677,6 +693,10 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 71: **live-preview sweep — fixed 307 nav redirect.** Live Worker security headers all
+  present (CSP/HSTS/etc., `_headers` honored). Found `/races` etc. 307→`/races/` (directory output
+  vs slashless links + default `auto-trailing-slash`). Fix: `wrangler.jsonc` `html_handling:
+  drop-trailing-slash`. No build/test impact. Direct to dev. — iter 71
 - iter 70: **v1.10.2 nightly refresh Action.** `.github/workflows/refresh.yml` re-bakes the 4
   consumed sources (members/voteview/acs/fec, not `bake all` — quota [S6a]), re-exports
   `src/data/*`, commits any change to `dev` → Workers Build auto-deploys. Commands live-verified

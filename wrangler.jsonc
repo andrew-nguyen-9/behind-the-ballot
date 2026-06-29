@@ -6,6 +6,11 @@
   "name": "behind-the-ballot",
   "compatibility_date": "2025-09-01",
   "assets": {
-    "directory": "./apps/web/dist"
+    "directory": "./apps/web/dist",
+    // Astro emits directory-format pages (`/races/index.html`) but every internal link is
+    // slashless (`/races`). Default `auto-trailing-slash` 307-redirects `/races`->`/races/`,
+    // adding a hop to every nav. `drop-trailing-slash` serves the index at the slashless path
+    // (200, no redirect), matching the links [U3a perf/SEO]. Verified live: /races was 307.
+    "html_handling": "drop-trailing-slash"
   }
 }
