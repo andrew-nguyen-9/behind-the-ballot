@@ -113,6 +113,22 @@ items (House, map, find-district) are now sanctioned V1.1 scope, NOT V1 blockers
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 82)
+
+iter 82: **stopped publishing the fabricated fairness table; hit a real source wall for the LAST
+V1 unit.** `/gerrymander` was still shipping SAMPLE efficiency-gap/mean-median for OH/PA — removed
+(emptied states.json → `[]`; section now renders an honest "pending a sourced House-by-district
+results dataset" state; real compactness stays). gerrymander.test data-agnostic. Gate: check 0/0/0,
+vitest 35, build, links, coverage green. **SOURCE WALL (assessed this iter):** fairness needs
+House results on CURRENT (post-2020) district lines, but clean current-lines House-by-CD is NOT
+readily fetchable — `2024-elections-official` has president+senate only (no House); `2022-elections
+-official` is PRECINCT-level zips (heavy 50-state aggregation + precinct→CD crosswalk); `constituency
+-returns` stops at 2018 (OLD lines, mismatched with current TIGER); the MEDSL House Dataverse file is
+guestbook-gated (same wall as president, and no clean GitHub state-aggregate exists for House like
+there was for president). So real fairness can't ship autonomously without a heavy lift or a
+Dataverse token. **→ surfacing the decision to Andrew (only V1 unit left).** Zero fabricated data
+on the live site now (fairness honestly pending, like forecast/polling were).
+
 ## RESUME  (current as of iter 81)
 
 iter 81: **FORECAST IS LIVE — real, sourced, honestly framed (slice 2/2 done).** `export_forecast`

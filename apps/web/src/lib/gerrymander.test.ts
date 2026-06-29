@@ -2,9 +2,14 @@ import { describe, expect, it } from "vitest";
 import { byCompactness, efficiencyGapLabel, stateFairness } from "./gerrymander";
 
 describe("gerrymander", () => {
-  it("loads + sorts state fairness", () => {
+  // Fairness is empty until a current-lines House-results source is wired (we don't publish the
+  // placeholder); the page renders an honest pending state. Any real rows must be bounded + sorted.
+  it("loads + sorts state fairness (empty until sourced)", () => {
     const s = stateFairness();
-    expect(s.map((x) => x.state)).toEqual(["OH", "PA"]);
+    for (let i = 1; i < s.length; i++) {
+      expect(s[i - 1].state.localeCompare(s[i].state)).toBeLessThanOrEqual(0);
+    }
+    for (const f of s) expect(Math.abs(f.efficiency_gap)).toBeLessThanOrEqual(1);
   });
 
   it("labels efficiency gap with direction + magnitude", () => {

@@ -27,28 +27,40 @@ const fmtSeat = (n: number) => `${Math.round(n * 100)}%`;
 
   <section class="mt-8" aria-labelledby="fairness">
     <h2 id="fairness" class="font-serif text-xl">Partisan fairness by state</h2>
-    <table class="mt-3 w-full text-sm">
-      <thead class="text-left text-muted">
-        <tr>
-          <th class="py-2">State</th><th>Efficiency gap</th><th>Mean–median</th>
-          <th>Seats / votes (D)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {states.map((s) => (
-          <tr class="border-t border-[var(--color-border)]">
-            <td class="py-2 font-medium">{s.state}</td>
-            <td>{efficiencyGapLabel(s.efficiency_gap)}</td>
-            <td class="tabular-nums">{(s.mean_median * 100).toFixed(1)} pts</td>
-            <td class="tabular-nums">{fmtSeat(s.dem_seat_share)} / {fmtSeat(s.dem_vote_share)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-    <p class="mt-2 text-xs text-muted">
-      Efficiency gap &amp; mean–median have known limitations (sensitive to uncontested
-      seats, statewide lean); treat as signals, not verdicts.
-    </p>
+    {states.length === 0 ? (
+      <p class="mt-3 max-w-prose text-muted">
+        Partisan-fairness measures (efficiency gap, mean–median) need each district's election
+        result on the <em>current</em> (post-2020) boundaries. We don't publish placeholder
+        numbers, so this is pending a sourced House-by-district results dataset; compactness
+        below is already computed from real district geometry. See the
+        <a href="/sources" class="underline">sources</a> we use.
+      </p>
+    ) : (
+      <>
+        <table class="mt-3 w-full text-sm">
+          <thead class="text-left text-muted">
+            <tr>
+              <th class="py-2">State</th><th>Efficiency gap</th><th>Mean–median</th>
+              <th>Seats / votes (D)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {states.map((s) => (
+              <tr class="border-t border-[var(--color-border)]">
+                <td class="py-2 font-medium">{s.state}</td>
+                <td>{efficiencyGapLabel(s.efficiency_gap)}</td>
+                <td class="tabular-nums">{(s.mean_median * 100).toFixed(1)} pts</td>
+                <td class="tabular-nums">{fmtSeat(s.dem_seat_share)} / {fmtSeat(s.dem_vote_share)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="mt-2 text-xs text-muted">
+          Efficiency gap &amp; mean–median have known limitations (sensitive to uncontested
+          seats, statewide lean); treat as signals, not verdicts.
+        </p>
+      </>
+    )}
   </section>
 
   <section class="mt-8" aria-labelledby="compact">
