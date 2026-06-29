@@ -1,0 +1,11 @@
+{
+  // Static-assets-only Worker [P6a]. Astro builds a fully static site (no adapter),
+  // so there is no `main` handler — Workers Static Assets serves apps/web/dist directly.
+  // `wrangler deploy` (the Workers Build "Deploy command") reads this file from the repo
+  // root; the build (`pnpm install && pnpm build`) produces ./apps/web/dist first.
+  "name": "behind-the-ballot",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./apps/web/dist"
+  }
+}

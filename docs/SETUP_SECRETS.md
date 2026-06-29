@@ -166,24 +166,39 @@ Order: (1) and (3) unblock the most. Each ends in the GitHub secret name to set.
   ```
   This unblocks the **live preview URL** = the deploy gate the promise needs.
 
-  **Pages build settings (this is a monorepo — get these exact):**
+  **Workers Build settings (this repo deploys as a Workers Static-Assets project, a
+  monorepo — get these exact):**
 
   | Setting | Value |
   |---|---|
-  | Root directory | *(blank = repo root)* |
+  | Root directory | `/` (repo root) |
   | Build command | `pnpm install && pnpm build` |
-  | Build output directory | `apps/web/dist` |
+  | Deploy command | `npx wrangler deploy` |
+  | Production branch | `dev` (the loop's integration branch; `main` is walled `[S5a]`) |
   | Build variable | `NODE_VERSION` = `20` |
 
-  > ⚠️ **"root directory not found"** = Root directory was set to `apps/web/dist`.
-  > `dist` is gitignored build *output*, not a source dir, so it isn't in the clone.
-  > Root directory is where the build *runs* (repo root here, because the root
-  > `package.json` `build` script is `pnpm --filter web build`); the output goes to
-  > `apps/web/dist`. Don't conflate the two.
+  The deploy is driven by **`wrangler.jsonc`** at the repo root (committed), which
+  points Workers Static Assets at the build output:
 
-  Alternative — skip the git-connected build entirely and deploy the prebuilt `dist`
-  with wrangler (what `scripts/resume.sh` does): `wrangler pages deploy apps/web/dist
-  --project-name=behind-the-ballot --branch=dev`.
+  ```jsonc
+  { "name": "behind-the-ballot", "compatibility_date": "2025-09-01",
+    "assets": { "directory": "./apps/web/dist" } }
+  ```
+
+  > ⚠️ **"root directory not found"** came from setting Root directory to
+  > `apps/web/dist`. `dist` is gitignored build *output*, not a source dir, so it isn't
+  > in the clone. Root directory is where the build *runs* (repo root); the output dir
+  > (`apps/web/dist`) is declared to wrangler via `assets.directory`, not as the Pages
+  > "output directory" field. This is a **Workers Build** (`wrangler deploy`), not a
+  > classic Pages project.
+
+  **Worker runtime secrets: none.** The site is fully static — `DATA_GOV_API_KEY`,
+  `DATABASE_URL`, SMTP, etc. are **build/ETL secrets used by GitHub Actions**, not by the
+  Worker. So "Variables and secrets: None" on the Worker is correct; those secrets live
+  in GitHub Actions (§0–§2).
+
+  Manual/local deploy (what `scripts/resume.sh` runs; the connected Workers Build also
+  auto-deploys on push to `dev`): `wrangler deploy`.
 
 ### Neon Postgres (free) — `DATABASE_URL` `[O2a]`
 - Create a project, copy the pooled connection string:

@@ -49,10 +49,11 @@ pnpm dlx @lhci/cli@0.14.x autorun --config=apps/web/lighthouserc.json
 if [[ "${1:-}" == "--no-deploy" ]]; then
   echo "gate green; --no-deploy set, stopping before deploy"; exit 0
 fi
-echo "== deploy: wrangler pages deploy =="
+echo "== deploy: wrangler deploy (Workers Static Assets, reads ./wrangler.jsonc) =="
 # CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID are read from env by wrangler.
-pnpm dlx wrangler@3 pages deploy apps/web/dist \
-  --project-name=behind-the-ballot --branch=dev
+# Note: the connected Workers Build already auto-deploys on push to dev; this is the
+# manual/local path. Static-assets Worker → no runtime secrets needed.
+pnpm dlx wrangler@latest deploy
 
 echo "✓ resume complete — live preview deployed. Re-feed the loop to build the"
 echo "  now-unblocked units (v1.1.6 live-bake → connectors → v1.10.x crons)."
