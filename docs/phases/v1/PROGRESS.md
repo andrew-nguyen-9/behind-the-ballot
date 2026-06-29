@@ -19,6 +19,18 @@ iter 56: ran the Lighthouse gate locally for the first time — perf/a11y/best-p
 all ≥0.9 on the tested pages (incl. /chamber). The a11y/perf DoD bar is now evidenced, not
 just asserted. Full 15-page Lighthouse + real-data freshness still pend deploy.
 
+**iter 57+ — PROVISIONING DONE (human).** All accounts/secrets per `docs/SETUP_SECRETS.md`
+are in (data.gov, Cloudflare Pages+R2, Neon, Gmail SMTP, GitHub Actions). The credential
+wall is LIFTING. Resume driver added: `scripts/resume.sh` (verifies secrets → full gate →
+`wrangler pages deploy apps/web/dist`, branch-guarded to dev, no main push). Cloudflare
+Pages build config corrected (root dir = repo root, output = `apps/web/dist`, NODE_VERSION
+20 — the "root directory not found" error was Root dir wrongly set to `apps/web/dist`).
+**Next eligible units now unblocked, build order:** `v1.1.6-artifact-bake` (live per-source
+dispatch — the CLI only bakes `sample` today; wire FEC/ACS/Congress/poll connectors into a
+real bake) → `v1.0.4-datastore-wiring` (Neon+R2) → geo chain (`v1.1.2/1.3/1.4`, `v1.2.5`) →
+live joins (`v1.3.2`, `v1.6.2/6.4`, `v1.6.5` finance) → `v1.8.7-snapshot-store` →
+`v1.10.x` (deploy/QA/alerts/budget/weekly via Actions + Gmail).
+
 Built (fixture-tested, locally-gated; 153 tests = 121 Python + 32 web, `astro check`
 0/0/0): Phase-0 infra · 6 connectors (FEC/538/Census/Congress/Voteview/pollster-ratings)
 · gerrymander metrics · full forecast engine (aggregation→baseline→race-model→Monte

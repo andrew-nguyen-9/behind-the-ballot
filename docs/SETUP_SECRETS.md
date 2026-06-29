@@ -166,6 +166,25 @@ Order: (1) and (3) unblock the most. Each ends in the GitHub secret name to set.
   ```
   This unblocks the **live preview URL** = the deploy gate the promise needs.
 
+  **Pages build settings (this is a monorepo — get these exact):**
+
+  | Setting | Value |
+  |---|---|
+  | Root directory | *(blank = repo root)* |
+  | Build command | `pnpm install && pnpm build` |
+  | Build output directory | `apps/web/dist` |
+  | Build variable | `NODE_VERSION` = `20` |
+
+  > ⚠️ **"root directory not found"** = Root directory was set to `apps/web/dist`.
+  > `dist` is gitignored build *output*, not a source dir, so it isn't in the clone.
+  > Root directory is where the build *runs* (repo root here, because the root
+  > `package.json` `build` script is `pnpm --filter web build`); the output goes to
+  > `apps/web/dist`. Don't conflate the two.
+
+  Alternative — skip the git-connected build entirely and deploy the prebuilt `dist`
+  with wrangler (what `scripts/resume.sh` does): `wrangler pages deploy apps/web/dist
+  --project-name=behind-the-ballot --branch=dev`.
+
 ### Neon Postgres (free) — `DATABASE_URL` `[O2a]`
 - Create a project, copy the pooled connection string:
   <https://console.neon.tech/signup>
