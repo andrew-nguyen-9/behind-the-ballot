@@ -98,6 +98,22 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 77)
+
+iter 77: **built v1.10.5 weekly-review alert (Gmail SMTP, zero new deps).** `btb_pipeline/notify.py`
+— stdlib `smtplib`+`urllib`: `build_digest` (pure: counts from committed src/data + injected route
+fetch) composes a health + real-data-coverage digest (537 members · 33 finance · 33 demographics ·
+441 districts · "honestly pending: forecast + fairness"), `send_email` ships it STARTTLS over Gmail.
+`.github/workflows/weekly-review.yml` (Mon 14:00 UTC + dispatch, SMTP secrets via env). 3 hermetic
+tests (pure digest, degraded-route flag, mocked-SMTP send). **Caught + fixed a real bug:** urllib's
+default UA is Cloudflare-403'd → false DEGRADED; added a real User-Agent → live dry-run "all routes
+200". Verified via dry-run (real digest) + mocked SMTP test; the live wire send is exercised weekly
+by the workflow with CI secrets (an ad-hoc local send was correctly denied by auto-mode as an
+unrequested outbound write — dry-run sufficed). Gate: pytest 152, ruff. Direct to dev.
+**v1.10.x status:** 10.2 nightly refresh ✓ · 10.3 freshness gate + canary ✓ · 10.5 weekly review ✓ ·
+10.1 coverage-configs / 10.4 budget-alarms remain (budget = API/Actions/R2 80% — needs usage APIs).
+**Next eligible:** v1.10.4 budget-alarms, PMTiles map→R2, or (human) the election-results source.
+
 ## RESUME  (current as of iter 76)
 
 iter 76: **verified iter-75 live + freshness gate on the nightly refresh.** Confirmed `/gerrymander`
@@ -551,7 +567,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.10.2-nightly-qa | v1.10.1 | done (refresh.yml: nightly bake→export→commit→auto-deploy; cmds live-verified locally w/ real keys iter 70. QA-screenshot sweep folds into v1.10.3) |
 | v1.10.3-regression-alerts | v1.10.2 | pending |
 | v1.10.4-budget-alarms | v1.10.2 | pending |
-| v1.10.5-weekly-review-routine | v1.10.2 | pending |
+| v1.10.5-weekly-review-routine | v1.10.2 | done (iter 77: notify.py SMTP digest + weekly-review.yml; pure digest tested, UA-403 bug fixed, dry-run verified) |
 
 ## Activity log
 
@@ -790,6 +806,10 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 77: **v1.10.5 weekly-review SMTP alert.** `notify.py` (stdlib smtplib/urllib) — pure
+  `build_digest` (health + 537/33/33/441 coverage) + `send_email` STARTTLS; `weekly-review.yml`
+  (Mon 14:00). Fixed urllib-UA Cloudflare-403 false-alert. 3 hermetic tests, pytest 152, ruff.
+  Dry-run verified; live send is the workflow's job. Direct to dev. — iter 77
 - iter 76: **verified iter-75 live + refresh freshness gate.** /gerrymander serves real compactness
   at the live preview (canary green). Added `integrity` step to refresh.yml (stale bake → red →
   native email; never commit stale data). Consolidated Open Q#3 (election-results source unblocks

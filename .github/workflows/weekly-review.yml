@@ -1,0 +1,28 @@
+# Weekly review [v1.10.5] — emails a short health + real-data-coverage digest via Gmail SMTP.
+# Read-only; never touches the repo or `main` [S5a]. The digest flags any non-200 route and
+# states what is honestly pending vs shipped. Manual dispatch available for an on-demand report.
+name: weekly-review
+
+on:
+  schedule:
+    - cron: "0 14 * * 1" # Mondays 14:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  weekly-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: astral-sh/setup-uv@e58605a9b6da7c637471fab8847a5e5a6b8df081 # v5
+      - run: uv sync --project pipeline
+      - name: send weekly review
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          ALERT_EMAIL_TO: ${{ secrets.ALERT_EMAIL_TO }}
+        run: uv run --project pipeline python -m btb_pipeline.notify
