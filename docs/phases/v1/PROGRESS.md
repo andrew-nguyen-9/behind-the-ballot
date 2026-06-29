@@ -58,6 +58,16 @@ be emitted** — never lie to exit.
    then build `export_forecast` (new connector + DATA_SOURCES row + integrity). Until resolved,
    forecast stays sample and `V1 COMPLETE` is withheld.
 
+   **CONSOLIDATED (iter 76): this is now the single highest-leverage blocker — an election-results
+   source unblocks BOTH the forecast (state-level presidential two-party share → PVI) AND the
+   gerrymander **fairness** table (district-level results → efficiency gap / mean-median / seats-
+   votes; `gerrymander/states.json` is still sample for exactly this reason). One sourcing decision
+   clears two modules. Recommendation stands: MEDSL (Harvard Dataverse, CC-BY, attribution already
+   on /sources) — state president + U.S. House district files. NOT auto-fetched: provenance/license
+   of a published election-results figure is credibility-critical for a "every figure traces to a
+   public source" site, so this wants explicit human confirmation rather than grabbing an arbitrary
+   mirror. Compactness (geometry-only) is already real+live; fairness waits on this.
+
 2. **RESOLVED (iter 66): valid `CENSUS_API_KEY` in.** ACS now live-bakes **440 rows** (435
    districts + DC/territories). Finding that drove it: ACS needs a separate Census key (the
    data.gov key 302s to missing_key.html); a placeholder key 40-char'd but returned
@@ -87,6 +97,21 @@ be emitted** — never lie to exit.
    pick a replacement polling source + license (candidates: a 538/ABC GitHub mirror if one
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
+
+## RESUME  (current as of iter 76)
+
+iter 76: **verified iter-75 live + freshness gate on the nightly refresh.** Confirmed `/gerrymander`
+serves REAL compactness at the live preview (Polsby-Popper 0.01/0.03… = the genuinely least-compact
+districts from TIGER); canary green. Added the integrity/freshness gate to `refresh.yml` (after the
+nightly bake, before export+commit, run `python -m btb_pipeline.integrity` → a stale or failed bake
+fails the job → GitHub native email; never export+commit stale data) — a v1.10.3 regression/freshness
+slice via the native-email pattern. **Consolidated Open Q#3:** the election-results source is now the
+single highest-leverage blocker — it unblocks BOTH forecast (state pres → PVI) AND gerrymander
+fairness (district results → efficiency gap); one human-confirm sourcing decision clears two modules
+(recommend MEDSL/Dataverse, CC-BY). **Autonomous units still open (no source/human dep):** PMTiles
+map → R2 (v1.1.2; needs tippecanoe — tooling-heavy), find-my-district (v1.2.5; static-hosting wrinkle
+— needs a client-side Geocoder call or precomputed lookup), richer SMTP alerts (v1.10.4/5). **Next
+eligible:** v1.10.4/5 SMTP digest (stdlib smtplib, zero-dep) or the PMTiles map.
 
 ## RESUME  (current as of iter 75)
 
@@ -765,6 +790,10 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 76: **verified iter-75 live + refresh freshness gate.** /gerrymander serves real compactness
+  at the live preview (canary green). Added `integrity` step to refresh.yml (stale bake → red →
+  native email; never commit stale data). Consolidated Open Q#3 (election-results source unblocks
+  forecast PVI + gerrymander fairness together). Direct to dev. — iter 76
 - iter 75: **real TIGER compactness (geo chain start).** `sources/tiger.py` (pyshp+pyproj):
   cb_2023 CD118 zip → reproject EPSG:5070 → compute_metrics → 441 real districts on /gerrymander
   (replaced sample). CLI+export+refresh wired; gerrymander/cli tests data-agnostic; methodology

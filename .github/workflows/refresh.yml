@@ -43,6 +43,10 @@ jobs:
           for s in members voteview acs fec tiger; do
             uv run --project pipeline python -m btb_pipeline.cli bake "$s"
           done
+          # Freshness/integrity gate [R14a,R5a]: every baked artifact must be a registered source
+          # within its freshness floor + in sync with DATA_SOURCES.md. A stale or failed bake fails
+          # the job here → GitHub's native failure email → we never export+commit stale data.
+          uv run --project pipeline python -m btb_pipeline.integrity
           uv run --project pipeline python -m btb_pipeline.export_web
 
       - name: commit refreshed data to dev
