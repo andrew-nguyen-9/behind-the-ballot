@@ -113,6 +113,22 @@ items (House, map, find-district) are now sanctioned V1.1 scope, NOT V1 blockers
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 80)
+
+iter 80: **MEDSL results connector LIVE-BAKED (forecast unblock, slice 1/2).** The canonical MEDSL
+1976-2024 state-president file on Dataverse is **guestbook-gated** (no token here), but
+`github.com/MEDSL/2024-elections-official/2024-president-state.csv` is clean GitHub-raw, no-guestbook,
+CC-BY, RIGHT-vintage (2024). New `sources/medsl.py` (keyless): CSV → two-party D/R per state over
+TOTAL-mode rows → bake gold `medsl_president`. **Live bake = 50 states**; national two-party D share
+0.493, TX PVI −0.062 (R+6.2) — real + correct. Registered in CLI + integrity (`Source(None,"MEDSL")`)
++ DATA_SOURCES row (token "MEDSL"). 2 hermetic tests + CLI registry updated. Gate: pytest 157, ruff,
+integrity 13 sources/11 artifacts. Direct to dev. Not in nightly refresh (results are static/event-
+driven). **Slice 2/2 (next): `export_forecast`** — per-race PVI = `cook_pvi(state_share, national)`
+→ `run_forecast` → per-race `data/forecast/<id>.json` + `chamber-senate.json`; repoint loaders;
+forecast.test data-agnostic; /forecast empty-state flips to real. **Then fairness:** needs House
+results on CURRENT (post-2020) district lines — constituency-returns stops at 2018 (old lines);
+assess a 2022/2024 House-by-CD source next (may be another guestbook/precinct-aggregation step).
+
 ## RESUME  (current as of iter 79)
 
 iter 79: **built v1.10.4 budget-alarms → ALL of v1.10.x (loop-scale) COMPLETE.** `budget.py`:
@@ -875,6 +891,10 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 80: **MEDSL president connector (forecast unblock 1/2).** `sources/medsl.py` — 2024
+  president-by-state from MEDSL GitHub (CC-BY, no guestbook) → 50-state two-party totals baked
+  (`medsl_president`). TX PVI −6.2, national D 0.493. CLI+integrity+DATA_SOURCES+2 tests. pytest
+  157, integrity 13. Direct to dev. export_forecast next. — iter 80
 - iter 79: **v1.10.4 budget-alarms → v1.10.x complete.** `budget.py` api.data.gov quota alarm @80%
   (Actions/R2 documented N/A) + `budget.yml` daily; 3 tests, live read 1/60. pytest 155, ruff.
   Direct to dev. V1 endgame articulated above: remaining = human source/scope decisions + the heavy

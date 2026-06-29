@@ -46,6 +46,7 @@ SOURCES: dict[str, Source] = {
     "sponsorship": Source(14, "Sponsored/cosponsored"),
     "voteview": Source(None, "Voteview"),
     "tiger": Source(None, "TIGER/Line"),
+    "medsl_president": Source(None, "MEDSL"),
     "geocoder": Source(None, "Geocoder"),
 }
 

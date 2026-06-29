@@ -21,6 +21,7 @@ from btb_pipeline.sources import (
     acs,
     committee_link,
     fec,
+    medsl,
     members,
     polls,
     pollster_ratings,
@@ -34,6 +35,7 @@ from btb_pipeline.sources import (
 # name -> live bake callable (arg-free; defaults fetch over the network) [R13a]
 SOURCES: dict[str, Callable[[], Path]] = {
     "fec": fec.run,
+    "medsl_president": medsl.run,
     "committee_link": committee_link.run,
     "members": members.run,
     "acs": acs.run,

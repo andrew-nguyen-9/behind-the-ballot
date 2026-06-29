@@ -39,6 +39,7 @@ opens an issue rather than publishing nothing `[R8a]`.
 | ACS demographics per district/state | demographics | Census ACS via Census API `[I2a]` | `api.census.gov/data` | US public domain | `api.data.gov` | yearly (ACS release) `[I7a]` | 400 d |
 | District ↔ geography equivalency (119th Congress) | demographics/geo | Census district equivalency `[I3a]` | census.gov equivalency files | public domain | none | per redistricting `[L547]` | event-driven |
 | District / state boundary shapes | geo / gerrymander-lite | Census TIGER/Line `[K?a,I3a]` | `www2.census.gov/geo/tiger` | public domain | none | yearly + court orders `[L547]` | event-driven |
+| Prior-election results (partisan baseline) | forecast (PVI) / gerrymander fairness | **MEDSL** (MIT Election Lab) `[N3a]` — 2024 president by state (decision iter 79) | `github.com/MEDSL/2024-elections-official` | CC BY, attribute | none | per election (event) | event-driven |
 | Address → district lookup | tracker (find-my-district) | Census Geocoder API `[I?a]` | `geocoding.geo.census.gov` | public domain | none | on-request, cached `[R10a]` | n/a (cache 30 d) |
 | Members of Congress (roster, bioguide, party, state, district) | members/caucus | congress-legislators YAML **+** Congress.gov `[Q?→C]` | `github.com/unitedstates/congress-legislators` / `api.congress.gov` | CC0 (YAML) / public domain | `api.data.gov` (Congress.gov) | weekly | 14 d |
 | Committees & leadership | caucus/chamber | Congress.gov API `[Q?a]` | `api.congress.gov` | public domain | `api.data.gov` | weekly | 30 d |
