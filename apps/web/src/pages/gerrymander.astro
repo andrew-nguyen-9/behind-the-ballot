@@ -70,7 +70,9 @@ const fmtSeat = (n: number) => `${Math.round(n * 100)}%`;
     <h2 id="method" class="font-serif text-xl">Methodology</h2>
     <p class="mt-2 max-w-prose text-sm text-muted">
       Compactness: Polsby-Popper (4π·area/perimeter²), Reock (area / min-bounding-circle),
-      and convex-hull ratio — each 1.0 at most compact. Fairness: efficiency gap (wasted
+      and convex-hull ratio — each 1.0 at most compact. Computed on an equal-area projection
+      (US Albers, EPSG:5070), which is tuned for the contiguous states, so Alaska, Hawaii, and
+      territories are approximate. Fairness: efficiency gap (wasted
       votes) and mean–median (mean minus median district vote share). Boundaries are
       versioned by <code>as_of</code> to track court-ordered changes. Ensemble/simulation
       analysis is planned for a later release.

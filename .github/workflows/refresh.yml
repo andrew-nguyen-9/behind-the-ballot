@@ -40,7 +40,7 @@ jobs:
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
         run: |
           set -euo pipefail
-          for s in members voteview acs fec; do
+          for s in members voteview acs fec tiger; do
             uv run --project pipeline python -m btb_pipeline.cli bake "$s"
           done
           uv run --project pipeline python -m btb_pipeline.export_web

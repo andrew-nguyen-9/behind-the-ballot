@@ -150,10 +150,22 @@ def export_finance(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Pa
     return [_write(web_data / "finance" / f"{rid}.json", rs) for rid, rs in by_race.items()]
 
 
+def export_districts(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/tiger (real TIGER compactness) → src/data/gerrymander/districts.json [L2a]. Replaces
+    the sample fixture with all 441 baked districts. (State fairness still needs district election
+    results — a source not yet wired — so gerrymander/states.json stays sample for now.)"""
+    rows = _gold("tiger", root)
+    if rows is None:
+        return []
+    districts = sorted(rows, key=lambda r: r["geoid"])
+    return [_write(web_data / "gerrymander" / "districts.json", districts)]
+
+
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
     "finance": export_finance,
+    "districts": export_districts,
 }
 
 

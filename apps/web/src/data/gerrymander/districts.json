@@ -1,5 +1,3530 @@
 [
-  { "geoid": "3903", "state": "OH", "district": 3, "polsby_popper": 0.21, "reock": 0.34, "convex_hull_ratio": 0.58 },
-  { "geoid": "3912", "state": "OH", "district": 12, "polsby_popper": 0.62, "reock": 0.55, "convex_hull_ratio": 0.88 },
-  { "geoid": "4205", "state": "PA", "district": 5, "polsby_popper": 0.47, "reock": 0.49, "convex_hull_ratio": 0.79 }
+  {
+    "convex_hull_ratio": 0.6513,
+    "district": 1,
+    "geoid": "0101",
+    "polsby_popper": 0.1313,
+    "reock": 0.3905,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.7579,
+    "district": 2,
+    "geoid": "0102",
+    "polsby_popper": 0.2646,
+    "reock": 0.5048,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.7691,
+    "district": 3,
+    "geoid": "0103",
+    "polsby_popper": 0.2561,
+    "reock": 0.3623,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.6126,
+    "district": 4,
+    "geoid": "0104",
+    "polsby_popper": 0.1925,
+    "reock": 0.3639,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.797,
+    "district": 5,
+    "geoid": "0105",
+    "polsby_popper": 0.3238,
+    "reock": 0.3082,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.6844,
+    "district": 6,
+    "geoid": "0106",
+    "polsby_popper": 0.1573,
+    "reock": 0.313,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.6791,
+    "district": 7,
+    "geoid": "0107",
+    "polsby_popper": 0.1948,
+    "reock": 0.4291,
+    "state": "AL"
+  },
+  {
+    "convex_hull_ratio": 0.3608,
+    "district": 0,
+    "geoid": "0200",
+    "polsby_popper": 0.0108,
+    "reock": 0.1296,
+    "state": "AK"
+  },
+  {
+    "convex_hull_ratio": 0.8415,
+    "district": 1,
+    "geoid": "0401",
+    "polsby_popper": 0.3821,
+    "reock": 0.452,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.8422,
+    "district": 2,
+    "geoid": "0402",
+    "polsby_popper": 0.3019,
+    "reock": 0.6394,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.8316,
+    "district": 3,
+    "geoid": "0403",
+    "polsby_popper": 0.3937,
+    "reock": 0.5059,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.6494,
+    "district": 4,
+    "geoid": "0404",
+    "polsby_popper": 0.2157,
+    "reock": 0.2461,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.7309,
+    "district": 5,
+    "geoid": "0405",
+    "polsby_popper": 0.3154,
+    "reock": 0.547,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.7007,
+    "district": 6,
+    "geoid": "0406",
+    "polsby_popper": 0.2267,
+    "reock": 0.4002,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.6871,
+    "district": 7,
+    "geoid": "0407",
+    "polsby_popper": 0.1798,
+    "reock": 0.1886,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.7597,
+    "district": 8,
+    "geoid": "0408",
+    "polsby_popper": 0.3207,
+    "reock": 0.498,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.6233,
+    "district": 9,
+    "geoid": "0409",
+    "polsby_popper": 0.1832,
+    "reock": 0.283,
+    "state": "AZ"
+  },
+  {
+    "convex_hull_ratio": 0.6837,
+    "district": 1,
+    "geoid": "0501",
+    "polsby_popper": 0.1249,
+    "reock": 0.3392,
+    "state": "AR"
+  },
+  {
+    "convex_hull_ratio": 0.7662,
+    "district": 2,
+    "geoid": "0502",
+    "polsby_popper": 0.2728,
+    "reock": 0.4973,
+    "state": "AR"
+  },
+  {
+    "convex_hull_ratio": 0.8327,
+    "district": 3,
+    "geoid": "0503",
+    "polsby_popper": 0.4331,
+    "reock": 0.438,
+    "state": "AR"
+  },
+  {
+    "convex_hull_ratio": 0.7954,
+    "district": 4,
+    "geoid": "0504",
+    "polsby_popper": 0.2654,
+    "reock": 0.4824,
+    "state": "AR"
+  },
+  {
+    "convex_hull_ratio": 0.7768,
+    "district": 1,
+    "geoid": "0601",
+    "polsby_popper": 0.2227,
+    "reock": 0.4966,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6001,
+    "district": 2,
+    "geoid": "0602",
+    "polsby_popper": 0.1541,
+    "reock": 0.182,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.5428,
+    "district": 3,
+    "geoid": "0603",
+    "polsby_popper": 0.1353,
+    "reock": 0.1387,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6801,
+    "district": 4,
+    "geoid": "0604",
+    "polsby_popper": 0.184,
+    "reock": 0.3348,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7463,
+    "district": 5,
+    "geoid": "0605",
+    "polsby_popper": 0.1717,
+    "reock": 0.2971,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.8422,
+    "district": 6,
+    "geoid": "0606",
+    "polsby_popper": 0.3349,
+    "reock": 0.3259,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6405,
+    "district": 7,
+    "geoid": "0607",
+    "polsby_popper": 0.2551,
+    "reock": 0.2949,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6205,
+    "district": 8,
+    "geoid": "0608",
+    "polsby_popper": 0.1799,
+    "reock": 0.3978,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.8104,
+    "district": 9,
+    "geoid": "0609",
+    "polsby_popper": 0.2495,
+    "reock": 0.5514,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7422,
+    "district": 10,
+    "geoid": "0610",
+    "polsby_popper": 0.2381,
+    "reock": 0.477,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.2395,
+    "district": 11,
+    "geoid": "0611",
+    "polsby_popper": 0.3065,
+    "reock": 0.0406,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.8245,
+    "district": 12,
+    "geoid": "0612",
+    "polsby_popper": 0.2787,
+    "reock": 0.3839,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7763,
+    "district": 13,
+    "geoid": "0613",
+    "polsby_popper": 0.2358,
+    "reock": 0.3826,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7334,
+    "district": 14,
+    "geoid": "0614",
+    "polsby_popper": 0.3336,
+    "reock": 0.3739,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6411,
+    "district": 15,
+    "geoid": "0615",
+    "polsby_popper": 0.221,
+    "reock": 0.209,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6071,
+    "district": 16,
+    "geoid": "0616",
+    "polsby_popper": 0.1555,
+    "reock": 0.3067,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7424,
+    "district": 17,
+    "geoid": "0617",
+    "polsby_popper": 0.24,
+    "reock": 0.502,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7664,
+    "district": 18,
+    "geoid": "0618",
+    "polsby_popper": 0.1781,
+    "reock": 0.2673,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.3782,
+    "district": 19,
+    "geoid": "0619",
+    "polsby_popper": 0.0755,
+    "reock": 0.1225,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.5986,
+    "district": 20,
+    "geoid": "0620",
+    "polsby_popper": 0.0993,
+    "reock": 0.3415,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7451,
+    "district": 21,
+    "geoid": "0621",
+    "polsby_popper": 0.1983,
+    "reock": 0.2735,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7908,
+    "district": 22,
+    "geoid": "0622",
+    "polsby_popper": 0.3135,
+    "reock": 0.5011,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.9097,
+    "district": 23,
+    "geoid": "0623",
+    "polsby_popper": 0.4399,
+    "reock": 0.6101,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.464,
+    "district": 24,
+    "geoid": "0624",
+    "polsby_popper": 0.1536,
+    "reock": 0.1946,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6057,
+    "district": 25,
+    "geoid": "0625",
+    "polsby_popper": 0.1652,
+    "reock": 0.4173,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.8659,
+    "district": 26,
+    "geoid": "0626",
+    "polsby_popper": 0.3074,
+    "reock": 0.4311,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.8938,
+    "district": 27,
+    "geoid": "0627",
+    "polsby_popper": 0.3788,
+    "reock": 0.5278,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6998,
+    "district": 28,
+    "geoid": "0628",
+    "polsby_popper": 0.1391,
+    "reock": 0.4459,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.5954,
+    "district": 29,
+    "geoid": "0629",
+    "polsby_popper": 0.1847,
+    "reock": 0.3502,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.635,
+    "district": 30,
+    "geoid": "0630",
+    "polsby_popper": 0.1566,
+    "reock": 0.3041,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6718,
+    "district": 31,
+    "geoid": "0631",
+    "polsby_popper": 0.1131,
+    "reock": 0.3502,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.72,
+    "district": 32,
+    "geoid": "0632",
+    "polsby_popper": 0.1838,
+    "reock": 0.328,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6795,
+    "district": 33,
+    "geoid": "0633",
+    "polsby_popper": 0.1958,
+    "reock": 0.2759,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6842,
+    "district": 34,
+    "geoid": "0634",
+    "polsby_popper": 0.2172,
+    "reock": 0.4003,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7113,
+    "district": 35,
+    "geoid": "0635",
+    "polsby_popper": 0.257,
+    "reock": 0.3666,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.4936,
+    "district": 36,
+    "geoid": "0636",
+    "polsby_popper": 0.126,
+    "reock": 0.1664,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7755,
+    "district": 37,
+    "geoid": "0637",
+    "polsby_popper": 0.3053,
+    "reock": 0.4763,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6828,
+    "district": 38,
+    "geoid": "0638",
+    "polsby_popper": 0.1498,
+    "reock": 0.3923,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6799,
+    "district": 39,
+    "geoid": "0639",
+    "polsby_popper": 0.2043,
+    "reock": 0.419,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.711,
+    "district": 40,
+    "geoid": "0640",
+    "polsby_popper": 0.1531,
+    "reock": 0.3836,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6334,
+    "district": 41,
+    "geoid": "0641",
+    "polsby_popper": 0.0625,
+    "reock": 0.2445,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.1407,
+    "district": 42,
+    "geoid": "0642",
+    "polsby_popper": 0.0668,
+    "reock": 0.0379,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6651,
+    "district": 43,
+    "geoid": "0643",
+    "polsby_popper": 0.2028,
+    "reock": 0.3729,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6382,
+    "district": 44,
+    "geoid": "0644",
+    "polsby_popper": 0.1567,
+    "reock": 0.3413,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.524,
+    "district": 45,
+    "geoid": "0645",
+    "polsby_popper": 0.0819,
+    "reock": 0.3518,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6947,
+    "district": 46,
+    "geoid": "0646",
+    "polsby_popper": 0.1683,
+    "reock": 0.4609,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6068,
+    "district": 47,
+    "geoid": "0647",
+    "polsby_popper": 0.1783,
+    "reock": 0.2693,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.8094,
+    "district": 48,
+    "geoid": "0648",
+    "polsby_popper": 0.2142,
+    "reock": 0.4344,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.674,
+    "district": 49,
+    "geoid": "0649",
+    "polsby_popper": 0.2139,
+    "reock": 0.2445,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.4458,
+    "district": 50,
+    "geoid": "0650",
+    "polsby_popper": 0.0896,
+    "reock": 0.162,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.6568,
+    "district": 51,
+    "geoid": "0651",
+    "polsby_popper": 0.1293,
+    "reock": 0.474,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.7503,
+    "district": 52,
+    "geoid": "0652",
+    "polsby_popper": 0.2669,
+    "reock": 0.4105,
+    "state": "CA"
+  },
+  {
+    "convex_hull_ratio": 0.4936,
+    "district": 1,
+    "geoid": "0801",
+    "polsby_popper": 0.0919,
+    "reock": 0.1838,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.8955,
+    "district": 2,
+    "geoid": "0802",
+    "polsby_popper": 0.3341,
+    "reock": 0.662,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.758,
+    "district": 3,
+    "geoid": "0803",
+    "polsby_popper": 0.306,
+    "reock": 0.3591,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.8331,
+    "district": 4,
+    "geoid": "0804",
+    "polsby_popper": 0.2934,
+    "reock": 0.407,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.9129,
+    "district": 5,
+    "geoid": "0805",
+    "polsby_popper": 0.5603,
+    "reock": 0.5495,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.6584,
+    "district": 6,
+    "geoid": "0806",
+    "polsby_popper": 0.0998,
+    "reock": 0.2625,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.7967,
+    "district": 7,
+    "geoid": "0807",
+    "polsby_popper": 0.2506,
+    "reock": 0.3988,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.7408,
+    "district": 8,
+    "geoid": "0808",
+    "polsby_popper": 0.2108,
+    "reock": 0.4009,
+    "state": "CO"
+  },
+  {
+    "convex_hull_ratio": 0.6594,
+    "district": 1,
+    "geoid": "0901",
+    "polsby_popper": 0.1708,
+    "reock": 0.4346,
+    "state": "CT"
+  },
+  {
+    "convex_hull_ratio": 0.8392,
+    "district": 2,
+    "geoid": "0902",
+    "polsby_popper": 0.3731,
+    "reock": 0.5611,
+    "state": "CT"
+  },
+  {
+    "convex_hull_ratio": 0.7211,
+    "district": 3,
+    "geoid": "0903",
+    "polsby_popper": 0.2385,
+    "reock": 0.3601,
+    "state": "CT"
+  },
+  {
+    "convex_hull_ratio": 0.6606,
+    "district": 4,
+    "geoid": "0904",
+    "polsby_popper": 0.2257,
+    "reock": 0.2896,
+    "state": "CT"
+  },
+  {
+    "convex_hull_ratio": 0.7483,
+    "district": 5,
+    "geoid": "0905",
+    "polsby_popper": 0.2326,
+    "reock": 0.512,
+    "state": "CT"
+  },
+  {
+    "convex_hull_ratio": 0.7399,
+    "district": 0,
+    "geoid": "1000",
+    "polsby_popper": 0.3439,
+    "reock": 0.2527,
+    "state": "DE"
+  },
+  {
+    "convex_hull_ratio": 0.8564,
+    "district": 98,
+    "geoid": "1198",
+    "polsby_popper": 0.5498,
+    "reock": 0.4359,
+    "state": "DC"
+  },
+  {
+    "convex_hull_ratio": 0.858,
+    "district": 1,
+    "geoid": "1201",
+    "polsby_popper": 0.4795,
+    "reock": 0.493,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7387,
+    "district": 2,
+    "geoid": "1202",
+    "polsby_popper": 0.2297,
+    "reock": 0.3684,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.9037,
+    "district": 3,
+    "geoid": "1203",
+    "polsby_popper": 0.4455,
+    "reock": 0.5237,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7914,
+    "district": 4,
+    "geoid": "1204",
+    "polsby_popper": 0.3724,
+    "reock": 0.3905,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8797,
+    "district": 5,
+    "geoid": "1205",
+    "polsby_popper": 0.4968,
+    "reock": 0.4772,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.9206,
+    "district": 6,
+    "geoid": "1206",
+    "polsby_popper": 0.5025,
+    "reock": 0.7447,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8293,
+    "district": 7,
+    "geoid": "1207",
+    "polsby_popper": 0.4122,
+    "reock": 0.4821,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7431,
+    "district": 8,
+    "geoid": "1208",
+    "polsby_popper": 0.4067,
+    "reock": 0.2876,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8623,
+    "district": 9,
+    "geoid": "1209",
+    "polsby_popper": 0.4881,
+    "reock": 0.4935,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7512,
+    "district": 10,
+    "geoid": "1210",
+    "polsby_popper": 0.3777,
+    "reock": 0.4104,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8222,
+    "district": 11,
+    "geoid": "1211",
+    "polsby_popper": 0.3663,
+    "reock": 0.5226,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7515,
+    "district": 12,
+    "geoid": "1212",
+    "polsby_popper": 0.2961,
+    "reock": 0.4789,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.712,
+    "district": 13,
+    "geoid": "1213",
+    "polsby_popper": 0.1664,
+    "reock": 0.2257,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.5146,
+    "district": 14,
+    "geoid": "1214",
+    "polsby_popper": 0.0955,
+    "reock": 0.2814,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8808,
+    "district": 15,
+    "geoid": "1215",
+    "polsby_popper": 0.5823,
+    "reock": 0.5777,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7519,
+    "district": 16,
+    "geoid": "1216",
+    "polsby_popper": 0.4453,
+    "reock": 0.4726,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7243,
+    "district": 17,
+    "geoid": "1217",
+    "polsby_popper": 0.2705,
+    "reock": 0.2572,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8242,
+    "district": 18,
+    "geoid": "1218",
+    "polsby_popper": 0.4319,
+    "reock": 0.4286,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.5138,
+    "district": 19,
+    "geoid": "1219",
+    "polsby_popper": 0.1108,
+    "reock": 0.186,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7728,
+    "district": 20,
+    "geoid": "1220",
+    "polsby_popper": 0.279,
+    "reock": 0.5018,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8025,
+    "district": 21,
+    "geoid": "1221",
+    "polsby_popper": 0.4713,
+    "reock": 0.4617,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.6916,
+    "district": 22,
+    "geoid": "1222",
+    "polsby_popper": 0.3794,
+    "reock": 0.3851,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7208,
+    "district": 23,
+    "geoid": "1223",
+    "polsby_popper": 0.2295,
+    "reock": 0.3862,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8809,
+    "district": 24,
+    "geoid": "1224",
+    "polsby_popper": 0.453,
+    "reock": 0.4635,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.8261,
+    "district": 25,
+    "geoid": "1225",
+    "polsby_popper": 0.3991,
+    "reock": 0.4718,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7717,
+    "district": 26,
+    "geoid": "1226",
+    "polsby_popper": 0.3229,
+    "reock": 0.2849,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.6539,
+    "district": 27,
+    "geoid": "1227",
+    "polsby_popper": 0.2924,
+    "reock": 0.4166,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.2857,
+    "district": 28,
+    "geoid": "1228",
+    "polsby_popper": 0.0546,
+    "reock": 0.0984,
+    "state": "FL"
+  },
+  {
+    "convex_hull_ratio": 0.7839,
+    "district": 1,
+    "geoid": "1301",
+    "polsby_popper": 0.2537,
+    "reock": 0.4275,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.7987,
+    "district": 2,
+    "geoid": "1302",
+    "polsby_popper": 0.2744,
+    "reock": 0.4589,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.8193,
+    "district": 3,
+    "geoid": "1303",
+    "polsby_popper": 0.2805,
+    "reock": 0.4625,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.762,
+    "district": 4,
+    "geoid": "1304",
+    "polsby_popper": 0.2542,
+    "reock": 0.3084,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.8011,
+    "district": 5,
+    "geoid": "1305",
+    "polsby_popper": 0.3321,
+    "reock": 0.5085,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.7277,
+    "district": 6,
+    "geoid": "1306",
+    "polsby_popper": 0.2048,
+    "reock": 0.4222,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.8217,
+    "district": 7,
+    "geoid": "1307",
+    "polsby_popper": 0.3973,
+    "reock": 0.506,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.7348,
+    "district": 8,
+    "geoid": "1308",
+    "polsby_popper": 0.2166,
+    "reock": 0.3388,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.695,
+    "district": 9,
+    "geoid": "1309",
+    "polsby_popper": 0.2599,
+    "reock": 0.387,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.8056,
+    "district": 10,
+    "geoid": "1310",
+    "polsby_popper": 0.2948,
+    "reock": 0.5626,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.7074,
+    "district": 11,
+    "geoid": "1311",
+    "polsby_popper": 0.2111,
+    "reock": 0.4808,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.8557,
+    "district": 12,
+    "geoid": "1312",
+    "polsby_popper": 0.2902,
+    "reock": 0.5001,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.5891,
+    "district": 13,
+    "geoid": "1313",
+    "polsby_popper": 0.1617,
+    "reock": 0.3857,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.797,
+    "district": 14,
+    "geoid": "1314",
+    "polsby_popper": 0.3753,
+    "reock": 0.4264,
+    "state": "GA"
+  },
+  {
+    "convex_hull_ratio": 0.6748,
+    "district": 1,
+    "geoid": "1501",
+    "polsby_popper": 0.3246,
+    "reock": 0.3172,
+    "state": "HI"
+  },
+  {
+    "convex_hull_ratio": 0.044,
+    "district": 2,
+    "geoid": "1502",
+    "polsby_popper": 0.0809,
+    "reock": 0.003,
+    "state": "HI"
+  },
+  {
+    "convex_hull_ratio": 0.7352,
+    "district": 1,
+    "geoid": "1601",
+    "polsby_popper": 0.19,
+    "reock": 0.2106,
+    "state": "ID"
+  },
+  {
+    "convex_hull_ratio": 0.8126,
+    "district": 2,
+    "geoid": "1602",
+    "polsby_popper": 0.3286,
+    "reock": 0.5811,
+    "state": "ID"
+  },
+  {
+    "convex_hull_ratio": 0.571,
+    "district": 1,
+    "geoid": "1701",
+    "polsby_popper": 0.1326,
+    "reock": 0.254,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.7668,
+    "district": 2,
+    "geoid": "1702",
+    "polsby_popper": 0.2783,
+    "reock": 0.3221,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.4152,
+    "district": 3,
+    "geoid": "1703",
+    "polsby_popper": 0.0823,
+    "reock": 0.1942,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.5579,
+    "district": 4,
+    "geoid": "1704",
+    "polsby_popper": 0.1205,
+    "reock": 0.3894,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.4826,
+    "district": 5,
+    "geoid": "1705",
+    "polsby_popper": 0.0718,
+    "reock": 0.1508,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.6543,
+    "district": 6,
+    "geoid": "1706",
+    "polsby_popper": 0.1629,
+    "reock": 0.3828,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.5037,
+    "district": 7,
+    "geoid": "1707",
+    "polsby_popper": 0.1367,
+    "reock": 0.2931,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.5917,
+    "district": 8,
+    "geoid": "1708",
+    "polsby_popper": 0.1096,
+    "reock": 0.3161,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.4282,
+    "district": 9,
+    "geoid": "1709",
+    "polsby_popper": 0.1066,
+    "reock": 0.127,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.715,
+    "district": 10,
+    "geoid": "1710",
+    "polsby_popper": 0.2785,
+    "reock": 0.2858,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.5319,
+    "district": 11,
+    "geoid": "1711",
+    "polsby_popper": 0.1479,
+    "reock": 0.2779,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.7831,
+    "district": 12,
+    "geoid": "1712",
+    "polsby_popper": 0.2678,
+    "reock": 0.4541,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.3834,
+    "district": 13,
+    "geoid": "1713",
+    "polsby_popper": 0.1059,
+    "reock": 0.1148,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.7009,
+    "district": 14,
+    "geoid": "1714",
+    "polsby_popper": 0.2789,
+    "reock": 0.4388,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.644,
+    "district": 15,
+    "geoid": "1715",
+    "polsby_popper": 0.1273,
+    "reock": 0.4199,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.5779,
+    "district": 16,
+    "geoid": "1716",
+    "polsby_popper": 0.0992,
+    "reock": 0.3156,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.348,
+    "district": 17,
+    "geoid": "1717",
+    "polsby_popper": 0.0815,
+    "reock": 0.2271,
+    "state": "IL"
+  },
+  {
+    "convex_hull_ratio": 0.7604,
+    "district": 1,
+    "geoid": "1801",
+    "polsby_popper": 0.4273,
+    "reock": 0.405,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.8757,
+    "district": 2,
+    "geoid": "1802",
+    "polsby_popper": 0.5292,
+    "reock": 0.6306,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.9261,
+    "district": 3,
+    "geoid": "1803",
+    "polsby_popper": 0.5266,
+    "reock": 0.4061,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.8412,
+    "district": 4,
+    "geoid": "1804",
+    "polsby_popper": 0.4087,
+    "reock": 0.3802,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.8438,
+    "district": 5,
+    "geoid": "1805",
+    "polsby_popper": 0.5607,
+    "reock": 0.5858,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.782,
+    "district": 6,
+    "geoid": "1806",
+    "polsby_popper": 0.422,
+    "reock": 0.4381,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.9668,
+    "district": 7,
+    "geoid": "1807",
+    "polsby_popper": 0.7176,
+    "reock": 0.5764,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.7285,
+    "district": 8,
+    "geoid": "1808",
+    "polsby_popper": 0.2148,
+    "reock": 0.3465,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.7657,
+    "district": 9,
+    "geoid": "1809",
+    "polsby_popper": 0.3494,
+    "reock": 0.4624,
+    "state": "IN"
+  },
+  {
+    "convex_hull_ratio": 0.6761,
+    "district": 1,
+    "geoid": "1901",
+    "polsby_popper": 0.2862,
+    "reock": 0.3603,
+    "state": "IA"
+  },
+  {
+    "convex_hull_ratio": 0.7974,
+    "district": 2,
+    "geoid": "1902",
+    "polsby_popper": 0.4201,
+    "reock": 0.5391,
+    "state": "IA"
+  },
+  {
+    "convex_hull_ratio": 0.77,
+    "district": 3,
+    "geoid": "1903",
+    "polsby_popper": 0.3541,
+    "reock": 0.4277,
+    "state": "IA"
+  },
+  {
+    "convex_hull_ratio": 0.7288,
+    "district": 4,
+    "geoid": "1904",
+    "polsby_popper": 0.2886,
+    "reock": 0.4873,
+    "state": "IA"
+  },
+  {
+    "convex_hull_ratio": 0.8165,
+    "district": 1,
+    "geoid": "2001",
+    "polsby_popper": 0.3519,
+    "reock": 0.3843,
+    "state": "KS"
+  },
+  {
+    "convex_hull_ratio": 0.6295,
+    "district": 2,
+    "geoid": "2002",
+    "polsby_popper": 0.1526,
+    "reock": 0.3875,
+    "state": "KS"
+  },
+  {
+    "convex_hull_ratio": 0.7941,
+    "district": 3,
+    "geoid": "2003",
+    "polsby_popper": 0.4506,
+    "reock": 0.379,
+    "state": "KS"
+  },
+  {
+    "convex_hull_ratio": 0.8755,
+    "district": 4,
+    "geoid": "2004",
+    "polsby_popper": 0.4496,
+    "reock": 0.4159,
+    "state": "KS"
+  },
+  {
+    "convex_hull_ratio": 0.4866,
+    "district": 1,
+    "geoid": "2101",
+    "polsby_popper": 0.0966,
+    "reock": 0.1801,
+    "state": "KY"
+  },
+  {
+    "convex_hull_ratio": 0.7725,
+    "district": 2,
+    "geoid": "2102",
+    "polsby_popper": 0.2353,
+    "reock": 0.5507,
+    "state": "KY"
+  },
+  {
+    "convex_hull_ratio": 0.7849,
+    "district": 3,
+    "geoid": "2103",
+    "polsby_popper": 0.4408,
+    "reock": 0.3966,
+    "state": "KY"
+  },
+  {
+    "convex_hull_ratio": 0.5268,
+    "district": 4,
+    "geoid": "2104",
+    "polsby_popper": 0.1577,
+    "reock": 0.2401,
+    "state": "KY"
+  },
+  {
+    "convex_hull_ratio": 0.7958,
+    "district": 5,
+    "geoid": "2105",
+    "polsby_popper": 0.2939,
+    "reock": 0.4464,
+    "state": "KY"
+  },
+  {
+    "convex_hull_ratio": 0.7959,
+    "district": 6,
+    "geoid": "2106",
+    "polsby_popper": 0.2651,
+    "reock": 0.5109,
+    "state": "KY"
+  },
+  {
+    "convex_hull_ratio": 0.4543,
+    "district": 1,
+    "geoid": "2201",
+    "polsby_popper": 0.0339,
+    "reock": 0.3219,
+    "state": "LA"
+  },
+  {
+    "convex_hull_ratio": 0.3821,
+    "district": 2,
+    "geoid": "2202",
+    "polsby_popper": 0.061,
+    "reock": 0.1801,
+    "state": "LA"
+  },
+  {
+    "convex_hull_ratio": 0.7685,
+    "district": 3,
+    "geoid": "2203",
+    "polsby_popper": 0.1821,
+    "reock": 0.3213,
+    "state": "LA"
+  },
+  {
+    "convex_hull_ratio": 0.6079,
+    "district": 4,
+    "geoid": "2204",
+    "polsby_popper": 0.1661,
+    "reock": 0.3355,
+    "state": "LA"
+  },
+  {
+    "convex_hull_ratio": 0.5971,
+    "district": 5,
+    "geoid": "2205",
+    "polsby_popper": 0.1306,
+    "reock": 0.377,
+    "state": "LA"
+  },
+  {
+    "convex_hull_ratio": 0.6322,
+    "district": 6,
+    "geoid": "2206",
+    "polsby_popper": 0.0651,
+    "reock": 0.4426,
+    "state": "LA"
+  },
+  {
+    "convex_hull_ratio": 0.4442,
+    "district": 1,
+    "geoid": "2301",
+    "polsby_popper": 0.0478,
+    "reock": 0.2544,
+    "state": "ME"
+  },
+  {
+    "convex_hull_ratio": 0.8275,
+    "district": 2,
+    "geoid": "2302",
+    "polsby_popper": 0.1068,
+    "reock": 0.4766,
+    "state": "ME"
+  },
+  {
+    "convex_hull_ratio": 0.5957,
+    "district": 1,
+    "geoid": "2401",
+    "polsby_popper": 0.0539,
+    "reock": 0.2708,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.725,
+    "district": 2,
+    "geoid": "2402",
+    "polsby_popper": 0.1822,
+    "reock": 0.3185,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.7468,
+    "district": 3,
+    "geoid": "2403",
+    "polsby_popper": 0.2326,
+    "reock": 0.2592,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.6642,
+    "district": 4,
+    "geoid": "2404",
+    "polsby_popper": 0.2387,
+    "reock": 0.2775,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.7218,
+    "district": 5,
+    "geoid": "2405",
+    "polsby_popper": 0.1989,
+    "reock": 0.3161,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.4755,
+    "district": 6,
+    "geoid": "2406",
+    "polsby_popper": 0.1235,
+    "reock": 0.1873,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.7221,
+    "district": 7,
+    "geoid": "2407",
+    "polsby_popper": 0.216,
+    "reock": 0.3371,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.7847,
+    "district": 8,
+    "geoid": "2408",
+    "polsby_popper": 0.3297,
+    "reock": 0.5683,
+    "state": "MD"
+  },
+  {
+    "convex_hull_ratio": 0.7401,
+    "district": 1,
+    "geoid": "2501",
+    "polsby_popper": 0.2864,
+    "reock": 0.3567,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.683,
+    "district": 2,
+    "geoid": "2502",
+    "polsby_popper": 0.218,
+    "reock": 0.3197,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.6703,
+    "district": 3,
+    "geoid": "2503",
+    "polsby_popper": 0.2286,
+    "reock": 0.2974,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.6206,
+    "district": 4,
+    "geoid": "2504",
+    "polsby_popper": 0.1817,
+    "reock": 0.3213,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.6221,
+    "district": 5,
+    "geoid": "2505",
+    "polsby_popper": 0.1815,
+    "reock": 0.3438,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.7118,
+    "district": 6,
+    "geoid": "2506",
+    "polsby_popper": 0.2062,
+    "reock": 0.4554,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.484,
+    "district": 7,
+    "geoid": "2507",
+    "polsby_popper": 0.0968,
+    "reock": 0.2003,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.6279,
+    "district": 8,
+    "geoid": "2508",
+    "polsby_popper": 0.0906,
+    "reock": 0.4897,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.3846,
+    "district": 9,
+    "geoid": "2509",
+    "polsby_popper": 0.0459,
+    "reock": 0.2528,
+    "state": "MA"
+  },
+  {
+    "convex_hull_ratio": 0.4909,
+    "district": 1,
+    "geoid": "2601",
+    "polsby_popper": 0.0498,
+    "reock": 0.2366,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.7884,
+    "district": 2,
+    "geoid": "2602",
+    "polsby_popper": 0.4189,
+    "reock": 0.511,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.7421,
+    "district": 3,
+    "geoid": "2603",
+    "polsby_popper": 0.3705,
+    "reock": 0.3543,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.76,
+    "district": 4,
+    "geoid": "2604",
+    "polsby_popper": 0.4388,
+    "reock": 0.4419,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.792,
+    "district": 5,
+    "geoid": "2605",
+    "polsby_popper": 0.296,
+    "reock": 0.1956,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.7276,
+    "district": 6,
+    "geoid": "2606",
+    "polsby_popper": 0.3922,
+    "reock": 0.4122,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.8966,
+    "district": 7,
+    "geoid": "2607",
+    "polsby_popper": 0.5615,
+    "reock": 0.5205,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.7654,
+    "district": 8,
+    "geoid": "2608",
+    "polsby_popper": 0.379,
+    "reock": 0.3797,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.8319,
+    "district": 9,
+    "geoid": "2609",
+    "polsby_popper": 0.353,
+    "reock": 0.4877,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.7459,
+    "district": 10,
+    "geoid": "2610",
+    "polsby_popper": 0.4368,
+    "reock": 0.4631,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.8234,
+    "district": 11,
+    "geoid": "2611",
+    "polsby_popper": 0.4142,
+    "reock": 0.4864,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.8366,
+    "district": 12,
+    "geoid": "2612",
+    "polsby_popper": 0.4872,
+    "reock": 0.5746,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.672,
+    "district": 13,
+    "geoid": "2613",
+    "polsby_popper": 0.2983,
+    "reock": 0.2477,
+    "state": "MI"
+  },
+  {
+    "convex_hull_ratio": 0.7723,
+    "district": 1,
+    "geoid": "2701",
+    "polsby_popper": 0.2905,
+    "reock": 0.2318,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.8477,
+    "district": 2,
+    "geoid": "2702",
+    "polsby_popper": 0.3763,
+    "reock": 0.4099,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.7255,
+    "district": 3,
+    "geoid": "2703",
+    "polsby_popper": 0.2992,
+    "reock": 0.5705,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.8876,
+    "district": 4,
+    "geoid": "2704",
+    "polsby_popper": 0.5475,
+    "reock": 0.5138,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.8574,
+    "district": 5,
+    "geoid": "2705",
+    "polsby_popper": 0.4338,
+    "reock": 0.4999,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.6428,
+    "district": 6,
+    "geoid": "2706",
+    "polsby_popper": 0.2277,
+    "reock": 0.4292,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.7009,
+    "district": 7,
+    "geoid": "2707",
+    "polsby_popper": 0.1832,
+    "reock": 0.2959,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.6678,
+    "district": 8,
+    "geoid": "2708",
+    "polsby_popper": 0.2408,
+    "reock": 0.4017,
+    "state": "MN"
+  },
+  {
+    "convex_hull_ratio": 0.8224,
+    "district": 1,
+    "geoid": "2801",
+    "polsby_popper": 0.3833,
+    "reock": 0.4775,
+    "state": "MS"
+  },
+  {
+    "convex_hull_ratio": 0.7343,
+    "district": 2,
+    "geoid": "2802",
+    "polsby_popper": 0.1295,
+    "reock": 0.3004,
+    "state": "MS"
+  },
+  {
+    "convex_hull_ratio": 0.6926,
+    "district": 3,
+    "geoid": "2803",
+    "polsby_popper": 0.2476,
+    "reock": 0.3483,
+    "state": "MS"
+  },
+  {
+    "convex_hull_ratio": 0.8596,
+    "district": 4,
+    "geoid": "2804",
+    "polsby_popper": 0.3278,
+    "reock": 0.5163,
+    "state": "MS"
+  },
+  {
+    "convex_hull_ratio": 0.7704,
+    "district": 1,
+    "geoid": "2901",
+    "polsby_popper": 0.3135,
+    "reock": 0.5203,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.7997,
+    "district": 2,
+    "geoid": "2902",
+    "polsby_popper": 0.2982,
+    "reock": 0.4887,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.6369,
+    "district": 3,
+    "geoid": "2903",
+    "polsby_popper": 0.1589,
+    "reock": 0.3758,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.7852,
+    "district": 4,
+    "geoid": "2904",
+    "polsby_popper": 0.3053,
+    "reock": 0.5315,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.8448,
+    "district": 5,
+    "geoid": "2905",
+    "polsby_popper": 0.3833,
+    "reock": 0.369,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.8174,
+    "district": 6,
+    "geoid": "2906",
+    "polsby_popper": 0.3043,
+    "reock": 0.306,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.9045,
+    "district": 7,
+    "geoid": "2907",
+    "polsby_popper": 0.5312,
+    "reock": 0.5348,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.7307,
+    "district": 8,
+    "geoid": "2908",
+    "polsby_popper": 0.2743,
+    "reock": 0.5303,
+    "state": "MO"
+  },
+  {
+    "convex_hull_ratio": 0.7055,
+    "district": 1,
+    "geoid": "3001",
+    "polsby_popper": 0.2051,
+    "reock": 0.3406,
+    "state": "MT"
+  },
+  {
+    "convex_hull_ratio": 0.9446,
+    "district": 2,
+    "geoid": "3002",
+    "polsby_popper": 0.5071,
+    "reock": 0.5862,
+    "state": "MT"
+  },
+  {
+    "convex_hull_ratio": 0.7004,
+    "district": 1,
+    "geoid": "3101",
+    "polsby_popper": 0.2568,
+    "reock": 0.411,
+    "state": "NE"
+  },
+  {
+    "convex_hull_ratio": 0.8803,
+    "district": 2,
+    "geoid": "3102",
+    "polsby_popper": 0.4247,
+    "reock": 0.4852,
+    "state": "NE"
+  },
+  {
+    "convex_hull_ratio": 0.8463,
+    "district": 3,
+    "geoid": "3103",
+    "polsby_popper": 0.3158,
+    "reock": 0.3649,
+    "state": "NE"
+  },
+  {
+    "convex_hull_ratio": 0.8872,
+    "district": 1,
+    "geoid": "3201",
+    "polsby_popper": 0.4348,
+    "reock": 0.53,
+    "state": "NV"
+  },
+  {
+    "convex_hull_ratio": 0.8838,
+    "district": 2,
+    "geoid": "3202",
+    "polsby_popper": 0.583,
+    "reock": 0.5591,
+    "state": "NV"
+  },
+  {
+    "convex_hull_ratio": 0.7147,
+    "district": 3,
+    "geoid": "3203",
+    "polsby_popper": 0.2549,
+    "reock": 0.2428,
+    "state": "NV"
+  },
+  {
+    "convex_hull_ratio": 0.9286,
+    "district": 4,
+    "geoid": "3204",
+    "polsby_popper": 0.5052,
+    "reock": 0.443,
+    "state": "NV"
+  },
+  {
+    "convex_hull_ratio": 0.5716,
+    "district": 1,
+    "geoid": "3301",
+    "polsby_popper": 0.1678,
+    "reock": 0.2584,
+    "state": "NH"
+  },
+  {
+    "convex_hull_ratio": 0.7379,
+    "district": 2,
+    "geoid": "3302",
+    "polsby_popper": 0.1699,
+    "reock": 0.2442,
+    "state": "NH"
+  },
+  {
+    "convex_hull_ratio": 0.8026,
+    "district": 1,
+    "geoid": "3401",
+    "polsby_popper": 0.4006,
+    "reock": 0.5038,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.6454,
+    "district": 2,
+    "geoid": "3402",
+    "polsby_popper": 0.216,
+    "reock": 0.3662,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.6154,
+    "district": 3,
+    "geoid": "3403",
+    "polsby_popper": 0.2465,
+    "reock": 0.3335,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.831,
+    "district": 4,
+    "geoid": "3404",
+    "polsby_popper": 0.2909,
+    "reock": 0.4227,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.6789,
+    "district": 5,
+    "geoid": "3405",
+    "polsby_popper": 0.252,
+    "reock": 0.2902,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.4215,
+    "district": 6,
+    "geoid": "3406",
+    "polsby_popper": 0.0975,
+    "reock": 0.1969,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.6836,
+    "district": 7,
+    "geoid": "3407",
+    "polsby_popper": 0.2093,
+    "reock": 0.4586,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.5033,
+    "district": 8,
+    "geoid": "3408",
+    "polsby_popper": 0.087,
+    "reock": 0.262,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.5587,
+    "district": 9,
+    "geoid": "3409",
+    "polsby_popper": 0.1685,
+    "reock": 0.2725,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.5586,
+    "district": 10,
+    "geoid": "3410",
+    "polsby_popper": 0.1199,
+    "reock": 0.346,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.7964,
+    "district": 11,
+    "geoid": "3411",
+    "polsby_popper": 0.225,
+    "reock": 0.6034,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.6569,
+    "district": 12,
+    "geoid": "3412",
+    "polsby_popper": 0.1818,
+    "reock": 0.4195,
+    "state": "NJ"
+  },
+  {
+    "convex_hull_ratio": 0.7658,
+    "district": 1,
+    "geoid": "3501",
+    "polsby_popper": 0.3031,
+    "reock": 0.4892,
+    "state": "NM"
+  },
+  {
+    "convex_hull_ratio": 0.7533,
+    "district": 2,
+    "geoid": "3502",
+    "polsby_popper": 0.3023,
+    "reock": 0.3878,
+    "state": "NM"
+  },
+  {
+    "convex_hull_ratio": 0.6675,
+    "district": 3,
+    "geoid": "3503",
+    "polsby_popper": 0.2685,
+    "reock": 0.3335,
+    "state": "NM"
+  },
+  {
+    "convex_hull_ratio": 0.4534,
+    "district": 1,
+    "geoid": "3601",
+    "polsby_popper": 0.1018,
+    "reock": 0.1281,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8554,
+    "district": 2,
+    "geoid": "3602",
+    "polsby_popper": 0.362,
+    "reock": 0.2426,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7188,
+    "district": 3,
+    "geoid": "3603",
+    "polsby_popper": 0.1917,
+    "reock": 0.4349,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8995,
+    "district": 4,
+    "geoid": "3604",
+    "polsby_popper": 0.6012,
+    "reock": 0.6402,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.6285,
+    "district": 5,
+    "geoid": "3605",
+    "polsby_popper": 0.2497,
+    "reock": 0.265,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7483,
+    "district": 6,
+    "geoid": "3606",
+    "polsby_popper": 0.242,
+    "reock": 0.3705,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.6943,
+    "district": 7,
+    "geoid": "3607",
+    "polsby_popper": 0.2493,
+    "reock": 0.4074,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.5966,
+    "district": 8,
+    "geoid": "3608",
+    "polsby_popper": 0.2567,
+    "reock": 0.4062,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8306,
+    "district": 9,
+    "geoid": "3609",
+    "polsby_popper": 0.4028,
+    "reock": 0.5018,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.6117,
+    "district": 10,
+    "geoid": "3610",
+    "polsby_popper": 0.185,
+    "reock": 0.3214,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.6994,
+    "district": 11,
+    "geoid": "3611",
+    "polsby_popper": 0.2864,
+    "reock": 0.3143,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8483,
+    "district": 12,
+    "geoid": "3612",
+    "polsby_popper": 0.4062,
+    "reock": 0.4088,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.636,
+    "district": 13,
+    "geoid": "3613",
+    "polsby_popper": 0.2717,
+    "reock": 0.304,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.6807,
+    "district": 14,
+    "geoid": "3614",
+    "polsby_popper": 0.1781,
+    "reock": 0.3726,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.6785,
+    "district": 15,
+    "geoid": "3615",
+    "polsby_popper": 0.2375,
+    "reock": 0.3583,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8735,
+    "district": 16,
+    "geoid": "3616",
+    "polsby_popper": 0.4038,
+    "reock": 0.7073,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8294,
+    "district": 17,
+    "geoid": "3617",
+    "polsby_popper": 0.3929,
+    "reock": 0.4671,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7683,
+    "district": 18,
+    "geoid": "3618",
+    "polsby_popper": 0.3087,
+    "reock": 0.4252,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7171,
+    "district": 19,
+    "geoid": "3619",
+    "polsby_popper": 0.267,
+    "reock": 0.3525,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7891,
+    "district": 20,
+    "geoid": "3620",
+    "polsby_popper": 0.3821,
+    "reock": 0.402,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8205,
+    "district": 21,
+    "geoid": "3621",
+    "polsby_popper": 0.2624,
+    "reock": 0.5794,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8356,
+    "district": 22,
+    "geoid": "3622",
+    "polsby_popper": 0.4275,
+    "reock": 0.4804,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7329,
+    "district": 23,
+    "geoid": "3623",
+    "polsby_popper": 0.3062,
+    "reock": 0.3021,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.512,
+    "district": 24,
+    "geoid": "3624",
+    "polsby_popper": 0.1187,
+    "reock": 0.2771,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.7628,
+    "district": 25,
+    "geoid": "3625",
+    "polsby_popper": 0.3477,
+    "reock": 0.3075,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8646,
+    "district": 26,
+    "geoid": "3626",
+    "polsby_popper": 0.4997,
+    "reock": 0.4592,
+    "state": "NY"
+  },
+  {
+    "convex_hull_ratio": 0.8468,
+    "district": 1,
+    "geoid": "3701",
+    "polsby_popper": 0.2299,
+    "reock": 0.4666,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7907,
+    "district": 2,
+    "geoid": "3702",
+    "polsby_popper": 0.3348,
+    "reock": 0.4219,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.4669,
+    "district": 3,
+    "geoid": "3703",
+    "polsby_popper": 0.0336,
+    "reock": 0.2767,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.85,
+    "district": 4,
+    "geoid": "3704",
+    "polsby_popper": 0.4771,
+    "reock": 0.4468,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7386,
+    "district": 5,
+    "geoid": "3705",
+    "polsby_popper": 0.2333,
+    "reock": 0.3157,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7919,
+    "district": 6,
+    "geoid": "3706",
+    "polsby_popper": 0.4264,
+    "reock": 0.511,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7777,
+    "district": 7,
+    "geoid": "3707",
+    "polsby_popper": 0.3731,
+    "reock": 0.5492,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7985,
+    "district": 8,
+    "geoid": "3708",
+    "polsby_popper": 0.3347,
+    "reock": 0.507,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7905,
+    "district": 9,
+    "geoid": "3709",
+    "polsby_popper": 0.32,
+    "reock": 0.4753,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7903,
+    "district": 10,
+    "geoid": "3710",
+    "polsby_popper": 0.3491,
+    "reock": 0.4428,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.8797,
+    "district": 11,
+    "geoid": "3711",
+    "polsby_popper": 0.34,
+    "reock": 0.3579,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.8376,
+    "district": 12,
+    "geoid": "3712",
+    "polsby_popper": 0.3814,
+    "reock": 0.5843,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.8291,
+    "district": 13,
+    "geoid": "3713",
+    "polsby_popper": 0.3102,
+    "reock": 0.5647,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.7172,
+    "district": 14,
+    "geoid": "3714",
+    "polsby_popper": 0.2509,
+    "reock": 0.4466,
+    "state": "NC"
+  },
+  {
+    "convex_hull_ratio": 0.982,
+    "district": 0,
+    "geoid": "3800",
+    "polsby_popper": 0.5265,
+    "reock": 0.5365,
+    "state": "ND"
+  },
+  {
+    "convex_hull_ratio": 0.6075,
+    "district": 1,
+    "geoid": "3901",
+    "polsby_popper": 0.2502,
+    "reock": 0.3157,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.7711,
+    "district": 2,
+    "geoid": "3902",
+    "polsby_popper": 0.3164,
+    "reock": 0.5006,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.9365,
+    "district": 3,
+    "geoid": "3903",
+    "polsby_popper": 0.5152,
+    "reock": 0.6909,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.7331,
+    "district": 4,
+    "geoid": "3904",
+    "polsby_popper": 0.3146,
+    "reock": 0.3794,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.6217,
+    "district": 5,
+    "geoid": "3905",
+    "polsby_popper": 0.2138,
+    "reock": 0.2538,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.7491,
+    "district": 6,
+    "geoid": "3906",
+    "polsby_popper": 0.2207,
+    "reock": 0.2844,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.6659,
+    "district": 7,
+    "geoid": "3907",
+    "polsby_popper": 0.2266,
+    "reock": 0.3246,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.7822,
+    "district": 8,
+    "geoid": "3908",
+    "polsby_popper": 0.2841,
+    "reock": 0.29,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.6281,
+    "district": 9,
+    "geoid": "3909",
+    "polsby_popper": 0.1305,
+    "reock": 0.1987,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.866,
+    "district": 10,
+    "geoid": "3910",
+    "polsby_popper": 0.4461,
+    "reock": 0.5092,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.6981,
+    "district": 11,
+    "geoid": "3911",
+    "polsby_popper": 0.2317,
+    "reock": 0.3561,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.7763,
+    "district": 12,
+    "geoid": "3912",
+    "polsby_popper": 0.3107,
+    "reock": 0.586,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.8165,
+    "district": 13,
+    "geoid": "3913",
+    "polsby_popper": 0.2773,
+    "reock": 0.4065,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.9125,
+    "district": 14,
+    "geoid": "3914",
+    "polsby_popper": 0.6262,
+    "reock": 0.4824,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.5502,
+    "district": 15,
+    "geoid": "3915",
+    "polsby_popper": 0.1475,
+    "reock": 0.2873,
+    "state": "OH"
+  },
+  {
+    "convex_hull_ratio": 0.7367,
+    "district": 1,
+    "geoid": "4001",
+    "polsby_popper": 0.3311,
+    "reock": 0.4445,
+    "state": "OK"
+  },
+  {
+    "convex_hull_ratio": 0.8133,
+    "district": 2,
+    "geoid": "4002",
+    "polsby_popper": 0.2753,
+    "reock": 0.44,
+    "state": "OK"
+  },
+  {
+    "convex_hull_ratio": 0.6601,
+    "district": 3,
+    "geoid": "4003",
+    "polsby_popper": 0.2374,
+    "reock": 0.2773,
+    "state": "OK"
+  },
+  {
+    "convex_hull_ratio": 0.7622,
+    "district": 4,
+    "geoid": "4004",
+    "polsby_popper": 0.257,
+    "reock": 0.4641,
+    "state": "OK"
+  },
+  {
+    "convex_hull_ratio": 0.7614,
+    "district": 5,
+    "geoid": "4005",
+    "polsby_popper": 0.3447,
+    "reock": 0.5025,
+    "state": "OK"
+  },
+  {
+    "convex_hull_ratio": 0.7743,
+    "district": 1,
+    "geoid": "4101",
+    "polsby_popper": 0.3524,
+    "reock": 0.4811,
+    "state": "OR"
+  },
+  {
+    "convex_hull_ratio": 0.8736,
+    "district": 2,
+    "geoid": "4102",
+    "polsby_popper": 0.4336,
+    "reock": 0.4703,
+    "state": "OR"
+  },
+  {
+    "convex_hull_ratio": 0.7785,
+    "district": 3,
+    "geoid": "4103",
+    "polsby_popper": 0.3547,
+    "reock": 0.3825,
+    "state": "OR"
+  },
+  {
+    "convex_hull_ratio": 0.654,
+    "district": 4,
+    "geoid": "4104",
+    "polsby_popper": 0.2392,
+    "reock": 0.3241,
+    "state": "OR"
+  },
+  {
+    "convex_hull_ratio": 0.6601,
+    "district": 5,
+    "geoid": "4105",
+    "polsby_popper": 0.2152,
+    "reock": 0.4273,
+    "state": "OR"
+  },
+  {
+    "convex_hull_ratio": 0.7966,
+    "district": 6,
+    "geoid": "4106",
+    "polsby_popper": 0.3814,
+    "reock": 0.488,
+    "state": "OR"
+  },
+  {
+    "convex_hull_ratio": 0.8153,
+    "district": 1,
+    "geoid": "4201",
+    "polsby_popper": 0.4023,
+    "reock": 0.406,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.8399,
+    "district": 2,
+    "geoid": "4202",
+    "polsby_popper": 0.437,
+    "reock": 0.3333,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7247,
+    "district": 3,
+    "geoid": "4203",
+    "polsby_popper": 0.3349,
+    "reock": 0.3935,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.6844,
+    "district": 4,
+    "geoid": "4204",
+    "polsby_popper": 0.1765,
+    "reock": 0.2731,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7191,
+    "district": 5,
+    "geoid": "4205",
+    "polsby_popper": 0.2748,
+    "reock": 0.413,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7288,
+    "district": 6,
+    "geoid": "4206",
+    "polsby_popper": 0.3033,
+    "reock": 0.4556,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7799,
+    "district": 7,
+    "geoid": "4207",
+    "polsby_popper": 0.4234,
+    "reock": 0.5741,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7425,
+    "district": 8,
+    "geoid": "4208",
+    "polsby_popper": 0.2851,
+    "reock": 0.4769,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7396,
+    "district": 9,
+    "geoid": "4209",
+    "polsby_popper": 0.2834,
+    "reock": 0.4086,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7099,
+    "district": 10,
+    "geoid": "4210",
+    "polsby_popper": 0.2836,
+    "reock": 0.4861,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.8788,
+    "district": 11,
+    "geoid": "4211",
+    "polsby_popper": 0.3883,
+    "reock": 0.4545,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7778,
+    "district": 12,
+    "geoid": "4212",
+    "polsby_popper": 0.1925,
+    "reock": 0.6372,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.8326,
+    "district": 13,
+    "geoid": "4213",
+    "polsby_popper": 0.3965,
+    "reock": 0.5712,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7564,
+    "district": 14,
+    "geoid": "4214",
+    "polsby_popper": 0.3069,
+    "reock": 0.4737,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.8609,
+    "district": 15,
+    "geoid": "4215",
+    "polsby_popper": 0.4321,
+    "reock": 0.5784,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.8639,
+    "district": 16,
+    "geoid": "4216",
+    "polsby_popper": 0.3946,
+    "reock": 0.3921,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.7556,
+    "district": 17,
+    "geoid": "4217",
+    "polsby_popper": 0.2741,
+    "reock": 0.5142,
+    "state": "PA"
+  },
+  {
+    "convex_hull_ratio": 0.4669,
+    "district": 1,
+    "geoid": "4401",
+    "polsby_popper": 0.062,
+    "reock": 0.1866,
+    "state": "RI"
+  },
+  {
+    "convex_hull_ratio": 0.7171,
+    "district": 2,
+    "geoid": "4402",
+    "polsby_popper": 0.3001,
+    "reock": 0.2795,
+    "state": "RI"
+  },
+  {
+    "convex_hull_ratio": 0.647,
+    "district": 1,
+    "geoid": "4501",
+    "polsby_popper": 0.1051,
+    "reock": 0.2602,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.7209,
+    "district": 2,
+    "geoid": "4502",
+    "polsby_popper": 0.1771,
+    "reock": 0.4597,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.8487,
+    "district": 3,
+    "geoid": "4503",
+    "polsby_popper": 0.3584,
+    "reock": 0.5016,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.7747,
+    "district": 4,
+    "geoid": "4504",
+    "polsby_popper": 0.255,
+    "reock": 0.4178,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.78,
+    "district": 5,
+    "geoid": "4505",
+    "polsby_popper": 0.2382,
+    "reock": 0.3266,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.588,
+    "district": 6,
+    "geoid": "4506",
+    "polsby_popper": 0.0813,
+    "reock": 0.3578,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.7978,
+    "district": 7,
+    "geoid": "4507",
+    "polsby_popper": 0.3145,
+    "reock": 0.3568,
+    "state": "SC"
+  },
+  {
+    "convex_hull_ratio": 0.9281,
+    "district": 0,
+    "geoid": "4600",
+    "polsby_popper": 0.5769,
+    "reock": 0.4976,
+    "state": "SD"
+  },
+  {
+    "convex_hull_ratio": 0.8138,
+    "district": 1,
+    "geoid": "4701",
+    "polsby_popper": 0.2834,
+    "reock": 0.3222,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.6332,
+    "district": 2,
+    "geoid": "4702",
+    "polsby_popper": 0.169,
+    "reock": 0.4118,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.6491,
+    "district": 3,
+    "geoid": "4703",
+    "polsby_popper": 0.1581,
+    "reock": 0.3408,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.7014,
+    "district": 4,
+    "geoid": "4704",
+    "polsby_popper": 0.1984,
+    "reock": 0.2769,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.5648,
+    "district": 5,
+    "geoid": "4705",
+    "polsby_popper": 0.1349,
+    "reock": 0.2855,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.766,
+    "district": 6,
+    "geoid": "4706",
+    "polsby_popper": 0.2533,
+    "reock": 0.3818,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.7792,
+    "district": 7,
+    "geoid": "4707",
+    "polsby_popper": 0.2729,
+    "reock": 0.4027,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.8666,
+    "district": 8,
+    "geoid": "4708",
+    "polsby_popper": 0.2992,
+    "reock": 0.5887,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.6202,
+    "district": 9,
+    "geoid": "4709",
+    "polsby_popper": 0.124,
+    "reock": 0.2911,
+    "state": "TN"
+  },
+  {
+    "convex_hull_ratio": 0.6952,
+    "district": 1,
+    "geoid": "4801",
+    "polsby_popper": 0.174,
+    "reock": 0.3196,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6937,
+    "district": 2,
+    "geoid": "4802",
+    "polsby_popper": 0.2332,
+    "reock": 0.402,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.85,
+    "district": 3,
+    "geoid": "4803",
+    "polsby_popper": 0.352,
+    "reock": 0.5006,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.5265,
+    "district": 4,
+    "geoid": "4804",
+    "polsby_popper": 0.0792,
+    "reock": 0.2595,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6403,
+    "district": 5,
+    "geoid": "4805",
+    "polsby_popper": 0.1578,
+    "reock": 0.3574,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6183,
+    "district": 6,
+    "geoid": "4806",
+    "polsby_popper": 0.1606,
+    "reock": 0.2986,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.4765,
+    "district": 7,
+    "geoid": "4807",
+    "polsby_popper": 0.0935,
+    "reock": 0.2325,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6265,
+    "district": 8,
+    "geoid": "4808",
+    "polsby_popper": 0.231,
+    "reock": 0.289,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6845,
+    "district": 9,
+    "geoid": "4809",
+    "polsby_popper": 0.1663,
+    "reock": 0.4589,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6571,
+    "district": 10,
+    "geoid": "4810",
+    "polsby_popper": 0.1903,
+    "reock": 0.3729,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7397,
+    "district": 11,
+    "geoid": "4811",
+    "polsby_popper": 0.3069,
+    "reock": 0.2546,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7424,
+    "district": 12,
+    "geoid": "4812",
+    "polsby_popper": 0.2125,
+    "reock": 0.4327,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6698,
+    "district": 13,
+    "geoid": "4813",
+    "polsby_popper": 0.2837,
+    "reock": 0.269,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.4897,
+    "district": 14,
+    "geoid": "4814",
+    "polsby_popper": 0.0957,
+    "reock": 0.1512,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.5441,
+    "district": 15,
+    "geoid": "4815",
+    "polsby_popper": 0.1135,
+    "reock": 0.1177,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7319,
+    "district": 16,
+    "geoid": "4816",
+    "polsby_popper": 0.2323,
+    "reock": 0.2711,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6472,
+    "district": 17,
+    "geoid": "4817",
+    "polsby_popper": 0.1493,
+    "reock": 0.2912,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.5387,
+    "district": 18,
+    "geoid": "4818",
+    "polsby_popper": 0.0693,
+    "reock": 0.4242,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.8387,
+    "district": 19,
+    "geoid": "4819",
+    "polsby_popper": 0.5332,
+    "reock": 0.5045,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6327,
+    "district": 20,
+    "geoid": "4820",
+    "polsby_popper": 0.1311,
+    "reock": 0.4478,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.8343,
+    "district": 21,
+    "geoid": "4821",
+    "polsby_popper": 0.3099,
+    "reock": 0.4149,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6624,
+    "district": 22,
+    "geoid": "4822",
+    "polsby_popper": 0.1667,
+    "reock": 0.3836,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7272,
+    "district": 23,
+    "geoid": "4823",
+    "polsby_popper": 0.2018,
+    "reock": 0.2635,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6715,
+    "district": 24,
+    "geoid": "4824",
+    "polsby_popper": 0.1172,
+    "reock": 0.2746,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7087,
+    "district": 25,
+    "geoid": "4825",
+    "polsby_popper": 0.2631,
+    "reock": 0.4661,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6326,
+    "district": 26,
+    "geoid": "4826",
+    "polsby_popper": 0.153,
+    "reock": 0.3507,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7725,
+    "district": 27,
+    "geoid": "4827",
+    "polsby_popper": 0.1181,
+    "reock": 0.4091,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6446,
+    "district": 28,
+    "geoid": "4828",
+    "polsby_popper": 0.2099,
+    "reock": 0.2567,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.5733,
+    "district": 29,
+    "geoid": "4829",
+    "polsby_popper": 0.0936,
+    "reock": 0.2866,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.749,
+    "district": 30,
+    "geoid": "4830",
+    "polsby_popper": 0.2032,
+    "reock": 0.4217,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7194,
+    "district": 31,
+    "geoid": "4831",
+    "polsby_popper": 0.199,
+    "reock": 0.4481,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.4825,
+    "district": 32,
+    "geoid": "4832",
+    "polsby_popper": 0.0797,
+    "reock": 0.2316,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.3899,
+    "district": 33,
+    "geoid": "4833",
+    "polsby_popper": 0.0397,
+    "reock": 0.23,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.6395,
+    "district": 34,
+    "geoid": "4834",
+    "polsby_popper": 0.0768,
+    "reock": 0.3329,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.4393,
+    "district": 35,
+    "geoid": "4835",
+    "polsby_popper": 0.0802,
+    "reock": 0.08,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.7442,
+    "district": 36,
+    "geoid": "4836",
+    "polsby_popper": 0.2059,
+    "reock": 0.336,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.718,
+    "district": 37,
+    "geoid": "4837",
+    "polsby_popper": 0.1577,
+    "reock": 0.3706,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.5876,
+    "district": 38,
+    "geoid": "4838",
+    "polsby_popper": 0.1304,
+    "reock": 0.3928,
+    "state": "TX"
+  },
+  {
+    "convex_hull_ratio": 0.8579,
+    "district": 1,
+    "geoid": "4901",
+    "polsby_popper": 0.4823,
+    "reock": 0.4513,
+    "state": "UT"
+  },
+  {
+    "convex_hull_ratio": 0.8035,
+    "district": 2,
+    "geoid": "4902",
+    "polsby_popper": 0.3833,
+    "reock": 0.5119,
+    "state": "UT"
+  },
+  {
+    "convex_hull_ratio": 0.7484,
+    "district": 3,
+    "geoid": "4903",
+    "polsby_popper": 0.2716,
+    "reock": 0.3972,
+    "state": "UT"
+  },
+  {
+    "convex_hull_ratio": 0.714,
+    "district": 4,
+    "geoid": "4904",
+    "polsby_popper": 0.288,
+    "reock": 0.397,
+    "state": "UT"
+  },
+  {
+    "convex_hull_ratio": 0.8251,
+    "district": 0,
+    "geoid": "5000",
+    "polsby_popper": 0.3837,
+    "reock": 0.3754,
+    "state": "VT"
+  },
+  {
+    "convex_hull_ratio": 0.6329,
+    "district": 1,
+    "geoid": "5101",
+    "polsby_popper": 0.0784,
+    "reock": 0.4186,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.4163,
+    "district": 2,
+    "geoid": "5102",
+    "polsby_popper": 0.1045,
+    "reock": 0.1524,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.5347,
+    "district": 3,
+    "geoid": "5103",
+    "polsby_popper": 0.1217,
+    "reock": 0.239,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.8486,
+    "district": 4,
+    "geoid": "5104",
+    "polsby_popper": 0.2953,
+    "reock": 0.5417,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.886,
+    "district": 5,
+    "geoid": "5105",
+    "polsby_popper": 0.3719,
+    "reock": 0.5081,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.7373,
+    "district": 6,
+    "geoid": "5106",
+    "polsby_popper": 0.2112,
+    "reock": 0.2363,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.6852,
+    "district": 7,
+    "geoid": "5107",
+    "polsby_popper": 0.2109,
+    "reock": 0.4082,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.7696,
+    "district": 8,
+    "geoid": "5108",
+    "polsby_popper": 0.3097,
+    "reock": 0.3293,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.7665,
+    "district": 9,
+    "geoid": "5109",
+    "polsby_popper": 0.1995,
+    "reock": 0.2122,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.7416,
+    "district": 10,
+    "geoid": "5110",
+    "polsby_popper": 0.2963,
+    "reock": 0.499,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.7662,
+    "district": 11,
+    "geoid": "5111",
+    "polsby_popper": 0.2786,
+    "reock": 0.426,
+    "state": "VA"
+  },
+  {
+    "convex_hull_ratio": 0.6625,
+    "district": 1,
+    "geoid": "5301",
+    "polsby_popper": 0.1525,
+    "reock": 0.2503,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.6482,
+    "district": 2,
+    "geoid": "5302",
+    "polsby_popper": 0.0523,
+    "reock": 0.3998,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.7913,
+    "district": 3,
+    "geoid": "5303",
+    "polsby_popper": 0.3014,
+    "reock": 0.4594,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.6875,
+    "district": 4,
+    "geoid": "5304",
+    "polsby_popper": 0.2313,
+    "reock": 0.3493,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.8892,
+    "district": 5,
+    "geoid": "5305",
+    "polsby_popper": 0.504,
+    "reock": 0.4776,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.7791,
+    "district": 6,
+    "geoid": "5306",
+    "polsby_popper": 0.1001,
+    "reock": 0.4637,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.571,
+    "district": 7,
+    "geoid": "5307",
+    "polsby_popper": 0.1139,
+    "reock": 0.1807,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.7425,
+    "district": 8,
+    "geoid": "5308",
+    "polsby_popper": 0.2711,
+    "reock": 0.5439,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.7428,
+    "district": 9,
+    "geoid": "5309",
+    "polsby_popper": 0.2376,
+    "reock": 0.3675,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.7682,
+    "district": 10,
+    "geoid": "5310",
+    "polsby_popper": 0.173,
+    "reock": 0.3235,
+    "state": "WA"
+  },
+  {
+    "convex_hull_ratio": 0.7948,
+    "district": 1,
+    "geoid": "5401",
+    "polsby_popper": 0.2626,
+    "reock": 0.4765,
+    "state": "WV"
+  },
+  {
+    "convex_hull_ratio": 0.5011,
+    "district": 2,
+    "geoid": "5402",
+    "polsby_popper": 0.1334,
+    "reock": 0.2719,
+    "state": "WV"
+  },
+  {
+    "convex_hull_ratio": 0.8066,
+    "district": 1,
+    "geoid": "5501",
+    "polsby_popper": 0.2784,
+    "reock": 0.4045,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.8765,
+    "district": 2,
+    "geoid": "5502",
+    "polsby_popper": 0.4056,
+    "reock": 0.5775,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.5918,
+    "district": 3,
+    "geoid": "5503",
+    "polsby_popper": 0.1746,
+    "reock": 0.3359,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.8496,
+    "district": 4,
+    "geoid": "5504",
+    "polsby_popper": 0.3225,
+    "reock": 0.4227,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.8573,
+    "district": 5,
+    "geoid": "5505",
+    "polsby_popper": 0.3787,
+    "reock": 0.6032,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.7216,
+    "district": 6,
+    "geoid": "5506",
+    "polsby_popper": 0.2623,
+    "reock": 0.4059,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.7103,
+    "district": 7,
+    "geoid": "5507",
+    "polsby_popper": 0.1917,
+    "reock": 0.5378,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.6833,
+    "district": 8,
+    "geoid": "5508",
+    "polsby_popper": 0.1622,
+    "reock": 0.4247,
+    "state": "WI"
+  },
+  {
+    "convex_hull_ratio": 0.992,
+    "district": 0,
+    "geoid": "5600",
+    "polsby_popper": 0.7735,
+    "reock": 0.6217,
+    "state": "WY"
+  },
+  {
+    "convex_hull_ratio": 0.0037,
+    "district": 98,
+    "geoid": "6098",
+    "polsby_popper": 0.0546,
+    "reock": 0.001,
+    "state": "60"
+  },
+  {
+    "convex_hull_ratio": 0.6369,
+    "district": 98,
+    "geoid": "6698",
+    "polsby_popper": 0.2943,
+    "reock": 0.2632,
+    "state": "66"
+  },
+  {
+    "convex_hull_ratio": 0.009,
+    "district": 98,
+    "geoid": "6998",
+    "polsby_popper": 0.0486,
+    "reock": 0.0013,
+    "state": "69"
+  },
+  {
+    "convex_hull_ratio": 0.6301,
+    "district": 98,
+    "geoid": "7298",
+    "polsby_popper": 0.1576,
+    "reock": 0.1267,
+    "state": "PR"
+  },
+  {
+    "convex_hull_ratio": 0.1087,
+    "district": 98,
+    "geoid": "7898",
+    "polsby_popper": 0.0351,
+    "reock": 0.0596,
+    "state": "78"
+  }
 ]

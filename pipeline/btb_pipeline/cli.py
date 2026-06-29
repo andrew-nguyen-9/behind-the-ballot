@@ -27,6 +27,7 @@ from btb_pipeline.sources import (
     rollcall,
     sample,
     sponsorship,
+    tiger,
     voteview,
 )
 
@@ -40,6 +41,7 @@ SOURCES: dict[str, Callable[[], Path]] = {
     "pollster_ratings": pollster_ratings.run,
     "rollcall": rollcall.run,
     "sponsorship": sponsorship.run,
+    "tiger": tiger.run,
     "voteview": voteview.run,
 }
 

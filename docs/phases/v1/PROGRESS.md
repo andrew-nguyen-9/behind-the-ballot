@@ -88,6 +88,25 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 75)
+
+iter 75: **geo chain started — real TIGER district compactness LIVE on /gerrymander.** New keyless
+connector `sources/tiger.py`: downloads the public-domain cb_2023 CD118 shapefile zip, reads each
+district (pyshp), **reprojects lat/lon→EPSG:5070 CONUS Albers equal-area** (the metrics use planar
+area/perimeter — raw degrees would be wrong), runs `geometry.compute_metrics` → Polsby-Popper/Reock/
+convex-hull. Added deps pyshp+pyproj. Registered in CLI; `export_districts` writes
+`gerrymander/districts.json`. **Live bake = 441 real districts** (AK-00 at-large correctly least
+compact pp=0.011; AL-1 0.13; range 0.01–0.77). Replaced the sample fixture. Made gerrymander.test.ts
+data-agnostic (invariants over 441, not sample geoids); fixed test_cli registry set. Added the
+equal-area/AK-HI caveat to the page methodology + tiger to the nightly refresh bake loop. Gate:
+pytest 149, ruff, integrity 12 sources, web check 0/0/0, vitest 35, build, links — all green.
+**CAVEAT/still-sample:** the **fairness** table (efficiency_gap/mean_median in `states.json`) needs
+district ELECTION RESULTS — a source not yet wired; it shares the forecast partisan-lean gap
+(Open Q#3). So fairness stays sample, flagged; compactness is now real+sourced. **Geo chain
+remaining:** v1.1.2 PMTiles map (R2 upload) + v1.2.5 find-my-district (live Geocoder) + district
+SVG on house pages (real boundary). **Next eligible:** PMTiles→R2 map, or district results source
+(unblocks fairness + forecast PVI together), or v1.10.3/4/5 alerts.
+
 ## RESUME  (current as of iter 74)
 
 iter 74: **live-preview SEO/a11y/perf/security sweep — CLOSED GREEN.** Ran Lighthouse against the
@@ -486,7 +505,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.4-sponsorship-bipartisanship | v1.6.2 | partial + LIVE (iter 65: sponsored/cosponsored counts via Congress.gov, real; cross-party index [M7a] follow-up) |
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
 | v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
-| v1.7.1-compactness-metrics | v1.1.2 | done (math; TIGER read+bake pends geo data) |
+| v1.7.1-compactness-metrics | v1.1.2 | done + LIVE (iter 75: real TIGER cb_2023 CD118 → 441 districts reprojected to EPSG:5070 → real Polsby-Popper/Reock/convex-hull on /gerrymander) |
 | v1.7.2-fairness-metrics | v1.7.1 | done (math; live results join pends data) |
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | done (local gate) |
 | v1.7.4-leaderboard | v1.7.1 | done (on gerrymander page) |
@@ -746,6 +765,11 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 75: **real TIGER compactness (geo chain start).** `sources/tiger.py` (pyshp+pyproj):
+  cb_2023 CD118 zip → reproject EPSG:5070 → compute_metrics → 441 real districts on /gerrymander
+  (replaced sample). CLI+export+refresh wired; gerrymander/cli tests data-agnostic; methodology
+  equal-area caveat. pytest 149, integrity 12, web check 0/0/0, vitest 35, build, links. Fairness
+  still sample (needs district results — shares Open Q#3). Direct to dev. — iter 75
 - iter 74: **live-preview sweep CLOSED green.** Lighthouse at the live Cloudflare URL, 5 page
   types, all categories ≥90 (perf 100, a11y 95–100, bp 96, seo 100), 0 failures. + headers + canary
   → completion gate #2 met. Verification only (no code). Ledger updated. — iter 74

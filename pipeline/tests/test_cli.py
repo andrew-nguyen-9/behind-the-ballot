@@ -13,7 +13,7 @@ from btb_pipeline import cli
 def test_registry_covers_live_sources():
     assert set(cli.SOURCES) == {
         "fec", "committee_link", "members", "acs", "polls", "pollster_ratings",
-        "rollcall", "sponsorship", "voteview",
+        "rollcall", "sponsorship", "tiger", "voteview",
     }
 
 
