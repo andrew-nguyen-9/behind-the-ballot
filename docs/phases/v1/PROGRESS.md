@@ -5,13 +5,14 @@
 > auto-pushed; origin/dev == local dev). Home/races/forecast return 200. Full local gate green
 > (pytest 141, ruff, build, links, Lighthouse perf/a11y/bp/SEO ≥0.9).
 >
-> ⛔ **BUT NOT V1 COMPLETE — the live site still renders SAMPLE fixtures, not live data.** Site
-> loaders (`apps/web/src/lib/*.ts`) read committed `apps/web/src/data/*` samples; the live-baked
-> gold artifacts (`data/gold/*`: fec/members/voteview/rollcall/committee_link/sponsorship/
-> census_acs) are NOT wired into the build. **"Real-data freshness everywhere" fails until the
-> LIVE JOINS unit lands** (generate per-page data from gold → loaders read gold). This is the bulk
-> of remaining V1 work. Then: geo chain (TIGER/R2), v1.10.x crons/alerts, live-preview a11y/SEO/
-> security sweep. Promise stays withheld.
+> ⏳ **LIVE JOINS IN PROGRESS — architecture established (iter 67).** Pattern: `pipeline/
+> btb_pipeline/export_web.py` reads gold (`data/gold/*`, ephemeral) → writes display-ready JSON
+> into COMMITTED `apps/web/src/data/*` (ships in the Cloudflare build; static SSG needs data at
+> build time). Nightly Action (v1.10.x) will re-bake+export+commit→auto-deploy. **Done: members**
+> — `roster.json` now 537 REAL members (gold/members ⋈ voteview ideology); build emits 537 real
+> profile pages. **Still on sample fixtures:** finance, demographics, forecast, districts,
+> gerrymander (each needs an `export_*` fn). Then: geo chain (TIGER/R2), v1.10.x crons, live-URL
+> a11y/SEO/security sweep. Promise withheld until real data is on EVERY page.
 
 
 Dual purpose: (1) the ledger this **planning** loop reads to pick the next doc;
@@ -67,7 +68,18 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 66)
+## RESUME  (current as of iter 67)
+
+iter 67: **live joins started — pattern proven on members.** New `export_web.py` (gold →
+committed `src/data/*`); `export_members` joins gold/members ⋈ gold/voteview → `roster.json`
+(537 REAL members, real ideology, party mapped to letters). Build emits 537 real member pages
+(was 3 sample). Made the 4 fixture-coupled member tests data-agnostic (they asserted sample IDs/
+counts; now assert invariants over the real roster). Gate: pytest 143, ruff, astro 0/0/0, vitest
+37, build 537 member pages, links ok. **Next export_* fns:** finance (gold/fec + committee_link +
+race configs), demographics (gold/census_acs), forecast (run engine on real inputs), then
+districts/gerrymander. Each = one export fn + repoint/keep loader + data-agnostic tests.
+
+## RESUME  (iter 66)
 
 iter 66: **major unblock — human fixed all remaining secrets + ran the prod DB migrate.**
 - All 7 `.env` secrets now valid (CLOUDFLARE_ACCOUNT_ID, SMTP_PASS, CENSUS_API_KEY filled).
@@ -599,6 +611,9 @@ all `done` units; `main` untouched `[S5a]`.
   = 440 rows (valid Census key). **Polling dropped from V1** (no clean open feed post-538;
   forecast/UI already degrade gracefully) → `docs/BACKLOG.md` for V1.1. Docs-only commit
   (decision + ledger); connectors/forecast/UI unchanged. Direct to dev.
+- iter 67: **live joins — members.** `export_web.py` exports gold → committed `src/data/*`;
+  `roster.json` = 537 real members (members ⋈ voteview), build emits 537 real profile pages.
+  Member tests made data-agnostic. pytest 143, vitest 37, build+links green. Direct to dev. — iter 67
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
