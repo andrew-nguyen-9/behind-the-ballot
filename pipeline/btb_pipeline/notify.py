@@ -20,7 +20,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 
 WEB_DATA = Path("apps/web/src/data")
-BASE_URL = "https://behind-the-ballot.hh5zvph54s.workers.dev"
+BASE_URL = "https://ballot.an9.dev"
 ROUTES = ("/", "/races", "/forecast", "/members", "/gerrymander", "/sources")
 
 

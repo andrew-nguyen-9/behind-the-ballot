@@ -8,7 +8,7 @@
 //
 // ponytail: dependency-free (global fetch, redirect:"manual"). Richer SMTP alerts = v1.10.3.
 
-const BASE = (process.argv[2] || "https://behind-the-ballot.hh5zvph54s.workers.dev").replace(/\/$/, "");
+const BASE = (process.argv[2] || "https://ballot.an9.dev").replace(/\/$/, "");
 
 // Slashless paths — the site links to these; drop-trailing-slash must serve them 200, no 307.
 const ROUTES = [
