@@ -47,13 +47,16 @@ def test_parse_maps_census_null_sentinel_to_none():
 
 
 def test_get_api_key_raises_without_env(monkeypatch):
+    # hermetic: ACS reads CENSUS_API_KEY first, falling back to DATA_GOV_API_KEY — clear both
+    monkeypatch.delenv("CENSUS_API_KEY", raising=False)
     monkeypatch.delenv("DATA_GOV_API_KEY", raising=False)
-    with pytest.raises(RuntimeError, match="DATA_GOV_API_KEY"):
+    with pytest.raises(RuntimeError, match="CENSUS_API_KEY"):
         acs.get_api_key()
 
 
 def test_run_bakes_integrity_clean_artifact(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATA_GOV_API_KEY", "test")
+    monkeypatch.setenv("CENSUS_API_KEY", "test")
+    monkeypatch.delenv("DATA_GOV_API_KEY", raising=False)
 
     calls = {"urls": []}
 
