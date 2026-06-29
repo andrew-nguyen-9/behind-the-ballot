@@ -33,8 +33,8 @@ opens an issue rather than publishing nothing `[R8a]`.
 |---|---|---|---|---|---|---|---|
 | Candidate filers, committees, contributions, disbursements, cash-on-hand | finance | OpenFEC API **+** FEC bulk `[G1→D]` | `api.open.fec.gov` / `cg-…fec.gov/bulk` | US public domain `[G14a]` | `api.data.gov` | weekly `[G3a]` | 14 d |
 | Candidate→committee linkage (principal campaign cmte) | finance | OpenFEC linkages `[G12a]` | `api.open.fec.gov` | public domain | `api.data.gov` | weekly | 14 d |
-| Poll results (HoR/Sen/Gov, by race) | polling | 538 polls CSV `[H1a]` | `projects.fivethirtyeight.com/polls/data/…csv` | 538 terms, attribute | none | daily | 3 d |
-| Pollster quality ratings | polling | 538 pollster ratings `[H?a]` | 538 ratings CSV | 538 terms, attribute | none | weekly | 30 d |
+| Poll results (HoR/Sen/Gov, by race) | polling | 538 polls CSV `[H1a]` ⚠️ **DEAD** (iter 60: endpoint returns ABC HTML shell; replacement pending — PROGRESS Open Q#1) | `projects.fivethirtyeight.com/polls/data/…csv` | 538 terms, attribute | none | daily | 3 d |
+| Pollster quality ratings | polling | 538 pollster ratings `[H?a]` ⚠️ **DEAD** (same) | 538 ratings CSV | 538 terms, attribute | none | weekly | 30 d |
 | Race rosters / candidate lists (supplementary) | tracker | Wikipedia race tables `[H1a]` | per-race wiki page | CC BY-SA, attribute | none | weekly | 30 d |
 | ACS demographics per district/state | demographics | Census ACS via Census API `[I2a]` | `api.census.gov/data` | US public domain | `api.data.gov` | yearly (ACS release) `[I7a]` | 400 d |
 | District ↔ geography equivalency (119th Congress) | demographics/geo | Census district equivalency `[I3a]` | census.gov equivalency files | public domain | none | per redistricting `[L547]` | event-driven |

@@ -21,7 +21,32 @@ code slices of the "unblocked" units (dispatch wiring, datastore client, join lo
 fixture-testable now; live invocation + deploy + freshness stay gated. **`V1 COMPLETE` cannot
 be emitted** — never lie to exit.
 
-## RESUME  (current as of iter 59)
+## Open questions (human decision — safest default picked, loop continues [S16a])
+
+1. **538 poll CSVs are dead (confirmed live iter 60).** Both `projects.fivethirtyeight.com/
+   polls/data/*.csv` and `…/polls-page/data/*.csv` now return an **ABC News HTML shell**
+   (200, `text/html`, identical 308 KB for every filename) — the public CSV downloads were
+   discontinued post-ABC, exactly the risk DATA_SOURCES.md L14 flagged. Effect: the polling
+   module (v1.4.x) has **no live source**; connectors correctly bake 0 rows (no crash).
+   **Safest default taken:** polling degrades gracefully (no polling section renders when the
+   artifact is empty) and `V1 COMPLETE` cannot claim live polling. **Human decision needed:**
+   pick a replacement polling source + license (candidates: a 538/ABC GitHub mirror if one
+   exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
+   source-pending, not done-live.
+
+## RESUME  (current as of iter 60)
+
+iter 60: **partial secrets arrived (5/7)** — DATA_GOV_API_KEY, CLOUDFLARE_API_TOKEN, R2_BUCKET,
+DATABASE_URL, SMTP_USER present; CLOUDFLARE_ACCOUNT_ID + SMTP_PASS still empty (resume.sh still
+fails presence check; some present values look like short placeholders, e.g. DATABASE_URL=12
+chars). Did the first **real live bakes** of the keyless connectors via the v1.1.6 dispatch:
+`members` → **537 rows**, `voteview` → **12,584 rows** (real, fresh as_of today) — proves the
+dispatch end-to-end with real data, not fixtures. `polls`/`pollster_ratings` baked **0 rows** →
+investigated → **538 CSV endpoints dead** (see Open questions #1). No code change this turn;
+findings logged. v1.1.6 now: live-baked for keyless members/voteview; FEC/ACS keyed bakes pend a
+real api.data.gov key (present value may be a placeholder); polls pend a replacement source.
+
+## RESUME  (iter 59)
 
 iter 59: **built v1.8.7-snapshot-store.** `src/lib/db/snapshots.ts` — `writeSnapshot` /
 `recentSnapshots(unitId, limit)` (db injected, so prod uses getDb() + cron, tests use pglite).
@@ -437,6 +462,12 @@ all `done` units; `main` untouched `[S5a]`.
   `db:migrate` scripts. Gate: drizzle-kit generate ok, astro check 0/0/0, vitest 35, build 15
   pages, links ok. Live connect/migrate pends DATABASE_URL (still empty — see ⚠️ BLOCKER).
   Direct to dev. — iter 58
+- iter 60: first **real live bakes** via v1.1.6 dispatch (keyless, network only): members
+  537 rows, voteview 12,584 rows (real + fresh). polls/pollster_ratings 0 rows → confirmed
+  **538 CSV endpoints dead** (ABC HTML shell at both /polls/data and /polls-page/data paths).
+  Logged Open question #1 (replacement polling source = human decision) + marked the two rows
+  DEAD in DATA_SOURCES.md. Secrets now 5/7 (CLOUDFLARE_ACCOUNT_ID, SMTP_PASS still empty).
+  Docs-only; no code change. Direct to dev.
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
