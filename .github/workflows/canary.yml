@@ -1,0 +1,23 @@
+# Post-deploy canary [v1.10.2/10.3] — pings the LIVE Cloudflare preview and fails (→ GitHub's
+# native failure email to the repo owner) if any key route isn't 200 or a security header is
+# missing. Runs shortly after the nightly refresh redeploys, and on demand. Read-only; never
+# touches the repo or `main` [S5a]. Richer SMTP alerts (regression deltas) = v1.10.3.
+name: canary
+
+on:
+  schedule:
+    - cron: "40 9 * * *" # ~20m after refresh (09:17) — lets Workers Build redeploy first
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+      - run: node scripts/canary.mjs

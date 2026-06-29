@@ -85,6 +85,21 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 72)
+
+iter 72: **redirect fix CONFIRMED LIVE + post-deploy canary shipped.** Re-curled after Workers
+Build redeployed: all 9 key routes (`/races /forecast /sources /members /gerrymander /chamber
+/articles /search /`) now **200, no 307** — iter-71 `drop-trailing-slash` fix verified at the live
+preview ✓ (the earlier persistent 307 was deploy lag). Codified the live-health checks into
+`scripts/canary.mjs` (dependency-free, `redirect:"manual"` so a 307 = fail; checks 9 routes 200 +
+CSP/HSTS/X-CTO headers) + `.github/workflows/canary.yml` (scheduled 09:40 UTC, ~20m after the
+nightly refresh redeploys, + manual dispatch). ponytail: NO SMTP — a red scheduled job triggers
+GitHub's native owner-failure email; richer delta alerts = v1.10.3. Canary run locally now: **ok —
+9 routes 200, headers present.** Live sweep status: routes ✓, security headers ✓, perf/a11y/SEO
+green on static dist (local lhci, iter 56) — **still want a lighthouse run against the live URL**
+to fully close the sweep. **Next eligible:** lighthouse-at-live-URL; forecast (Open Q#3 PVI source);
+geo chain; v1.10.3/4/5 alerts.
+
 ## RESUME  (current as of iter 71)
 
 iter 71: **live-preview sweep started — fixed a real redirect regression.** Curled the live
@@ -693,6 +708,9 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 72: **redirect fix verified live + canary.** 9 routes confirmed 200 (no 307) post-redeploy.
+  Added `scripts/canary.mjs` + `canary.yml` (scheduled live-health check: routes 200 + security
+  headers; red job → GitHub native email, no SMTP). Canary ok locally. Direct to dev. — iter 72
 - iter 71: **live-preview sweep — fixed 307 nav redirect.** Live Worker security headers all
   present (CSP/HSTS/etc., `_headers` honored). Found `/races` etc. 307→`/races/` (directory output
   vs slashless links + default `auto-trailing-slash`). Fix: `wrangler.jsonc` `html_handling:
