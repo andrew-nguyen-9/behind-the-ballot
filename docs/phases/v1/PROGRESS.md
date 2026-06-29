@@ -7,7 +7,30 @@ session reconstructs all state from this file. One activity-log line per touched
 Status: `pending | in-progress | review | blocked | done`. Pick the first `pending`
 whose prereq is `done`.
 
-## RESUME  (current as of iter 54)
+## ⚠️ BLOCKER (iter 57) — `.env` is an EMPTY TEMPLATE; provisioning NOT actually done
+
+The launch prompt asserts "PROVISIONING IS DONE — all secrets are in." Disk says otherwise:
+`/.env` exists (gitignored) but **every value is 0 chars** — it's the unfilled scaffold.
+`scripts/resume.sh --no-deploy` fails at the secret check (all 7 required vars empty), so
+the gate→deploy→live-preview→freshness chain cannot run, and no figure can be verified at a
+live Cloudflare URL. The credential wall `[S16a]` is still up in reality regardless of the
+prompt's claim. **Human action: paste real values into `.env`** (keys already named correctly:
+DATA_GOV_API_KEY, CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, R2_BUCKET, DATABASE_URL,
+SMTP_USER, SMTP_PASS — see `docs/SETUP_SECRETS.md`). Until then the loop builds only the
+code slices of the "unblocked" units (dispatch wiring, datastore client, join logic) that are
+fixture-testable now; live invocation + deploy + freshness stay gated. **`V1 COMPLETE` cannot
+be emitted** — never lie to exit.
+
+## RESUME  (current as of iter 57)
+
+iter 57: **built the v1.1.6-artifact-bake code slice.** `cli.py` now has per-source dispatch
+(`btb-etl bake <source>` / `bake all`) routing to each connector's `run()` via a flat
+name→run registry; `sample`/`--dry-run` preserved. 6 new tests (`test_cli.py`) prove dispatch
+without network (monkeypatched run callables); `bake fec` with no key fails cleanly on the
+real env check. Gate: pytest 127, ruff clean. Live invocation pends the real secrets above
+(`.env` empty) + network + deploy. Discovered the provisioning blocker (see ⚠️ above).
+
+## RESUME  (historical — iter 54)
 
 **Phase A (planning): COMPLETE** (P0–P14). **Phase B (build): all autonomously-buildable
 units COMPLETE** — ~49 units green + 1 partial, merged to `dev`; `main` untouched throughout.
@@ -146,7 +169,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.1.3-district-equivalency | v1.1.2 | pending |
 | v1.1.4-geocoder | v1.1.1 | pending |
 | v1.1.5-member-roster | v1.1.1 | done (code; keyless) |
-| v1.1.6-artifact-bake | v1.1.1 | pending |
+| v1.1.6-artifact-bake | v1.1.1 | done (per-source dispatch CLI + tests; live fetch pends real DATA_GOV_API_KEY/network + deploy) |
 | v1.2.1-race-config | v1.0.3 | done (schema + 2 validated race configs) |
 | v1.2.2-candidate-roster | v1.1.5 | partial: config-embedded candidates; live FEC/Congress roster join pends data |
 | v1.2.3-race-page | v1.2.1, v1.2.2 | done (local gate; CI lhci/axe on push) |
@@ -380,6 +403,11 @@ all `done` units; `main` untouched `[S5a]`.
   the live FEC↔bioguide crosswalk — not faked in fixtures (source-traceability gate).
   Local gate: check 0/0/0, vitest 35/35, build 15 pages, links ok, 0 JS. Direct to dev.
   — iter 54
+- v1.1.6-artifact-bake (code slice): per-source dispatch CLI — `bake <source>`/`bake all`
+  over a name→run registry (fec/members/acs/polls/pollster_ratings/voteview), sample+dry-run
+  kept. test_cli.py (6) proves routing without network; `bake fec` errors cleanly on absent
+  key. Discovered `.env` is an empty template → provisioning NOT actually done (see ⚠️ BLOCKER).
+  Gate: pytest 127, ruff clean. Direct to dev. — iter 57
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
