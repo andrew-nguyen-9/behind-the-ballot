@@ -98,6 +98,23 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 78)
+
+iter 78: **built v1.10.1 coverage-configs — per-race data-coverage gate.** `scripts/coverage.mjs`
+(dependency-free node): reads every race config id, asserts each resolves DEMOGRAPHICS (hard
+invariant) + roster non-empty; reports FINANCE coverage (soft — a race with no FEC candidates filed
+is legitimate) + districts count. Wired into the CI gate (`gate.yml`, after check-links) + the local
+`resume.sh`. Run now: 33 races, 33/33 finance, 33/33 demographics, 537 members, 441 districts → ok.
+Catches a silently-broken export (a race that lost its join) before it ships. Gate: coverage ok,
+yaml valid. Direct to dev. **v1.10.x:** 10.1 coverage ✓ · 10.2 nightly refresh ✓ · 10.3 freshness
+gate + canary ✓ · 10.5 weekly review ✓ · **only 10.4 budget-alarms left** (Actions-minutes + api.data
+.gov quota at 80% [T9a] — needs the GH billing API + rate-limit headers; the one v1.10.x with an
+external-usage-API dependency). **Remaining V1 surface:** 10.4 budget-alarms (autonomous, fiddly);
+PMTiles interactive map → R2 (v1.1.2, heavy tooling — but the 0-JS district SVG already satisfies
+the shape requirement, so this is arguably a V1.1 nice-to-have [P8a]); find-my-district (v1.2.5,
+static-hosting wrinkle); and the human-blocked election-results source (forecast + fairness) + House
+key-race list. **Next eligible:** v1.10.4 budget-alarms.
+
 ## RESUME  (current as of iter 77)
 
 iter 77: **built v1.10.5 weekly-review alert (Gmail SMTP, zero new deps).** `btb_pipeline/notify.py`
@@ -563,7 +580,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.9.3-articles-mdx | v1.0.8 | done (local gate) |
 | v1.9.4-sources-page | — | done (local gate) |
 | v1.9.5-home-nav | v1.9.1 | done (local gate; built iter 46) |
-| v1.10.1-coverage-configs | phases 2–8 | pending |
+| v1.10.1-coverage-configs | phases 2–8 | done (iter 78: scripts/coverage.mjs per-race data-coverage gate in CI + resume.sh; 33/33 finance+demographics, 537 members, 441 districts) |
 | v1.10.2-nightly-qa | v1.10.1 | done (refresh.yml: nightly bake→export→commit→auto-deploy; cmds live-verified locally w/ real keys iter 70. QA-screenshot sweep folds into v1.10.3) |
 | v1.10.3-regression-alerts | v1.10.2 | pending |
 | v1.10.4-budget-alarms | v1.10.2 | pending |
@@ -806,6 +823,9 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 78: **v1.10.1 coverage-configs.** `scripts/coverage.mjs` — per-race data-coverage gate
+  (demographics invariant + roster non-empty hard-fail; finance soft) in CI gate.yml + resume.sh.
+  33/33 finance+demographics, 537 members, 441 districts ok. Direct to dev. — iter 78
 - iter 77: **v1.10.5 weekly-review SMTP alert.** `notify.py` (stdlib smtplib/urllib) — pure
   `build_digest` (health + 537/33/33/441 coverage) + `send_email` STARTTLS; `weekly-review.yml`
   (Mon 14:00). Fixed urllib-UA Cloudflare-403 false-alert. 3 hermetic tests, pytest 152, ruff.

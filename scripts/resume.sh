@@ -40,6 +40,7 @@ pnpm --filter web check
 pnpm --filter web exec vitest run
 pnpm build                       # astro build + pagefind → apps/web/dist
 node scripts/check-links.mjs apps/web/dist
+node scripts/coverage.mjs                # per-race data coverage [v1.10.1]
 
 # --- a11y / perf gate (static dist, no live server) ------------------------
 echo "== lighthouse (perf/a11y/best-practices/seo >= 0.9) =="
