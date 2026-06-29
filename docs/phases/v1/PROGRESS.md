@@ -88,6 +88,25 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 74)
+
+iter 74: **live-preview SEO/a11y/perf/security sweep — CLOSED GREEN.** Ran Lighthouse against the
+**live Cloudflare URL** (not static dist) for 5 representative page types — scores (perf/a11y/bp/seo):
+`/` 100/95/96/100 · `/races` 100/100/96/100 · `/forecast` 100/100/96/100 · `/races/us-senate-2026-TX`
+100/100/96/100 · `/sources` 100/100/96/100. **All ≥90, zero assertion failures** (`assertion-results
+.json` empty). With iter-72 security headers (CSP/HSTS/X-Frame/X-CTO/Referrer/Permissions all present)
++ iter-72 canary (9 routes 200, no 307), **completion gate #2 (SEO+a11y+perf+security green sitewide
+at the live preview) is now MET.** No code change — verification only (lhci ran via a scratchpad
+config; `.lighthouseci` not committed). Minor note: home a11y 95 (passes; likely a small contrast/
+landmark nit) → BACKLOG, non-blocking. **V1-COMPLETE self-check status:** ✅ #2 live sweep · ✅ #3
+freshness (finance/demographics/members real+fresh; forecast honestly pending; polling dropped) ·
+⏳ #1 module completeness — BLOCKED on: forecast real (Open Q#3 PVI source, human confirm), geo chain
+(TIGER/R2: v1.1.2/1.3/1.4 + v1.2.5 — heavy but autonomous-feasible), House key races (needs a
+competitiveness list — human), gerrymander real geometry (TIGER). ⏳ #4 DATA_SOURCES (update when
+forecast/geo sources land). **These #1 blockers are the only thing between here and V1 COMPLETE.**
+**Next eligible:** start the geo chain (TIGER district-geometry connector → real gerrymander metrics
++ map prereq — the biggest autonomous-feasible remaining surface); or v1.10.3/4/5 alerts.
+
 ## RESUME  (current as of iter 73)
 
 iter 73: **integrity fix — stopped publishing the fabricated forecast.** `/forecast` was rendering
@@ -727,6 +746,9 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 74: **live-preview sweep CLOSED green.** Lighthouse at the live Cloudflare URL, 5 page
+  types, all categories ≥90 (perf 100, a11y 95–100, bp 96, seo 100), 0 failures. + headers + canary
+  → completion gate #2 met. Verification only (no code). Ledger updated. — iter 74
 - iter 73: **integrity — removed fabricated forecast.** `/forecast` was showing sample
   chamber-senate.json as a real result; deleted it → honest "not yet published" empty state (home
   headline already guarded). forecast.test.ts made data-agnostic. astro 0/0/0, vitest 35, build,
