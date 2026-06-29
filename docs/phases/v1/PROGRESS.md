@@ -1,5 +1,19 @@
 # V1 Planning — Progress Ledger
 
+> 🟢 **LIVE PREVIEW (iter 66):** https://behind-the-ballot.hh5zvph54s.workers.dev — Cloudflare
+> Workers Static Assets, auto-deployed by Workers Build on every push to `dev` (commits are
+> auto-pushed; origin/dev == local dev). Home/races/forecast return 200. Full local gate green
+> (pytest 141, ruff, build, links, Lighthouse perf/a11y/bp/SEO ≥0.9).
+>
+> ⛔ **BUT NOT V1 COMPLETE — the live site still renders SAMPLE fixtures, not live data.** Site
+> loaders (`apps/web/src/lib/*.ts`) read committed `apps/web/src/data/*` samples; the live-baked
+> gold artifacts (`data/gold/*`: fec/members/voteview/rollcall/committee_link/sponsorship/
+> census_acs) are NOT wired into the build. **"Real-data freshness everywhere" fails until the
+> LIVE JOINS unit lands** (generate per-page data from gold → loaders read gold). This is the bulk
+> of remaining V1 work. Then: geo chain (TIGER/R2), v1.10.x crons/alerts, live-preview a11y/SEO/
+> security sweep. Promise stays withheld.
+
+
 Dual purpose: (1) the ledger this **planning** loop reads to pick the next doc;
 (2) the template the **build** loop will reuse for race/module units. A fresh
 session reconstructs all state from this file. One activity-log line per touched row.
@@ -65,12 +79,13 @@ iter 66: **major unblock — human fixed all remaining secrets + ran the prod DB
   Polling no longer blocks V1 COMPLETE.
 
 **Live real data now — 7 sources:** FEC 200 · members 537 · voteview 12,584 · rollcall 477 ·
-committee_link · sponsorship · census_acs 440. **Remaining for V1 COMPLETE:** (1) DEPLOY to
-Cloudflare (CLOUDFLARE_ACCOUNT_ID now present → run `scripts/resume.sh`; deploy is an outward
-action — may need outside-auto-mode like the migrate did); (2) **live joins** — wire baked gold
-artifacts (data/gold/*) into the site build so pages show real figures, not sample fixtures;
-(3) geo chain (TIGER/R2: v1.1.2/1.3/1.4, v1.2.5); (4) v1.10.x crons/alerts (Actions+Gmail);
-(5) full Lighthouse/a11y/SEO/security sweep at the live preview. THEN the promise self-check.
+committee_link · sponsorship · census_acs 440. **DEPLOY CONFIRMED LIVE** (iter 66) at https://behind-the-ballot.hh5zvph54s.workers.dev —
+Workers Build auto-deploys on push to dev (commits auto-push). Full gate green incl. Lighthouse.
+**Remaining for V1 COMPLETE:** (1) **live joins** (THE big one) — site loaders read sample
+fixtures (`src/data/*`); wire the 7 baked gold artifacts into the build so pages show real
+figures + freshness; (2) geo chain (TIGER/R2: v1.1.2/1.3/1.4, v1.2.5); (3) v1.10.x crons/alerts
+(Actions+Gmail, secrets now in); (4) a11y/SEO/security sweep at the LIVE preview (local Lighthouse
+green; need the live-URL run + security headers check). THEN the promise self-check.
 
 ## RESUME  (iter 65)
 
