@@ -23,7 +23,11 @@ be emitted** — never lie to exit.
 
 ## Open questions (human decision — safest default picked, loop continues [S16a])
 
-2. **ACS needs a separate `CENSUS_API_KEY` (confirmed live iter 61).** `api.census.gov`
+2. **ACS `CENSUS_API_KEY` is present but INVALID (iter 63).** Human filled `CENSUS_API_KEY`
+   (40 chars) but `api.census.gov` returns `invalid_key.html` for it — it's a placeholder, not a
+   real registered Census key. **Human action:** register a real key at
+   census.gov/data/key_signup.html and replace the value. (Original finding below.)
+   ACS needs a separate `CENSUS_API_KEY` (confirmed live iter 61). `api.census.gov`
    302-redirects a `DATA_GOV_API_KEY` to `missing_key.html` — Census requires its own key
    (census.gov/data/key_signup.html), distinct from the data.gov key that works for OpenFEC.
    **Fix shipped:** ACS connector now reads `CENSUS_API_KEY` (falls back to `DATA_GOV_API_KEY`
@@ -43,7 +47,20 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 62)
+## RESUME  (current as of iter 63)
+
+iter 63: **built v1.6.2 House roll-call connector + live-baked 477 real rows.** Verified the
+data.gov key authenticates Congress.gov (unlike Census). `sources/rollcall.py` (Congress.gov
+`/house-vote/{congress}/{session}`, env-keyed, transport-injected), registered in the CLI
+dispatch + integrity `rollcall` row (floor 7). 5 fixture tests (133 pytest, ruff clean), then a
+real `bake rollcall` → 477 House votes. Senate roll calls (not in Congress.gov API → GovTrack/
+senate.gov) + per-member positions (missed-votes, v1.6.4) are follow-ups. **Also found:** the
+human-filled `CENSUS_API_KEY` is invalid (api.census.gov → invalid_key.html) — placeholder, needs
+a real key (Open Q#2). **Live real data now: FEC 200, members 537, voteview 12,584, rollcall 477.**
+Still gated: ACS (bad Census key), polls (538 dead), deploy (CLOUDFLARE_ACCOUNT_ID empty), alerts
+(SMTP_PASS empty), prod DB migrate (auto-mode denied → human).
+
+## RESUME  (iter 62)
 
 iter 62: added `dbCredentials` to `drizzle.config.ts` (needed by push/migrate; `generate` still
 works with no env). **Attempted the live Neon migration** (`drizzle-kit migrate`) to create the
@@ -265,7 +282,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.5.3-urbanization | v1.5.2 | done (math; direct to dev) |
 | v1.5.4-demographics-ui | v1.5.2, v1.2.3 | done (local gate; sample artifact) |
 | v1.6.1-member-profiles | v1.1.5 | done (local gate; +v1.6.3 ideology shown) |
-| v1.6.2-rollcall-votes | v1.6.1 | pending |
+| v1.6.2-rollcall-votes | v1.6.1 | partial + LIVE (iter 63: House roll-call list via Congress.gov, 477 real rows; Senate/GovTrack + per-member positions follow-up) |
 | v1.6.3-ideology | v1.6.1 | done (code; keyless) |
 | v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
@@ -505,6 +522,10 @@ all `done` units; `main` untouched `[S5a]`.
   error on the HTML page instead of JSONDecodeError; +1 test (128 pytest, ruff clean).
   SETUP_SECRETS corrected (data.gov key ≠ Census key); `CENSUS_API_KEY=` added to local .env.
   Direct to dev.
+- v1.6.2-rollcall-votes (House slice): `sources/rollcall.py` — Congress.gov House roll-call
+  list connector (data.gov key authenticates Congress.gov, verified live), CLI-registered, 5
+  fixture tests. Live bake = 477 real rows. Senate + per-member positions deferred. pytest 133,
+  ruff clean. Found CENSUS_API_KEY invalid (placeholder). Direct to dev. — iter 63
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

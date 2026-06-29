@@ -17,7 +17,16 @@ from collections.abc import Callable
 from pathlib import Path
 
 from btb_pipeline.core import bake, dry_run, is_fresh
-from btb_pipeline.sources import acs, fec, members, polls, pollster_ratings, sample, voteview
+from btb_pipeline.sources import (
+    acs,
+    fec,
+    members,
+    polls,
+    pollster_ratings,
+    rollcall,
+    sample,
+    voteview,
+)
 
 # name -> live bake callable (arg-free; defaults fetch over the network) [R13a]
 SOURCES: dict[str, Callable[[], Path]] = {
@@ -26,6 +35,7 @@ SOURCES: dict[str, Callable[[], Path]] = {
     "acs": acs.run,
     "polls": polls.run,
     "pollster_ratings": pollster_ratings.run,
+    "rollcall": rollcall.run,
     "voteview": voteview.run,
 }
 

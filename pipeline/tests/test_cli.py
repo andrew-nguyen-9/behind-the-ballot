@@ -11,7 +11,9 @@ from btb_pipeline import cli
 
 
 def test_registry_covers_live_sources():
-    assert set(cli.SOURCES) == {"fec", "members", "acs", "polls", "pollster_ratings", "voteview"}
+    assert set(cli.SOURCES) == {
+        "fec", "members", "acs", "polls", "pollster_ratings", "rollcall", "voteview",
+    }
 
 
 def test_bake_one_dispatches_to_that_source(monkeypatch):
