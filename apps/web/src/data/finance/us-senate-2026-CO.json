@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S0CO00575",
+    "race_id": "us-senate-2026-CO",
+    "party": "D",
+    "receipts": 9884304.8,
+    "disbursements": 8561825.74,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8662,
+    "coverage_end_date": "2026-06-10"
+  },
+  {
+    "candidate_id": "S6CO00408",
+    "race_id": "us-senate-2026-CO",
+    "party": "D",
+    "receipts": 164777.91,
+    "disbursements": 155619.71,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9444,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6CO00424",
+    "race_id": "us-senate-2026-CO",
+    "party": "R",
+    "receipts": 260985.97,
+    "disbursements": 204767.55,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7846,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6CO00440",
+    "race_id": "us-senate-2026-CO",
+    "party": "R",
+    "receipts": 485402.64,
+    "disbursements": 192985.78,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3976,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6CO00499",
+    "race_id": "us-senate-2026-CO",
+    "party": "D",
+    "receipts": 869056.41,
+    "disbursements": 642851.91,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7397,
+    "coverage_end_date": "2026-06-10"
+  },
+  {
+    "candidate_id": "S6CO00556",
+    "race_id": "us-senate-2026-CO",
+    "party": "other",
+    "receipts": 150000.0,
+    "disbursements": 0.0,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.0,
+    "coverage_end_date": "2026-03-31"
+  }
+]

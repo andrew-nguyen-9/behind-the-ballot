@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S4LA00107",
+    "race_id": "us-senate-2026-LA",
+    "party": "R",
+    "receipts": 13325791.6,
+    "disbursements": 9446799.77,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7089,
+    "coverage_end_date": "2026-04-26"
+  },
+  {
+    "candidate_id": "S6LA00318",
+    "race_id": "us-senate-2026-LA",
+    "party": "R",
+    "receipts": 12172725.8,
+    "disbursements": 11137889.45,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.915,
+    "coverage_end_date": "2026-06-07"
+  },
+  {
+    "candidate_id": "S6LA00573",
+    "race_id": "us-senate-2026-LA",
+    "party": "R",
+    "receipts": 1202191.0,
+    "disbursements": 1202191.0,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2026-05-12"
+  },
+  {
+    "candidate_id": "S6LA00581",
+    "race_id": "us-senate-2026-LA",
+    "party": "R",
+    "receipts": 688875.02,
+    "disbursements": 656194.34,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9526,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6LA00615",
+    "race_id": "us-senate-2026-LA",
+    "party": "D",
+    "receipts": 1233091.73,
+    "disbursements": 849152.69,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6886,
+    "coverage_end_date": "2026-06-07"
+  },
+  {
+    "candidate_id": "S6LA00664",
+    "race_id": "us-senate-2026-LA",
+    "party": "R",
+    "receipts": 5356520.38,
+    "disbursements": 3637517.36,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6791,
+    "coverage_end_date": "2026-06-07"
+  }
+]

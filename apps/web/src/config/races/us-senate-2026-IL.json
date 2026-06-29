@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-IL",
+  "cycle": 2026,
+  "title": "IL U.S. Senate 2026",
+  "office": "senate",
+  "state": "IL",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "s-krishnamoorthi",
+      "name": "S Krishnamoorthi",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6IL00482"
+    },
+    {
+      "id": "juliana-stratton",
+      "name": "Juliana Stratton",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6IL00458"
+    },
+    {
+      "id": "robin-kelly",
+      "name": "Robin Kelly",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6IL00474"
+    },
+    {
+      "id": "richard-j-durbin",
+      "name": "Richard J. Durbin",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S6IL00151"
+    },
+    {
+      "id": "don-tracy",
+      "name": "Don Tracy",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6IL00615"
+    },
+    {
+      "id": "jeannie-evans",
+      "name": "Jeannie Evans",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6IL00672"
+    }
+  ]
+}

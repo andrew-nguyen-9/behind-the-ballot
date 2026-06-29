@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S4IA00129",
+    "race_id": "us-senate-2026-IA",
+    "party": "R",
+    "receipts": 6954692.63,
+    "disbursements": 5485942.8,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7888,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IA00249",
+    "race_id": "us-senate-2026-IA",
+    "party": "R",
+    "receipts": 458067.37,
+    "disbursements": 446020.32,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9737,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6IA00256",
+    "race_id": "us-senate-2026-IA",
+    "party": "D",
+    "receipts": 1432562.28,
+    "disbursements": 1432459.9,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9999,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IA00272",
+    "race_id": "us-senate-2026-IA",
+    "party": "D",
+    "receipts": 3671205.51,
+    "disbursements": 2970219.27,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8091,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6IA00298",
+    "race_id": "us-senate-2026-IA",
+    "party": "D",
+    "receipts": 3463099.09,
+    "disbursements": 2736689.1,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7902,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6IA00314",
+    "race_id": "us-senate-2026-IA",
+    "party": "R",
+    "receipts": 8158017.24,
+    "disbursements": 4096078.53,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5021,
+    "coverage_end_date": "2026-05-13"
+  }
+]

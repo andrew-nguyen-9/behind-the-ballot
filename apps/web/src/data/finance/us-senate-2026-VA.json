@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S6VA00093",
+    "race_id": "us-senate-2026-VA",
+    "party": "D",
+    "receipts": 21990910.08,
+    "disbursements": 7774286.24,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3535,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6VA00143",
+    "race_id": "us-senate-2026-VA",
+    "party": "R",
+    "receipts": 125579.19,
+    "disbursements": 102838.64,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8189,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6VA00176",
+    "race_id": "us-senate-2026-VA",
+    "party": "R",
+    "receipts": 106324.12,
+    "disbursements": 106324.12,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6VA00184",
+    "race_id": "us-senate-2026-VA",
+    "party": "D",
+    "receipts": 54994.61,
+    "disbursements": 46430.84,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8443,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6VA00200",
+    "race_id": "us-senate-2026-VA",
+    "party": "R",
+    "receipts": 50555.94,
+    "disbursements": 43964.19,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8696,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S8VA00321",
+    "race_id": "us-senate-2026-VA",
+    "party": "R",
+    "receipts": 192041.22,
+    "disbursements": 136636.24,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7115,
+    "coverage_end_date": "2026-03-31"
+  }
+]

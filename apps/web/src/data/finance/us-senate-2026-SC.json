@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S0SC00149",
+    "race_id": "us-senate-2026-SC",
+    "party": "R",
+    "receipts": 20916691.15,
+    "disbursements": 29180379.82,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.3951,
+    "coverage_end_date": "2026-05-20"
+  },
+  {
+    "candidate_id": "S6SC04213",
+    "race_id": "us-senate-2026-SC",
+    "party": "R",
+    "receipts": 5854499.63,
+    "disbursements": 4504841.79,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7695,
+    "coverage_end_date": "2026-05-20"
+  },
+  {
+    "candidate_id": "S6SC04239",
+    "race_id": "us-senate-2026-SC",
+    "party": "D",
+    "receipts": 8059705.18,
+    "disbursements": 5194395.9,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6445,
+    "coverage_end_date": "2026-05-20"
+  },
+  {
+    "candidate_id": "S6SC04262",
+    "race_id": "us-senate-2026-SC",
+    "party": "R",
+    "receipts": 216272.42,
+    "disbursements": 216272.42,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2025-12-01"
+  },
+  {
+    "candidate_id": "S6SC04288",
+    "race_id": "us-senate-2026-SC",
+    "party": "D",
+    "receipts": 569185.56,
+    "disbursements": 569185.56,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2025-12-31"
+  },
+  {
+    "candidate_id": "S6SC04296",
+    "race_id": "us-senate-2026-SC",
+    "party": "R",
+    "receipts": 1011421.12,
+    "disbursements": 565237.47,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5589,
+    "coverage_end_date": "2026-03-31"
+  }
+]

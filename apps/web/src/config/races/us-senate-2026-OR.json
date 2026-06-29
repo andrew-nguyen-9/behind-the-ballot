@@ -1,0 +1,23 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-OR",
+  "cycle": 2026,
+  "title": "OR U.S. Senate 2026",
+  "office": "senate",
+  "state": "OR",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "jeffrey-alan-merkley",
+      "name": "Jeffrey Alan Merkley",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S8OR00207"
+    }
+  ]
+}

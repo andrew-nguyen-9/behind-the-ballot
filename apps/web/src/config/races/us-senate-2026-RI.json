@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-RI",
+  "cycle": 2026,
+  "title": "RI U.S. Senate 2026",
+  "office": "senate",
+  "state": "RI",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "john-f-reed",
+      "name": "John F. Reed",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S6RI00163"
+    },
+    {
+      "id": "raymond-tyler-mckay",
+      "name": "Raymond Tyler Mckay",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S4RI00051"
+    }
+  ]
+}

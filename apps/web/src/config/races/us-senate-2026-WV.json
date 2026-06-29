@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-WV",
+  "cycle": 2026,
+  "title": "WV U.S. Senate 2026",
+  "office": "senate",
+  "state": "WV",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "shelley-moore-capito",
+      "name": "Shelley Moore Capito",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4WV00159"
+    },
+    {
+      "id": "jonathan-derrick-evans",
+      "name": "Jonathan Derrick Evans",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6WV00147"
+    },
+    {
+      "id": "zachary-c-shrewsbury",
+      "name": "Zachary C Shrewsbury",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S4WV00357"
+    },
+    {
+      "id": "thomas-edward-willis",
+      "name": "Thomas Edward Willis",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6WV00162"
+    }
+  ]
+}

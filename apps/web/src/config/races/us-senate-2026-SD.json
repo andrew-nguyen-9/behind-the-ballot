@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-SD",
+  "cycle": 2026,
+  "title": "SD U.S. Senate 2026",
+  "office": "senate",
+  "state": "SD",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "mike-rounds",
+      "name": "Mike Rounds",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4SD00049"
+    },
+    {
+      "id": "brian-bengs",
+      "name": "Brian Bengs",
+      "party": "I",
+      "incumbent": false,
+      "fecCandidateId": "S6SD01117"
+    },
+    {
+      "id": "julian-c-beaudion",
+      "name": "Julian C Beaudion",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6SD01125"
+    }
+  ]
+}

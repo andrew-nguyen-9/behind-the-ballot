@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-ME",
+  "cycle": 2026,
+  "title": "ME U.S. Senate 2026",
+  "office": "senate",
+  "state": "ME",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "graham-platner",
+      "name": "Graham Platner",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6ME00373"
+    },
+    {
+      "id": "susan-m-collins",
+      "name": "Susan M. Collins",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S6ME00159"
+    },
+    {
+      "id": "janet-trafton-mills",
+      "name": "Janet Trafton Mills",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6ME00407"
+    },
+    {
+      "id": "dan-kleban",
+      "name": "Dan Kleban",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6ME00381"
+    },
+    {
+      "id": "daira-rodriguez",
+      "name": "Daira Rodriguez",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6ME00365"
+    },
+    {
+      "id": "david-costello",
+      "name": "David Costello",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S4ME00113"
+    }
+  ]
+}

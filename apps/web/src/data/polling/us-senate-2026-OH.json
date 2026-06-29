@@ -1,7 +1,0 @@
-{
-  "as_of": "2026-03-15",
-  "averages": [
-    { "state": "OH", "party": "D", "avg_pct": 48.5, "n_polls": 7, "latest_end_date": "2026-03-12" },
-    { "state": "OH", "party": "R", "avg_pct": 46.0, "n_polls": 7, "latest_end_date": "2026-03-12" }
-  ]
-}

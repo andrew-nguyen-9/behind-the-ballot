@@ -1,0 +1,52 @@
+[
+  {
+    "candidate_id": "S4MA00028",
+    "race_id": "us-senate-2026-MA",
+    "party": "D",
+    "receipts": 6504510.98,
+    "disbursements": 5615111.05,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8633,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MA00254",
+    "race_id": "us-senate-2026-MA",
+    "party": "D",
+    "receipts": 75700.42,
+    "disbursements": 72981.88,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9641,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MA00288",
+    "race_id": "us-senate-2026-MA",
+    "party": "other",
+    "receipts": 96091.67,
+    "disbursements": 66361.23,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6906,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MA00296",
+    "race_id": "us-senate-2026-MA",
+    "party": "D",
+    "receipts": 4255536.62,
+    "disbursements": 2774289.48,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6519,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MA00304",
+    "race_id": "us-senate-2026-MA",
+    "party": "R",
+    "receipts": 1400141.01,
+    "disbursements": 571567.1,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4082,
+    "coverage_end_date": "2026-03-31"
+  }
+]

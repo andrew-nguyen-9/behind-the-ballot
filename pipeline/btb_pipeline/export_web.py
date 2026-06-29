@@ -19,6 +19,7 @@ from pathlib import Path
 
 from btb_pipeline.core import DATA_ROOT, stage_dir
 from btb_pipeline.demographics import rollup_by_state
+from btb_pipeline.finance_aggregates import build_finance
 
 WEB_DATA = Path("apps/web/src/data")
 RACES_DIR = Path("apps/web/src/config/races")
@@ -130,7 +131,30 @@ def export_demographics(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> li
     return written
 
 
-EXPORTERS = {"members": export_members, "demographics": export_demographics}
+def export_finance(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/fec ⋈ race-config candidates → per-race src/data/finance/<raceId>.json [G13a].
+    candidate_meta (race_id, party) comes from the race configs' fecCandidateId; build_finance
+    adds burn rate + coverage date. One file per race that has ≥1 matched candidate."""
+    fec = _gold("fec", root)
+    if fec is None:
+        return []
+    meta: dict[str, dict] = {}
+    for cfg in _race_configs(RACES_DIR):
+        for c in cfg.get("candidates", []):
+            if c.get("fecCandidateId"):
+                meta[c["fecCandidateId"]] = {"race_id": cfg["id"], "party": c.get("party")}
+    rows = [r for r in build_finance(fec, meta) if r.get("race_id")]
+    by_race: dict[str, list[dict]] = {}
+    for r in rows:
+        by_race.setdefault(r["race_id"], []).append(r)
+    return [_write(web_data / "finance" / f"{rid}.json", rs) for rid, rs in by_race.items()]
+
+
+EXPORTERS = {
+    "members": export_members,
+    "demographics": export_demographics,
+    "finance": export_finance,
+}
 
 
 def main() -> int:

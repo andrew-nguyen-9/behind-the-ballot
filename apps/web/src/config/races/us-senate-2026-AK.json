@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-AK",
+  "cycle": 2026,
+  "title": "AK U.S. Senate 2026",
+  "office": "senate",
+  "state": "AK",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "dan-sullivan",
+      "name": "Dan Sullivan",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4AK00214"
+    },
+    {
+      "id": "mary-peltola",
+      "name": "Mary Peltola",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6AK00276"
+    }
+  ]
+}

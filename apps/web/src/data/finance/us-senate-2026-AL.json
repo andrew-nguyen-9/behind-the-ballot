@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S0AL00230",
+    "race_id": "us-senate-2026-AL",
+    "party": "R",
+    "receipts": 3993209.62,
+    "disbursements": 4075695.89,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0207,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6AL00435",
+    "race_id": "us-senate-2026-AL",
+    "party": "D",
+    "receipts": 159035.37,
+    "disbursements": 153101.65,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9627,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6AL00443",
+    "race_id": "us-senate-2026-AL",
+    "party": "R",
+    "receipts": 1774321.71,
+    "disbursements": 1188867.85,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.67,
+    "coverage_end_date": "2026-05-27"
+  },
+  {
+    "candidate_id": "S6AL00450",
+    "race_id": "us-senate-2026-AL",
+    "party": "R",
+    "receipts": 1395256.62,
+    "disbursements": 919961.82,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6593,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6AL00468",
+    "race_id": "us-senate-2026-AL",
+    "party": "R",
+    "receipts": 2012949.2,
+    "disbursements": 2013628.2,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0003,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6AL00476",
+    "race_id": "us-senate-2026-AL",
+    "party": "R",
+    "receipts": 3010004.11,
+    "disbursements": 2617253.96,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8695,
+    "coverage_end_date": "2026-05-27"
+  }
+]

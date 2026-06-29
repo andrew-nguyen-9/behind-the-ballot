@@ -1,0 +1,23 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-NM",
+  "cycle": 2026,
+  "title": "NM U.S. Senate 2026",
+  "office": "senate",
+  "state": "NM",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "ben-ray-lujan",
+      "name": "Ben Ray Lujan",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S0NM00058"
+    }
+  ]
+}

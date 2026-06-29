@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S6IL00151",
+    "race_id": "us-senate-2026-IL",
+    "party": "D",
+    "receipts": 2376775.51,
+    "disbursements": 2476789.1,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0421,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IL00458",
+    "race_id": "us-senate-2026-IL",
+    "party": "D",
+    "receipts": 4791273.46,
+    "disbursements": 4096025.84,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8549,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IL00474",
+    "race_id": "us-senate-2026-IL",
+    "party": "D",
+    "receipts": 3466395.93,
+    "disbursements": 3278736.11,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9459,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IL00482",
+    "race_id": "us-senate-2026-IL",
+    "party": "D",
+    "receipts": 31390858.87,
+    "disbursements": 28237935.72,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8996,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IL00615",
+    "race_id": "us-senate-2026-IL",
+    "party": "R",
+    "receipts": 2327334.3,
+    "disbursements": 783936.04,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3368,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6IL00672",
+    "race_id": "us-senate-2026-IL",
+    "party": "R",
+    "receipts": 1280369.17,
+    "disbursements": 1136878.25,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8879,
+    "coverage_end_date": "2026-03-31"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-NE",
+  "cycle": 2026,
+  "title": "NE U.S. Senate 2026",
+  "office": "senate",
+  "state": "NE",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "pete-ricketts",
+      "name": "Pete Ricketts",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S6NE00129"
+    },
+    {
+      "id": "dan-osborn",
+      "name": "Dan Osborn",
+      "party": "I",
+      "incumbent": false,
+      "fecCandidateId": "S4NE00207"
+    },
+    {
+      "id": "benjamin-e-sasse",
+      "name": "Benjamin E. Sasse",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S4NE00090"
+    }
+  ]
+}

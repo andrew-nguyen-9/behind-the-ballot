@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-MN",
+  "cycle": 2026,
+  "title": "MN U.S. Senate 2026",
+  "office": "senate",
+  "state": "MN",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "angie-craig",
+      "name": "Angie Craig",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MN00499"
+    },
+    {
+      "id": "margaret-flanagan",
+      "name": "Margaret Flanagan",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MN00440"
+    },
+    {
+      "id": "tina-smith",
+      "name": "Tina Smith",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S8MN00578"
+    },
+    {
+      "id": "michele-tafoya",
+      "name": "Michele Tafoya",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6MN00556"
+    },
+    {
+      "id": "adam-schwarze",
+      "name": "Adam Schwarze",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6MN00457"
+    },
+    {
+      "id": "royce-white",
+      "name": "Royce White",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S4MN00502"
+    }
+  ]
+}

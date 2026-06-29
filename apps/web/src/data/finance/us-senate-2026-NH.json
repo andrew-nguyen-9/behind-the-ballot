@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S0NH00219",
+    "race_id": "us-senate-2026-NH",
+    "party": "D",
+    "receipts": 2666350.16,
+    "disbursements": 2864443.21,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0743,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6NH00141",
+    "race_id": "us-senate-2026-NH",
+    "party": "D",
+    "receipts": 9860676.34,
+    "disbursements": 6044770.26,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.613,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6NH00166",
+    "race_id": "us-senate-2026-NH",
+    "party": "R",
+    "receipts": 1664338.14,
+    "disbursements": 880952.11,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5293,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6NH00182",
+    "race_id": "us-senate-2026-NH",
+    "party": "D",
+    "receipts": 114396.4,
+    "disbursements": 99741.66,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8719,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6NH00190",
+    "race_id": "us-senate-2026-NH",
+    "party": "D",
+    "receipts": 99746.19,
+    "disbursements": 60149.95,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.603,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6NH00208",
+    "race_id": "us-senate-2026-NH",
+    "party": "R",
+    "receipts": 2475941.37,
+    "disbursements": 583037.19,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2355,
+    "coverage_end_date": "2026-03-31"
+  }
+]

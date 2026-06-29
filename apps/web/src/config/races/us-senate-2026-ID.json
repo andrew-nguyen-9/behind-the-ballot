@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-ID",
+  "cycle": 2026,
+  "title": "ID U.S. Senate 2026",
+  "office": "senate",
+  "state": "ID",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "james-e-risch",
+      "name": "James E Risch",
+      "party": "other",
+      "incumbent": true,
+      "fecCandidateId": "S8ID00092"
+    },
+    {
+      "id": "todd-baker-achilles",
+      "name": "Todd Baker Achilles",
+      "party": "I",
+      "incumbent": false,
+      "fecCandidateId": "S6ID00146"
+    },
+    {
+      "id": "denny-lave",
+      "name": "Denny Lave",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6ID00161"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "S0DE00092",
+    "race_id": "us-senate-2026-DE",
+    "party": "D",
+    "receipts": 5773706.18,
+    "disbursements": 3484548.05,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6035,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6DE00198",
+    "race_id": "us-senate-2026-DE",
+    "party": "R",
+    "receipts": 100728.71,
+    "disbursements": 15021.49,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.1491,
+    "coverage_end_date": "2026-03-31"
+  }
+]

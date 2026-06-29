@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "S4WV00159",
+    "race_id": "us-senate-2026-WV",
+    "party": "R",
+    "receipts": 5770883.07,
+    "disbursements": 4176660.13,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7237,
+    "coverage_end_date": "2026-04-22"
+  },
+  {
+    "candidate_id": "S4WV00357",
+    "race_id": "us-senate-2026-WV",
+    "party": "D",
+    "receipts": 498538.98,
+    "disbursements": 490415.75,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9837,
+    "coverage_end_date": "2026-04-22"
+  },
+  {
+    "candidate_id": "S6WV00147",
+    "race_id": "us-senate-2026-WV",
+    "party": "R",
+    "receipts": 1062145.01,
+    "disbursements": 1001214.23,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9426,
+    "coverage_end_date": "2024-12-31"
+  },
+  {
+    "candidate_id": "S6WV00162",
+    "race_id": "us-senate-2026-WV",
+    "party": "R",
+    "receipts": 496222.44,
+    "disbursements": 439153.27,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.885,
+    "coverage_end_date": "2026-04-22"
+  }
+]

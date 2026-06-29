@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-KS",
+  "cycle": 2026,
+  "title": "KS U.S. Senate 2026",
+  "office": "senate",
+  "state": "KS",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "roger-w-marshall",
+      "name": "Roger W Marshall",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S0KS00315"
+    },
+    {
+      "id": "sandy-spidel-neumann",
+      "name": "Sandy Spidel Neumann",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6KS00262"
+    },
+    {
+      "id": "erik-murray",
+      "name": "Erik Murray",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6KS00270"
+    },
+    {
+      "id": "patrick-schmidt",
+      "name": "Patrick Schmidt",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6KS00288"
+    },
+    {
+      "id": "christy-davis",
+      "name": "Christy Davis",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6KS00247"
+    },
+    {
+      "id": "noah-taylor",
+      "name": "Noah Taylor",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6KS00296"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S4MI00355",
+    "race_id": "us-senate-2026-MI",
+    "party": "D",
+    "receipts": 7792496.42,
+    "disbursements": 3018978.44,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3874,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S4MI00595",
+    "race_id": "us-senate-2026-MI",
+    "party": "R",
+    "receipts": 7676444.99,
+    "disbursements": 3677475.85,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4791,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MI00392",
+    "race_id": "us-senate-2026-MI",
+    "party": "D",
+    "receipts": 8624066.19,
+    "disbursements": 4931519.99,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5718,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MI00418",
+    "race_id": "us-senate-2026-MI",
+    "party": "D",
+    "receipts": 7646727.83,
+    "disbursements": 5117400.65,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6692,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MI00426",
+    "race_id": "us-senate-2026-MI",
+    "party": "D",
+    "receipts": 8870471.26,
+    "disbursements": 5481553.31,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.618,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MI00459",
+    "race_id": "us-senate-2026-MI",
+    "party": "D",
+    "receipts": 243635.76,
+    "disbursements": 243635.76,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2025-09-30"
+  }
+]

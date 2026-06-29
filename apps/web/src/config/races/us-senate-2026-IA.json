@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-IA",
+  "cycle": 2026,
+  "title": "IA U.S. Senate 2026",
+  "office": "senate",
+  "state": "IA",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "ashley-hinson-arenholz",
+      "name": "Ashley Hinson Arenholz",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6IA00314"
+    },
+    {
+      "id": "joni-k-ernst",
+      "name": "Joni K Ernst",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4IA00129"
+    },
+    {
+      "id": "zach-p-wahls",
+      "name": "Zach P Wahls",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6IA00272"
+    },
+    {
+      "id": "joshua-turek",
+      "name": "Joshua Turek",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6IA00298"
+    },
+    {
+      "id": "nathan-sage",
+      "name": "Nathan Sage",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6IA00256"
+    },
+    {
+      "id": "james-carlin",
+      "name": "James Carlin",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6IA00249"
+    }
+  ]
+}

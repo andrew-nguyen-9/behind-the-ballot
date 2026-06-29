@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-MT",
+  "cycle": 2026,
+  "title": "MT U.S. Senate 2026",
+  "office": "senate",
+  "state": "MT",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "steve-daines",
+      "name": "Steve Daines",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S2MT00096"
+    },
+    {
+      "id": "seth-bodnar",
+      "name": "Seth Bodnar",
+      "party": "I",
+      "incumbent": false,
+      "fecCandidateId": "S6MT00287"
+    },
+    {
+      "id": "kurt-alme",
+      "name": "Kurt Alme",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6MT00295"
+    },
+    {
+      "id": "reilly-neill",
+      "name": "Reilly Neill",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MT00238"
+    },
+    {
+      "id": "kyle-austin",
+      "name": "Kyle Austin",
+      "party": "L",
+      "incumbent": false,
+      "fecCandidateId": "S6MT00261"
+    }
+  ]
+}

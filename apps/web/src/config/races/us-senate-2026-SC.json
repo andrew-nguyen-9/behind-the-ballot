@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-SC",
+  "cycle": 2026,
+  "title": "SC U.S. Senate 2026",
+  "office": "senate",
+  "state": "SC",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "lindsey-o-graham",
+      "name": "Lindsey O. Graham",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S0SC00149"
+    },
+    {
+      "id": "annie-andrews",
+      "name": "Annie Andrews",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6SC04239"
+    },
+    {
+      "id": "mark-lynch",
+      "name": "Mark Lynch",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6SC04213"
+    },
+    {
+      "id": "paul-dans",
+      "name": "Paul Dans",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6SC04296"
+    },
+    {
+      "id": "lee-johnson",
+      "name": "Lee Johnson",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6SC04288"
+    },
+    {
+      "id": "andre-bauer",
+      "name": "Andre Bauer",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6SC04262"
+    }
+  ]
+}

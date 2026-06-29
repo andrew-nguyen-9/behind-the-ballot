@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-KY",
+  "cycle": 2026,
+  "title": "KY U.S. Senate 2026",
+  "office": "senate",
+  "state": "KY",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "nate-morris",
+      "name": "Nate Morris",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6KY00302"
+    },
+    {
+      "id": "garland-andy-barr",
+      "name": "Garland Andy Barr",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6KY00286"
+    },
+    {
+      "id": "mitch-mcconnell",
+      "name": "Mitch Mcconnell",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S2KY00012"
+    },
+    {
+      "id": "daniel-cameron",
+      "name": "Daniel Cameron",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6KY00237"
+    },
+    {
+      "id": "amy-mcgrath",
+      "name": "Amy Mcgrath",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S0KY00339"
+    },
+    {
+      "id": "dale-romans",
+      "name": "Dale Romans",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6KY00369"
+    }
+  ]
+}

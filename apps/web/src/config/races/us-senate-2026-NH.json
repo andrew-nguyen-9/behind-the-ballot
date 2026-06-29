@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-NH",
+  "cycle": 2026,
+  "title": "NH U.S. Senate 2026",
+  "office": "senate",
+  "state": "NH",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "chris-pappas",
+      "name": "Chris Pappas",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6NH00141"
+    },
+    {
+      "id": "jeanne-shaheen",
+      "name": "Jeanne Shaheen",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S0NH00219"
+    },
+    {
+      "id": "john-e-sununu",
+      "name": "John E Sununu",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6NH00208"
+    },
+    {
+      "id": "scott-p-brown",
+      "name": "Scott P. Brown",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6NH00166"
+    },
+    {
+      "id": "karishma-manzur",
+      "name": "Karishma Manzur",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6NH00182"
+    },
+    {
+      "id": "jared-sullivan",
+      "name": "Jared Sullivan",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6NH00190"
+    }
+  ]
+}

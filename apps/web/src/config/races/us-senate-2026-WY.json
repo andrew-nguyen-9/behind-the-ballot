@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-WY",
+  "cycle": 2026,
+  "title": "WY U.S. Senate 2026",
+  "office": "senate",
+  "state": "WY",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "cynthia-marie-lummis",
+      "name": "Cynthia Marie Lummis",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S0WY00137"
+    },
+    {
+      "id": "harriet-hageman",
+      "name": "Harriet Hageman",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6WY00209"
+    }
+  ]
+}

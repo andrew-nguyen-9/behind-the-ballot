@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-GA",
+  "cycle": 2026,
+  "title": "GA U.S. Senate 2026",
+  "office": "senate",
+  "state": "GA",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "t-jonathan-ossoff",
+      "name": "T. Jonathan Ossoff",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S8GA00180"
+    },
+    {
+      "id": "earl-leroy-carter",
+      "name": "Earl Leroy Carter",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6GA00374"
+    },
+    {
+      "id": "michael-a-collins",
+      "name": "Michael A Collins",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6GA00390"
+    },
+    {
+      "id": "derek-dooley",
+      "name": "Derek Dooley",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6GA00408"
+    },
+    {
+      "id": "john-king",
+      "name": "John King",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6GA00382"
+    }
+  ]
+}

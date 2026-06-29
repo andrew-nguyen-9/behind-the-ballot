@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "S4NE00090",
+    "race_id": "us-senate-2026-NE",
+    "party": "R",
+    "receipts": 973987.38,
+    "disbursements": 833979.37,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8563,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S4NE00207",
+    "race_id": "us-senate-2026-NE",
+    "party": "I",
+    "receipts": 3856314.95,
+    "disbursements": 2784328.54,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.722,
+    "coverage_end_date": "2026-04-22"
+  },
+  {
+    "candidate_id": "S6NE00129",
+    "race_id": "us-senate-2026-NE",
+    "party": "R",
+    "receipts": 4866649.16,
+    "disbursements": 4281083.75,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8797,
+    "coverage_end_date": "2026-04-22"
+  }
+]

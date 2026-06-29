@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "S2OK00186",
+    "race_id": "us-senate-2026-OK",
+    "party": "R",
+    "receipts": 4840972.71,
+    "disbursements": 2534895.38,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5236,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S4OK00083",
+    "race_id": "us-senate-2026-OK",
+    "party": "R",
+    "receipts": 154687.18,
+    "disbursements": 414163.35,
+    "cash_on_hand": 0.0,
+    "burn_rate": 2.6774,
+    "coverage_end_date": "2022-12-31"
+  },
+  {
+    "candidate_id": "S6OK04197",
+    "race_id": "us-senate-2026-OK",
+    "party": "D",
+    "receipts": 263329.0,
+    "disbursements": 145419.56,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5522,
+    "coverage_end_date": "2026-05-27"
+  },
+  {
+    "candidate_id": "S6OK04247",
+    "race_id": "us-senate-2026-OK",
+    "party": "R",
+    "receipts": 9295139.0,
+    "disbursements": 2485278.44,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2674,
+    "coverage_end_date": "2026-05-27"
+  }
+]

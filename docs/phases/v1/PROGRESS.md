@@ -8,11 +8,13 @@
 > ⏳ **LIVE JOINS IN PROGRESS — architecture established (iter 67).** Pattern: `pipeline/
 > btb_pipeline/export_web.py` reads gold (`data/gold/*`, ephemeral) → writes display-ready JSON
 > into COMMITTED `apps/web/src/data/*` (ships in the Cloudflare build; static SSG needs data at
-> build time). Nightly Action (v1.10.x) will re-bake+export+commit→auto-deploy. **Done: members
-> + demographics.** members `roster.json` = 537 REAL; demographics = real ACS per race (OH
-> 11.77M/$67,478; PA-05 763k/$83,666; urbanization null — not in gold). **Still on sample
-> fixtures:** finance, forecast, districts, gerrymander (each needs an `export_*` fn). Then: geo
-> chain (TIGER/R2), v1.10.x crons, live-URL a11y/SEO/security sweep. Promise withheld until real
+> build time). Nightly Action (v1.10.x) will re-bake+export+commit→auto-deploy. **REAL RACE SET
+> (iter 69): 33 Class-II Senate 2026 races auto-generated from FEC** (`generate_races.py`) with
+> real candidates (e.g. TX: Cornyn-INC, Talarico, Crockett…). Live joins done: **members** (537),
+> **demographics** (real ACS per race), **finance** (real FEC receipts/cash per candidate). Sample
+> races (OH-Sen, PA-05) removed. **Still sample/pending:** forecast (per-race needs engine on real
+> PVI inputs — chamber /forecast still sample), districts/maps + House key races (TIGER/geo chain),
+> gerrymander. Then v1.10.x crons + live-URL a11y/SEO/security sweep. Promise withheld until real
 > data is on EVERY page.
 
 
@@ -69,7 +71,21 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 68)
+## RESUME  (current as of iter 69)
+
+iter 69: **REAL race set + finance live join** (user decision: auto Senate + House key races —
+Senate slice this iter). `generate_races.py` pulls the 33 Class-II 2026 Senate seats from FEC
+`/candidates/totals/` (top-6 by receipts ≥ $50k), writes real configs (candidates: name/party/
+incumbent/fecCandidateId) + bakes 141 real candidate totals to gold/fec. `export_finance` joins
+gold/fec ⋈ configs → per-race finance (TX: Cornyn $13.5M, Talarico $40.3M…). Removed the 2 sample
+races (OH-Sen not a real Class-II seat; PA-05 → House key races later) + their orphan data. Fixed
+6 sample-coupled tests (schema/demographics/finance → real TX; polling/forecast-per-race/geo →
+null, reflecting dropped/pending domains). Gate: pytest 147, ruff, astro 0/0/0, vitest 35, build
+33 real Senate race pages, links ok. **Live joins done: members, demographics, finance.**
+**Next:** House key races (needs a competitiveness list — ask/curate), per-race forecast
+(export_forecast: engine on real PVI/finance inputs; chamber /forecast still sample), gerrymander.
+
+## RESUME  (iter 68)
 
 iter 68: **live joins — demographics.** `export_demographics` (gold/census_acs → per-race
 `src/data/demographics/<id>.json`): senate/governor = state rollup (reused `rollup_by_state`),
@@ -628,6 +644,10 @@ all `done` units; `main` untouched `[S5a]`.
 - iter 68: **live joins — demographics.** `export_demographics` gold/census_acs → per-race JSON
   (state rollup / district); real OH+PA-05 figures; urbanization optional (null, UI hides).
   2 tests data-agnostic. pytest 144, vitest 37, build+links green. Direct to dev. — iter 68
+- iter 69: **real Senate race set + finance live-join.** `generate_races.py` → 33 Class-II 2026
+  Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
+  real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
+  35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

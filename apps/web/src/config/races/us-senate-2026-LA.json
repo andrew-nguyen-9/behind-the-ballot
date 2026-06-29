@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-LA",
+  "cycle": 2026,
+  "title": "LA U.S. Senate 2026",
+  "office": "senate",
+  "state": "LA",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "william-m-cassidy",
+      "name": "William M. Cassidy",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4LA00107"
+    },
+    {
+      "id": "john-c-fleming",
+      "name": "John C. Fleming",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6LA00318"
+    },
+    {
+      "id": "julia-letlow",
+      "name": "Julia Letlow",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6LA00664"
+    },
+    {
+      "id": "jamie-davis",
+      "name": "Jamie Davis",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6LA00615"
+    },
+    {
+      "id": "kathy-w-seiden",
+      "name": "Kathy W Seiden",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6LA00573"
+    },
+    {
+      "id": "julie-cathryn-emerson",
+      "name": "Julie Cathryn Emerson",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6LA00581"
+    }
+  ]
+}

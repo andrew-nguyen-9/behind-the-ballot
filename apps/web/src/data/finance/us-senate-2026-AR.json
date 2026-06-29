@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "S4AR00103",
+    "race_id": "us-senate-2026-AR",
+    "party": "R",
+    "receipts": 12773972.22,
+    "disbursements": 9383839.62,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7346,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6AR00199",
+    "race_id": "us-senate-2026-AR",
+    "party": "D",
+    "receipts": 1589764.37,
+    "disbursements": 1011034.49,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.636,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6AR00215",
+    "race_id": "us-senate-2026-AR",
+    "party": "R",
+    "receipts": 92531.55,
+    "disbursements": 92404.15,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9986,
+    "coverage_end_date": "2026-03-31"
+  }
+]

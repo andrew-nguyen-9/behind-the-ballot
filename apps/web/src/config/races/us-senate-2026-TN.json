@@ -1,0 +1,23 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-TN",
+  "cycle": 2026,
+  "title": "TN U.S. Senate 2026",
+  "office": "senate",
+  "state": "TN",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "bill-hagerty",
+      "name": "Bill Hagerty",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S0TN00169"
+    }
+  ]
+}

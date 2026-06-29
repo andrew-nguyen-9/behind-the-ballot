@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-MS",
+  "cycle": 2026,
+  "title": "MS U.S. Senate 2026",
+  "office": "senate",
+  "state": "MS",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "cindy-hyde-smith",
+      "name": "Cindy Hyde-Smith",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S8MS00261"
+    },
+    {
+      "id": "scott-colom",
+      "name": "Scott Colom",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MS00133"
+    },
+    {
+      "id": "sarah-anne-adlakha",
+      "name": "Sarah Anne Adlakha",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6MS00109"
+    },
+    {
+      "id": "ty-pinkins",
+      "name": "Ty Pinkins",
+      "party": "I",
+      "incumbent": false,
+      "fecCandidateId": "S4MS00187"
+    }
+  ]
+}

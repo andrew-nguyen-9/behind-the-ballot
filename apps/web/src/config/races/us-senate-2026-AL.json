@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-AL",
+  "cycle": 2026,
+  "title": "AL U.S. Senate 2026",
+  "office": "senate",
+  "state": "AL",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "thomas-h-tuberville",
+      "name": "Thomas H Tuberville",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S0AL00230"
+    },
+    {
+      "id": "felix-barry-moore",
+      "name": "Felix Barry Moore",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6AL00476"
+    },
+    {
+      "id": "rodney-walker",
+      "name": "Rodney Walker",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6AL00468"
+    },
+    {
+      "id": "jared-hudson",
+      "name": "Jared Hudson",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6AL00443"
+    },
+    {
+      "id": "steven-t-marshall",
+      "name": "Steven T Marshall",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6AL00450"
+    },
+    {
+      "id": "kyle-sweetser",
+      "name": "Kyle Sweetser",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6AL00435"
+    }
+  ]
+}

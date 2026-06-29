@@ -1,0 +1,52 @@
+[
+  {
+    "candidate_id": "S6GA00374",
+    "race_id": "us-senate-2026-GA",
+    "party": "R",
+    "receipts": 6842705.76,
+    "disbursements": 8147397.5,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.1907,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6GA00382",
+    "race_id": "us-senate-2026-GA",
+    "party": "R",
+    "receipts": 563078.46,
+    "disbursements": 563078.46,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2026-01-31"
+  },
+  {
+    "candidate_id": "S6GA00390",
+    "race_id": "us-senate-2026-GA",
+    "party": "R",
+    "receipts": 5546637.33,
+    "disbursements": 4403016.51,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7938,
+    "coverage_end_date": "2026-05-27"
+  },
+  {
+    "candidate_id": "S6GA00408",
+    "race_id": "us-senate-2026-GA",
+    "party": "R",
+    "receipts": 4175480.91,
+    "disbursements": 2506570.46,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6003,
+    "coverage_end_date": "2026-05-27"
+  },
+  {
+    "candidate_id": "S8GA00180",
+    "race_id": "us-senate-2026-GA",
+    "party": "D",
+    "receipts": 81146109.47,
+    "disbursements": 52973406.68,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6528,
+    "coverage_end_date": "2026-04-29"
+  }
+]

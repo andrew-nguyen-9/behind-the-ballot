@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-CO",
+  "cycle": 2026,
+  "title": "CO U.S. Senate 2026",
+  "office": "senate",
+  "state": "CO",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "john-w-hickenlooper",
+      "name": "John W. Hickenlooper",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S0CO00575"
+    },
+    {
+      "id": "julie-gonzales",
+      "name": "Julie Gonzales",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6CO00499"
+    },
+    {
+      "id": "janak-joshi",
+      "name": "Janak Joshi",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6CO00440"
+    },
+    {
+      "id": "george-washington-markert",
+      "name": "George Washington Markert",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6CO00424"
+    },
+    {
+      "id": "karen-breslin",
+      "name": "Karen Breslin",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6CO00408"
+    },
+    {
+      "id": "bob-chew",
+      "name": "Bob Chew",
+      "party": "other",
+      "incumbent": false,
+      "fecCandidateId": "S6CO00556"
+    }
+  ]
+}

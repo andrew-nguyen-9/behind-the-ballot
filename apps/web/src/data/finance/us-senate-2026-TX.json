@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S2TX00106",
+    "race_id": "us-senate-2026-TX",
+    "party": "R",
+    "receipts": 13574708.8,
+    "disbursements": 10130088.29,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7462,
+    "coverage_end_date": "2026-05-06"
+  },
+  {
+    "candidate_id": "S4TX00722",
+    "race_id": "us-senate-2026-TX",
+    "party": "D",
+    "receipts": 7628921.5,
+    "disbursements": 7761104.39,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0173,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6TX00388",
+    "race_id": "us-senate-2026-TX",
+    "party": "R",
+    "receipts": 7605209.32,
+    "disbursements": 5257745.82,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6913,
+    "coverage_end_date": "2026-05-06"
+  },
+  {
+    "candidate_id": "S6TX00479",
+    "race_id": "us-senate-2026-TX",
+    "party": "D",
+    "receipts": 40284109.15,
+    "disbursements": 30425243.8,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7553,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6TX00511",
+    "race_id": "us-senate-2026-TX",
+    "party": "R",
+    "receipts": 2071561.67,
+    "disbursements": 4526166.01,
+    "cash_on_hand": 0.0,
+    "burn_rate": 2.1849,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6TX00552",
+    "race_id": "us-senate-2026-TX",
+    "party": "D",
+    "receipts": 11092295.26,
+    "disbursements": 10459209.13,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9429,
+    "coverage_end_date": "2026-03-31"
+  }
+]

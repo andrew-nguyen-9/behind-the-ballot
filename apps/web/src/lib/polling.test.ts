@@ -2,14 +2,10 @@ import { describe, expect, it } from "vitest";
 import { pollingForRace } from "./polling";
 
 describe("polling", () => {
-  it("loads the seeded OH polling artifact", () => {
-    const p = pollingForRace("us-senate-2026-OH");
-    expect(p).not.toBeNull();
-    expect(p!.as_of).toBe("2026-03-15");
-    expect(p!.averages.map((a) => a.party)).toEqual(["D", "R"]);
-  });
-
-  it("returns null when a race has no polling artifact", () => {
-    expect(pollingForRace("us-house-2026-PA-05")).toBeNull();
+  // Polling is DROPPED from V1 (no clean open feed post-538; see docs/BACKLOG.md). No polling
+  // artifacts ship, so every lookup is null and the race page hides the polling section.
+  it("returns null (polling deferred to V1.1)", () => {
+    expect(pollingForRace("us-senate-2026-TX")).toBeNull();
+    expect(pollingForRace("no-such-race-9999")).toBeNull();
   });
 });

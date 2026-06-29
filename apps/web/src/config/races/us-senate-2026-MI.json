@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-MI",
+  "cycle": 2026,
+  "title": "MI U.S. Senate 2026",
+  "office": "senate",
+  "state": "MI",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "haley-stevens",
+      "name": "Haley Stevens",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MI00426"
+    },
+    {
+      "id": "mallory-mcmorrow",
+      "name": "Mallory Mcmorrow",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MI00392"
+    },
+    {
+      "id": "gary-peters",
+      "name": "Gary Peters",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S4MI00355"
+    },
+    {
+      "id": "michael-j-rogers",
+      "name": "Michael J Rogers",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S4MI00595"
+    },
+    {
+      "id": "abdul-el-sayed",
+      "name": "Abdul El-Sayed",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MI00418"
+    },
+    {
+      "id": "joseph-allen-tate",
+      "name": "Joseph Allen Tate",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MI00459"
+    }
+  ]
+}

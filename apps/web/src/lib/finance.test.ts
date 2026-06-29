@@ -8,13 +8,14 @@ describe("finance", () => {
     expect(fmtUSD(500)).toBe("$500");
   });
 
-  it("loads the seeded OH finance artifact and joins by FEC id", () => {
-    const rows = financeForRace("us-senate-2026-OH");
+  it("loads a real per-race finance artifact joined by FEC id", () => {
+    const rows = financeForRace("us-senate-2026-TX");
     expect(rows).not.toBeNull();
-    expect(rows!.map((r) => r.candidate_id)).toContain("S0OH00100");
+    expect(rows!.length).toBeGreaterThan(0);
+    expect(rows!.every((r) => typeof r.candidate_id === "string" && r.receipts >= 0)).toBe(true);
   });
 
   it("returns null for a race with no finance artifact", () => {
-    expect(financeForRace("us-house-2026-PA-05")).toBeNull();
+    expect(financeForRace("no-such-race-9999")).toBeNull();
   });
 });

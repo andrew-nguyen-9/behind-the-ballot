@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { parseUnit } from "./schema";
-import example from "./races/us-senate-2026-OH.json";
+import example from "./races/us-senate-2026-TX.json";
 
 describe("UnitConfig", () => {
-  it("accepts the seeded example race config", () => {
-    expect(parseUnit(example).id).toBe("us-senate-2026-OH");
+  it("accepts a real generated race config", () => {
+    expect(parseUnit(example).id).toBe("us-senate-2026-TX");
   });
 
   it("rejects a house race with no district", () => {

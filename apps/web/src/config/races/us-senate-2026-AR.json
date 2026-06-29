@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-AR",
+  "cycle": 2026,
+  "title": "AR U.S. Senate 2026",
+  "office": "senate",
+  "state": "AR",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "thomas-cotton",
+      "name": "Thomas Cotton",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4AR00103"
+    },
+    {
+      "id": "hallie-shoffner",
+      "name": "Hallie Shoffner",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6AR00199"
+    },
+    {
+      "id": "jeb-little",
+      "name": "Jeb Little",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6AR00215"
+    }
+  ]
+}

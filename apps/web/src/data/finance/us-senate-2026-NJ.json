@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "S4NJ00185",
+    "race_id": "us-senate-2026-NJ",
+    "party": "D",
+    "receipts": 32258820.13,
+    "disbursements": 15545782.73,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4819,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6NJ00438",
+    "race_id": "us-senate-2026-NJ",
+    "party": "R",
+    "receipts": 149407.42,
+    "disbursements": 114966.3,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7695,
+    "coverage_end_date": "2026-05-13"
+  }
+]

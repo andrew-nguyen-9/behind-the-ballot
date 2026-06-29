@@ -22,9 +22,9 @@ describe("geo", () => {
     expect(() => ringToSvg([[0, 0]] as [number, number][])).toThrow();
   });
 
-  it("loads the seeded PA-05 district shape", () => {
-    const s = districtShape("us-house-2026-PA-05");
-    expect(s).not.toBeNull();
-    expect(s!.ring.length).toBeGreaterThanOrEqual(4);
+  // District shapes ship with House key races (TIGER/geo chain — pending). No house race yet →
+  // null, and the race page hides the map section.
+  it("returns null for an unknown district shape", () => {
+    expect(districtShape("no-such-race-9999")).toBeNull();
   });
 });

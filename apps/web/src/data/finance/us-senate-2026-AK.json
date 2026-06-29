@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "S4AK00214",
+    "race_id": "us-senate-2026-AK",
+    "party": "R",
+    "receipts": 9099778.66,
+    "disbursements": 2745469.13,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3017,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6AK00276",
+    "race_id": "us-senate-2026-AK",
+    "party": "D",
+    "receipts": 8661662.38,
+    "disbursements": 2934553.61,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3388,
+    "coverage_end_date": "2026-03-31"
+  }
+]

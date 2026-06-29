@@ -1,0 +1,52 @@
+[
+  {
+    "candidate_id": "S2MT00096",
+    "race_id": "us-senate-2026-MT",
+    "party": "R",
+    "receipts": 8335510.53,
+    "disbursements": 4168226.25,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5001,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MT00238",
+    "race_id": "us-senate-2026-MT",
+    "party": "D",
+    "receipts": 293990.0,
+    "disbursements": 220637.41,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7505,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6MT00261",
+    "race_id": "us-senate-2026-MT",
+    "party": "L",
+    "receipts": 262094.97,
+    "disbursements": 233572.46,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8912,
+    "coverage_end_date": "2026-05-20"
+  },
+  {
+    "candidate_id": "S6MT00287",
+    "race_id": "us-senate-2026-MT",
+    "party": "I",
+    "receipts": 2113231.28,
+    "disbursements": 1149309.96,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5439,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6MT00295",
+    "race_id": "us-senate-2026-MT",
+    "party": "R",
+    "receipts": 1184127.39,
+    "disbursements": 261874.72,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2212,
+    "coverage_end_date": "2026-05-13"
+  }
+]

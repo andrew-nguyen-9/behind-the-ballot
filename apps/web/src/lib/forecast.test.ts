@@ -9,14 +9,11 @@ describe("forecast", () => {
     expect(marginLabel(0.0003)).toBe("EVEN"); // < 0.05pt rounds to even
   });
 
-  it("loads the seeded OH forecast artifact", () => {
-    const f = forecastForRace("us-senate-2026-OH");
-    expect(f).not.toBeNull();
-    expect(f!.win_prob).toBeCloseTo(0.62);
-  });
-
-  it("returns null for a race with no forecast", () => {
-    expect(forecastForRace("us-house-2026-PA-05")).toBeNull();
+  // Per-race forecast is not wired yet (export_forecast pending — needs the engine run on real
+  // PVI/finance inputs). Until then forecastForRace is null and the race page hides the section.
+  it("returns null per-race until export_forecast lands", () => {
+    expect(forecastForRace("us-senate-2026-TX")).toBeNull();
+    expect(forecastForRace("no-such-race-9999")).toBeNull();
   });
 
   it("loads chamber forecasts", () => {

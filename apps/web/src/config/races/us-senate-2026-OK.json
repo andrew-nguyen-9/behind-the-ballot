@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-OK",
+  "cycle": 2026,
+  "title": "OK U.S. Senate 2026",
+  "office": "senate",
+  "state": "OK",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "kevin-hern",
+      "name": "Kevin Hern",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6OK04247"
+    },
+    {
+      "id": "markwayne-mullin",
+      "name": "Markwayne Mullin",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S2OK00186"
+    },
+    {
+      "id": "jim-priest",
+      "name": "Jim Priest",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6OK04197"
+    },
+    {
+      "id": "james-m-inhofe",
+      "name": "James M. Inhofe",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S4OK00083"
+    }
+  ]
+}

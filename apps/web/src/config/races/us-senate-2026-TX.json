@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-TX",
+  "cycle": 2026,
+  "title": "TX U.S. Senate 2026",
+  "office": "senate",
+  "state": "TX",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "james-talarico",
+      "name": "James Talarico",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6TX00479"
+    },
+    {
+      "id": "john-cornyn",
+      "name": "John Cornyn",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S2TX00106"
+    },
+    {
+      "id": "jasmine-crockett",
+      "name": "Jasmine Crockett",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6TX00552"
+    },
+    {
+      "id": "colin-allred",
+      "name": "Colin Allred",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S4TX00722"
+    },
+    {
+      "id": "warren-kenneth-paxton",
+      "name": "Warren Kenneth Paxton",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6TX00388"
+    },
+    {
+      "id": "wesley-hunt",
+      "name": "Wesley Hunt",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6TX00511"
+    }
+  ]
+}

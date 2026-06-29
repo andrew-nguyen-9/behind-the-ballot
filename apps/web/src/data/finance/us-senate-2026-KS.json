@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S0KS00315",
+    "race_id": "us-senate-2026-KS",
+    "party": "R",
+    "receipts": 5528510.91,
+    "disbursements": 957210.99,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.1731,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6KS00247",
+    "race_id": "us-senate-2026-KS",
+    "party": "D",
+    "receipts": 137068.03,
+    "disbursements": 77796.18,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5676,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6KS00262",
+    "race_id": "us-senate-2026-KS",
+    "party": "D",
+    "receipts": 187436.34,
+    "disbursements": 149326.67,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7967,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6KS00270",
+    "race_id": "us-senate-2026-KS",
+    "party": "D",
+    "receipts": 179817.62,
+    "disbursements": 134230.89,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7465,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6KS00288",
+    "race_id": "us-senate-2026-KS",
+    "party": "D",
+    "receipts": 177173.5,
+    "disbursements": 47590.34,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2686,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6KS00296",
+    "race_id": "us-senate-2026-KS",
+    "party": "D",
+    "receipts": 72435.0,
+    "disbursements": 3801.94,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.0525,
+    "coverage_end_date": "2026-03-31"
+  }
+]

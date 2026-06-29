@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "S4MS00187",
+    "race_id": "us-senate-2026-MS",
+    "party": "I",
+    "receipts": 90225.35,
+    "disbursements": 95207.94,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0552,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MS00109",
+    "race_id": "us-senate-2026-MS",
+    "party": "R",
+    "receipts": 566184.12,
+    "disbursements": 556454.75,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9828,
+    "coverage_end_date": "2026-02-18"
+  },
+  {
+    "candidate_id": "S6MS00133",
+    "race_id": "us-senate-2026-MS",
+    "party": "D",
+    "receipts": 1619367.76,
+    "disbursements": 1059740.86,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6544,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S8MS00261",
+    "race_id": "us-senate-2026-MS",
+    "party": "R",
+    "receipts": 5027030.87,
+    "disbursements": 2729948.81,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5431,
+    "coverage_end_date": "2026-03-31"
+  }
+]

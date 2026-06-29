@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S0KY00339",
+    "race_id": "us-senate-2026-KY",
+    "party": "D",
+    "receipts": 2154476.84,
+    "disbursements": 2072058.55,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9617,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S2KY00012",
+    "race_id": "us-senate-2026-KY",
+    "party": "R",
+    "receipts": 7878213.74,
+    "disbursements": 7356642.97,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9338,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6KY00237",
+    "race_id": "us-senate-2026-KY",
+    "party": "R",
+    "receipts": 2182457.28,
+    "disbursements": 1650314.22,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7562,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6KY00286",
+    "race_id": "us-senate-2026-KY",
+    "party": "R",
+    "receipts": 8403849.07,
+    "disbursements": 9649131.54,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.1482,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6KY00302",
+    "race_id": "us-senate-2026-KY",
+    "party": "R",
+    "receipts": 8592132.21,
+    "disbursements": 7883807.49,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9176,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "S6KY00369",
+    "race_id": "us-senate-2026-KY",
+    "party": "D",
+    "receipts": 831756.07,
+    "disbursements": 600763.85,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7223,
+    "coverage_end_date": "2026-04-29"
+  }
+]

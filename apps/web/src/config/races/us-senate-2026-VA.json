@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-VA",
+  "cycle": 2026,
+  "title": "VA U.S. Senate 2026",
+  "office": "senate",
+  "state": "VA",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "mark-robert-warner",
+      "name": "Mark Robert Warner",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S6VA00093"
+    },
+    {
+      "id": "bert-k-mizusawa",
+      "name": "Bert K Mizusawa",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S8VA00321"
+    },
+    {
+      "id": "kim-farington",
+      "name": "Kim Farington",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6VA00143"
+    },
+    {
+      "id": "bryce-reeves",
+      "name": "Bryce Reeves",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6VA00176"
+    },
+    {
+      "id": "lorita-daniels",
+      "name": "Lorita Daniels",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6VA00184"
+    },
+    {
+      "id": "david-earl-williams",
+      "name": "David Earl Williams",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6VA00200"
+    }
+  ]
+}

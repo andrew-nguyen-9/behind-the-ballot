@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "S4MN00502",
+    "race_id": "us-senate-2026-MN",
+    "party": "R",
+    "receipts": 565894.4,
+    "disbursements": 622199.36,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0995,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MN00440",
+    "race_id": "us-senate-2026-MN",
+    "party": "D",
+    "receipts": 4646309.17,
+    "disbursements": 3502299.33,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7538,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MN00457",
+    "race_id": "us-senate-2026-MN",
+    "party": "R",
+    "receipts": 1102851.14,
+    "disbursements": 879423.21,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7974,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MN00499",
+    "race_id": "us-senate-2026-MN",
+    "party": "D",
+    "receipts": 9290611.68,
+    "disbursements": 4395298.62,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4731,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6MN00556",
+    "race_id": "us-senate-2026-MN",
+    "party": "R",
+    "receipts": 2041939.86,
+    "disbursements": 186972.48,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.0916,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S8MN00578",
+    "race_id": "us-senate-2026-MN",
+    "party": "D",
+    "receipts": 3056970.44,
+    "disbursements": 3588468.57,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.1739,
+    "coverage_end_date": "2026-03-31"
+  }
+]

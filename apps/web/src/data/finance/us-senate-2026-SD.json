@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "S4SD00049",
+    "race_id": "us-senate-2026-SD",
+    "party": "R",
+    "receipts": 3983662.96,
+    "disbursements": 3008908.94,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7553,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6SD01117",
+    "race_id": "us-senate-2026-SD",
+    "party": "I",
+    "receipts": 666019.24,
+    "disbursements": 607867.37,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9127,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "S6SD01125",
+    "race_id": "us-senate-2026-SD",
+    "party": "D",
+    "receipts": 209806.94,
+    "disbursements": 206763.72,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9855,
+    "coverage_end_date": "2026-05-13"
+  }
+]

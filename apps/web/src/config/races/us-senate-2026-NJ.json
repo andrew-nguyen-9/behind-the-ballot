@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-NJ",
+  "cycle": 2026,
+  "title": "NJ U.S. Senate 2026",
+  "office": "senate",
+  "state": "NJ",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "cory-a-booker",
+      "name": "Cory A. Booker",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S4NJ00185"
+    },
+    {
+      "id": "robert-lebovics",
+      "name": "Robert Lebovics",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6NJ00438"
+    }
+  ]
+}

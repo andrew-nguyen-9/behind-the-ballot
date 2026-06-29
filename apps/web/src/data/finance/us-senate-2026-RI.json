@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "S4RI00051",
+    "race_id": "us-senate-2026-RI",
+    "party": "R",
+    "receipts": 139874.63,
+    "disbursements": 127794.47,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9136,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "S6RI00163",
+    "race_id": "us-senate-2026-RI",
+    "party": "D",
+    "receipts": 3689882.72,
+    "disbursements": 2269788.63,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6151,
+    "coverage_end_date": "2026-03-31"
+  }
+]

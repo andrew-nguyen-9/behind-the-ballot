@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-NC",
+  "cycle": 2026,
+  "title": "NC U.S. Senate 2026",
+  "office": "senate",
+  "state": "NC",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "roy-cooper",
+      "name": "Roy Cooper",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6NC00407"
+    },
+    {
+      "id": "michael-whatley",
+      "name": "Michael Whatley",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6NC00415"
+    },
+    {
+      "id": "thom-r-tillis",
+      "name": "Thom R Tillis",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "S4NC00162"
+    },
+    {
+      "id": "wiley-nickel",
+      "name": "Wiley Nickel",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6NC00340"
+    },
+    {
+      "id": "don-brown",
+      "name": "Don Brown",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6NC00373"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-MA",
+  "cycle": 2026,
+  "title": "MA U.S. Senate 2026",
+  "office": "senate",
+  "state": "MA",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "edward-markey",
+      "name": "Edward Markey",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S4MA00028"
+    },
+    {
+      "id": "seth-moulton",
+      "name": "Seth Moulton",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MA00296"
+    },
+    {
+      "id": "john-deaton",
+      "name": "John Deaton",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6MA00304"
+    },
+    {
+      "id": "joseph-tache",
+      "name": "Joseph Tache",
+      "party": "other",
+      "incumbent": false,
+      "fecCandidateId": "S6MA00288"
+    },
+    {
+      "id": "alexander-rikleen",
+      "name": "Alexander Rikleen",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "S6MA00254"
+    }
+  ]
+}

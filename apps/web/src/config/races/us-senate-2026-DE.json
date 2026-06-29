@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-senate-2026-DE",
+  "cycle": 2026,
+  "title": "DE U.S. Senate 2026",
+  "office": "senate",
+  "state": "DE",
+  "senateClass": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "christopher-a-coons",
+      "name": "Christopher A. Coons",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "S0DE00092"
+    },
+    {
+      "id": "john-shulli",
+      "name": "John Shulli",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "S6DE00198"
+    }
+  ]
+}
