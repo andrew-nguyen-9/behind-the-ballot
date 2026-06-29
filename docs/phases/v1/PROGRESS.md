@@ -39,6 +39,21 @@ code slices of the "unblocked" units (dispatch wiring, datastore client, join lo
 fixture-testable now; live invocation + deploy + freshness stay gated. **`V1 COMPLETE` cannot
 be emitted** — never lie to exit.
 
+## ✅ HUMAN DECISIONS (iter 79 — Andrew, via AskUserQuestion) — V1 scope now LOCKED
+
+1. **Election-results source = MEDSL (MIT Election Lab, Harvard Dataverse, CC-BY).** Build a
+   connector for state-level presidential returns (→ PVI → **forecast**) + U.S. House district
+   returns (→ efficiency gap / mean-median → gerrymander **fairness**). Attribution on /sources.
+   → **Open Q#3 RESOLVED.** This is the remaining critical-path V1 build.
+2. **V1 is Senate-only** (33 real Class-II 2026 races). House races → **V1.1** (BACKLOG). This also
+   defers find-my-district (depends on House districts).
+3. **Interactive PMTiles map + find-my-district → V1.1** (BACKLOG). The 0-JS district SVG already
+   meets the district-shape DoD [P8a].
+
+**Therefore V1 COMPLETE remaining = the MEDSL connector → forecast live + fairness live + their
+DATA_SOURCES rows.** Once those ship green at the live preview, the self-check passes. The deferred
+items (House, map, find-district) are now sanctioned V1.1 scope, NOT V1 blockers.
+
 ## Open questions (human decision — safest default picked, loop continues [S16a])
 
 3. **OPEN (iter 70): per-race forecast needs a partisan-lean (PVI) source.** `race_model.predict_race`
@@ -128,12 +143,12 @@ NOT DONE — two buckets:
        a client-side Census Geocoder call or a precomputed lookup) AND depends on (A) House races
        to be useful.
 
-**SCOPE CALL NEEDED (human):** are A/B V1-blocking, or do the map+find-district+House-races defer
-to V1.1 (BACKLOG) so V1 ships as the Senate-tracker-+-compactness scope that is real today? I will
-NOT emit V1 COMPLETE while ledger units are pending+unsanctioned-for-deferral — that would be lying.
-Next autonomous iterations can still attempt the PMTiles map (the only non-human-blocked remainder);
-everything else awaits a human source/scope decision. **Loop continues but is now near the
-"no eligible autonomous unit" stop condition.**
+**SCOPE RESOLVED (iter 79, Andrew — see HUMAN DECISIONS at top):** MEDSL is the results source
+(build it → forecast + fairness); V1 is Senate-only (House → V1.1); map + find-district → V1.1.
+So the **only remaining V1 build is the MEDSL connector → forecast live + fairness live.** Bucket-B
+geo-map items are now sanctioned V1.1 (BACKLOG), not blockers. **Next iteration: start the MEDSL
+state-presidential connector** (→ PVI → export_forecast → real /forecast), then MEDSL House results
+(→ fairness export → real gerrymander states.json). Then V1 COMPLETE self-check.
 
 ## RESUME  (current as of iter 78)
 
@@ -571,16 +586,16 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.0.7-design-tokens | v1.0.1 | done |
 | v1.0.8-base-layout-seo | v1.0.1, v1.0.7 | done |
 | v1.1.1-etl-framework | v1.0.5 | done |
-| v1.1.2-geo-tiles | v1.0.4 | pending |
-| v1.1.3-district-equivalency | v1.1.2 | pending |
-| v1.1.4-geocoder | v1.1.1 | pending |
+| v1.1.2-geo-tiles | v1.0.4 | DEFERRED V1.1 (iter 79: PMTiles map → BACKLOG; SVG meets shape DoD) |
+| v1.1.3-district-equivalency | v1.1.2 | DEFERRED V1.1 (geo-map chain) |
+| v1.1.4-geocoder | v1.1.1 | DEFERRED V1.1 (find-my-district → BACKLOG) |
 | v1.1.5-member-roster | v1.1.1 | done (code; keyless) |
 | v1.1.6-artifact-bake | v1.1.1 | done (per-source dispatch CLI + tests; live fetch pends real DATA_GOV_API_KEY/network + deploy) |
 | v1.2.1-race-config | v1.0.3 | done (schema + 2 validated race configs) |
 | v1.2.2-candidate-roster | v1.1.5 | partial: config-embedded candidates; live FEC/Congress roster join pends data |
 | v1.2.3-race-page | v1.2.1, v1.2.2 | done (local gate; CI lhci/axe on push) |
 | v1.2.4-district-map-island | v1.1.2 | done as SVG (0-JS); MapLibre+PMTiles pends R2 |
-| v1.2.5-find-my-district | v1.1.4 | pending |
+| v1.2.5-find-my-district | v1.1.4 | DEFERRED V1.1 (iter 79: static-hosting wrinkle + needs House races) |
 | v1.2.6-race-index | v1.2.3 | done (local gate; CI lhci/axe on push) |
 | v1.3.1-fec-connector | v1.1.1 | done + LIVE (iter 61: real bake, 200 rows via DATA_GOV_API_KEY) |
 | v1.3.2-candidate-committee-link | v1.3.1 | done + LIVE (iter 64: principal-cmte linkage via OpenFEC, real links verified) |
