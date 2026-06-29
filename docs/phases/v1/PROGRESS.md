@@ -8,11 +8,12 @@
 > ⏳ **LIVE JOINS IN PROGRESS — architecture established (iter 67).** Pattern: `pipeline/
 > btb_pipeline/export_web.py` reads gold (`data/gold/*`, ephemeral) → writes display-ready JSON
 > into COMMITTED `apps/web/src/data/*` (ships in the Cloudflare build; static SSG needs data at
-> build time). Nightly Action (v1.10.x) will re-bake+export+commit→auto-deploy. **Done: members**
-> — `roster.json` now 537 REAL members (gold/members ⋈ voteview ideology); build emits 537 real
-> profile pages. **Still on sample fixtures:** finance, demographics, forecast, districts,
-> gerrymander (each needs an `export_*` fn). Then: geo chain (TIGER/R2), v1.10.x crons, live-URL
-> a11y/SEO/security sweep. Promise withheld until real data is on EVERY page.
+> build time). Nightly Action (v1.10.x) will re-bake+export+commit→auto-deploy. **Done: members
+> + demographics.** members `roster.json` = 537 REAL; demographics = real ACS per race (OH
+> 11.77M/$67,478; PA-05 763k/$83,666; urbanization null — not in gold). **Still on sample
+> fixtures:** finance, forecast, districts, gerrymander (each needs an `export_*` fn). Then: geo
+> chain (TIGER/R2), v1.10.x crons, live-URL a11y/SEO/security sweep. Promise withheld until real
+> data is on EVERY page.
 
 
 Dual purpose: (1) the ledger this **planning** loop reads to pick the next doc;
@@ -68,7 +69,17 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 67)
+## RESUME  (current as of iter 68)
+
+iter 68: **live joins — demographics.** `export_demographics` (gold/census_acs → per-race
+`src/data/demographics/<id>.json`): senate/governor = state rollup (reused `rollup_by_state`),
+house = the district; FIPS↔postal map added. Real: OH 11.77M/$67,478, PA-05 763k/$83,666.
+urbanization left `null` (ACS gold has no urban/rural split) → made the field optional in TS +
+the UI hides it. 2 demographics tests made data-agnostic. Gate: pytest 144, ruff, astro 0/0/0,
+vitest 37, build, links ok. **Live-join done: members, demographics. Next: finance** (gold/fec +
+committee_link + race-config candidates → per-race finance), then forecast, districts, gerrymander.
+
+## RESUME  (iter 67)
 
 iter 67: **live joins started — pattern proven on members.** New `export_web.py` (gold →
 committed `src/data/*`); `export_members` joins gold/members ⋈ gold/voteview → `roster.json`
@@ -614,6 +625,9 @@ all `done` units; `main` untouched `[S5a]`.
 - iter 67: **live joins — members.** `export_web.py` exports gold → committed `src/data/*`;
   `roster.json` = 537 real members (members ⋈ voteview), build emits 537 real profile pages.
   Member tests made data-agnostic. pytest 143, vitest 37, build+links green. Direct to dev. — iter 67
+- iter 68: **live joins — demographics.** `export_demographics` gold/census_acs → per-race JSON
+  (state rollup / district); real OH+PA-05 figures; urbanization optional (null, UI hides).
+  2 tests data-agnostic. pytest 144, vitest 37, build+links green. Direct to dev. — iter 68
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

@@ -6,7 +6,7 @@ export interface Demographics {
   area: string;
   population: number;
   median_income: number;
-  urbanization: string;
+  urbanization: string | null; // null when not classified (ACS gold has no urban/rural split yet)
   acs_release: string;
   geometry_as_of: string;
 }

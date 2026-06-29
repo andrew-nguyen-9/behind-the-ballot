@@ -2,15 +2,16 @@ import { describe, expect, it } from "vitest";
 import { demographicsForRace, fmtIncome, fmtPop } from "./demographics";
 
 describe("demographics", () => {
-  it("loads the seeded OH demographics artifact", () => {
+  it("loads the OH demographics artifact with real figures", () => {
     const d = demographicsForRace("us-senate-2026-OH");
     expect(d).not.toBeNull();
     expect(d!.area).toBe("Ohio");
-    expect(d!.urbanization).toBe("suburban");
+    expect(d!.population).toBeGreaterThan(10_000_000); // real OH ~11.8M
+    expect(d!.median_income).toBeGreaterThan(0);
   });
 
   it("returns null when absent", () => {
-    expect(demographicsForRace("us-house-2026-PA-05")).toBeNull();
+    expect(demographicsForRace("no-such-race-9999")).toBeNull();
   });
 
   it("formats population and income", () => {

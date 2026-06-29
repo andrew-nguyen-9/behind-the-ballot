@@ -1,7 +1,7 @@
 {
-  "area": "Ohio",
-  "population": 11774683,
-  "median_income": 67478,
+  "area": "Pennsylvania District 5",
+  "population": 763043,
+  "median_income": 83666,
   "urbanization": null,
   "acs_release": "2022 ACS 5-year",
   "geometry_as_of": "2022-01-01"
