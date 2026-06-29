@@ -1,0 +1,59 @@
+# Nightly live-join refresh [v1.10.2] — re-bake the sources the site consumes, re-export
+# the committed per-page JSON (apps/web/src/data/*), and commit any change to `dev`. The
+# connected Workers Build then auto-deploys the refreshed site. Keeps real-data freshness
+# met [R5a] without human babysitting. `main` is never touched [S5a]: this only commits to dev.
+#
+# Bakes ONLY the sources the exporters read (members, voteview, acs, fec) — not `bake all` —
+# to stay inside api.data.gov quota [S6a]. ponytail: add a source here when an exporter starts
+# consuming it (upgrade path = switch to `bake all` if every source becomes consumed).
+#
+# Race set is NOT regenerated here (generate_races is a curated, manual step) so the roster /
+# candidate list stays stable night to night; only the joined figures refresh.
+name: refresh
+
+on:
+  schedule:
+    - cron: "17 9 * * *" # 09:17 UTC nightly (off the hour to dodge GH cron congestion)
+  workflow_dispatch: {} # manual trigger
+
+# Never run two refreshes at once (avoids a commit race on dev).
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write # needs to commit the refreshed data back to dev
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: dev
+      - uses: astral-sh/setup-uv@e58605a9b6da7c637471fab8847a5e5a6b8df081 # v5
+      - run: uv sync --project pipeline
+
+      - name: bake consumed sources + export web JSON
+        env:
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: |
+          set -euo pipefail
+          for s in members voteview acs fec; do
+            uv run --project pipeline python -m btb_pipeline.cli bake "$s"
+          done
+          uv run --project pipeline python -m btb_pipeline.export_web
+
+      - name: commit refreshed data to dev
+        run: |
+          set -euo pipefail
+          git config user.name "btb-data-refresh"
+          git config user.email "actions@users.noreply.github.com"
+          git add apps/web/src/data
+          if git diff --cached --quiet; then
+            echo "no data change — nothing to refresh"
+            exit 0
+          fi
+          git commit -m "chore(data): nightly live-join refresh"
+          git push origin HEAD:dev

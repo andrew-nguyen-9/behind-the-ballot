@@ -41,6 +41,20 @@ be emitted** — never lie to exit.
 
 ## Open questions (human decision — safest default picked, loop continues [S16a])
 
+3. **OPEN (iter 70): per-race forecast needs a partisan-lean (PVI) source.** `race_model.predict_race`
+   requires `fundamentals_pvi` per race; `baseline.cook_pvi` derives it from a prior-election
+   district/state two-party Dem share minus the national share — but **no prior-election-results
+   source is baked** (configs carry candidates only; ACS is demographics, not partisanship; FEC is
+   money). So the chamber `/forecast` + per-race forecast sections still ship the **sample**
+   `chamber-senate.json` — the most prominent fake figure left on the site. Same shape as the
+   polling gap: a real published forecast can't fabricate the lean input. **Recommended default
+   (next iter):** MIT Election Data + Science Lab state presidential returns (Harvard Dataverse,
+   machine-readable CSV, CC-BY) → state two-party Dem share → `cook_pvi` vs national → real
+   fundamentals-only forecast (no polls in V1; methodology page already explains fundamentals).
+   **Human action:** confirm MIT Election Lab is an acceptable source+license, or name another;
+   then build `export_forecast` (new connector + DATA_SOURCES row + integrity). Until resolved,
+   forecast stays sample and `V1 COMPLETE` is withheld.
+
 2. **RESOLVED (iter 66): valid `CENSUS_API_KEY` in.** ACS now live-bakes **440 rows** (435
    districts + DC/territories). Finding that drove it: ACS needs a separate Census key (the
    data.gov key 302s to missing_key.html); a placeholder key 40-char'd but returned
@@ -71,7 +85,22 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 69)
+## RESUME  (current as of iter 70)
+
+iter 70: **built the nightly live-join refresh Action** (the workflow the ledger kept deferring
+to). `.github/workflows/refresh.yml` — schedule (09:17 UTC) + manual dispatch, `contents:write`,
+concurrency-guarded; bakes ONLY the consumed sources (`members voteview acs fec`, not `bake all`,
+to respect api.data.gov quota [S6a]), runs `export_web`, commits any `apps/web/src/data` change to
+`dev` → connected Workers Build auto-deploys. Race set NOT regenerated nightly (stable roster).
+**Verified the workflow's commands locally with real keys:** baked all 4 sources + exported (1
+roster, 33 demographics, 33 finance) — pipeline green end-to-end; export is deterministic (no diff
+vs iter 69 → confirms freshness already met, idempotent). Gate: yaml valid, pytest 147, ruff clean
+(web untouched). Logged **Open Q#3**: per-race forecast still sample — needs a real PVI/partisan-lean
+source (recommended MIT Election Lab); chamber `/forecast` is the most prominent fake figure left.
+**Next eligible:** resolve Open Q#3 → `export_forecast`; OR geo chain (TIGER/R2: v1.1.2/1.3/1.4,
+v1.2.5); OR live-preview a11y/SEO/security sweep; OR v1.10.3/4/5 (regression/budget/weekly alerts).
+
+## RESUME  (iter 69)
 
 iter 69: **REAL race set + finance live join** (user decision: auto Senate + House key races —
 Senate slice this iter). `generate_races.py` pulls the 33 Class-II 2026 Senate seats from FEC
@@ -406,7 +435,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.9.4-sources-page | — | done (local gate) |
 | v1.9.5-home-nav | v1.9.1 | done (local gate; built iter 46) |
 | v1.10.1-coverage-configs | phases 2–8 | pending |
-| v1.10.2-nightly-qa | v1.10.1 | pending |
+| v1.10.2-nightly-qa | v1.10.1 | done (refresh.yml: nightly bake→export→commit→auto-deploy; cmds live-verified locally w/ real keys iter 70. QA-screenshot sweep folds into v1.10.3) |
 | v1.10.3-regression-alerts | v1.10.2 | pending |
 | v1.10.4-budget-alarms | v1.10.2 | pending |
 | v1.10.5-weekly-review-routine | v1.10.2 | pending |
@@ -648,6 +677,12 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 70: **v1.10.2 nightly refresh Action.** `.github/workflows/refresh.yml` re-bakes the 4
+  consumed sources (members/voteview/acs/fec, not `bake all` — quota [S6a]), re-exports
+  `src/data/*`, commits any change to `dev` → Workers Build auto-deploys. Commands live-verified
+  locally with real keys (1 roster + 33 demographics + 33 finance; deterministic, no diff →
+  freshness already met). pytest 147, ruff, yaml valid. Open Q#3 logged (forecast PVI source).
+  Direct to dev. — iter 70
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
