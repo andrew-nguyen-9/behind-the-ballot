@@ -21,7 +21,16 @@ code slices of the "unblocked" units (dispatch wiring, datastore client, join lo
 fixture-testable now; live invocation + deploy + freshness stay gated. **`V1 COMPLETE` cannot
 be emitted** — never lie to exit.
 
-## RESUME  (current as of iter 57)
+## RESUME  (current as of iter 58)
+
+iter 58: **built v1.0.4-datastore-wiring code slice.** Drizzle + Neon-http added; one table
+`forecast_snapshots` (the V1 snapshot consumer), lazy client throwing on absent DATABASE_URL,
+migration generated (`drizzle/0000_*.sql`) — verified without a DB. Gate: drizzle-kit generate
+ok, astro check 0/0/0, vitest 35, build 15 pages, links ok. Live connect pends DATABASE_URL.
+Next buildable-without-secrets slice unclear: v1.8.7 store logic needs a DB to test; geo chain
+needs R2/TIGER; live joins need live data. Remaining units mostly need the empty secrets below.
+
+## RESUME  (iter 57)
 
 iter 57: **built the v1.1.6-artifact-bake code slice.** `cli.py` now has per-source dispatch
 (`btb-etl bake <source>` / `bake all`) routing to each connector's `run()` via a flat
@@ -159,7 +168,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.0.1-repo-scaffold | — | done |
 | v1.0.2-ci-gate | v1.0.1 | done |
 | v1.0.3-config-schema | v1.0.1 | done |
-| v1.0.4-datastore-wiring | v1.0.1 | blocked (needs Neon + R2 accounts) |
+| v1.0.4-datastore-wiring | v1.0.1 | done (Drizzle schema + Neon-http client + migration; live connect pends DATABASE_URL) |
 | v1.0.5-etl-skeleton | v1.0.1 | done |
 | v1.0.6-data-integrity-check | v1.0.5 | done |
 | v1.0.7-design-tokens | v1.0.1 | done |
@@ -408,6 +417,15 @@ all `done` units; `main` untouched `[S5a]`.
   kept. test_cli.py (6) proves routing without network; `bake fec` errors cleanly on absent
   key. Discovered `.env` is an empty template → provisioning NOT actually done (see ⚠️ BLOCKER).
   Gate: pytest 127, ruff clean. Direct to dev. — iter 57
+- v1.0.4-datastore-wiring (code slice): Drizzle + @neondatabase/serverless added [ADR 0002].
+  `src/lib/db/schema.ts` — one table `forecast_snapshots` (cycle-partitioned append-only run
+  history, the V1 snapshot-store consumer [v1.8.7]); skipped feed/search tables (no V1 writer;
+  Pagefind does search staticly). `src/lib/db/client.ts` — lazy Neon-http drizzle client,
+  throws on absent DATABASE_URL (hot path reads baked JSON, never the DB). `drizzle.config.ts`
+  + generated migration `drizzle/0000_*.sql` (the no-DB verifiable check). `db:generate`/
+  `db:migrate` scripts. Gate: drizzle-kit generate ok, astro check 0/0/0, vitest 35, build 15
+  pages, links ok. Live connect/migrate pends DATABASE_URL (still empty — see ⚠️ BLOCKER).
+  Direct to dev. — iter 58
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
