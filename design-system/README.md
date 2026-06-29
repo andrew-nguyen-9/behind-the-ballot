@@ -14,31 +14,40 @@
 
 ## Color tokens
 
-### Civic neutral (chrome) `[C4a]`
+> Brand v1.0 — one confident green on cool blue-gray neutrals (no party color in chrome).
+> Implemented in `apps/web/src/styles/global.css` (`@theme`); this table is the spec.
+
+### Civic chrome `[C4a]`
 | Token | Light | Dark |
 |---|---|---|
-| `bg` | `#ffffff` | `#0d1117` |
-| `surface` | `#f6f8fa` | `#161b22` |
-| `border` | `#d0d7de` | `#30363d` |
-| `text` | `#1f2328` | `#e6edf3` |
-| `text-muted` | `#636c76` | `#9198a1` |
-| `accent` (links/CTA, non-party) | `#0969da` | `#4493f8` |
+| `bg` | `#f4f7f9` | `#0a0f14` |
+| `surface` | `#ffffff` | `#111a22` |
+| `surface-2` | `#edf1f4` | `#18242e` |
+| `border` | `#dbe2e8` | `#27343f` |
+| `border-strong` | `#c2ccd4` | `#3a4a57` |
+| `text` | `#0e1a20` | `#ecf2f5` |
+| `text-muted` | `#51616c` | `#9aa8b3` |
+| `text-subtle` | `#7e8c95` | `#6e7c87` |
+| `brand` (links/CTA, non-party) | `#0b6e4f` | `#2fc489` |
+| `brand-soft` | `#e2f1ea` | `#11281f` |
+| `on-brand` | `#ffffff` | `#06140e` |
+| `danger` | `#b2182b` | `#e06a6a` |
 
 ### Party / data-viz (charts & maps only) `[C5a]`
-Colorblind-safe blue/red (ColorBrewer RdBu endpoints), **plus patterns** for safety, and a
-**purple-through-middle margin gradient** for continuous margins `[C5a+C]`.
-| Token | Value | Use |
-|---|---|---|
-| `party-dem` | `#2166ac` | Democratic |
-| `party-rep` | `#b2182b` | Republican |
-| `party-ind` | `#5a4fa0` | Independent/other |
-| `margin-scale` | `#b2182b → #f7f7f7 → #2166ac` | diverging margin (rep↔dem) |
-| `pattern-dem` / `pattern-rep` | diagonal / dot overlays | redundant encoding for CVD safety |
+Party hue appears **only inside data**, never in brand chrome, and **always paired with a
+pattern + label** so meaning never rests on hue alone `[C5a+C]`. Constant across themes.
+| Token | Value | Use | Pattern |
+|---|---|---|---|
+| `party-dem` | `#2c6fb3` | Democratic | solid |
+| `party-rep` | `#c13b3b` | Republican | diagonal hatch |
+| `party-ind` | `#e69f00` | Independent | dotted |
+| `party-other` | `#9061c2` | Third party / other | cross-hatch |
 
 ## Typography `[C7a]`
-- **Sans** (UI + figures): one readable variable sans (e.g. Inter).
-- **Serif** (long-form articles): one serif (e.g. Source Serif / Lora).
-- Scale: 12 / 14 / 16 (base) / 20 / 24 / 32 / 48; line-height 1.5 body, 1.2 headings.
+- **Display/serif** (headlines + wordmark): **Fraunces** — optical serif, authority + warmth.
+- **Sans** (UI + body + figures, tabular nums): **Chivo** — grotesque workhorse.
+- **Mono** (eyebrows, labels, metadata, source notes): **Recursive Mono**.
+- Scale: 12 / 14 / 16 (base) / 20 / 24 / 32 / 48; line-height 1.5 body, ~1.1 headings.
 
 ## Spacing & radius
 4-pt scale (`4 8 12 16 24 32 48 64`); radius `sm 4 / md 8 / lg 12`; one elevation shadow.

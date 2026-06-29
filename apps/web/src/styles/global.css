@@ -1,40 +1,60 @@
 @import "tailwindcss";
 
-/* Design tokens [C4a,C5a,C7a]. Canonical spec: /design-system/README.md.
-   ponytail: tokens live here (the file Tailwind v4 consumes via @theme) — one source,
-   README documents intent. Fonts use a named-first stack; actual web-font loading is
-   wired in v1.0.8-base-layout-seo, falls back to system until then. */
+/* Design tokens — Behind the Ballot Brand v1.0. Canonical spec: /design-system/README.md.
+   ponytail: tokens live here (the file Tailwind v4 consumes via @theme) — one source.
+   Light defaults; dark overrides in the media query below. Party colors are data-viz
+   ONLY [C4a/C5a] and stay constant across themes (they encode data, not chrome). */
 
 @theme {
-  /* Type [C7a] */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Source Serif 4", Georgia, ui-serif, serif;
+  /* Type — Fraunces (display/serif), Chivo (UI/body/figures), Recursive (mono labels) */
+  --font-serif: "Fraunces", Georgia, ui-serif, serif;
+  --font-sans: "Chivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Recursive", ui-monospace, "SFMono-Regular", monospace;
 
-  /* Party / data-viz ONLY [C4a] — colorblind-safe blue/red (ColorBrewer RdBu),
-     purple for independents/margin midpoint [C5a]. Patterns add redundant encoding
-     in charts (handled in viz units), not here. */
-  --color-party-dem: #2166ac;
-  --color-party-rep: #b2182b;
-  --color-party-ind: #5a4fa0;
+  /* Party / data-viz ONLY [C4a,C5a] — colorblind-aware, always paired with patterns
+     (handled in viz units, not here). Never used in brand chrome. */
+  --color-party-dem: #2c6fb3;
+  --color-party-rep: #c13b3b;
+  --color-party-ind: #e69f00;
+  --color-party-other: #9061c2;
 
-  /* Civic neutral chrome [C4a] — semantic, light defaults; dark overrides below. */
-  --color-bg: #ffffff;
-  --color-surface: #f6f8fa;
-  --color-border: #d0d7de;
-  --color-text: #1f2328;
-  --color-muted: #636c76;
-  --color-accent: #0969da; /* links/CTA, non-party */
+  /* Civic chrome — one confident green on cool blue-gray neutrals. Light defaults. */
+  --color-bg: #f4f7f9;
+  --color-surface: #ffffff;
+  --color-surface-2: #edf1f4;
+  --color-surface-glass: rgba(244, 247, 249, 0.82);
+  --color-border: #dbe2e8;
+  --color-border-strong: #c2ccd4;
+  --color-text: #0e1a20;
+  --color-muted: #51616c;
+  --color-subtle: #7e8c95;
+  --color-brand: #0b6e4f;
+  --color-brand-soft: #e2f1ea;
+  --color-on-brand: #ffffff;
+  --color-danger: #b2182b;
+  --color-accent: #0b6e4f; /* alias: legacy links/CTA token now maps to brand */
+  --shadow-elev: 0 18px 40px rgba(14, 26, 32, 0.12);
 }
 
-/* Dark theme [C6a]: override the semantic neutrals; party colors stay constant. */
+/* Dark theme [C6a]: override the neutrals + brand (a brighter green for contrast).
+   Party data-viz colors intentionally stay constant. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0d1117;
-    --color-surface: #161b22;
-    --color-border: #30363d;
-    --color-text: #e6edf3;
-    --color-muted: #9198a1;
-    --color-accent: #4493f8;
+    --color-bg: #0a0f14;
+    --color-surface: #111a22;
+    --color-surface-2: #18242e;
+    --color-surface-glass: rgba(10, 15, 20, 0.82);
+    --color-border: #27343f;
+    --color-border-strong: #3a4a57;
+    --color-text: #ecf2f5;
+    --color-muted: #9aa8b3;
+    --color-subtle: #6e7c87;
+    --color-brand: #2fc489;
+    --color-brand-soft: #11281f;
+    --color-on-brand: #06140e;
+    --color-danger: #e06a6a;
+    --color-accent: #2fc489;
+    --shadow-elev: 0 18px 40px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -42,7 +62,35 @@ html {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
+
+::selection {
+  background: color-mix(in srgb, var(--color-brand) 18%, transparent);
+}
+
+/* Editorial voice: headlines in Fraunces, tight leading; body stays Chivo. */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+h1 { font-weight: 600; }
+
+/* Mono eyebrow / metadata helper — Recursive, the technical layer under the brand. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+/* Tabular figures for results & tables [C7a]. */
+.tnum { font-variant-numeric: tabular-nums lining-nums; }
+
+a { color: inherit; }
 
 /* Rich transitions allowed [C13b] but reduced-motion honored (a11y gate, WCAG 2.2). */
 @media (prefers-reduced-motion: reduce) {
