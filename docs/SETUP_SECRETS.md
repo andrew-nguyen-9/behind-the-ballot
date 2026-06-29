@@ -145,12 +145,22 @@ Order: (1) and (3) unblock the most. Each ends in the GitHub secret name to set.
   `apps/web/astro.config.mjs` + `apps/web/public/robots.txt` (replace the placeholder).
 
 ### `api.data.gov` key (free, instant) — `DATA_GOV_API_KEY` `[T6a]`
-- Sign up (one key covers FEC + Census/ACS + Congress.gov): <https://api.data.gov/signup/>
+- Sign up: <https://api.data.gov/signup/>. **Verified iter 60: this key works for FEC OpenFEC**
+  (live bake = 200 rows). It does **NOT** work for `api.census.gov` (ACS) — that host needs its
+  own key (below) and 302-redirects a data.gov key to `missing_key.html`.
 - FEC OpenFEC docs: <https://api.open.fec.gov/developers/>
-- Census API: <https://www.census.gov/data/developers/data-sets.html>
-- Congress.gov API: <https://api.congress.gov/>
   ```bash
   gh secret set DATA_GOV_API_KEY
+  ```
+
+### Census API key (free, instant) — `CENSUS_API_KEY` (ACS demographics)
+- `api.census.gov` requires its **own** key, separate from `DATA_GOV_API_KEY`.
+- Sign up: <https://api.census.gov/data/key_signup.html> (Census docs:
+  <https://www.census.gov/data/developers/data-sets.html>)
+- The ACS connector reads `CENSUS_API_KEY`, falling back to `DATA_GOV_API_KEY` only for
+  single-key setups (which won't authenticate against Census).
+  ```bash
+  gh secret set CENSUS_API_KEY
   ```
 
 ### Cloudflare Pages + R2 — `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `R2_BUCKET`

@@ -23,6 +23,11 @@ SAMPLE = json.dumps([
 ])
 
 
+def test_parse_rejects_missing_key_html():
+    with pytest.raises(RuntimeError, match="CENSUS_API_KEY"):
+        acs.parse_acs("<!doctype html><html>missing_key</html>")
+
+
 def test_parse_zips_headers_and_builds_geoid():
     rows = acs.parse_acs(SAMPLE)
     assert len(rows) == 2

@@ -23,6 +23,15 @@ be emitted** — never lie to exit.
 
 ## Open questions (human decision — safest default picked, loop continues [S16a])
 
+2. **ACS needs a separate `CENSUS_API_KEY` (confirmed live iter 61).** `api.census.gov`
+   302-redirects a `DATA_GOV_API_KEY` to `missing_key.html` — Census requires its own key
+   (census.gov/data/key_signup.html), distinct from the data.gov key that works for OpenFEC.
+   **Fix shipped:** ACS connector now reads `CENSUS_API_KEY` (falls back to `DATA_GOV_API_KEY`
+   for compat) + raises a clear error on the HTML missing-key page instead of a JSONDecodeError;
+   SETUP_SECRETS corrected; `CENSUS_API_KEY=` added to local `.env`. **Human action:** get a free
+   Census key + fill it. Demographics (v1.5.x) live-bake pends this.
+
+
 1. **538 poll CSVs are dead (confirmed live iter 60).** Both `projects.fivethirtyeight.com/
    polls/data/*.csv` and `…/polls-page/data/*.csv` now return an **ABC News HTML shell**
    (200, `text/html`, identical 308 KB for every filename) — the public CSV downloads were
@@ -34,7 +43,19 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 60)
+## RESUME  (current as of iter 61)
+
+iter 61: **secrets present are REAL** (iter-60 "placeholder" worry was a probe bug — I measured
+variable-NAME lengths, not values). `DATA_GOV_API_KEY` is 40 chars, proven by a live **FEC bake
+= 200 real rows**. `DATABASE_URL` is real too. Genuinely empty: `CLOUDFLARE_ACCOUNT_ID`,
+`SMTP_PASS` (+ new `CENSUS_API_KEY`). So `resume.sh` still fails its presence check on the 2
+missing → no deploy yet. **Live-data status now:** FEC ✓ (200), members ✓ (537), voteview ✓
+(12,584) — all real, fresh. ACS ✗ needs `CENSUS_API_KEY` (Open Q#2, connector fixed). polls ✗
+538 source dead (Open Q#1). **Human to-dos to unblock the rest:** fill `CLOUDFLARE_ACCOUNT_ID`
+(deploy), `SMTP_PASS` (alerts), `CENSUS_API_KEY` (demographics); decide a replacement polling
+source. Then `./scripts/resume.sh` runs the live gate+deploy.
+
+## RESUME  (iter 60)
 
 iter 60: **partial secrets arrived (5/7)** — DATA_GOV_API_KEY, CLOUDFLARE_API_TOKEN, R2_BUCKET,
 DATABASE_URL, SMTP_USER present; CLOUDFLARE_ACCOUNT_ID + SMTP_PASS still empty (resume.sh still
@@ -221,7 +242,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.2.4-district-map-island | v1.1.2 | done as SVG (0-JS); MapLibre+PMTiles pends R2 |
 | v1.2.5-find-my-district | v1.1.4 | pending |
 | v1.2.6-race-index | v1.2.3 | done (local gate; CI lhci/axe on push) |
-| v1.3.1-fec-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
+| v1.3.1-fec-connector | v1.1.1 | done + LIVE (iter 61: real bake, 200 rows via DATA_GOV_API_KEY) |
 | v1.3.2-candidate-committee-link | v1.3.1 | pending |
 | v1.3.3-finance-aggregates | v1.3.2 | done (math; committed direct to dev) |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | done (local gate; sample artifact; live FEC pends key) |
@@ -229,7 +250,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
 | v1.4.3-aggregation | v1.4.2 | done (math; live join pends data) |
 | v1.4.4-polling-ui | v1.4.3, v1.2.3 | done (local gate; sample artifact; live 538 keyless-ready) |
-| v1.5.1-acs-connector | v1.1.1 | done (code; live pends DATA_GOV_API_KEY) |
+| v1.5.1-acs-connector | v1.1.1 | done (code; +clean missing-key guard; live pends CENSUS_API_KEY — Open Q#2) |
 | v1.5.2-district-aggregates | v1.5.1, v1.1.3 | done (math; direct to dev) |
 | v1.5.3-urbanization | v1.5.2 | done (math; direct to dev) |
 | v1.5.4-demographics-ui | v1.5.2, v1.2.3 | done (local gate; sample artifact) |
@@ -468,6 +489,12 @@ all `done` units; `main` untouched `[S5a]`.
   Logged Open question #1 (replacement polling source = human decision) + marked the two rows
   DEAD in DATA_SOURCES.md. Secrets now 5/7 (CLOUDFLARE_ACCOUNT_ID, SMTP_PASS still empty).
   Docs-only; no code change. Direct to dev.
+- iter 61: **FEC live-bake proven** (200 real rows; DATA_GOV_API_KEY is genuine — iter-60
+  placeholder worry was a probe bug measuring var-NAME lengths). **ACS fix:** connector reads
+  `CENSUS_API_KEY` (api.census.gov rejects the data.gov key → 302 missing_key.html) with a clear
+  error on the HTML page instead of JSONDecodeError; +1 test (128 pytest, ruff clean).
+  SETUP_SECRETS corrected (data.gov key ≠ Census key); `CENSUS_API_KEY=` added to local .env.
+  Direct to dev.
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

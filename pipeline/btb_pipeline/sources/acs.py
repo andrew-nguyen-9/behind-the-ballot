@@ -43,9 +43,12 @@ class AcsRow(BaseModel):
 
 
 def get_api_key() -> str:
-    key = os.environ.get("DATA_GOV_API_KEY")
+    # api.census.gov needs its OWN key (census.gov/data/key_signup.html), NOT the api.data.gov
+    # key — a data.gov key 302-redirects to missing_key.html (verified iter 60). Fall back to
+    # DATA_GOV_API_KEY only for back-compat / single-key setups.
+    key = os.environ.get("CENSUS_API_KEY") or os.environ.get("DATA_GOV_API_KEY")
     if not key:
-        raise RuntimeError("DATA_GOV_API_KEY not set — see docs/ACCOUNTS.md provisioning")
+        raise RuntimeError("CENSUS_API_KEY (or DATA_GOV_API_KEY) not set — see docs/SETUP_SECRETS.md")
     return key
 
 
@@ -71,6 +74,13 @@ def _to_int(value: str | None) -> int | None:
 def parse_acs(body: str) -> list[dict]:
     """Zip the header row onto each value row, then validate [R7a]. The Census API returns
     a list of arrays: rows[0] is column headers, the rest are aligned values."""
+    if not body.lstrip().startswith("["):
+        # Census serves an HTML "missing_key" page (302) for an absent/invalid key — surface
+        # that plainly instead of an opaque JSONDecodeError [trust-boundary error handling].
+        raise RuntimeError(
+            "Census API did not return JSON (likely missing/invalid CENSUS_API_KEY); "
+            "get a key at census.gov/data/key_signup.html — see docs/SETUP_SECRETS.md"
+        )
     table = json.loads(body)
     if not table:
         return []
