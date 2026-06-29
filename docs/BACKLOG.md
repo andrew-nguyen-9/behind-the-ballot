@@ -52,3 +52,13 @@ generate_races.py (FEC import) coded James Risch's party as "other" in us-senate
 a Republican. The forecast holdover math is robust to this (counts only party=="D" as Dem-aligned),
 but the ID race PAGE shows the wrong party chip. **Fix:** correct the party in the config (or map
 FEC "other"/IND→party properly in generate_races). Low-risk one-field fix; batched to a data pass.
+
+## Gerrymander fairness (V1.1) — DECIDED iter 82 (Andrew): defer, source-walled
+Efficiency gap / mean-median need House results on CURRENT (post-2020) district lines. Clean
+current-lines House-by-CD isn't autonomously fetchable: MEDSL 2024-elections-official = president+
+senate only; 2022-elections-official = precinct-level zips (heavy precinct→CD aggregation, precincts
+split districts); constituency-returns = 1976-2018 (OLD lines); MEDSL House Dataverse = guestbook-
+gated. **Decision: defer to V1.1** (same rationale as polling). Compactness (real TIGER geometry)
+ships in V1; the fairness section renders an honest "pending a sourced dataset" state. **V1.1 task:**
+obtain a Harvard Dataverse API token (unblocks MEDSL House 1976-2024, current lines) OR aggregate the
+2022 precinct returns → CD; then `export_fairness` (compute_fairness already exists) → states.json.

@@ -113,6 +113,32 @@ items (House, map, find-district) are now sanctioned V1.1 scope, NOT V1 blockers
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 83)
+
+iter 83: **fairness deferred to V1.1 (Andrew) + final pre-completion polish.** Decision recorded
+(BACKLOG + v1.7.2 row): gerrymander fairness → V1.1 (House-by-CD current-lines source-walled), same
+as polling. **V1 scope is now fully real + sanctioned.** Ran the rigorous live self-check, which
+caught two honesty/correctness items — FIXED both: (1) ID/Risch incumbent party was miscoded "other"
+→ corrected to R (race page now shows Republican); (2) the homepage led with a stark uncaveated "0%
+Senate control" from the overconfident PVI-only model → reframed to "Early fundamentals model
+(partisan lean only): Republicans favored for Senate control — see the forecast" (directional,
+caveated, links to the methodology). **Live self-check evidence (this iter):** canary 9 routes 200 +
+headers; /forecast + race pages serve real forecasts; /gerrymander real compactness + honest pending
+fairness; **live Lighthouse on 5 page types incl. the now-content-rich /forecast + /gerrymander =
+100/95–100/96/100, zero failures.** Gate: web check 0/0/0, vitest 35, build, links, coverage green.
+Direct to dev. **NEXT: confirm these two fixes deploy live, then run the FINAL V1 COMPLETE
+self-check and emit the promise iff every box is green — not before.**
+
+### V1 COMPLETE self-check (verify LIVE before emitting)
+- [x] Phase A doc tree complete (P0–P14)
+- [x] V1 modules live+green @ preview: tracker · finance · forecast · demographics · chamber · member
+      analytics · gerrymander-COMPACTNESS. (polling, fairness, House, map, find-district = sanctioned
+      V1.1 deferrals — not V1 blockers.)
+- [x] SEO/a11y/perf/security green sitewide @ live preview (Lighthouse 100/95–100/96/100; headers; canary)
+- [x] DATA_SOURCES complete + integrity doc-sync (13 sources)
+- [x] real-data freshness everywhere; ZERO fabricated figures (forecast/compactness real; fairness/polling honest-pending)
+- [ ] **the two iter-83 fixes confirmed LIVE (deploy landed)** ← only open box; verify next iter → then emit.
+
 ## RESUME  (current as of iter 82)
 
 iter 82: **stopped publishing the fabricated fairness table; hit a real source wall for the LAST
@@ -671,7 +697,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
 | v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
 | v1.7.1-compactness-metrics | v1.1.2 | done + LIVE (iter 75: real TIGER cb_2023 CD118 → 441 districts reprojected to EPSG:5070 → real Polsby-Popper/Reock/convex-hull on /gerrymander) |
-| v1.7.2-fairness-metrics | v1.7.1 | done (math; live results join pends data) |
+| v1.7.2-fairness-metrics | v1.7.1 | math done; live join DEFERRED V1.1 (iter 82, Andrew: House-by-CD current-lines source-walled — BACKLOG). Page shows honest pending state. |
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | done (local gate) |
 | v1.7.4-leaderboard | v1.7.1 | done (on gerrymander page) |
 | v1.7.5-methodology-page | v1.7.2 | done (methodology section) |

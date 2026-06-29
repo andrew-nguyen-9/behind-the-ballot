@@ -31,8 +31,9 @@ const sections = [
     </div>
     {senate && (
       <p class="mt-4 text-sm text-muted">
-        Latest model: Democrats have a {Math.round(senate.dem_control_prob * 100)}% chance of
-        Senate control (as of {senate.as_of}).
+        Early fundamentals model (partisan lean only):{" "}
+        {senate.dem_control_prob >= 0.5 ? "Democrats" : "Republicans"} favored for Senate control.
+        See the <a href="/forecast" class="underline">forecast</a> and how it's built.
       </p>
     )}
   </section>
