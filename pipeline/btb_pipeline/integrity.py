@@ -36,6 +36,7 @@ class Source:
 # `sample`) are intentionally absent: they are not published figures.
 SOURCES: dict[str, Source] = {
     "fec": Source(14, "OpenFEC"),
+    "committee_link": Source(14, "OpenFEC linkages"),
     "polls_538": Source(3, "538 polls CSV"),
     "pollster_ratings": Source(30, "pollster ratings"),
     "census_acs": Source(400, "Census ACS"),

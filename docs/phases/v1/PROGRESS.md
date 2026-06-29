@@ -47,7 +47,18 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 63)
+## RESUME  (current as of iter 64)
+
+iter 64: **built v1.3.2 candidate→committee linkage + live-verified.** `sources/committee_link.py`
+— OpenFEC `/candidate/{id}/committees/`, picks the principal committee (designation "P") [G12a];
+CLI-registered; new integrity row `committee_link` (floor 14, token "OpenFEC linkages", doc-sync
+ok). 5 fixture tests (138 pytest, ruff clean). Live: 3/4 real FEC candidates linked to real
+principal committee IDs (4th has none filed — correct). This is the join feeding finance-identity
+(v1.6.5). **Live real data now (5 sources): FEC 200, members 537, voteview 12,584, rollcall 477,
+committee_link.** Deploy still blocked: CLOUDFLARE_ACCOUNT_ID + SMTP_PASS empty; CENSUS_API_KEY
+invalid; 538 polls dead; prod DB migrate human-gated.
+
+## RESUME  (iter 63)
 
 iter 63: **built v1.6.2 House roll-call connector + live-baked 477 real rows.** Verified the
 data.gov key authenticates Congress.gov (unlike Census). `sources/rollcall.py` (Congress.gov
@@ -270,7 +281,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.2.5-find-my-district | v1.1.4 | pending |
 | v1.2.6-race-index | v1.2.3 | done (local gate; CI lhci/axe on push) |
 | v1.3.1-fec-connector | v1.1.1 | done + LIVE (iter 61: real bake, 200 rows via DATA_GOV_API_KEY) |
-| v1.3.2-candidate-committee-link | v1.3.1 | pending |
+| v1.3.2-candidate-committee-link | v1.3.1 | done + LIVE (iter 64: principal-cmte linkage via OpenFEC, real links verified) |
 | v1.3.3-finance-aggregates | v1.3.2 | done (math; committed direct to dev) |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | done (local gate; sample artifact; live FEC pends key) |
 | v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
@@ -526,6 +537,9 @@ all `done` units; `main` untouched `[S5a]`.
   list connector (data.gov key authenticates Congress.gov, verified live), CLI-registered, 5
   fixture tests. Live bake = 477 real rows. Senate + per-member positions deferred. pytest 133,
   ruff clean. Found CENSUS_API_KEY invalid (placeholder). Direct to dev. — iter 63
+- v1.3.2-candidate-committee-link: `sources/committee_link.py` — OpenFEC principal-committee
+  linkage [G12a], CLI-registered, integrity row added (doc-sync ok), 5 tests. Live: 3/4 real
+  candidates → real principal committee IDs. pytest 138, ruff clean. Direct to dev. — iter 64
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

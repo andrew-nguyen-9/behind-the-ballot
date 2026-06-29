@@ -19,6 +19,7 @@ from pathlib import Path
 from btb_pipeline.core import bake, dry_run, is_fresh
 from btb_pipeline.sources import (
     acs,
+    committee_link,
     fec,
     members,
     polls,
@@ -31,6 +32,7 @@ from btb_pipeline.sources import (
 # name -> live bake callable (arg-free; defaults fetch over the network) [R13a]
 SOURCES: dict[str, Callable[[], Path]] = {
     "fec": fec.run,
+    "committee_link": committee_link.run,
     "members": members.run,
     "acs": acs.run,
     "polls": polls.run,
