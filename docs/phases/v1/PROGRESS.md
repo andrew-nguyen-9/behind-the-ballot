@@ -47,7 +47,18 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 64)
+## RESUME  (current as of iter 65)
+
+iter 65: **built v1.6.4 sponsorship counts + live-verified.** `sources/sponsorship.py` — per-member
+sponsored + cosponsored totals from Congress.gov `pagination.count` (2 calls/member); CLI-registered;
+new DATA_SOURCES row + integrity `sponsorship` (floor 14, doc-sync ok). 3 fixture tests (141 pytest,
+ruff clean). Live: Pelosi 199/5083, Sanders 1180/7896 — real. Cross-party cosponsorship INDEX [M7a]
+deferred (per-bill cosponsor-party fan-out). **Live real data now (6 sources): FEC 200, members 537,
+voteview 12,584, rollcall 477, committee_link, sponsorship.** Deploy still blocked: CLOUDFLARE_ACCOUNT_ID
++ SMTP_PASS empty; CENSUS_API_KEY invalid; 538 polls dead; prod DB migrate human-gated. Next buildable:
+geo chain (TIGER bulk, no key) or v1.10.x workflows/scripts.
+
+## RESUME  (iter 64)
 
 iter 64: **built v1.3.2 candidate→committee linkage + live-verified.** `sources/committee_link.py`
 — OpenFEC `/candidate/{id}/committees/`, picks the principal committee (designation "P") [G12a];
@@ -295,7 +306,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.1-member-profiles | v1.1.5 | done (local gate; +v1.6.3 ideology shown) |
 | v1.6.2-rollcall-votes | v1.6.1 | partial + LIVE (iter 63: House roll-call list via Congress.gov, 477 real rows; Senate/GovTrack + per-member positions follow-up) |
 | v1.6.3-ideology | v1.6.1 | done (code; keyless) |
-| v1.6.4-sponsorship-bipartisanship | v1.6.2 | pending |
+| v1.6.4-sponsorship-bipartisanship | v1.6.2 | partial + LIVE (iter 65: sponsored/cosponsored counts via Congress.gov, real; cross-party index [M7a] follow-up) |
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
 | v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
 | v1.7.1-compactness-metrics | v1.1.2 | done (math; TIGER read+bake pends geo data) |
@@ -540,6 +551,10 @@ all `done` units; `main` untouched `[S5a]`.
 - v1.3.2-candidate-committee-link: `sources/committee_link.py` — OpenFEC principal-committee
   linkage [G12a], CLI-registered, integrity row added (doc-sync ok), 5 tests. Live: 3/4 real
   candidates → real principal committee IDs. pytest 138, ruff clean. Direct to dev. — iter 64
+- v1.6.4-sponsorship-bipartisanship (counts slice): `sources/sponsorship.py` — sponsored/
+  cosponsored totals via Congress.gov pagination.count, CLI-registered, DATA_SOURCES + integrity
+  rows added (doc-sync ok), 3 tests. Live: Pelosi 199/5083, Sanders 1180/7896. Cross-party index
+  deferred. pytest 141, ruff clean. Direct to dev. — iter 65
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8

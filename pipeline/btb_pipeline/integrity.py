@@ -43,6 +43,7 @@ SOURCES: dict[str, Source] = {
     "members": Source(14, "congress-legislators"),
     "committees": Source(30, "Committees & leadership"),
     "rollcall": Source(7, "Roll-call votes"),
+    "sponsorship": Source(14, "Sponsored/cosponsored"),
     "voteview": Source(None, "Voteview"),
     "tiger": Source(None, "TIGER/Line"),
     "geocoder": Source(None, "Geocoder"),

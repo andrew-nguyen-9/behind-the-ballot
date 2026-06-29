@@ -43,6 +43,7 @@ opens an issue rather than publishing nothing `[R8a]`.
 | Members of Congress (roster, bioguide, party, state, district) | members/caucus | congress-legislators YAML **+** Congress.gov `[Q?→C]` | `github.com/unitedstates/congress-legislators` / `api.congress.gov` | CC0 (YAML) / public domain | `api.data.gov` (Congress.gov) | weekly | 14 d |
 | Committees & leadership | caucus/chamber | Congress.gov API `[Q?a]` | `api.congress.gov` | public domain | `api.data.gov` | weekly | 30 d |
 | Roll-call votes | member analytics | Congress.gov roll-call **+** GovTrack `[Q?→C]` | `api.congress.gov` / `govtrack.us` | public domain / GovTrack terms | `api.data.gov` | daily (in session) | 7 d (in session) |
+| Sponsored/cosponsored legislation counts | member analytics | Congress.gov sponsorship `[M5a]` | `api.congress.gov` | public domain | `api.data.gov` | weekly | 14 d |
 | Ideology scores (DW-NOMINATE) | member analytics | Voteview `[Q?a]` | `voteview.com/data` | academic, free, attribute | none | per Congress | event-driven |
 | Incumbents for race tracker | tracker | FEC filers + Congress.gov + Ballotpedia/Wikipedia `[F?→A]` | (above) | (above) | (above) | weekly | 30 d |
 
