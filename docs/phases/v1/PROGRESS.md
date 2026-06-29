@@ -23,11 +23,10 @@ be emitted** — never lie to exit.
 
 ## Open questions (human decision — safest default picked, loop continues [S16a])
 
-2. **ACS `CENSUS_API_KEY` is present but INVALID (iter 63).** Human filled `CENSUS_API_KEY`
-   (40 chars) but `api.census.gov` returns `invalid_key.html` for it — it's a placeholder, not a
-   real registered Census key. **Human action:** register a real key at
-   census.gov/data/key_signup.html and replace the value. (Original finding below.)
-   ACS needs a separate `CENSUS_API_KEY` (confirmed live iter 61). `api.census.gov`
+2. **RESOLVED (iter 66): valid `CENSUS_API_KEY` in.** ACS now live-bakes **440 rows** (435
+   districts + DC/territories). Finding that drove it: ACS needs a separate Census key (the
+   data.gov key 302s to missing_key.html); a placeholder key 40-char'd but returned
+   invalid_key.html until the human swapped in a real one. `api.census.gov`
    302-redirects a `DATA_GOV_API_KEY` to `missing_key.html` — Census requires its own key
    (census.gov/data/key_signup.html), distinct from the data.gov key that works for OpenFEC.
    **Fix shipped:** ACS connector now reads `CENSUS_API_KEY` (falls back to `DATA_GOV_API_KEY`
@@ -36,7 +35,14 @@ be emitted** — never lie to exit.
    Census key + fill it. Demographics (v1.5.x) live-bake pends this.
 
 
-1. **538 poll CSVs are dead (confirmed live iter 60).** Both `projects.fivethirtyeight.com/
+1. **RESOLVED (iter 66): polling DROPPED from V1.** No open poll aggregator has a machine-readable
+   feed + clean reuse license post-538 (checked PollingSource/USPollingData/RCP/270toWin/DDHQ/
+   Silver Bulletin). **Human decision: ship V1 without live polling**, revisit in V1.1 (see
+   `docs/BACKLOG.md`). No code change — the forecast already falls back to fundamentals-only
+   (`blend_margin(None,…)`, tested) and the polling UI hides on empty (`races/[id].astro` guard).
+   So polling is **not a V1-COMPLETE blocker** anymore. Original finding:
+
+   538 poll CSVs are dead (confirmed live iter 60). Both `projects.fivethirtyeight.com/
    polls/data/*.csv` and `…/polls-page/data/*.csv` now return an **ABC News HTML shell**
    (200, `text/html`, identical 308 KB for every filename) — the public CSV downloads were
    discontinued post-ABC, exactly the risk DATA_SOURCES.md L14 flagged. Effect: the polling
@@ -47,7 +53,26 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
-## RESUME  (current as of iter 65)
+## RESUME  (current as of iter 66)
+
+iter 66: **major unblock — human fixed all remaining secrets + ran the prod DB migrate.**
+- All 7 `.env` secrets now valid (CLOUDFLARE_ACCOUNT_ID, SMTP_PASS, CENSUS_API_KEY filled).
+- **Live Neon migrate applied** (human ran `db:migrate`); `forecast_snapshots` table verified on
+  the real DB (exact schema, 0 rows) → v1.0.4 + v1.8.7 LIVE.
+- **ACS live-bakes 440 rows** (valid Census key) → v1.5.1 LIVE.
+- **Polling DROPPED from V1** (human decision): no open feed + clean license post-538; forecast
+  already falls back to fundamentals-only, UI hides empty; backlogged to V1.1 (`docs/BACKLOG.md`).
+  Polling no longer blocks V1 COMPLETE.
+
+**Live real data now — 7 sources:** FEC 200 · members 537 · voteview 12,584 · rollcall 477 ·
+committee_link · sponsorship · census_acs 440. **Remaining for V1 COMPLETE:** (1) DEPLOY to
+Cloudflare (CLOUDFLARE_ACCOUNT_ID now present → run `scripts/resume.sh`; deploy is an outward
+action — may need outside-auto-mode like the migrate did); (2) **live joins** — wire baked gold
+artifacts (data/gold/*) into the site build so pages show real figures, not sample fixtures;
+(3) geo chain (TIGER/R2: v1.1.2/1.3/1.4, v1.2.5); (4) v1.10.x crons/alerts (Actions+Gmail);
+(5) full Lighthouse/a11y/SEO/security sweep at the live preview. THEN the promise self-check.
+
+## RESUME  (iter 65)
 
 iter 65: **built v1.6.4 sponsorship counts + live-verified.** `sources/sponsorship.py` — per-member
 sponsored + cosponsored totals from Congress.gov `pagination.count` (2 calls/member); CLI-registered;
@@ -274,7 +299,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.0.1-repo-scaffold | — | done |
 | v1.0.2-ci-gate | v1.0.1 | done |
 | v1.0.3-config-schema | v1.0.1 | done |
-| v1.0.4-datastore-wiring | v1.0.1 | done (Drizzle schema + Neon-http client + migration; live connect pends DATABASE_URL) |
+| v1.0.4-datastore-wiring | v1.0.1 | done + LIVE (iter 66: migration applied to Neon by human; table verified on live DB) |
 | v1.0.5-etl-skeleton | v1.0.1 | done |
 | v1.0.6-data-integrity-check | v1.0.5 | done |
 | v1.0.7-design-tokens | v1.0.1 | done |
@@ -295,11 +320,11 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.3.2-candidate-committee-link | v1.3.1 | done + LIVE (iter 64: principal-cmte linkage via OpenFEC, real links verified) |
 | v1.3.3-finance-aggregates | v1.3.2 | done (math; committed direct to dev) |
 | v1.3.4-finance-ui | v1.3.3, v1.2.3 | done (local gate; sample artifact; live FEC pends key) |
-| v1.4.1-poll-connector | v1.1.1 | done (code; keyless, deploy pends Cloudflare) |
-| v1.4.2-pollster-ratings | v1.4.1 | done (code; keyless) |
-| v1.4.3-aggregation | v1.4.2 | done (math; live join pends data) |
-| v1.4.4-polling-ui | v1.4.3, v1.2.3 | done (local gate; sample artifact; live 538 keyless-ready) |
-| v1.5.1-acs-connector | v1.1.1 | done (code; +clean missing-key guard; live pends CENSUS_API_KEY — Open Q#2) |
+| v1.4.1-poll-connector | v1.1.1 | done (code); SOURCE DEFERRED to V1.1 — 538 dead, no clean open feed (iter 66, BACKLOG) |
+| v1.4.2-pollster-ratings | v1.4.1 | done (code); SOURCE DEFERRED to V1.1 (same) |
+| v1.4.3-aggregation | v1.4.2 | done (math); no live polls in V1 (deferred) |
+| v1.4.4-polling-ui | v1.4.3, v1.2.3 | done (UI hides when empty — graceful no-polling in V1) |
+| v1.5.1-acs-connector | v1.1.1 | done + LIVE (iter 66: 440 rows via CENSUS_API_KEY; +clean missing-key guard) |
 | v1.5.2-district-aggregates | v1.5.1, v1.1.3 | done (math; direct to dev) |
 | v1.5.3-urbanization | v1.5.2 | done (math; direct to dev) |
 | v1.5.4-demographics-ui | v1.5.2, v1.2.3 | done (local gate; sample artifact) |
@@ -320,7 +345,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.8.4-backtest-calibration | v1.8.2 | done (math; live backtest data pends) |
 | v1.8.5-ml-challenger | v1.8.4 | done (math; real backtest decision pends live data) |
 | v1.8.6-forecast-ui | v1.8.3 | done (runner + per-race + chamber /forecast; local gate) |
-| v1.8.7-snapshot-store | v1.8.3 | done (write/read store, pglite-tested; live writes pend DATABASE_URL + cron) |
+| v1.8.7-snapshot-store | v1.8.3 | done (write/read store, pglite-tested; live schema applied to Neon iter 66; live writes pend the v1.10.x cron) |
 | v1.9.1-search | phases 2–8 | done (Pagefind static index; local gate) |
 | v1.9.2-sitemap-jsonld | phases 2–8 | done (sitemap+robots+WebSite+OG+per-type Person) |
 | v1.9.3-articles-mdx | v1.0.8 | done (local gate) |
@@ -555,6 +580,10 @@ all `done` units; `main` untouched `[S5a]`.
   cosponsored totals via Congress.gov pagination.count, CLI-registered, DATA_SOURCES + integrity
   rows added (doc-sync ok), 3 tests. Live: Pelosi 199/5083, Sanders 1180/7896. Cross-party index
   deferred. pytest 141, ruff clean. Direct to dev. — iter 65
+- iter 66: human fixed all secrets + ran prod `db:migrate` (Neon table verified live). ACS live
+  = 440 rows (valid Census key). **Polling dropped from V1** (no clean open feed post-538;
+  forecast/UI already degrade gracefully) → `docs/BACKLOG.md` for V1.1. Docs-only commit
+  (decision + ledger); connectors/forecast/UI unchanged. Direct to dev.
 - P13–P14: design-system seed (neutral civic chrome + colorblind-safe party viz
   palette, type, motion-with-reduced-motion, components) + LOGO_BRIEF; ACCOUNTS
   (services/aliases/free-limits/80% alarms, no secrets). **Phase A complete.** — iter 8
