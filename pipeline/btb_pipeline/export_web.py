@@ -15,8 +15,12 @@ is skipped (the committed sample stays), so a partial bake never corrupts the si
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
+import btb_pipeline.montecarlo as montecarlo
+import btb_pipeline.race_model as race_model
+from btb_pipeline.baseline import cook_pvi
 from btb_pipeline.core import DATA_ROOT, stage_dir
 from btb_pipeline.demographics import rollup_by_state
 from btb_pipeline.finance_aggregates import build_finance
@@ -161,11 +165,70 @@ def export_districts(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[
     return [_write(web_data / "gerrymander" / "districts.json", districts)]
 
 
+DEM_CONTROL_SEATS = 51  # 2026: Republican VP breaks ties, so Democrats need 51 for Senate control.
+
+
+def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/medsl_president → per-Senate-race forecast + chamber control [N1a,N3a,N5a].
+
+    Fundamentals-only (no live polls in V1): per state PVI = cook_pvi(state two-party Dem share,
+    national share) → race_model → win prob/margin/range. Chamber control is the REAL Senate math:
+    the Monte Carlo runs over the 33 contested seats, but control needs 51 of 100, so the threshold
+    is 51 minus the Democratic-aligned holdover seats (Class I/III, not up in 2026); reported seats
+    add the holdover back so the figure is total-Senate (0–100), not just the contested slice."""
+    pres = _gold("medsl_president", root)
+    members = _gold("members", root)
+    if pres is None or members is None:
+        return []
+    nat_d = sum(r["dem_votes"] for r in pres)
+    nat_r = sum(r["rep_votes"] for r in pres)
+    national_share = nat_d / (nat_d + nat_r)
+    state_share = {r["state"]: r["dem_votes"] / (r["dem_votes"] + r["rep_votes"]) for r in pres}
+
+    # Current Senate composition from the real roster: D-aligned = Democrats + Independents (caucus).
+    senate = [m for m in members if m.get("chamber") == "sen"]
+    current_dem_aligned = sum(1 for m in senate if m.get("party") in ("Democrat", "Independent"))
+
+    races = [c for c in _race_configs(RACES_DIR)
+             if c.get("office") == "senate" and c.get("state") in state_share]
+    # Dem-aligned seats AMONG the 33 up = configs whose incumbent is a Democrat (no independent is
+    # up in 2026 — both current independents are Class I holdovers).
+    up_dem = sum(1 for c in races
+                 if any(x.get("incumbent") and x.get("party") == "D" for x in c.get("candidates", [])))
+    holdover_dem = current_dem_aligned - up_dem
+    wins_needed = DEM_CONTROL_SEATS - holdover_dem  # Dem wins required AMONG the contested 33
+
+    as_of = datetime.now(timezone.utc).isoformat()
+    written: list[Path] = []
+    win_probs: dict[str, float] = {}
+    for c in races:
+        pvi = cook_pvi(state_share[c["state"]], national_share)
+        rf = race_model.predict_race(office="senate", fundamentals_pvi=pvi)
+        win_probs[c["id"]] = rf["win_prob"]
+        written.append(_write(web_data / "forecast" / f"{c['id']}.json", {
+            "win_prob": rf["win_prob"], "margin": rf["margin"],
+            "margin_lo": rf["margin_lo"], "margin_hi": rf["margin_hi"], "as_of": as_of,
+        }))
+
+    mc = montecarlo.compute_forecast(win_probs, majority=wins_needed, seed=0)
+    written.append(_write(web_data / "forecast" / "chamber-senate.json", {
+        "chamber": "Senate", "as_of": as_of, "n_sims": mc["n_sims"], "n_races": len(races),
+        "majority": DEM_CONTROL_SEATS,
+        "expected_dem_seats": round(mc["expected_dem_seats"] + holdover_dem, 1),
+        "dem_seat_p10": mc["dem_seat_p10"] + holdover_dem,
+        "dem_seat_p50": mc["dem_seat_p50"] + holdover_dem,
+        "dem_seat_p90": mc["dem_seat_p90"] + holdover_dem,
+        "dem_control_prob": mc["dem_control_prob"],
+    }))
+    return written
+
+
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
     "finance": export_finance,
     "districts": export_districts,
+    "forecast": export_forecast,
 }
 
 

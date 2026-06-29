@@ -12,9 +12,14 @@ const pct = (p: number) => `${Math.round(p * 100)}%`;
 <Layout title="Forecast" description="Transparent heuristic + Monte Carlo election forecast.">
   <h1 class="text-3xl font-bold">Forecast</h1>
   <p class="mt-2 max-w-prose text-muted">
-    Transparent, heuristic-first model with a Monte Carlo chamber simulation (correlated
-    national swing). Inputs: polling averages + fundamentals (partisan lean, incumbency,
-    finance). Every figure traces to its <a href="/sources" class="underline">sources</a>.
+    An early, transparent <strong>fundamentals baseline</strong> for the 2026 Senate, with a Monte
+    Carlo chamber simulation (correlated national swing) over the 33 contested seats plus the
+    holdover seats not up this cycle. V1 input is <strong>partisan lean only</strong> — each state's
+    2024 two-party presidential margin (<a href="/sources" class="underline">MEDSL</a>) vs the
+    nation. It does <strong>not yet</strong> include polls (no open feed — see
+    <a href="/sources" class="underline">sources</a>), the midterm penalty, incumbency, or candidate
+    quality, so read it as a partisan-lean starting point, not a final prediction. Every figure
+    traces to its source.
   </p>
 
   {chambers.length === 0 ? (

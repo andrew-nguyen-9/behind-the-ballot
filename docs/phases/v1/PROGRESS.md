@@ -113,6 +113,29 @@ items (House, map, find-district) are now sanctioned V1.1 scope, NOT V1 blockers
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 81)
+
+iter 81: **FORECAST IS LIVE — real, sourced, honestly framed (slice 2/2 done).** `export_forecast`
+(export_web): per-Senate-race PVI = `cook_pvi(state 2024 two-party Dem share, national)` from
+gold/medsl_president → `race_model.predict_race` → per-race `forecast/<id>.json`; chamber via
+`montecarlo.compute_forecast` with the **REAL Senate control math** — MC over the 33 contested seats,
+control threshold = 51 − Dem-aligned holdovers (derived from the real roster: 47 D-aligned now − 13
+D-held among the 33 up = 34 holdover → Dems need 17 of 33; R VP breaks ties). Reported seats add the
+holdover back (total-Senate 0–100). Live numbers: TX win 0.04 / R+12.5, MA 1.00 / D+27, WV 0.00 /
+R+41, CA correctly absent; chamber ~46 expected Dem seats, control ~0%. **Directionally correct (the
+2026 map is genuinely hard for Dems) but PVI-only + overconfident a year out** → fixed the page copy
+to be honest ("early fundamentals/partisan-lean baseline; NOT polls/midterm-penalty/incumbency/
+candidate-quality"); model refinement → BACKLOG. Also logged the ID/Risch party-miscode bug
+(forecast math robust to it; race-page chip wrong). Removed the stale per-race-null test; forecast
+tests data-agnostic + a holdover-math test. Gate: pytest 158, ruff, integrity, web check 0/0/0,
+vitest 35, build, links, coverage. Direct to dev.
+
+**V1 COMPLETE self-check now:** ✅ #2 live sweep · ✅ #3 freshness · ✅ forecast module LIVE ·
+⏳ **only gerrymander FAIRNESS left** (efficiency gap / mean-median) — needs House results on CURRENT
+(post-2020) district lines. constituency-returns stops at 2018 (old lines); 2024-elections-official
+has `2024-senate-*` but House-by-CD must be checked (precinct aggregation or another file). THAT is
+the last real-data V1 unit. Then full self-check + V1 COMPLETE.
+
 ## RESUME  (current as of iter 80)
 
 iter 80: **MEDSL results connector LIVE-BAKED (forecast unblock, slice 1/2).** The canonical MEDSL
@@ -891,6 +914,11 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 81: **forecast LIVE (slice 2/2).** `export_forecast`: MEDSL PVI → per-race + chamber forecast
+  with real Senate control math (holdovers; Dems need 17 of 33 → 51). 34 files. Page copy made honest
+  (PVI-only baseline, caveats); model refinement + Risch party bug → BACKLOG. forecast tests
+  data-agnostic + holdover test. pytest 158, vitest 35, build/links/coverage green. Direct to dev.
+  Only gerrymander fairness (House results) left for V1. — iter 81
 - iter 80: **MEDSL president connector (forecast unblock 1/2).** `sources/medsl.py` — 2024
   president-by-state from MEDSL GitHub (CC-BY, no guestbook) → 50-state two-party totals baked
   (`medsl_president`). TX PVI −6.2, national D 0.493. CLI+integrity+DATA_SOURCES+2 tests. pytest

@@ -36,3 +36,19 @@ interactive map [P8a] is a V1.1 enhancement. **V1.1 tasks:** (1) generate PMTile
 (tippecanoe) → upload to R2 → MapLibre island; (2) find-my-district (v1.2.5) — needs a client-side
 Census Geocoder call or a precomputed address→district lookup (the site is static-assets-only, no
 Worker handler), and depends on House races to be useful. Both deferred from V1.
+
+## Forecast model refinement (V1.1) — fundamentals beyond partisan lean
+V1 forecast (iter 81) is partisan-lean-only: per-state 2024 presidential two-party margin → PVI →
+race model → MC chamber sim (real Senate holdover math, Dems need 51). It does NOT yet include the
+**midterm penalty** (president's party typically loses ground — material in 2026), **incumbency**,
+**campaign-finance** signal, **candidate quality**, or **polls** (dropped V1, no open feed). Effect:
+per-race probabilities are overconfident a year out (tight sigma) and the model ignores the midterm
+tailwind. baseline.py already carries incumbent_party/finance_net fields; predict_race only consumes
+pvi. **V1.1 tasks:** blend incumbency + finance into fundamentals; add a midterm-penalty term;
+widen the forecast-horizon uncertainty (sigma as a function of days-to-election); re-backtest.
+
+## ID Senate config: Risch incumbent party mis-coded "other" (should be R)
+generate_races.py (FEC import) coded James Risch's party as "other" in us-senate-2026-ID.json; he is
+a Republican. The forecast holdover math is robust to this (counts only party=="D" as Dem-aligned),
+but the ID race PAGE shows the wrong party chip. **Fix:** correct the party in the config (or map
+FEC "other"/IND→party properly in generate_races). Low-risk one-field fix; batched to a data pass.
