@@ -56,7 +56,16 @@ const nav = [
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#0969da" />
+    <meta name="theme-color" content="#0b6e4f" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0f14" media="(prefers-color-scheme: dark)" />
+
+    <!-- Brand type: Fraunces (display), Chivo (UI/body), Recursive (mono labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Chivo:wght@300;400;500;600;700&family=Recursive:MONO,wght@1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
@@ -71,12 +80,36 @@ const nav = [
   </head>
   <body class="min-h-dvh font-sans antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:p-2">Skip to content</a>
-    <header class="border-b border-[var(--color-border)]">
-      <nav class="mx-auto flex max-w-4xl items-center gap-6 px-6 py-4" aria-label="Primary">
-        <a href="/" class="font-bold">Behind the Ballot</a>
-        <ul class="flex gap-4 text-sm" role="list">
+    <header
+      class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-surface-glass)] backdrop-blur-md"
+    >
+      <nav
+        class="mx-auto flex max-w-4xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3"
+        aria-label="Primary"
+      >
+        <a href="/" class="flex items-center gap-2.5" aria-label="Behind the Ballot — home">
+          <span class="flex text-[var(--color-brand)]">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="10" width="16" height="10" rx="1.5"></rect>
+              <path d="M4 13h16"></path>
+              <rect x="9" y="3.5" width="6" height="7" rx="1"></rect>
+              <path d="M10.3 7l1.4 1.4 2-2.2"></path>
+              <path d="M7 16.5h2M15 16.5h2" opacity="0.45"></path>
+            </svg>
+          </span>
+          <span class="font-serif text-lg leading-none tracking-tight">
+            <span class="font-normal">Behind the</span> <span class="font-semibold">Ballot</span>
+          </span>
+        </a>
+        <ul class="eyebrow flex flex-wrap items-center gap-1 sm:ml-auto" role="list">
           {nav.slice(1).map((l) => (
-            <li><a href={l.href} class="text-muted hover:text-[var(--color-accent)]">{l.label}</a></li>
+            <li>
+              <a
+                href={l.href}
+                class="rounded px-2.5 py-1.5 text-[var(--color-muted)] hover:bg-[var(--color-surface-2)] hover:text-[var(--color-brand)]"
+              >{l.label}</a>
+            </li>
           ))}
         </ul>
       </nav>
@@ -86,8 +119,11 @@ const nav = [
       <slot />
     </main>
 
-    <footer class="mx-auto max-w-4xl px-6 py-10 text-sm text-muted">
-      <p>Non-partisan. Every figure traces to a source — see <a class="underline" href="/sources">sources</a>.</p>
+    <footer class="mt-12 border-t border-[var(--color-border)]">
+      <div class="mx-auto max-w-4xl px-6 py-10 text-sm text-[var(--color-muted)]">
+        <p class="eyebrow mb-2 text-[var(--color-subtle)]">See past the vote</p>
+        <p>Non-partisan. Every figure traces to a source — see <a class="font-medium text-[var(--color-brand)] underline underline-offset-2" href="/sources">sources</a>.</p>
+      </div>
     </footer>
   </body>
 </html>

@@ -10,7 +10,13 @@ ballot — a check mark emerging from / behind a ballot slot is a strong candida
 
 ## Tone
 Non-partisan, trustworthy, editorial (NYT/538 register `[C11a]`). Neutral civic palette —
-**no party blue/red in the logo** `[C4a]`; ink + one neutral accent (`#0969da`) only.
+**no party blue/red in the logo** `[C4a]`; ink + the one brand green (`#0b6e4f`) only.
+
+## Chosen mark (Brand v1.0)
+**The transparent ballot box** — an open box, centered slot, a ballot mid-insertion, and a
+quiet lattice of data nodes behind the front face ("the intelligence beneath every vote").
+Pairs with **Fraunces** wordmark (`Behind the` 400 / `Ballot` 600). Favicon + icon set
+generated from `apps/web/public/favicon.svg`.
 
 ## Constraints
 - Works mono (favicon 16px) and full-color; legible at 16px and on dark `[C6a]`.
