@@ -1,5 +1,8 @@
 packages:
   - "apps/*"
+overrides:
+  # ponytail: pin es-module-lexer below Vercel minimumReleaseAge cutoff; remove once 2.2.0+ ages past policy
+  es-module-lexer: "2.1.0"
 allowBuilds:
   esbuild: true
   sharp: true
