@@ -16,10 +16,15 @@ describe("forecast", () => {
     expect(forecastForRace("no-such-race-9999")).toBeNull();
   });
 
-  it("loads chamber forecasts", () => {
-    const chambers = allChamberForecasts();
-    expect(chambers.length).toBeGreaterThanOrEqual(1);
-    const senate = chambers.find((c) => c.chamber === "Senate");
-    expect(senate?.dem_control_prob).toBeCloseTo(0.48);
+  // Chamber forecast is empty until export_forecast lands (Open Q#3: needs a sourced partisan-
+  // lean baseline). We removed the placeholder sample rather than publish fabricated figures —
+  // the /forecast page renders an honest "not yet published" state. Each entry, once real, must
+  // carry a sources-traceable as_of [R14a].
+  it("publishes no fabricated chamber forecast until inputs are sourced", () => {
+    for (const c of allChamberForecasts()) {
+      expect(c.as_of).toBeTruthy();
+      expect(c.dem_control_prob).toBeGreaterThanOrEqual(0);
+      expect(c.dem_control_prob).toBeLessThanOrEqual(1);
+    }
   });
 });

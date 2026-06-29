@@ -47,7 +47,10 @@ be emitted** — never lie to exit.
    source is baked** (configs carry candidates only; ACS is demographics, not partisanship; FEC is
    money). So the chamber `/forecast` + per-race forecast sections still ship the **sample**
    `chamber-senate.json` — the most prominent fake figure left on the site. Same shape as the
-   polling gap: a real published forecast can't fabricate the lean input. **Recommended default
+   polling gap: a real published forecast can't fabricate the lean input. **UPDATE (iter 73): the
+   placeholder sample forecast is now REMOVED** — `/forecast` renders an honest "not yet published"
+   state (no fabricated figures shipped to users); the real forecast returns once the PVI source
+   below is confirmed. **Recommended default
    (next iter):** MIT Election Data + Science Lab state presidential returns (Harvard Dataverse,
    machine-readable CSV, CC-BY) → state two-party Dem share → `cook_pvi` vs national → real
    fundamentals-only forecast (no polls in V1; methodology page already explains fundamentals).
@@ -84,6 +87,22 @@ be emitted** — never lie to exit.
    pick a replacement polling source + license (candidates: a 538/ABC GitHub mirror if one
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
+
+## RESUME  (current as of iter 73)
+
+iter 73: **integrity fix — stopped publishing the fabricated forecast.** `/forecast` was rendering
+the SAMPLE `chamber-senate.json` as a real result ("48% Dem Senate control, as of 2026-03-15,
+10,000 sims") — fabricated figures on a live site whose tagline is "every figure traces to a public
+source." Removed `src/data/forecast/chamber-senate.json`; the page's existing empty-state now shows
+honest copy: "not yet published … we don't publish placeholder numbers" + sources link. Home page's
+Senate-control headline was already `{senate && …}`-guarded → degrades cleanly (no break). Made
+`forecast.test.ts` data-agnostic (asserts no fabricated chamber rows; any real row must carry a
+sources-traceable as_of). Matches the polling graceful-degradation precedent. The real forecast
+returns once Open Q#3's PVI source is confirmed. Gate: astro check 0/0/0, vitest 35, build, links
+ok; verified built page has 0 fabricated figures + the honest copy. Per-race forecast was already
+absent (no per-race files → section hidden). Direct to dev. **Now: NO fake figures anywhere on the
+live site** — finance/demographics/members real; forecast honestly pending; polling hidden. **Next
+eligible:** lighthouse-at-live-URL; forecast real (Open Q#3); geo chain; v1.10.3/4/5 alerts.
 
 ## RESUME  (current as of iter 72)
 
@@ -708,6 +727,11 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 73: **integrity — removed fabricated forecast.** `/forecast` was showing sample
+  chamber-senate.json as a real result; deleted it → honest "not yet published" empty state (home
+  headline already guarded). forecast.test.ts made data-agnostic. astro 0/0/0, vitest 35, build,
+  links; built page has 0 fake figures. No fabricated data anywhere on the live site now. Real
+  forecast pends Open Q#3 PVI source. Direct to dev. — iter 73
 - iter 72: **redirect fix verified live + canary.** 9 routes confirmed 200 (no 307) post-redeploy.
   Added `scripts/canary.mjs` + `canary.yml` (scheduled live-health check: routes 200 + security
   headers; red job → GitHub native email, no SMTP). Canary ok locally. Direct to dev. — iter 72

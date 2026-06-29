@@ -18,7 +18,14 @@ const pct = (p: number) => `${Math.round(p * 100)}%`;
   </p>
 
   {chambers.length === 0 ? (
-    <p class="mt-8 text-muted">Forecast runs publish here.</p>
+    <div class="mt-8 rounded-lg border border-[var(--color-border)] p-5">
+      <p class="text-muted">
+        The forecast is not yet published. The engine is built and backtested, but a forecast
+        is only shown once its inputs trace to a public source — the partisan-lean baseline
+        (prior-election results) is still being sourced. We don't publish placeholder numbers.
+        See the <a href="/sources" class="underline">sources</a> we use.
+      </p>
+    </div>
   ) : (
     chambers.map((c) => (
       <section class="mt-8 rounded-lg border border-[var(--color-border)] p-5" aria-labelledby={c.chamber}>
