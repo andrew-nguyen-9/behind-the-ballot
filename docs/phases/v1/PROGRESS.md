@@ -137,7 +137,19 @@ self-check and emit the promise iff every box is green — not before.**
 - [x] SEO/a11y/perf/security green sitewide @ live preview (Lighthouse 100/95–100/96/100; headers; canary)
 - [x] DATA_SOURCES complete + integrity doc-sync (13 sources)
 - [x] real-data freshness everywhere; ZERO fabricated figures (forecast/compactness real; fairness/polling honest-pending)
-- [ ] **the two iter-83 fixes confirmed LIVE (deploy landed)** ← only open box; verify next iter → then emit.
+- [x] **the two iter-83 fixes confirmed LIVE (iter 84):** home serves "Republicans favored for
+      Senate control" (edge revalidated, stable across retries); ID race shows Risch = Republican.
+
+### ✅ V1 COMPLETE — self-check PASSED (iter 84)
+All boxes green. Definitive gate (iter 84): pytest 158 · ruff clean · integrity 13 sources/11
+artifacts · web check 0/0/0 · vitest 35 · build · links · coverage. Live preview
+(behind-the-ballot.hh5zvph54s.workers.dev): canary 9 routes 200 + security headers; Lighthouse
+100/95–100/96/100 across home/forecast/gerrymander/race/members (0 failures); forecast + compactness
+real & sourced; fairness/polling honest-pending. **V1 scope (Andrew-sanctioned):** Senate tracker +
+finance + forecast + demographics + chamber + member analytics + gerrymander-compactness, all LIVE.
+**V1.1 (sanctioned deferrals):** polling, gerrymander fairness, House races, interactive map,
+find-my-district, forecast-model refinement (all in BACKLOG with rationale). Zero fabricated figures
+anywhere on the live site. Promise emitted iter 84 — every line above is true.
 
 ## RESUME  (current as of iter 82)
 
