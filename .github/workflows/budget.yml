@@ -1,0 +1,29 @@
+# Budget alarm [v1.10.4] — checks the api.data.gov rate-limit (the one quota the pipeline uses)
+# and emails an alert if usage crosses 80% [T9a]. Actions minutes (public repo = unlimited) and R2
+# (~0 until tiles ship) are N/A for V1 — see btb_pipeline/budget.py. Read-only; never touches main.
+name: budget
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # daily 08:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  budget:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: astral-sh/setup-uv@e58605a9b6da7c637471fab8847a5e5a6b8df081 # v5
+      - run: uv sync --project pipeline
+      - name: check api.data.gov quota
+        env:
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          ALERT_EMAIL_TO: ${{ secrets.ALERT_EMAIL_TO }}
+        run: uv run --project pipeline python -m btb_pipeline.budget

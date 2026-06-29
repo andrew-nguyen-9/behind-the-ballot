@@ -98,6 +98,43 @@ be emitted** — never lie to exit.
    exists, Wikipedia race tables CC BY-SA [H1a], or another aggregator). Until then polling is
    source-pending, not done-live.
 
+## RESUME  (current as of iter 79)
+
+iter 79: **built v1.10.4 budget-alarms → ALL of v1.10.x (loop-scale) COMPLETE.** `budget.py`:
+pure `check_quota(limit,remaining,0.8)` + `run()` reads the live api.data.gov `X-RateLimit-*`
+headers (the only quota the pipeline consumes — FEC/Congress.gov), emails via `notify.send_email`
+at ≥80%. Documented as a DECISION not omission: Actions minutes N/A (public repo = unlimited), R2
+N/A (~0 until PMTiles). `budget.yml` daily. 3 pure tests; live dry-run read 1/60 (2%). Gate: pytest
+155, ruff, yaml. Direct to dev.
+
+**═══ V1 ENDGAME — what's left, honestly ═══**
+DONE + LIVE: race tracker (33 real Senate races), finance (FEC), demographics (ACS), members (537),
+ideology, chamber, district **compactness** (TIGER, 441), search/SEO/articles/sources; live-preview
+sweep green (perf/a11y/seo/security); freshness via nightly refresh + canary + weekly + budget +
+coverage gates. Zero fabricated figures on the live site.
+
+NOT DONE — two buckets:
+  (A) **Human-decision blockers** (safest default = stay honestly-pending, never fabricate):
+     • **election-results source** (Open Q#3) → unblocks BOTH forecast (state pres → PVI) and
+       gerrymander **fairness**. Recommend MEDSL/Dataverse CC-BY; needs confirm (provenance is
+       credibility-critical). This is THE highest-leverage unblock.
+     • **House key-race list** → the tracker is Senate-only; House races need a competitiveness
+       list to pick (curated/human). Without it, House district pages + the district SVG +
+       find-my-district have no consumer.
+  (B) **Geo-map chain** (autonomous but heavy / arguably V1.1):
+     • v1.1.2 PMTiles interactive map → R2 (needs tippecanoe; the 0-JS district SVG already meets
+       the shape DoD, so MapLibre is a nice-to-have [P8a]).
+     • v1.1.4 geocoder + v1.2.5 find-my-district — static-hosting wrinkle (no Worker handler; needs
+       a client-side Census Geocoder call or a precomputed lookup) AND depends on (A) House races
+       to be useful.
+
+**SCOPE CALL NEEDED (human):** are A/B V1-blocking, or do the map+find-district+House-races defer
+to V1.1 (BACKLOG) so V1 ships as the Senate-tracker-+-compactness scope that is real today? I will
+NOT emit V1 COMPLETE while ledger units are pending+unsanctioned-for-deferral — that would be lying.
+Next autonomous iterations can still attempt the PMTiles map (the only non-human-blocked remainder);
+everything else awaits a human source/scope decision. **Loop continues but is now near the
+"no eligible autonomous unit" stop condition.**
+
 ## RESUME  (current as of iter 78)
 
 iter 78: **built v1.10.1 coverage-configs — per-race data-coverage gate.** `scripts/coverage.mjs`
@@ -583,7 +620,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.10.1-coverage-configs | phases 2–8 | done (iter 78: scripts/coverage.mjs per-race data-coverage gate in CI + resume.sh; 33/33 finance+demographics, 537 members, 441 districts) |
 | v1.10.2-nightly-qa | v1.10.1 | done (refresh.yml: nightly bake→export→commit→auto-deploy; cmds live-verified locally w/ real keys iter 70. QA-screenshot sweep folds into v1.10.3) |
 | v1.10.3-regression-alerts | v1.10.2 | pending |
-| v1.10.4-budget-alarms | v1.10.2 | pending |
+| v1.10.4-budget-alarms | v1.10.2 | done (iter 79: budget.py api.data.gov-quota alarm @80% + budget.yml daily; Actions=unlimited public-repo, R2~0 documented N/A; live quota read 1/60) |
 | v1.10.5-weekly-review-routine | v1.10.2 | done (iter 77: notify.py SMTP digest + weekly-review.yml; pure digest tested, UA-403 bug fixed, dry-run verified) |
 
 ## Activity log
@@ -823,6 +860,10 @@ all `done` units; `main` untouched `[S5a]`.
   Senate configs from FEC (real candidates) + 141 baked finance rows; `export_finance` → per-race
   real finance. Removed 2 sample races + orphans. 6 sample-coupled tests fixed. pytest 147, vitest
   35, build 33 race pages, links ok. v1.3.2 finance now LIVE on the tracker. Direct to dev. — iter 69
+- iter 79: **v1.10.4 budget-alarms → v1.10.x complete.** `budget.py` api.data.gov quota alarm @80%
+  (Actions/R2 documented N/A) + `budget.yml` daily; 3 tests, live read 1/60. pytest 155, ruff.
+  Direct to dev. V1 endgame articulated above: remaining = human source/scope decisions + the heavy
+  geo-map chain. — iter 79
 - iter 78: **v1.10.1 coverage-configs.** `scripts/coverage.mjs` — per-race data-coverage gate
   (demographics invariant + roster non-empty hard-fail; finance soft) in CI gate.yml + resume.sh.
   33/33 finance+demographics, 537 members, 441 districts ok. Direct to dev. — iter 78
