@@ -20,8 +20,12 @@ are exercised against fixtures in the tests, not against invented committed data
 
 Live bake (scheduled, election night):
     uv run --project pipeline python -m btb_pipeline.cli bake primary_results
-Provisional SoS numbers are later superseded by the certified MEDSL backfill, which flips
-`is_certified=true` (a separate one-shot, weeks/months later) [E3.1].
+The CLI bake defaults to the primary adapter set; a general-election night is the same
+connector with `election_type="general"` and the general states listed in ACTIVE_STATES
+[E3.3] — no schema, display, or exporter change.
+
+Provisional SoS numbers are later superseded by the certified MEDSL backfill (`certify()`),
+a separate manual one-shot weeks/months later that flips `is_certified=true` [E3.1,E3.3].
 """
 
 from __future__ import annotations
@@ -53,6 +57,11 @@ CYCLE = 2026
 # results). Flip a state on by listing it here once its adapter is validated against the
 # state's pre-published test feed [E3.1].
 ACTIVE_STATES: list[str] = []
+
+# Which election the scheduled CLI bake is counting: "primary" or "general". Ops flips this
+# to "general" (alongside ACTIVE_STATES) for the Nov 2026 general so the unchanged scheduled
+# command `bake primary_results` picks the general adapter set — no new CLI args [E3.3].
+ACTIVE_ELECTION_TYPE = "primary"
 
 
 class ResultRow(BaseModel):
@@ -104,9 +113,13 @@ def build_rows(
     election_type: str,
     as_of: datetime,
     cycle: int = CYCLE,
+    is_certified: bool = False,
 ) -> list[dict]:
     """Normalize one state's contests -> ResultRows, deriving pct (share of the race by
-    votes) and pct_reporting (from precincts). One row per candidate per race."""
+    votes) and pct_reporting (from precincts). One row per candidate per race.
+
+    `is_certified` is False for live SoS pulls (provisional) and True for the MEDSL
+    certified backfill [E3.1], which supersedes provisional numbers via the same upsert."""
     stamp = as_of.astimezone(timezone.utc).isoformat()
     by_race: dict[str, list[Contest]] = defaultdict(list)
     for c in contests:
@@ -136,7 +149,7 @@ def build_rows(
                 "pct_reporting": round(pr / pt * 100, 1) if pr is not None and pt else None,
                 "as_of": stamp,
                 "source_url": source_url,
-                "is_certified": False,
+                "is_certified": is_certified,
             })
     return rows
 
@@ -212,6 +225,24 @@ STATE_ADAPTERS: dict[str, StateAdapter] = {
     "CA": StateAdapter("CA", "https://dp.electionresults.sos.ca.gov/", "primary", parse_csv_contests),
 }
 
+# General-election adapters [E3.3] — Nov 2026 readiness. Same per-state pattern as the
+# primary registry, only election_type="general". Many states reuse the SAME SoS portal for
+# both elections (a general-night endpoint or an election-id query param), so most entries
+# reuse the primary parser; adding a general state is still ONE dict entry. Illustrative +
+# fixture-tested, NOT active — a state goes live only when listed in ACTIVE_STATES.
+GENERAL_ADAPTERS: dict[str, StateAdapter] = {
+    "OH": StateAdapter("OH", "https://liveresults.ohiosos.gov/general/", "general", parse_json_contests),
+    "CA": StateAdapter("CA", "https://dp.electionresults.sos.ca.gov/general/", "general", parse_csv_contests),
+}
+
+# run() selects the adapter set by which election is being counted tonight. One election
+# runs at a time per state, so a single ACTIVE_STATES list + this election_type switch is
+# all ops needs to flip the connector from primary to general [E3.3].
+ADAPTER_SETS: dict[str, dict[str, StateAdapter]] = {
+    "primary": STATE_ADAPTERS,
+    "general": GENERAL_ADAPTERS,
+}
+
 
 # ---- Wikipedia "race called" layer ------------------------------------------------------
 # The ONLY thing borrowed from Wikipedia (CC BY-SA) is call status, keyed on race_id — never
@@ -231,6 +262,72 @@ def merge_call_status(rows: list[dict], calls: Calls | None) -> list[dict]:
             r["called_by"] = call.get("called_by")
             r["call_source"] = call.get("call_source", "Wikipedia")
     return rows
+
+
+# ---- MEDSL certified backfill (one-shot) [E3.1,E3.3] ------------------------------------
+# Weeks/months after election night, MIT Election Lab (MEDSL, CC BY) publishes certified
+# totals. The backfill normalizes them with is_certified=True and upserts over the
+# provisional gold by (race_id, candidate) — superseding provisional numbers and flipping
+# each race page from "Unofficial — provisional" to "Certified". It is a manual one-shot,
+# NOT a scheduled source, so it stays out of the CLI SOURCES registry.
+MEDSL_SOURCE_URL = "https://github.com/MEDSL"
+
+
+def parse_medsl_csv(text: str) -> dict[str, list[Contest]]:
+    """MEDSL certified export -> {state: [Contest]}. One row per candidate with columns
+    state, office, district, candidate, party, votes — office already normalized to our
+    tokens (senate|house|governor). Precinct counts are irrelevant post-certification."""
+    by_state: dict[str, list[Contest]] = defaultdict(list)
+    for r in csv.DictReader(io.StringIO(text)):
+        district = (r.get("district") or "").strip()
+        by_state[(r.get("state") or "").strip().upper()].append({
+            "office": (r.get("office") or "").strip(),
+            "district": int(district) if district else None,
+            "candidate": (r.get("candidate") or "").strip(),
+            "party": (r.get("party") or "").strip() or None,
+            "votes": int(r["votes"]) if (r.get("votes") or "").strip() else 0,
+        })
+    return dict(by_state)
+
+
+def certify(
+    medsl_csv: str | None = None,
+    *,
+    as_of: datetime | None = None,
+    root: Path = DATA_ROOT,
+    election_type: str = "general",
+    cycle: int = CYCLE,
+) -> Path:
+    """One-shot MEDSL certified backfill [E3.1]. Normalizes certified totals
+    (is_certified=True) and upserts them over the provisional gold by (race_id, candidate),
+    superseding provisional numbers and flipping the page to "Certified". Any race-call
+    attribution already on the provisional row is carried forward. Honest-empty when no CSV
+    is supplied (re-bakes existing gold unchanged), so it is safe to wire before data exists.
+
+    Invoke at backfill time (not scheduled):
+        python -c "from btb_pipeline.sources import primary_results as pr; \\
+                   pr.certify(open('medsl_2026.csv').read())"
+    """
+    stamp = as_of or datetime.now(timezone.utc)
+    existing = _existing(root)
+    incoming: list[dict] = []
+    if medsl_csv:
+        prior = {_uid(r): r for r in existing}
+        for state, contests in parse_medsl_csv(medsl_csv).items():
+            certified = build_rows(
+                state, contests, source_url=MEDSL_SOURCE_URL,
+                election_type=election_type, as_of=stamp, cycle=cycle, is_certified=True,
+            )
+            for row in certified:
+                prev = prior.get(_uid(row))
+                if prev and prev.get("is_called"):  # keep the borrowed call attribution
+                    row["is_called"] = True
+                    row["called_by"] = prev.get("called_by")
+                    row["call_source"] = prev.get("call_source")
+            incoming.extend(certified)
+
+    rows = merge_results(existing, incoming)
+    return bake(SPEC, ResultRow, rows, stamp, root)
 
 
 # ---- upsert by (race_id, candidate) [R4a] -----------------------------------------------
@@ -262,15 +359,22 @@ def run(
     as_of: datetime | None = None,
     root: Path = DATA_ROOT,
     states: list[str] | None = None,
+    election_type: str | None = None,
 ) -> Path:
     """Fetch each ACTIVE state's feed via the caching/last-good fetcher -> normalize ->
     merge Wikipedia call status -> upsert by (race_id, candidate) -> bake gold [R14a].
 
+    `election_type` selects the adapter set ("primary" or "general" [E3.3]); the display,
+    schema, and upsert key are identical, so a general night is just `election_type="general"`
+    plus the general states listed in ACTIVE_STATES. Defaults to `ACTIVE_ELECTION_TYPE` so
+    the scheduled no-arg CLI bake follows whichever election ops has flipped on.
+
     Honest-empty by default: with no ACTIVE_STATES there is nothing to fetch (no network),
     so the baked artifact carries zero rows until a real feed reports."""
     stamp = as_of or datetime.now(timezone.utc)
+    adapters = ADAPTER_SETS[election_type or ACTIVE_ELECTION_TYPE]
     targets = [
-        s for s in (states if states is not None else ACTIVE_STATES) if s in STATE_ADAPTERS
+        s for s in (states if states is not None else ACTIVE_STATES) if s in adapters
     ]
 
     incoming: list[dict] = []
@@ -283,7 +387,7 @@ def run(
             )
         fetcher = CachingFetcher(stage_dir("bronze", SPEC.name, root), transport)
         for state in targets:
-            ad = STATE_ADAPTERS[state]
+            ad = adapters[state]
             contests = ad.parse(fetcher.get(ad.feed_url))
             incoming.extend(build_rows(
                 state, contests, source_url=ad.feed_url,

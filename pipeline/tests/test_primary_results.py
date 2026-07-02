@@ -152,3 +152,75 @@ def test_run_with_injected_transport_bakes_normalized_rows(tmp_path):
     payload = json.loads(path.read_text())
     jane = [r for r in payload["rows"] if r["candidate"] == "Jane Doe"]
     assert len(jane) == 1 and jane[0]["votes"] == 700
+
+
+# ---- E3.3 general-election readiness -----------------------------------------------------
+
+
+def test_general_adapters_stamp_election_type_general(tmp_path):
+    # Same connector, general adapter set → every row is election_type="general".
+    class Resp:
+        def __init__(self, body):
+            self.status_code, self.headers, self.text = 200, {}, body
+
+    transport = lambda url, headers: Resp(JSON_FEED)  # noqa: E731
+    path = pr.run(
+        transport=transport, as_of=AS_OF, root=tmp_path,
+        states=["OH"], election_type="general",
+    )
+    payload = json.loads(path.read_text())
+    assert payload["rows"], "general run should bake rows"
+    assert {r["election_type"] for r in payload["rows"]} == {"general"}
+    assert "us-senate-2026-OH" in {r["race_id"] for r in payload["rows"]}
+    assert_artifact(payload)
+
+
+def test_active_election_type_switches_the_default_adapter_set(monkeypatch, tmp_path):
+    # The scheduled no-arg bake follows ACTIVE_ELECTION_TYPE (ops' one switch).
+    class Resp:
+        def __init__(self, body):
+            self.status_code, self.headers, self.text = 200, {}, body
+
+    monkeypatch.setattr(pr, "ACTIVE_ELECTION_TYPE", "general")
+    transport = lambda url, headers: Resp(CSV_FEED)  # noqa: E731
+    path = pr.run(transport=transport, as_of=AS_OF, root=tmp_path, states=["CA"])
+    payload = json.loads(path.read_text())
+    assert {r["election_type"] for r in payload["rows"]} == {"general"}
+
+
+MEDSL_FEED = (
+    "state,office,district,candidate,party,votes\n"
+    "OH,senate,,Jane Doe,D,720\n"
+    "OH,senate,,John Roe,R,480\n"
+)
+
+
+def test_certify_flips_is_certified_and_supersedes_provisional(tmp_path):
+    # Provisional live pull first (called for Jane), then MEDSL certified backfill.
+    class Resp:
+        def __init__(self, body):
+            self.status_code, self.headers, self.text = 200, {}, body
+
+    transport = lambda url, headers: Resp(JSON_FEED)  # noqa: E731
+    pr.run(
+        transport=transport, calls={"us-senate-2026-OH": {"called_by": "Jane Doe"}},
+        as_of=AS_OF, root=tmp_path, states=["OH"], election_type="general",
+    )
+    path = pr.certify(MEDSL_FEED, as_of=AS_OF, root=tmp_path)
+    payload = json.loads(path.read_text())
+    sen = {r["candidate"]: r for r in payload["rows"] if r["race_id"] == "us-senate-2026-OH"}
+    # Certified numbers supersede provisional, is_certified flipped, no dupes.
+    assert sen["Jane Doe"]["votes"] == 720
+    assert all(r["is_certified"] for r in sen.values())
+    assert len([r for r in payload["rows"] if r["candidate"] == "Jane Doe"]) == 1
+    # Borrowed call attribution carried forward onto the certified row.
+    assert sen["Jane Doe"]["is_called"] and sen["Jane Doe"]["called_by"] == "Jane Doe"
+    assert_artifact(payload)
+
+
+def test_certify_without_csv_is_honest_empty(tmp_path):
+    # Safe to wire before MEDSL data exists: no CSV → re-bakes existing gold unchanged.
+    path = pr.certify(root=tmp_path)
+    payload = json.loads(path.read_text())
+    assert payload["rows"] == []
+    assert_artifact(payload)
