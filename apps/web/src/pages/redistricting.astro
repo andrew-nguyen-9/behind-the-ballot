@@ -1,0 +1,179 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import USStateMap from "../components/USStateMap.astro";
+import PartyPatternDefs from "../components/PartyPatternDefs.astro";
+import DataTable from "../components/DataTable.astro";
+import EmptyState from "../components/EmptyState.astro";
+import StatBlock from "../components/StatBlock.astro";
+import type { Column } from "../components/dataTable";
+import {
+  REDISTRICTING,
+  STATUS_META,
+  STATUS_ORDER,
+  activeCases,
+  activeStates,
+  redistrictingMapData,
+  redistrictingStates,
+  statusCounts,
+} from "../lib/redistricting";
+
+// Redistricting battle page [E2.5, Q7.6]. Curated per-state 2026 congressional-map status
+// (status enum + court cases), rendered on the reusable E1.1 <USStateMap> (status->fill) with
+// an equivalent DataTable. Partisan-FAIRNESS numbers are deliberately NOT joined here — that
+// live-join stays deferred — so the fairness section shows an honest pending-state (Q7.6 ⭐a)
+// rather than fabricated figures. gerrymander.ts fairness is left untouched.
+const { fills } = redistrictingMapData();
+const states = redistrictingStates();
+const counts = statusCounts();
+const active = activeStates();
+const cases = activeCases();
+const asOf = new Date(REDISTRICTING.as_of).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// Text-equivalent of the map: every state + its resolved status.
+const statusColumns: Column[] = [
+  { key: "name", label: "State" },
+  { key: "status", label: "Map status" },
+];
+const statusRows = states.map((s) => ({
+  name: s.name,
+  status: STATUS_META[s.status].label,
+}));
+
+// Detail table: only states with an active redraw or pending litigation.
+const activeColumns: Column[] = [
+  { key: "name", label: "State" },
+  { key: "status", label: "Status" },
+  { key: "summary", label: "What's happening" },
+];
+const activeRows = active.map((s) => ({
+  name: s.name,
+  status: STATUS_META[s.status].label,
+  summary: s.summary,
+}));
+
+// Court-case docket table.
+const caseColumns: Column[] = [
+  { key: "state", label: "State" },
+  { key: "name", label: "Case" },
+  { key: "court", label: "Court" },
+  { key: "issue", label: "Issue" },
+  { key: "status", label: "Status" },
+];
+const caseRows = cases.map((c) => ({
+  state: c.state,
+  name: c.name,
+  court: c.court,
+  issue: c.issue,
+  status: c.status,
+}));
+---
+
+<Layout
+  title="Redistricting"
+  description="A 2026 tracker of each state's congressional-map status — settled, redrawn mid-decade, or in active litigation — plus the court cases that could still move the lines."
+>
+  <h1 class="text-3xl font-bold">Redistricting</h1>
+  <p class="mt-2 max-w-prose text-muted">
+    Congressional districts are redrawn each decade, but courts and legislatures keep
+    moving the lines in between. This tracks where each state's U.S. House map stands for
+    <strong>2026</strong> — settled, redrawn mid-decade, or still in the courts — and the
+    active cases that could change it. Statuses are a curated briefing from the trackers on
+    our <a href="/sources" class="underline">sources</a> page, current as of {asOf}.
+  </p>
+
+  <section class="mt-8" aria-labelledby="summary">
+    <SectionHeader title="Where the maps stand" id="summary" />
+    <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {STATUS_ORDER.map((st) => (
+        <StatBlock value={counts[st]} label={STATUS_META[st].label} sub={STATUS_META[st].blurb} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-10" aria-labelledby="map">
+    <SectionHeader title="Map status by state" id="map" source="Each state coloured by its 2026 congressional-map status." />
+
+    <PartyPatternDefs />
+    <USStateMap class="mt-3" label="2026 congressional-map status by state" fills={fills} />
+
+    <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm" role="list">
+      {STATUS_ORDER.map((st) => (
+        <li class="flex items-center gap-2">
+          <span
+            class="inline-block size-4 rounded-sm border border-[var(--color-border)]"
+            style={`background-color:${STATUS_META[st].fill}`}
+            aria-hidden="true"
+          ></span>
+          <span>{STATUS_META[st].label}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-10" aria-labelledby="table">
+    <SectionHeader title="Status by state" id="table" source="Text equivalent of the map above — all 50 states." />
+    <DataTable
+      class="mt-3"
+      caption="Each state's 2026 congressional-map status."
+      columns={statusColumns}
+      rows={statusRows}
+    />
+  </section>
+
+  <section class="mt-10" aria-labelledby="active">
+    <SectionHeader title="Active redraws & litigation" id="active" />
+    <DataTable
+      class="mt-3"
+      caption="States with a mid-decade redraw or pending litigation, and what is happening."
+      columns={activeColumns}
+      rows={activeRows}
+    />
+  </section>
+
+  <section class="mt-10" aria-labelledby="cases">
+    <SectionHeader title="Court cases to watch" id="cases" source="Pending or recently decided suits that shape the 2026 lines." />
+    <DataTable
+      class="mt-3"
+      caption="Redistricting court cases by state."
+      columns={caseColumns}
+      rows={caseRows}
+    />
+    <p class="mt-2 text-xs text-muted">
+      Case captions and statuses are summarized for orientation — see the linked trackers for
+      the authoritative docket.
+    </p>
+  </section>
+
+  <section class="mt-10" aria-labelledby="fairness">
+    <SectionHeader title="Partisan fairness" id="fairness" />
+    <EmptyState
+      class="mt-3"
+      title="Fairness metrics are pending a sourced result set"
+      body="Efficiency gap and mean–median measure how a map translates votes into seats, and need each district's result on the current boundaries. We don't publish placeholder numbers, so this live-join stays off until a sourced House-by-district results dataset lands."
+    >
+      <p class="mt-2 text-sm text-muted">
+        Compactness metrics computed from real district geometry are on the
+        <a href="/gerrymander" class="underline">maps &amp; gerrymandering</a> page.
+      </p>
+    </EmptyState>
+  </section>
+
+  <section class="mt-10" aria-labelledby="method">
+    <SectionHeader title="How to read this" id="method" />
+    <p class="mt-2 max-w-prose text-sm text-muted">
+      A map is <strong>redrawn</strong> when new congressional lines are enacted or ordered
+      mid-decade; <strong>in litigation</strong> when a pending case could still change the
+      2026 map; <strong>settled</strong> when the post-2020 map is in place with no active
+      change; and <strong>at-large</strong> for the single-district states, which have nothing
+      to redistrict. Status is an editorial judgment, not a legal ruling — it can change as
+      cases resolve. Every figure traces to a row on the
+      <a href="/sources" class="underline">sources</a> page; this snapshot is current as of
+      {asOf}.
+    </p>
+  </section>
+</Layout>
