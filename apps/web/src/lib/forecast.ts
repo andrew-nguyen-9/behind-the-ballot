@@ -16,6 +16,18 @@ export function forecastForRace(raceId: string): RaceForecast | null {
   return m ? m.default : null;
 }
 
+// Every baked per-race forecast, id-tagged, sorted by race id. Drives the choropleth [E1.3];
+// chamber-* summaries are excluded (they are ChamberForecast, not RaceForecast).
+export function allRaceForecasts(): { raceId: string; forecast: RaceForecast }[] {
+  return Object.entries(mods)
+    .filter(([k]) => !k.includes("/chamber-"))
+    .map(([k, m]) => ({
+      raceId: k.replace("../data/forecast/", "").replace(/\.json$/, ""),
+      forecast: (m as { default: RaceForecast }).default,
+    }))
+    .sort((a, b) => a.raceId.localeCompare(b.raceId));
+}
+
 export interface ChamberForecast {
   chamber: string;
   as_of: string;

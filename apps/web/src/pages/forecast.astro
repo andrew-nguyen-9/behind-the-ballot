@@ -4,13 +4,42 @@ import Card from "../components/Card.astro";
 import StatBlock from "../components/StatBlock.astro";
 import EmptyState from "../components/EmptyState.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import PartyBar from "../components/PartyBar.astro";
+import PartyLegend from "../components/PartyLegend.astro";
+import USStateMap from "../components/USStateMap.astro";
+import PartyPatternDefs from "../components/PartyPatternDefs.astro";
+import DataTable from "../components/DataTable.astro";
 import { allChamberForecasts } from "../lib/forecast";
+import {
+  chamberSeatSegments,
+  majorityMarkerPct,
+  senateForecastMapData,
+  winProbColor,
+} from "../lib/forecastMap";
 
-// Chamber forecast [N5a]: Monte Carlo seat distribution + control probability. Derived
-// figure — methodology + inputs noted [N12a,R14a]. 0-JS; a seat-distribution chart island
-// can come later.
+// Chamber forecast [N5a] + forecast map/seat viz [E1.3]: a win-probability choropleth (reusing
+// the E1.1 <USStateMap> primitive) and a seat-distribution bar over the Monte Carlo chamber
+// simulation. Every figure is DERIVED — provenance is polls + fundamentals [R14a], methodology
+// linked [N12a]. 0-JS; the E0.4 pattern overlays keep party legible in grayscale, and a data-table
+// mirrors the map for AT.
 const chambers = allChamberForecasts();
+const mapData = senateForecastMapData();
 const pct = (p: number) => `${Math.round(p * 100)}%`;
+
+// Ramp legend — sampled from the same winProbColor() the map uses, so the key matches the map
+// (Republican-favoured swatches carry the E0.4 hatch overlay, mirroring the map, for grayscale).
+const rampLegend = [
+  { p: 0.95, label: "Safe D" },
+  { p: 0.75, label: "Lean D" },
+  { p: 0.5, label: "Toss-up" },
+  { p: 0.25, label: "Lean R" },
+  { p: 0.05, label: "Safe R" },
+].map((x) => {
+  const c = winProbColor(x.p);
+  return { label: x.label, fill: c.fill, pf: c.party === "R" ? "pf-hatch" : "" };
+});
+
+const isEmpty = chambers.length === 0 && mapData.count === 0;
 ---
 
 <Layout title="Forecast" description="Transparent heuristic + Monte Carlo election forecast.">
@@ -26,7 +55,7 @@ const pct = (p: number) => `${Math.round(p * 100)}%`;
     traces to its source.
   </p>
 
-  {chambers.length === 0 ? (
+  {isEmpty ? (
     <EmptyState class="mt-8" title="The forecast is not yet published">
       <p class="mt-1 text-muted">
         The engine is built and backtested, but a forecast is only shown once its inputs trace
@@ -36,22 +65,104 @@ const pct = (p: number) => `${Math.round(p * 100)}%`;
       </p>
     </EmptyState>
   ) : (
-    chambers.map((c) => (
-      <section class="mt-8" aria-labelledby={c.chamber}>
-        <Card>
+    <>
+      {chambers.map((c) => {
+        const segments = chamberSeatSegments(c);
+        const majPct = majorityMarkerPct(c);
+        return (
+          <section class="mt-8" aria-labelledby={c.chamber}>
+            <Card>
+              <SectionHeader
+                title={c.chamber}
+                id={c.chamber}
+                source={`As of ${c.as_of} · ${c.n_sims.toLocaleString()} simulations`}
+              />
+              <div class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
+                <StatBlock size="lg" value={pct(c.dem_control_prob)} label="Democratic control probability" />
+                <StatBlock size="lg" value={c.expected_dem_seats.toFixed(1)} label={`expected Dem seats (need ${c.majority})`} />
+                <StatBlock size="lg" value={`${c.dem_seat_p10}–${c.dem_seat_p90}`} label={`80% range (median ${c.dem_seat_p50})`} />
+              </div>
+
+              {segments && (
+                <div class="mt-6">
+                  <div class="mb-1 flex items-center justify-between text-sm text-muted">
+                    <span>Expected seat distribution</span>
+                    <span>{c.majority} needed for majority</span>
+                  </div>
+                  <div class="relative">
+                    <PartyBar segments={segments} pattern class="h-6" />
+                    {majPct != null && (
+                      <div
+                        class="absolute inset-y-0 w-0.5 bg-[var(--color-text)]"
+                        style={`left:${majPct}%`}
+                        aria-hidden="true"
+                      ></div>
+                    )}
+                  </div>
+                  <PartyLegend
+                    class="mt-2"
+                    pattern
+                    items={[
+                      { party: "D", label: "Democrats" },
+                      { party: "R", label: "Republicans / others" },
+                    ]}
+                  />
+                </div>
+              )}
+            </Card>
+          </section>
+        );
+      })}
+
+      {mapData.count > 0 && (
+        <section class="mt-10" aria-labelledby="map">
           <SectionHeader
-            title={c.chamber}
-            id={c.chamber}
-            source={`As of ${c.as_of} · ${c.n_sims.toLocaleString()} simulations`}
+            title="Win probability by state"
+            id="map"
+            source="Democratic win probability for each contested 2026 Senate seat. States not up this cycle are unshaded."
           />
-          <div class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
-            <StatBlock size="lg" value={pct(c.dem_control_prob)} label="Democratic control probability" />
-            <StatBlock size="lg" value={c.expected_dem_seats.toFixed(1)} label={`expected Dem seats (need ${c.majority})`} />
-            <StatBlock size="lg" value={`${c.dem_seat_p10}–${c.dem_seat_p90}`} label={`80% range (median ${c.dem_seat_p50})`} />
+
+          <PartyPatternDefs />
+          <USStateMap
+            class="mt-3"
+            label="2026 Senate forecast: Democratic win probability by state"
+            fills={mapData.fills}
+          />
+
+          <ul class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm" role="list">
+            {rampLegend.map((l) => (
+              <li class="flex items-center gap-2">
+                <span
+                  class={`inline-block size-4 rounded-sm border border-[var(--color-border)] ${l.pf}`}
+                  style={`background-color:${l.fill}`}
+                  aria-hidden="true"
+                ></span>
+                <span>{l.label}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-2 text-xs text-muted">
+            Colour intensity encodes confidence; Republican-favoured states also carry a diagonal
+            hatch so the map stays legible in grayscale. Full figures are in the table below.
+          </p>
+
+          <div class="mt-6">
+            <SectionHeader title="Forecast by state" id="map-table" source="Text equivalent of the map above." level={3} />
+            <DataTable
+              class="mt-3"
+              caption="Democratic win probability and forecast margin for each contested 2026 Senate seat."
+              columns={[
+                { key: "state", label: "State" },
+                { key: "prob", label: "Dem win probability", align: "right" },
+                { key: "margin", label: "Forecast margin", align: "right" },
+                { key: "range", label: "80% margin range" },
+              ]}
+              rows={mapData.rows}
+            />
           </div>
-        </Card>
-      </section>
-    ))
+        </section>
+      )}
+    </>
   )}
 
   <p class="mt-8 text-sm text-muted">
