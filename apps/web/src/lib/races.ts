@@ -19,6 +19,17 @@ export function partyColorClass(party: string): string {
   return PARTY_CLASS[party] ?? "bg-party-ind";
 }
 
+// Same palette as CSS-var references, for SVG viz that can't use Tailwind bg-* utilities
+// (e.g. the House hemicycle circles). Mirrors partyColorClass exactly: D→dem, R→rep, rest→ind
+// (patterns, not hue, separate Ind from Other in that shared color — see partyPatternFill).
+const PARTY_VAR: Record<string, string> = {
+  D: "var(--color-party-dem)",
+  R: "var(--color-party-rep)",
+};
+export function partyColorVar(party: string): string {
+  return PARTY_VAR[party] ?? "var(--color-party-ind)";
+}
+
 const PARTY_LABEL: Record<string, string> = {
   D: "Democrat",
   R: "Republican",
