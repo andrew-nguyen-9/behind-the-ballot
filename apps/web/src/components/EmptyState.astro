@@ -1,0 +1,17 @@
+---
+import { cn } from "../lib/utils";
+
+// Honest empty state — a bordered panel with a title and optional body/slot. Used when a
+// figure is intentionally not shown (no sourced data yet), never for placeholder numbers.
+interface Props {
+  title: string;
+  body?: string;
+  class?: string;
+}
+const { title, body, class: className } = Astro.props;
+---
+<div class={cn("rounded-lg border border-[var(--color-border)] p-5", className)}>
+  <p class="font-medium">{title}</p>
+  {body && <p class="mt-1 text-muted">{body}</p>}
+  <slot />
+</div>

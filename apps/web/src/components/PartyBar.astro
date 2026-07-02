@@ -1,0 +1,32 @@
+---
+import { cn } from "../lib/utils";
+import { partyColorClass, partyLabel } from "../lib/races";
+import { computeSegments, type BarSegment } from "./partyBar";
+
+// Horizontal party bar. One call = one bar. Stacked (byParty, no `max`) or single-fill
+// (one segment scaled to `max`, e.g. finance/polling). Bar widths stay inline
+// `style={width:%}` per spec. Default height h-4 — pass `class="h-2"` for thin bars.
+// `pattern` is the E0.4 hatch seam (no-op today). [C5a]
+interface Props {
+  segments: BarSegment[];
+  max?: number;
+  pattern?: boolean;
+  class?: string;
+}
+const { segments, max, pattern = false, class: className } = Astro.props;
+const computed = computeSegments(segments, max);
+const ariaLabel = computed.map((s) => s.label ?? `${partyLabel(s.party)}: ${s.value}`).join(", ");
+---
+<div
+  class={cn("flex h-4 w-full overflow-hidden rounded-sm bg-surface-2", className)}
+  role="img"
+  aria-label={ariaLabel}
+>
+  {computed.map((s) => (
+    <span
+      class={cn("block h-full", partyColorClass(s.party))}
+      style={`width:${s.pct}%`}
+      data-pattern={pattern ? "" : undefined}
+    ></span>
+  ))}
+</div>

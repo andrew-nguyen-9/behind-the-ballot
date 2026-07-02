@@ -1,0 +1,24 @@
+---
+import { cn } from "../lib/utils";
+
+// Bordered surface panel. Optional `eyebrow` (mono kicker) + `title` (Fraunces) above the
+// default slot. If `href` is set the whole card is a link with a hover border transition.
+interface Props {
+  href?: string;
+  title?: string;
+  eyebrow?: string;
+  class?: string;
+}
+const { href, title, eyebrow, class: className } = Astro.props;
+const Tag = href ? "a" : "div";
+const base = cn(
+  "block rounded-lg border border-[var(--color-border)] bg-surface p-5",
+  href && "transition-colors hover:border-[var(--color-brand)]",
+  className,
+);
+---
+<Tag class={base} {...(href ? { href } : {})}>
+  {eyebrow && <p class="eyebrow mb-2">{eyebrow}</p>}
+  {title && <h2 class="font-serif text-xl">{title}</h2>}
+  <slot />
+</Tag>

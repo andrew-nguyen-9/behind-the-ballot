@@ -1,0 +1,22 @@
+---
+import { cn } from "../lib/utils";
+import PartySwatch from "./PartySwatch.astro";
+
+// Swatch + label (+ optional count) key for a chart/bar. Composes PartySwatch, so the
+// `pattern` seam threads straight through to the atom. [C5a]
+interface Props {
+  items: { party: string; label: string; count?: number }[];
+  pattern?: boolean;
+  class?: string;
+}
+const { items, pattern = false, class: className } = Astro.props;
+---
+<ul class={cn("flex flex-wrap gap-x-6 gap-y-1 text-sm", className)} role="list">
+  {items.map((it) => (
+    <li class="flex items-center gap-2">
+      <PartySwatch party={it.party} pattern={pattern} />
+      <span class="font-medium">{it.label}</span>
+      {it.count != null && <span class="tabular-nums text-muted">{it.count}</span>}
+    </li>
+  ))}
+</ul>
