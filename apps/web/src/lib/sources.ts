@@ -20,4 +20,5 @@ export const SOURCES: Source[] = [
   { label: "Members of Congress", provider: "congress-legislators + Congress.gov", url: "https://github.com/unitedstates/congress-legislators", license: "CC0 / US public domain", cadence: "weekly", freshnessFloor: "14 days", modules: "Members, caucus" },
   { label: "Roll-call votes", provider: "Congress.gov + GovTrack", url: "https://www.congress.gov", license: "US public domain / GovTrack terms", cadence: "daily (in session)", freshnessFloor: "7 days", modules: "Member analytics" },
   { label: "Ideology", provider: "Voteview DW-NOMINATE", url: "https://voteview.com", license: "Academic, free (attributed)", cadence: "per Congress", freshnessFloor: "event-driven", modules: "Member analytics" },
+  { label: "Election dates", provider: "NCSL 2026 primary dates", url: "https://www.ncsl.org/elections-and-campaigns/2026-state-primary-election-dates", license: "Public reference (credited)", cadence: "per cycle", freshnessFloor: "event-driven", modules: "Election calendar" },
 ];

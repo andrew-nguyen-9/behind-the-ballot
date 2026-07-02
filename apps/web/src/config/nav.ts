@@ -28,6 +28,7 @@ export const primaryNav: readonly NavLink[] = [
   { href: "/senate", label: "Senate" },
   { href: "/forecast", label: "Forecast" },
   { href: "/gerrymander", label: "Maps" },
+  { href: "/dates", label: "Dates" },
   { href: "/articles", label: "Articles" },
   { href: "/search", label: "Search" },
 ];

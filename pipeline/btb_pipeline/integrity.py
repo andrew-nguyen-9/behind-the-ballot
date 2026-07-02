@@ -48,6 +48,8 @@ SOURCES: dict[str, Source] = {
     "tiger": Source(None, "TIGER/Line"),
     "medsl_president": Source(None, "MEDSL"),
     "geocoder": Source(None, "Geocoder"),
+    # Election calendar [E2.1]: legislatively fixed scheduled facts → event-driven, no floor.
+    "election_dates": Source(None, "Election dates"),
 }
 
 

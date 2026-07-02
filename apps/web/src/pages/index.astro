@@ -3,15 +3,18 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import { allRaces } from "../lib/races";
 import { allChamberForecasts } from "../lib/forecast";
+import { formatDate, upcomingEvents } from "../lib/dates";
 
 const raceCount = allRaces().length;
 const senate = allChamberForecasts().find((c) => c.chamber === "Senate");
+const nextDates = upcomingEvents(new Date(), 3);
 
 const sections = [
   { href: "/races", title: "Race tracker", body: "Every 2026 House, Senate, and Governor race — candidates, finance, polling, forecast." },
   { href: "/forecast", title: "Forecast", body: "Transparent heuristic + Monte Carlo model. Win probabilities, predicted margins, chamber control." },
   { href: "/members", title: "Members", body: "Profiles for members of Congress — party, district, ideology, voting record." },
   { href: "/gerrymander", title: "Maps & fairness", body: "District compactness and partisan-fairness metrics — several measures, with caveats." },
+  { href: "/dates", title: "Election dates", body: "2026 primary, runoff, and general election dates for every state." },
 ];
 ---
 
@@ -36,6 +39,19 @@ const sections = [
         Early fundamentals model (partisan lean only):{" "}
         {senate.dem_control_prob >= 0.5 ? "Democrats" : "Republicans"} favored for Senate control.
         See the <a href="/forecast" class="underline">forecast</a> and how it's built.
+      </p>
+    )}
+    {nextDates.length > 0 && (
+      <p class="mt-4 text-sm text-muted">
+        Next up:{" "}
+        {nextDates.map((e, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> · </span>}
+            <span class="text-[var(--color-text)]">{e.state_name} {e.kind.toLowerCase()}</span>{" "}
+            {formatDate(e.date)}
+          </>
+        ))}
+        . <a href="/dates" class="underline">All 2026 election dates</a>.
       </p>
     )}
   </section>
