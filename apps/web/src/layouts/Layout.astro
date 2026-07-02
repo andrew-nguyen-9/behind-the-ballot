@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import SearchDialog from "../components/SearchDialog.tsx";
 
 // Base shell: meta + OG + JSON-LD + nav + footer [U3a,U5a]. Every page renders through
 // this. ponytail: static default OG now; per-page generated OG cards [C14a] land in a
@@ -38,7 +39,8 @@ const nav = [
   { href: "/forecast", label: "Forecast" },
   { href: "/gerrymander", label: "Maps" },
   { href: "/articles", label: "Articles" },
-  { href: "/search", label: "Search" },
+  // /search stays a live route (shares the Pagefind index); the header search input below
+  // replaces its nav link so search isn't offered twice.
 ];
 ---
 
@@ -112,6 +114,7 @@ const nav = [
             </li>
           ))}
         </ul>
+        <SearchDialog client:idle />
       </nav>
     </header>
 
