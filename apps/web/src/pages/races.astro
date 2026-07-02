@@ -3,46 +3,96 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import ListRow from "../components/ListRow.astro";
 import PartySwatch from "../components/PartySwatch.astro";
+import EmptyState from "../components/EmptyState.astro";
+import FilterBar from "../components/FilterBar.astro";
 import { allRaces } from "../lib/races";
+import { facetOptions, groupBy } from "../lib/directory";
 
-// Browsable index of all race configs [F4c]. Grouped by office; each links to its detail
-// page. Real-time filtering can be a later island; static grouping is enough for V1 scale.
+// Browsable index of all race configs [F4c]. Grouped by office server-side (the 0-JS
+// fallback), then progressively enhanced by the FilterBar island [Q6.7] which re-groups
+// (office/state/status) and filters (state/status/search) purely client-side — no data.
 const races = allRaces();
-const offices: { key: "senate" | "house" | "governor"; label: string }[] = [
-  { key: "senate", label: "U.S. Senate" },
-  { key: "house", label: "U.S. House" },
-  { key: "governor", label: "Governor" },
-];
+
+const OFFICE_LABEL: Record<string, string> = {
+  senate: "U.S. Senate",
+  house: "U.S. House",
+  governor: "Governor",
+};
+const STATUS_LABEL: Record<string, string> = {
+  upcoming: "Upcoming",
+  primary: "Primary",
+  general: "General",
+  called: "Called",
+};
+
 const seat = (r: (typeof races)[number]) =>
   r.office === "house" ? `${r.state}-${String(r.district).padStart(2, "0")}` : r.state;
+const searchText = (r: (typeof races)[number]) =>
+  [r.title, ...r.candidates.map((c) => c.name)].join(" ").toLowerCase();
+
+const groups = groupBy(races, (r) => r.office, ["senate", "house", "governor"]);
+
+const facets = [
+  {
+    key: "state",
+    label: "State",
+    options: facetOptions(races, (r) => r.state).map((s) => ({ value: s, label: s })),
+  },
+  {
+    key: "status",
+    label: "Status",
+    options: facetOptions(races, (r) => r.status).map((s) => ({ value: s, label: STATUS_LABEL[s] ?? s })),
+  },
+];
+const groupDims = [
+  { key: "office", label: "Office", labels: OFFICE_LABEL },
+  { key: "state", label: "State" },
+  { key: "status", label: "Status", labels: STATUS_LABEL },
+];
 ---
 
 <Layout title="Races" description="2026 House, Senate, and Governor races.">
   <h1 class="text-3xl font-bold">Races</h1>
   <p class="mt-2 text-muted">{races.length} race{races.length === 1 ? "" : "s"} tracked for 2026.</p>
 
-  {offices.map(({ key, label }) => {
-    const group = races.filter((r) => r.office === key);
-    if (group.length === 0) return null;
-    return (
-      <section class="mt-8" aria-labelledby={key}>
-        <SectionHeader title={label} id={key} />
-        <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
-          {group.map((r) => (
-            <ListRow href={`/races/${r.id}`} title={r.title}>
-              <span slot="leading" class="w-16 shrink-0 text-sm tabular-nums text-muted">{seat(r)}</span>
-              <Fragment slot="trailing">
-                <span class="flex gap-1" aria-hidden="true">
-                  {r.candidates.map((c) => (
-                    <PartySwatch party={c.party} />
-                  ))}
-                </span>
-                <span class="text-sm capitalize text-muted">{r.status}</span>
-              </Fragment>
-            </ListRow>
-          ))}
-        </ul>
-      </section>
-    );
-  })}
+  <div data-directory>
+    <FilterBar facets={facets} groups={groupDims} noun="race" />
+
+    <div data-groups>
+      {groups.map(({ key, items }) => (
+        <section class="mt-8" data-group={key} aria-labelledby={key}>
+          <SectionHeader title={OFFICE_LABEL[key] ?? key} id={key} />
+          <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
+            {items.map((r) => (
+              <ListRow
+                href={`/races/${r.id}`}
+                title={r.title}
+                data={{
+                  "data-row": "",
+                  "data-office": r.office,
+                  "data-state": r.state,
+                  "data-status": r.status,
+                  "data-search": searchText(r),
+                }}
+              >
+                <span slot="leading" class="w-16 shrink-0 text-sm tabular-nums text-muted">{seat(r)}</span>
+                <Fragment slot="trailing">
+                  <span class="flex gap-1" aria-hidden="true">
+                    {r.candidates.map((c) => (
+                      <PartySwatch party={c.party} />
+                    ))}
+                  </span>
+                  <span class="text-sm capitalize text-muted">{r.status}</span>
+                </Fragment>
+              </ListRow>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+    <div data-empty hidden class="mt-6">
+      <EmptyState title="No races match your filters" body="Try clearing the search or a filter." />
+    </div>
+  </div>
 </Layout>

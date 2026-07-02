@@ -6,9 +6,10 @@ import StatBlock from "../../components/StatBlock.astro";
 import ListRow from "../../components/ListRow.astro";
 import PartySwatch from "../../components/PartySwatch.astro";
 import Chip from "../../components/Chip.astro";
+import EmptyState from "../../components/EmptyState.astro";
 import { allRaces, partyLabel } from "../../lib/races";
 import { membersForRace } from "../../lib/members";
-import { financeForRace, fmtUSD } from "../../lib/finance";
+import { financeForRace, fmtPct, fmtUSD } from "../../lib/finance";
 import { pollingForRace } from "../../lib/polling";
 import { forecastForRace, marginLabel } from "../../lib/forecast";
 import { demographicsForRace, fmtIncome, fmtPop } from "../../lib/demographics";
@@ -81,37 +82,92 @@ const seatMembers = membersForRace(race.state, race.office, race.office === "hou
     )}
   </section>
 
-  {finance && finance.length > 0 && (
-    <section class="mt-10" aria-labelledby="finance">
-      <SectionHeader title="Campaign finance" id="finance">
-        <Fragment slot="source">
-          Total receipts{coverage ? ` through ${coverage}` : ""}. Source:
-          <a href="/sources" class="underline">FEC</a> (public domain).
-        </Fragment>
-      </SectionHeader>
+  <section class="mt-10" aria-labelledby="finance">
+    <SectionHeader title="Campaign finance" id="finance">
+      <Fragment slot="source">
+        Figures as reported to the FEC{coverage ? ` through ${coverage}` : ""}; shown blank where a
+        committee has not disclosed them. Source: <a href="/sources" class="underline">FEC</a> (public domain).
+      </Fragment>
+    </SectionHeader>
+
+    {!finance || finance.length === 0 ? (
+      <EmptyState
+        class="mt-4"
+        title="No campaign finance reported yet"
+        body="No FEC committee filings are linked to this race's candidates yet."
+      />
+    ) : (
       <ul class="mt-4 space-y-3" role="list">
         {race.candidates.map((c) => {
           const f = c.fecCandidateId ? financeByFec.get(c.fecCandidateId) : undefined;
-          if (!f) return null;
+          if (!f) {
+            return (
+              <li class="rounded-lg border border-[var(--color-border)] p-4">
+                <div class="flex items-center gap-2">
+                  <PartySwatch party={c.party} size="sm" />
+                  <span class="font-medium">{c.name}</span>
+                </div>
+                <p class="mt-1 text-sm text-muted">No FEC committee linked — finance not reported.</p>
+              </li>
+            );
+          }
           return (
-            <li>
-              <div class="flex justify-between text-sm">
-                <span class="font-medium">{c.name}</span>
-                <span class="tabular-nums text-muted">
-                  {fmtUSD(f.receipts)} raised · {fmtUSD(f.cash_on_hand)} cash
-                </span>
-              </div>
-              <PartyBar
-                class="mt-1 h-2"
-                max={maxReceipts}
-                segments={[{ party: c.party, value: f.receipts, label: `${c.name}: ${fmtUSD(f.receipts)} raised` }]}
-              />
+            <li class="rounded-lg border border-[var(--color-border)]">
+              <details>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-3 p-4">
+                  <span class="flex items-center gap-2 font-medium">
+                    <PartySwatch party={c.party} size="sm" />
+                    {c.name}
+                  </span>
+                  <span class="text-sm tabular-nums text-muted">
+                    {fmtUSD(f.receipts)} raised · {fmtUSD(f.cash_on_hand)} cash
+                  </span>
+                </summary>
+                <div class="border-t border-[var(--color-border)] p-4">
+                  <PartyBar
+                    class="h-2"
+                    max={maxReceipts}
+                    segments={[{ party: c.party, value: f.receipts, label: `${c.name}: ${fmtUSD(f.receipts)} raised` }]}
+                  />
+                  <dl class="mt-4 grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-3">
+                    <div>
+                      <dt class="text-sm text-muted">Total receipts</dt>
+                      <dd class="text-lg font-bold tabular-nums">{fmtUSD(f.receipts)}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm text-muted">Total disbursements</dt>
+                      <dd class="text-lg font-bold tabular-nums">{fmtUSD(f.disbursements)}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm text-muted">Cash on hand</dt>
+                      <dd class="text-lg font-bold tabular-nums">{fmtUSD(f.cash_on_hand)}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm text-muted">Burn rate</dt>
+                      <dd class="text-lg font-bold tabular-nums">
+                        {f.burn_rate === null ? (
+                          <span class="font-normal text-muted">Not reported</span>
+                        ) : (
+                          fmtPct(f.burn_rate)
+                        )}
+                      </dd>
+                      {f.burn_rate !== null && <p class="text-xs text-muted">spending ÷ raising</p>}
+                    </div>
+                    <div>
+                      <dt class="text-sm text-muted">Coverage through</dt>
+                      <dd class="text-lg font-bold tabular-nums">
+                        {f.coverage_end_date ?? <span class="font-normal text-muted">Not reported</span>}
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </details>
             </li>
           );
         })}
       </ul>
-    </section>
-  )}
+    )}
+  </section>
 
   {polling && polling.averages.length > 0 && (
     <section class="mt-10" aria-labelledby="polling">
