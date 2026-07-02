@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import DataTable from "../components/DataTable.astro";
+import EmptyState from "../components/EmptyState.astro";
+import type { Column } from "../components/dataTable";
+import {
+  DEFAULT_CYCLE,
+  electionDates,
+  formatDate,
+  generalElectionDate,
+  upcomingEvents,
+} from "../lib/dates";
+
+// Curated 2026 election calendar [E2.1]: primary + runoff + general per state, sourced via
+// NCSL (see /sources). General election is one nationwide day; runoffs apply only in states
+// that use them.
+const rows = electionDates(DEFAULT_CYCLE);
+const general = generalElectionDate(DEFAULT_CYCLE);
+const upcoming = upcomingEvents(new Date(), 6, DEFAULT_CYCLE);
+const notes = rows.filter((r) => r.note);
+
+const columns: Column[] = [
+  { key: "state", label: "State" },
+  { key: "primary", label: "Primary" },
+  { key: "runoff", label: "Runoff" },
+  { key: "general", label: "General" },
+];
+const tableRows = rows.map((r) => ({
+  state: r.state_name,
+  primary: formatDate(r.primary),
+  runoff: r.runoff ? formatDate(r.runoff) : "—",
+  general: formatDate(r.general),
+}));
+---
+
+<Layout
+  title="Election dates"
+  description="2026 primary, runoff, and general election dates for every U.S. state."
+>
+  <h1 class="text-3xl font-bold">2026 election dates</h1>
+  <p class="mt-2 max-w-prose text-muted">
+    Primary, runoff, and general election dates for every state in the {DEFAULT_CYCLE} cycle.
+    The general election is <strong class="text-[var(--color-text)]">{general ? formatDate(general) : "—"}</strong>
+    nationwide. Runoffs are listed only where a state holds them. Source:
+    <a href="/sources" class="underline">NCSL 2026 primary dates</a>.
+  </p>
+
+  {rows.length === 0 ? (
+    <EmptyState
+      class="mt-8"
+      title="No dates baked yet"
+      body="The election calendar hasn't been baked into this build. See the sources we use."
+    />
+  ) : (
+    <>
+      <section class="mt-8" aria-labelledby="upcoming">
+        <SectionHeader title="Upcoming" id="upcoming" />
+        {upcoming.length === 0 ? (
+          <p class="mt-3 max-w-prose text-muted">No further {DEFAULT_CYCLE} dates ahead — the cycle is complete.</p>
+        ) : (
+          <ul class="mt-3 space-y-2" role="list">
+            {upcoming.map((e) => (
+              <li class="flex justify-between gap-4 text-sm">
+                <span class="font-medium">
+                  {e.state_name}{" "}
+                  <span class="text-muted">· {e.kind}</span>
+                </span>
+                <span class="tabular-nums text-muted">{formatDate(e.date)}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section class="mt-8" aria-labelledby="by-state">
+        <SectionHeader title="By state" id="by-state" />
+        <DataTable
+          class="mt-3"
+          columns={columns}
+          rows={tableRows}
+          caption="2026 primary, runoff, and general election dates by state"
+        />
+        {notes.length > 0 && (
+          <ul class="mt-3 space-y-1 text-xs text-muted" role="list">
+            {notes.map((r) => (
+              <li><span class="font-medium">{r.state_name}:</span> {r.note}</li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section class="mt-8" aria-labelledby="method">
+        <SectionHeader title="About these dates" id="method" />
+        <p class="mt-2 max-w-prose text-sm text-muted">
+          Dates are hand-curated from state election authorities, aggregated via the National
+          Conference of State Legislatures' 2026 primary calendar, and re-checked when a state
+          moves an election. A handful of states run non-partisan "top-two" or "top-four"
+          primaries rather than party primaries; those are noted above. Always confirm with your
+          state or local election office before relying on a date.
+        </p>
+      </section>
+    </>
+  )}
+</Layout>

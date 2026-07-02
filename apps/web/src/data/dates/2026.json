@@ -1,0 +1,452 @@
+[
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": "Several U.S. House districts hold their primary Aug 11, 2026.",
+    "primary": "2026-05-19",
+    "runoff": "2026-06-16",
+    "state": "AL",
+    "state_name": "Alabama"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": "Top-four nonpartisan primary; ranked-choice general.",
+    "primary": "2026-08-18",
+    "runoff": null,
+    "state": "AK",
+    "state_name": "Alaska"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-07-21",
+    "runoff": null,
+    "state": "AZ",
+    "state_name": "Arizona"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-03-03",
+    "runoff": "2026-03-31",
+    "state": "AR",
+    "state_name": "Arkansas"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": "Top-two nonpartisan primary.",
+    "primary": "2026-06-02",
+    "runoff": null,
+    "state": "CA",
+    "state_name": "California"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-30",
+    "runoff": null,
+    "state": "CO",
+    "state_name": "Colorado"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-11",
+    "runoff": null,
+    "state": "CT",
+    "state_name": "Connecticut"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-09-15",
+    "runoff": null,
+    "state": "DE",
+    "state_name": "Delaware"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-18",
+    "runoff": null,
+    "state": "FL",
+    "state_name": "Florida"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-19",
+    "runoff": "2026-06-16",
+    "state": "GA",
+    "state_name": "Georgia"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-08",
+    "runoff": null,
+    "state": "HI",
+    "state_name": "Hawaii"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-19",
+    "runoff": null,
+    "state": "ID",
+    "state_name": "Idaho"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-03-17",
+    "runoff": null,
+    "state": "IL",
+    "state_name": "Illinois"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-05",
+    "runoff": null,
+    "state": "IN",
+    "state_name": "Indiana"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-02",
+    "runoff": null,
+    "state": "IA",
+    "state_name": "Iowa"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-04",
+    "runoff": null,
+    "state": "KS",
+    "state_name": "Kansas"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-19",
+    "runoff": null,
+    "state": "KY",
+    "state_name": "Kentucky"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": "U.S. House races use a Nov 3, 2026 primary with a Dec 12 runoff.",
+    "primary": "2026-05-16",
+    "runoff": "2026-06-27",
+    "state": "LA",
+    "state_name": "Louisiana"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-09",
+    "runoff": null,
+    "state": "ME",
+    "state_name": "Maine"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-23",
+    "runoff": null,
+    "state": "MD",
+    "state_name": "Maryland"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-09-01",
+    "runoff": null,
+    "state": "MA",
+    "state_name": "Massachusetts"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-04",
+    "runoff": null,
+    "state": "MI",
+    "state_name": "Michigan"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-11",
+    "runoff": null,
+    "state": "MN",
+    "state_name": "Minnesota"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-03-10",
+    "runoff": "2026-04-07",
+    "state": "MS",
+    "state_name": "Mississippi"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-04",
+    "runoff": null,
+    "state": "MO",
+    "state_name": "Missouri"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-02",
+    "runoff": null,
+    "state": "MT",
+    "state_name": "Montana"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-12",
+    "runoff": null,
+    "state": "NE",
+    "state_name": "Nebraska"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-09",
+    "runoff": null,
+    "state": "NV",
+    "state_name": "Nevada"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-09-08",
+    "runoff": null,
+    "state": "NH",
+    "state_name": "New Hampshire"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-02",
+    "runoff": null,
+    "state": "NJ",
+    "state_name": "New Jersey"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-02",
+    "runoff": null,
+    "state": "NM",
+    "state_name": "New Mexico"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-23",
+    "runoff": null,
+    "state": "NY",
+    "state_name": "New York"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": "Runoff held only if requested and no candidate clears the 30% threshold.",
+    "primary": "2026-03-03",
+    "runoff": "2026-05-12",
+    "state": "NC",
+    "state_name": "North Carolina"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-09",
+    "runoff": null,
+    "state": "ND",
+    "state_name": "North Dakota"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-05",
+    "runoff": null,
+    "state": "OH",
+    "state_name": "Ohio"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-16",
+    "runoff": "2026-08-25",
+    "state": "OK",
+    "state_name": "Oklahoma"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-19",
+    "runoff": null,
+    "state": "OR",
+    "state_name": "Oregon"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-19",
+    "runoff": null,
+    "state": "PA",
+    "state_name": "Pennsylvania"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-09-09",
+    "runoff": null,
+    "state": "RI",
+    "state_name": "Rhode Island"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-09",
+    "runoff": "2026-06-23",
+    "state": "SC",
+    "state_name": "South Carolina"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-02",
+    "runoff": "2026-07-28",
+    "state": "SD",
+    "state_name": "South Dakota"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-06",
+    "runoff": null,
+    "state": "TN",
+    "state_name": "Tennessee"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-03-03",
+    "runoff": "2026-05-26",
+    "state": "TX",
+    "state_name": "Texas"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-06-23",
+    "runoff": null,
+    "state": "UT",
+    "state_name": "Utah"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-11",
+    "runoff": null,
+    "state": "VT",
+    "state_name": "Vermont"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-04",
+    "runoff": null,
+    "state": "VA",
+    "state_name": "Virginia"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": "Top-two nonpartisan primary.",
+    "primary": "2026-08-04",
+    "runoff": null,
+    "state": "WA",
+    "state_name": "Washington"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-05-12",
+    "runoff": null,
+    "state": "WV",
+    "state_name": "West Virginia"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-11",
+    "runoff": null,
+    "state": "WI",
+    "state_name": "Wisconsin"
+  },
+  {
+    "cycle": 2026,
+    "general": "2026-11-03",
+    "note": null,
+    "primary": "2026-08-18",
+    "runoff": null,
+    "state": "WY",
+    "state_name": "Wyoming"
+  }
+]

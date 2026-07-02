@@ -48,6 +48,7 @@ opens an issue rather than publishing nothing `[R8a]`.
 | Sponsored/cosponsored legislation counts | member analytics | Congress.gov sponsorship `[M5a]` | `api.congress.gov` | public domain | `api.data.gov` | weekly | 14 d |
 | Ideology scores (DW-NOMINATE) | member analytics | Voteview `[Q?a]` | `voteview.com/data` | academic, free, attribute | none | per Congress | event-driven |
 | Incumbents for race tracker | tracker | FEC filers + Congress.gov + Ballotpedia/Wikipedia `[F?→A]` | (above) | (above) | (above) | weekly | 30 d |
+| Election dates (primary / runoff / general, per state) | calendar | Hand-curated from state election authorities, aggregated via **NCSL 2026 State Primary Election Dates** `[E2.1]` | `ncsl.org/elections-and-campaigns/2026-state-primary-election-dates` | public reference, credit NCSL | none | per cycle (event) | event-driven |
 
 > Forecast (module) publishes **derived** figures — it has no upstream row of its own;
 > its inputs are the polling + finance + demographics rows above, plus prior-cycle

@@ -240,12 +240,29 @@ def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[P
     return written
 
 
+def export_dates(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/election_dates → src/data/dates/<cycle>.json [E2.1]. One committed file per cycle;
+    rows sorted by state name for a stable, alphabetical calendar table."""
+    rows = _gold("election_dates", root)
+    if rows is None:
+        return []
+    by_cycle: dict[int, list[dict]] = {}
+    for r in rows:
+        by_cycle.setdefault(r["cycle"], []).append(r)
+    return [
+        _write(web_data / "dates" / f"{cycle}.json",
+               sorted(rs, key=lambda r: r["state_name"]))
+        for cycle, rs in sorted(by_cycle.items())
+    ]
+
+
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
     "finance": export_finance,
     "districts": export_districts,
     "forecast": export_forecast,
+    "dates": export_dates,
 }
 
 

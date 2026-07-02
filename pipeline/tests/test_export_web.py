@@ -88,3 +88,22 @@ def test_export_forecast_covers_house_and_governor(tmp_path, monkeypatch):
     assert 0.0 <= house["win_prob"] <= 1.0
     gov = json.loads((fc / "us-governor-2026-NV.json").read_text())
     assert gov["win_prob"] > 0.5  # NV leans Dem in the fixture -> Dem-favored governor race
+
+
+def test_export_dates_partitions_by_cycle_sorted_by_state(tmp_path):
+    _write_gold(tmp_path, "election_dates", [
+        {"cycle": 2026, "state": "TX", "state_name": "Texas", "primary": "2026-03-03",
+         "runoff": "2026-05-26", "general": "2026-11-03", "note": None},
+        {"cycle": 2026, "state": "CA", "state_name": "California", "primary": "2026-06-02",
+         "runoff": None, "general": "2026-11-03", "note": None},
+        {"cycle": 2028, "state": "TX", "state_name": "Texas", "primary": "2028-03-07",
+         "runoff": None, "general": "2028-11-07", "note": None},
+    ])
+    out = ew.export_dates(root=tmp_path, web_data=tmp_path / "web")
+    assert {p.name for p in out} == {"2026.json", "2028.json"}  # one file per cycle
+    rows_2026 = json.loads((tmp_path / "web" / "dates" / "2026.json").read_text())
+    assert [r["state"] for r in rows_2026] == ["CA", "TX"]  # sorted by state name
+
+
+def test_export_dates_skips_when_no_gold(tmp_path):
+    assert ew.export_dates(root=tmp_path, web_data=tmp_path / "web") == []

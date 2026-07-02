@@ -20,6 +20,7 @@ from btb_pipeline.core import bake, dry_run, is_fresh
 from btb_pipeline.sources import (
     acs,
     committee_link,
+    election_dates,
     fec,
     medsl,
     members,
@@ -45,6 +46,7 @@ SOURCES: dict[str, Callable[[], Path]] = {
     "sponsorship": sponsorship.run,
     "tiger": tiger.run,
     "voteview": voteview.run,
+    "election_dates": election_dates.run,
 }
 
 
