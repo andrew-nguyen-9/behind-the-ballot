@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import SearchDialog from "../components/SearchDialog.tsx";
+import TextSizeControl from "../components/TextSizeControl.astro";
 
 // Base shell: meta + OG + JSON-LD + nav + footer [U3a,U5a]. Every page renders through
 // this. ponytail: static default OG now; per-page generated OG cards [C14a] land in a
@@ -64,6 +65,17 @@ const nav = [
                 ? "dark"
                 : "light";
           document.documentElement.dataset.theme = theme;
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- No-FOUC text-size [Q4.3]: apply the saved rem-scale step before first paint. Mirror
+         of the theme no-FOUC pattern (E0.2). Guarded for storage-blocked contexts. -->
+    <script is:inline>
+      (function () {
+        try {
+          var s = localStorage.getItem("btb-text-size");
+          if (s === "m" || s === "l") document.documentElement.setAttribute("data-text-size", s);
         } catch (e) {}
       })();
     </script>
@@ -146,26 +158,30 @@ const nav = [
           ))}
         </ul>
         <SearchDialog client:idle />
-        <button
-          id="theme-toggle"
-          type="button"
-          class="rounded p-1.5 text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface-2)] hover:text-[var(--color-brand)]"
-          aria-label="Toggle dark mode"
-        >
-          {/* Moon (shown in light) / sun (shown in dark) — visibility swapped via CSS on
-              html[data-theme]. Renders correctly with JS off (moon = default). */}
-          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
-          </svg>
-          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-          </svg>
-        </button>
+        <!-- A11y cluster [Q4.4]: text-size control + theme toggle (E0.2). -->
+        <div class="flex items-center" aria-label="Accessibility options">
+          <TextSizeControl />
+          <button
+            id="theme-toggle"
+            type="button"
+            class="rounded p-1.5 text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface-2)] hover:text-[var(--color-brand)]"
+            aria-label="Toggle dark mode"
+          >
+            {/* Moon (shown in light) / sun (shown in dark) — visibility swapped via CSS on
+                html[data-theme]. Renders correctly with JS off (moon = default). */}
+            <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+            </svg>
+            <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </svg>
+          </button>
+        </div>
       </nav>
     </header>
 

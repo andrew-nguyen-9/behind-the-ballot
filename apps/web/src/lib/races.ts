@@ -29,3 +29,28 @@ const PARTY_LABEL: Record<string, string> = {
 export function partyLabel(party: string): string {
   return PARTY_LABEL[party] ?? "Other";
 }
+
+// Colorblind pattern mapping [C5a, Q4.2]: Dem=solid, Rep=diagonal hatch, Ind=dots,
+// Other=crosshatch. Overlaid on the party color so viz stays distinguishable in grayscale.
+// Single source of truth — drives both the CSS overlay class (pure-CSS bars/swatches) and
+// the SVG <pattern> fill (W1 maps, via PartyPatternDefs.astro).
+export type PartyPatternKind = "solid" | "hatch" | "dots" | "crosshatch";
+const PARTY_PATTERN: Record<string, PartyPatternKind> = {
+  D: "solid",
+  R: "hatch",
+  I: "dots",
+};
+export function partyPatternKind(party: string): PartyPatternKind {
+  return PARTY_PATTERN[party] ?? "crosshatch";
+}
+// CSS overlay class for pure-CSS viz (PartySwatch/PartyBar). Solid => no class ("").
+export function partyPatternClass(party: string): string {
+  const kind = partyPatternKind(party);
+  return kind === "solid" ? "" : `pf-${kind}`;
+}
+// SVG fill reference for map shapes (W1) — pairs with <PartyPatternDefs>. Solid => undefined
+// (fill the shape with the plain party color instead).
+export function partyPatternFill(party: string): string | undefined {
+  const kind = partyPatternKind(party);
+  return kind === "solid" ? undefined : `url(#pf-${kind})`;
+}

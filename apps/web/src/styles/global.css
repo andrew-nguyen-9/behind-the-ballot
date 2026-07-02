@@ -124,6 +124,30 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Text-size control [C? Q4.3] — 3 steps scale the root rem so all rem-based type & spacing
+   reflow together. Applied no-FOUC in <head> from localStorage (btb-text-size); absent/'s'
+   = 100%. Content is rem/flex-based so 125% reflows without horizontal overflow. */
+:root[data-text-size="m"] { font-size: 112%; }
+:root[data-text-size="l"] { font-size: 125%; }
+
+/* Colorblind pattern overlays [C5a, Q4.1/Q4.2] — layered as a background-image on top of the
+   party background-color (bg-party-*) so party viz stays distinguishable in grayscale.
+   Dem = solid (no class). Static marks only — no motion, nothing for reduce-motion to gate. */
+.pf-hatch {
+  background-image: repeating-linear-gradient(
+    45deg, transparent 0 2px, rgba(0, 0, 0, 0.5) 2px 4px
+  );
+}
+.pf-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.55) 30%, transparent 34%);
+  background-size: 4px 4px;
+}
+.pf-crosshatch {
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 2px, rgba(0, 0, 0, 0.45) 2px 4px),
+    repeating-linear-gradient(-45deg, transparent 0 2px, rgba(0, 0, 0, 0.45) 2px 4px);
+}
+
 ::selection {
   background: color-mix(in srgb, var(--color-brand) 18%, transparent);
 }
