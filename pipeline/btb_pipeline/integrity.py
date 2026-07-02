@@ -50,6 +50,10 @@ SOURCES: dict[str, Source] = {
     "geocoder": Source(None, "Geocoder"),
     # Election calendar [E2.1]: legislatively fixed scheduled facts → event-driven, no floor.
     "election_dates": Source(None, "Election dates"),
+    # Live election results [E3.2]: state SoS feeds + Wikipedia call layer. Provisional
+    # numbers are timestamped facts superseded by MEDSL certification → event-driven, no
+    # floor (the tight election-night cadence is a scheduler concern, see DATA_SOURCES.md).
+    "primary_results": Source(None, "State SoS live results"),
 }
 
 

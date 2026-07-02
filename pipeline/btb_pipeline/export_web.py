@@ -347,6 +347,51 @@ def export_dates(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path
     ]
 
 
+def export_results(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/primary_results → per-race src/data/results/<raceId>.json [E3.2]. One committed
+    file per race that has ≥1 ingested candidate result; each file is a
+    {as_of, election_type, is_certified, pct_reporting, is_called, called_by, call_source,
+    source_url, candidates:[...]} record the race page renders unofficial-until-certified.
+
+    Real figures only [repo rule]: no gold, or a gold artifact with zero rows (the pre-
+    election honest-empty state), leaves src/data/results untouched, so every race page
+    shows its honest 'no results yet' state — never invented numbers."""
+    rows = _gold("primary_results", root)
+    if not rows:
+        return []
+    by_race: dict[str, list[dict]] = {}
+    for r in rows:
+        by_race.setdefault(r["race_id"], []).append(r)
+
+    written: list[Path] = []
+    for rid, rs in by_race.items():
+        rs = sorted(rs, key=lambda r: (-(r.get("votes") or 0), r["candidate"]))
+        head = rs[0]
+        # Race-level fields are shared across a race's rows; take them off any row.
+        record = {
+            "race_id": rid,
+            "election_type": head.get("election_type"),
+            "as_of": head.get("as_of"),
+            "is_certified": head.get("is_certified", False),
+            "pct_reporting": head.get("pct_reporting"),
+            "is_called": head.get("is_called", False),
+            "called_by": head.get("called_by"),
+            "call_source": head.get("call_source"),
+            "source_url": head.get("source_url"),
+            "candidates": [
+                {
+                    "candidate": r["candidate"],
+                    "party": r.get("party"),
+                    "votes": r.get("votes"),
+                    "pct": r.get("pct"),
+                }
+                for r in rs
+            ],
+        }
+        written.append(_write(web_data / "results" / f"{rid}.json", record))
+    return written
+
+
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
@@ -356,6 +401,7 @@ EXPORTERS = {
     "districts": export_districts,
     "forecast": export_forecast,
     "dates": export_dates,
+    "results": export_results,
 }
 
 
