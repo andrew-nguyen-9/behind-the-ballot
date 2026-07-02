@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-NV",
+  "cycle": 2026,
+  "title": "NV Governor 2026",
+  "office": "governor",
+  "state": "NV",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

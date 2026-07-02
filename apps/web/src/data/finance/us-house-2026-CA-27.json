@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "H4CA27111",
+    "race_id": "us-house-2026-CA-27",
+    "party": "D",
+    "receipts": 3536153.91,
+    "disbursements": 1541320.51,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4359,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA27306",
+    "race_id": "us-house-2026-CA-27",
+    "party": "R",
+    "receipts": 346900.44,
+    "disbursements": 154920.3,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4466,
+    "coverage_end_date": "2026-05-13"
+  }
+]

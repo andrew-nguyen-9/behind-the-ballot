@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "H2PA04135",
+    "race_id": "us-house-2026-PA-10",
+    "party": "R",
+    "receipts": 4415917.78,
+    "disbursements": 2156940.93,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4884,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "H4PA10104",
+    "race_id": "us-house-2026-PA-10",
+    "party": "D",
+    "receipts": 4691752.99,
+    "disbursements": 1357722.71,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2894,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "H6PA10174",
+    "race_id": "us-house-2026-PA-10",
+    "party": "I",
+    "receipts": 59448.95,
+    "disbursements": 45148.86,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7595,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6PA10182",
+    "race_id": "us-house-2026-PA-10",
+    "party": "D",
+    "receipts": 138272.69,
+    "disbursements": 127678.19,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9234,
+    "coverage_end_date": "2026-04-29"
+  }
+]

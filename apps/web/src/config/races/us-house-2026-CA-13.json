@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-CA-13",
+  "cycle": 2026,
+  "title": "CA-13 U.S. House 2026",
+  "office": "house",
+  "state": "CA",
+  "district": 13,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "adam-c-gray",
+      "name": "Adam C. Gray",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H2CA13115"
+    },
+    {
+      "id": "vin-kruttiventi",
+      "name": "Vin Kruttiventi",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4CA14093"
+    },
+    {
+      "id": "kevin-j-lincoln",
+      "name": "Kevin J Lincoln",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4CA09093"
+    },
+    {
+      "id": "javier-b-lopez",
+      "name": "Javier B Lopez",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6CA13181"
+    }
+  ]
+}

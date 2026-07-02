@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-OR-05",
+  "cycle": 2026,
+  "title": "OR-05 U.S. House 2026",
+  "office": "house",
+  "state": "OR",
+  "district": 5,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "janelle-bynum",
+      "name": "Janelle Bynum",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H4OR05304"
+    },
+    {
+      "id": "patti-adair",
+      "name": "Patti Adair",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6OR05242"
+    }
+  ]
+}

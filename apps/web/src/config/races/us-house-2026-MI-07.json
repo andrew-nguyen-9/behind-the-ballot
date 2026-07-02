@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-MI-07",
+  "cycle": 2026,
+  "title": "MI-07 U.S. House 2026",
+  "office": "house",
+  "state": "MI",
+  "district": 7,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "thomas-more-barrett",
+      "name": "Thomas More Barrett",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2MI07123"
+    },
+    {
+      "id": "bridget-brink",
+      "name": ", Bridget Brink",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI07256"
+    },
+    {
+      "id": "matthew-maasdam",
+      "name": "Matthew Maasdam",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI07272"
+    },
+    {
+      "id": "william-lawrence",
+      "name": "William Lawrence",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI07298"
+    },
+    {
+      "id": "josh-cowen",
+      "name": "Josh Cowen",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI07280"
+    }
+  ]
+}

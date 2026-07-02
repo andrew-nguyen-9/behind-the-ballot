@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NE-02",
+  "cycle": 2026,
+  "title": "NE-02 U.S. House 2026",
+  "office": "house",
+  "state": "NE",
+  "district": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "denise-powell",
+      "name": "Denise Powell",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NE02174"
+    },
+    {
+      "id": "donald-j-bacon",
+      "name": "Donald J Bacon",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H6NE02125"
+    },
+    {
+      "id": "brinker-harding",
+      "name": "Brinker Harding",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NE02208"
+    },
+    {
+      "id": "john-cavanaugh",
+      "name": "John Cavanaugh",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NE02190"
+    },
+    {
+      "id": "kishla-askins",
+      "name": "Kishla Askins",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NE02224"
+    },
+    {
+      "id": "james-leuschen",
+      "name": "James Leuschen",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NE02240"
+    }
+  ]
+}

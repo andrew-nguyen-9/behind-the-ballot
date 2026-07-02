@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-WA-03",
+  "cycle": 2026,
+  "title": "WA-03 U.S. House 2026",
+  "office": "house",
+  "state": "WA",
+  "district": 3,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "marie-gluesenkamp-perez",
+      "name": "Marie Gluesenkamp Perez",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H2WA03217"
+    },
+    {
+      "id": "john-braun",
+      "name": "John Braun",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6WA03275"
+    },
+    {
+      "id": "brent-william-hennrich",
+      "name": "Brent William Hennrich",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H2WA03134"
+    }
+  ]
+}

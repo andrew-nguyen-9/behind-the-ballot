@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NY-17",
+  "cycle": 2026,
+  "title": "NY-17 U.S. House 2026",
+  "office": "house",
+  "state": "NY",
+  "district": 17,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "peter-chatzky",
+      "name": "Peter Chatzky",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NY17213"
+    },
+    {
+      "id": "michael-vincent-lawler",
+      "name": "Michael Vincent Lawler",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2NY17162"
+    },
+    {
+      "id": "cait-conley",
+      "name": "Cait Conley",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NY17171"
+    },
+    {
+      "id": "beth-davidson",
+      "name": "Beth Davidson",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NY17163"
+    },
+    {
+      "id": "effie-phillips-staley",
+      "name": "Effie Phillips-Staley",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NY17205"
+    },
+    {
+      "id": "jessica-reinmann",
+      "name": "Jessica Reinmann",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NY17155"
+    }
+  ]
+}

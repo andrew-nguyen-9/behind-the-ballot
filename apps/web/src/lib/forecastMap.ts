@@ -55,7 +55,10 @@ export interface ForecastMapData {
 // overlaid; states without a published forecast are simply absent (USStateMap paints emptyFill —
 // "not up this cycle"). No invented numbers. Sorted safe-Dem → toss-up → safe-Rep for the table.
 export function senateForecastMapData(): ForecastMapData {
+  // Senate-only: governor race ids also end in a state postal (us-governor-2026-PA), so filter
+  // to the senate slice before mapping to state codes [E2.2] — this is the Senate choropleth.
   const entries = allRaceForecasts()
+    .filter(({ raceId }) => raceId.startsWith("us-senate-"))
     .map(({ raceId, forecast }) => ({ code: raceStatePostal(raceId), forecast }))
     .filter((e): e is { code: string; forecast: RaceForecast } => e.code !== null)
     .sort((a, b) => b.forecast.win_prob - a.forecast.win_prob);

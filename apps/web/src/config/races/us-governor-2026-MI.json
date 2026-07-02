@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-MI",
+  "cycle": 2026,
+  "title": "MI Governor 2026",
+  "office": "governor",
+  "state": "MI",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NY-04",
+  "cycle": 2026,
+  "title": "NY-04 U.S. House 2026",
+  "office": "house",
+  "state": "NY",
+  "district": 4,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "laura-gillen",
+      "name": "Laura Gillen",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H2NY04244"
+    },
+    {
+      "id": "jeanine-driscoll",
+      "name": "Jeanine Driscoll",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NY04211"
+    },
+    {
+      "id": "marvin-suber-williams",
+      "name": "Marvin Suber Williams",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NY04195"
+    }
+  ]
+}

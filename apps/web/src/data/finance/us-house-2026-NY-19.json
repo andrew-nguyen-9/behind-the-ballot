@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "H6NY19268",
+    "race_id": "us-house-2026-NY-19",
+    "party": "R",
+    "receipts": 956745.03,
+    "disbursements": 704593.89,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7364,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H8NY22177",
+    "race_id": "us-house-2026-NY-19",
+    "party": "D",
+    "receipts": 4336326.5,
+    "disbursements": 1484272.23,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3423,
+    "coverage_end_date": "2026-06-03"
+  }
+]

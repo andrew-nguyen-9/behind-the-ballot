@@ -1,0 +1,42 @@
+[
+  {
+    "candidate_id": "H2IA02111",
+    "race_id": "us-house-2026-IA-01",
+    "party": "D",
+    "receipts": 5646240.47,
+    "disbursements": 1418406.06,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2512,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H4IA01127",
+    "race_id": "us-house-2026-IA-01",
+    "party": "R",
+    "receipts": 57495.0,
+    "disbursements": 53301.68,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9271,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6IA01197",
+    "race_id": "us-house-2026-IA-01",
+    "party": "D",
+    "receipts": 697874.04,
+    "disbursements": 697874.04,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2026-03-20"
+  },
+  {
+    "candidate_id": "H8IA02043",
+    "race_id": "us-house-2026-IA-01",
+    "party": "R",
+    "receipts": 6171913.05,
+    "disbursements": 2298792.12,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3725,
+    "coverage_end_date": "2026-05-13"
+  }
+]

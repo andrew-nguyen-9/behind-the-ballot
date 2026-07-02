@@ -1,0 +1,52 @@
+[
+  {
+    "candidate_id": "H2MI07123",
+    "race_id": "us-house-2026-MI-07",
+    "party": "R",
+    "receipts": 5033611.52,
+    "disbursements": 2236973.13,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4444,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6MI07256",
+    "race_id": "us-house-2026-MI-07",
+    "party": "D",
+    "receipts": 2251354.48,
+    "disbursements": 962108.5,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4273,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6MI07272",
+    "race_id": "us-house-2026-MI-07",
+    "party": "D",
+    "receipts": 1725855.78,
+    "disbursements": 789236.46,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4573,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6MI07280",
+    "race_id": "us-house-2026-MI-07",
+    "party": "D",
+    "receipts": 209460.19,
+    "disbursements": 209460.19,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6MI07298",
+    "race_id": "us-house-2026-MI-07",
+    "party": "D",
+    "receipts": 572331.06,
+    "disbursements": 221241.77,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3866,
+    "coverage_end_date": "2026-03-31"
+  }
+]

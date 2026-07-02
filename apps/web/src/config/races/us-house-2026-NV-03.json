@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NV-03",
+  "cycle": 2026,
+  "title": "NV-03 U.S. House 2026",
+  "office": "house",
+  "state": "NV",
+  "district": 3,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "susie-lee",
+      "name": "Susie Lee",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H6NV04020"
+    },
+    {
+      "id": "marty-o-donnell",
+      "name": "Marty O'Donnell",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NV03204"
+    },
+    {
+      "id": "marty-o-donnell",
+      "name": "Marty O'Donnell",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4NV03225"
+    },
+    {
+      "id": "james-lally",
+      "name": "James Lally",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NV03246"
+    },
+    {
+      "id": "aury-nagy",
+      "name": "Aury Nagy",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NV03212"
+    },
+    {
+      "id": "jeff-gunter",
+      "name": "Jeff Gunter",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NV03287"
+    }
+  ]
+}

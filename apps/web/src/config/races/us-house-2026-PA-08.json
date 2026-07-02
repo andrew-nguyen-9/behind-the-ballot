@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-PA-08",
+  "cycle": 2026,
+  "title": "PA-08 U.S. House 2026",
+  "office": "house",
+  "state": "PA",
+  "district": 8,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "rob-bresnahan",
+      "name": "Rob Bresnahan",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H4PA08124"
+    },
+    {
+      "id": "paige-cognetti",
+      "name": "Paige Cognetti",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA08293"
+    }
+  ]
+}

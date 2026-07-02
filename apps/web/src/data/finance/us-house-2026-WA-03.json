@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "H2WA03134",
+    "race_id": "us-house-2026-WA-03",
+    "party": "D",
+    "receipts": 167096.69,
+    "disbursements": 128579.1,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7695,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H2WA03217",
+    "race_id": "us-house-2026-WA-03",
+    "party": "D",
+    "receipts": 4548761.32,
+    "disbursements": 1119396.21,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2461,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6WA03275",
+    "race_id": "us-house-2026-WA-03",
+    "party": "R",
+    "receipts": 1234763.28,
+    "disbursements": 278506.53,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2256,
+    "coverage_end_date": "2026-03-31"
+  }
+]

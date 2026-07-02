@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-MI-10",
+  "cycle": 2026,
+  "title": "MI-10 U.S. House 2026",
+  "office": "house",
+  "state": "MI",
+  "district": 10,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "eric-chung",
+      "name": "Eric Chung",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI10292"
+    },
+    {
+      "id": "robert-lulgjuraj",
+      "name": "Robert Lulgjuraj",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6MI10326"
+    },
+    {
+      "id": "tim-greimel",
+      "name": "Tim Greimel",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI10284"
+    },
+    {
+      "id": "michael-bouchard",
+      "name": "Michael Bouchard",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6MI10359"
+    },
+    {
+      "id": "christina-hines",
+      "name": "Christina Hines",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MI10276"
+    },
+    {
+      "id": "john-james",
+      "name": "John James",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2MI10150"
+    }
+  ]
+}

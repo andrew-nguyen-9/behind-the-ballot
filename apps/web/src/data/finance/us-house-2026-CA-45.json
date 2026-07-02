@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H0CA48198",
+    "race_id": "us-house-2026-CA-45",
+    "party": "R",
+    "receipts": 1252671.58,
+    "disbursements": 2156133.07,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.7212,
+    "coverage_end_date": "2025-10-09"
+  },
+  {
+    "candidate_id": "H4CA45170",
+    "race_id": "us-house-2026-CA-45",
+    "party": "D",
+    "receipts": 4200766.25,
+    "disbursements": 1773751.07,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4222,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA45167",
+    "race_id": "us-house-2026-CA-45",
+    "party": "R",
+    "receipts": 473065.0,
+    "disbursements": 195363.01,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.413,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA45183",
+    "race_id": "us-house-2026-CA-45",
+    "party": "R",
+    "receipts": 57696.78,
+    "disbursements": 30527.35,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5291,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA45191",
+    "race_id": "us-house-2026-CA-45",
+    "party": "R",
+    "receipts": 405945.96,
+    "disbursements": 224136.66,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5521,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA45209",
+    "race_id": "us-house-2026-CA-45",
+    "party": "R",
+    "receipts": 756510.0,
+    "disbursements": 756510.0,
+    "cash_on_hand": 0.0,
+    "burn_rate": 1.0,
+    "coverage_end_date": "2026-06-16"
+  }
+]

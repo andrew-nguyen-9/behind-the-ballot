@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-VA-02",
+  "cycle": 2026,
+  "title": "VA-02 U.S. House 2026",
+  "office": "house",
+  "state": "VA",
+  "district": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "jennifer-kiggans",
+      "name": "Jennifer Kiggans",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2VA02064"
+    },
+    {
+      "id": "elaine-luria",
+      "name": "Elaine Luria",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6VA02198"
+    },
+    {
+      "id": "james-osyf",
+      "name": "James Osyf",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6VA02149"
+    },
+    {
+      "id": "michael-williamson",
+      "name": "Michael Williamson",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6VA02156"
+    },
+    {
+      "id": "matt-strickler",
+      "name": "Matt Strickler",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6VA02180"
+    },
+    {
+      "id": "nila-devanath",
+      "name": "Nila Devanath",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6VA02172"
+    }
+  ]
+}

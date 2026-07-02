@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "H4OR05304",
+    "race_id": "us-house-2026-OR-05",
+    "party": "D",
+    "receipts": 3132580.81,
+    "disbursements": 934060.57,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2982,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "H6OR05242",
+    "race_id": "us-house-2026-OR-05",
+    "party": "R",
+    "receipts": 300473.44,
+    "disbursements": 202567.2,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.6742,
+    "coverage_end_date": "2026-04-29"
+  }
+]

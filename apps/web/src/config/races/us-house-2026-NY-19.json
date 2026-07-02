@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NY-19",
+  "cycle": 2026,
+  "title": "NY-19 U.S. House 2026",
+  "office": "house",
+  "state": "NY",
+  "district": 19,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "josh-riley",
+      "name": "Josh Riley",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H8NY22177"
+    },
+    {
+      "id": "peter-karl-oberacker",
+      "name": "Peter Karl Oberacker",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NY19268"
+    }
+  ]
+}

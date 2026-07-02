@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NJ-07",
+  "cycle": 2026,
+  "title": "NJ-07 U.S. House 2026",
+  "office": "house",
+  "state": "NJ",
+  "district": 7,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "thomas-h-kean",
+      "name": "Thomas H. Kean",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H0NJ07261"
+    },
+    {
+      "id": "rebecca-bennett",
+      "name": "Rebecca Bennett",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NJ07201"
+    },
+    {
+      "id": "tina-shah",
+      "name": "Tina Shah",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NJ07250"
+    },
+    {
+      "id": "brian-varela",
+      "name": "Brian Varela",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H2NJ08265"
+    },
+    {
+      "id": "michael-roth",
+      "name": "Michael Roth",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NJ07235"
+    },
+    {
+      "id": "megan-o-rourke",
+      "name": "Megan O'Rourke",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6NJ07276"
+    }
+  ]
+}

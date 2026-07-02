@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NC-01",
+  "cycle": 2026,
+  "title": "NC-01 U.S. House 2026",
+  "office": "house",
+  "state": "NC",
+  "district": 1,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "sandy-roberson",
+      "name": "Sandy Roberson",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H2NC02253"
+    },
+    {
+      "id": "don-davis",
+      "name": "Don Davis",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H2NC02287"
+    },
+    {
+      "id": "laurie-buckhout",
+      "name": "Laurie Buckhout",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4NC01137"
+    },
+    {
+      "id": "bobby-hanig",
+      "name": "Bobby Hanig",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NC01132"
+    },
+    {
+      "id": "asa-bryant-buck",
+      "name": "Asa Bryant Buck",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NC01165"
+    },
+    {
+      "id": "ashley-nicole-russell",
+      "name": "Ashley Nicole Russell",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NC01140"
+    }
+  ]
+}

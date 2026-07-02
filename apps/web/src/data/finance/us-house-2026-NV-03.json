@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H4NV03225",
+    "race_id": "us-house-2026-NV-03",
+    "party": "R",
+    "receipts": 3330496.31,
+    "disbursements": 1156189.5,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3472,
+    "coverage_end_date": "2026-06-23"
+  },
+  {
+    "candidate_id": "H6NV03204",
+    "race_id": "us-house-2026-NV-03",
+    "party": "R",
+    "receipts": 3355917.41,
+    "disbursements": 1156189.5,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3445,
+    "coverage_end_date": "2026-06-23"
+  },
+  {
+    "candidate_id": "H6NV03212",
+    "race_id": "us-house-2026-NV-03",
+    "party": "R",
+    "receipts": 1076398.73,
+    "disbursements": 330476.98,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.307,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6NV03246",
+    "race_id": "us-house-2026-NV-03",
+    "party": "D",
+    "receipts": 1312289.34,
+    "disbursements": 1051125.93,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.801,
+    "coverage_end_date": "2026-05-20"
+  },
+  {
+    "candidate_id": "H6NV03287",
+    "race_id": "us-house-2026-NV-03",
+    "party": "R",
+    "receipts": 791334.83,
+    "disbursements": 778972.92,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9844,
+    "coverage_end_date": "2026-05-20"
+  },
+  {
+    "candidate_id": "H6NV04020",
+    "race_id": "us-house-2026-NV-03",
+    "party": "D",
+    "receipts": 3862399.29,
+    "disbursements": 1018875.88,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2638,
+    "coverage_end_date": "2026-05-20"
+  }
+]

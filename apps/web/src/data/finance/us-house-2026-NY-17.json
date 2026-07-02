@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H2NY17162",
+    "race_id": "us-house-2026-NY-17",
+    "party": "R",
+    "receipts": 7472987.12,
+    "disbursements": 3286803.68,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4398,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H6NY17155",
+    "race_id": "us-house-2026-NY-17",
+    "party": "D",
+    "receipts": 655451.09,
+    "disbursements": 613342.41,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9358,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6NY17163",
+    "race_id": "us-house-2026-NY-17",
+    "party": "D",
+    "receipts": 2062800.67,
+    "disbursements": 1648553.39,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7992,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H6NY17171",
+    "race_id": "us-house-2026-NY-17",
+    "party": "D",
+    "receipts": 3258197.72,
+    "disbursements": 2317224.34,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7112,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H6NY17205",
+    "race_id": "us-house-2026-NY-17",
+    "party": "D",
+    "receipts": 695629.17,
+    "disbursements": 640370.87,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9206,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H6NY17213",
+    "race_id": "us-house-2026-NY-17",
+    "party": "D",
+    "receipts": 11707921.6,
+    "disbursements": 11707132.24,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9999,
+    "coverage_end_date": "2026-06-30"
+  }
+]

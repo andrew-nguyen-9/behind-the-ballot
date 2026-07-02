@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "H2NM02191",
+    "race_id": "us-house-2026-NM-02",
+    "party": "D",
+    "receipts": 3157009.37,
+    "disbursements": 1239653.96,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3927,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6NM02127",
+    "race_id": "us-house-2026-NM-02",
+    "party": "R",
+    "receipts": 678540.19,
+    "disbursements": 329340.98,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4854,
+    "coverage_end_date": "2026-06-10"
+  },
+  {
+    "candidate_id": "H6NM02135",
+    "race_id": "us-house-2026-NM-02",
+    "party": "R",
+    "receipts": 218754.52,
+    "disbursements": 215936.5,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9871,
+    "coverage_end_date": "2026-05-13"
+  }
+]

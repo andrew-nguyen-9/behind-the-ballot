@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-PA-07",
+  "cycle": 2026,
+  "title": "PA-07 U.S. House 2026",
+  "office": "house",
+  "state": "PA",
+  "district": 7,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "ryan-edward-mackenzie",
+      "name": "Ryan Edward Mackenzie",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H8PA15195"
+    },
+    {
+      "id": "ryan-crosswell",
+      "name": "Ryan Crosswell",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA07162"
+    },
+    {
+      "id": "bob-brooks",
+      "name": "Bob Brooks",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA07188"
+    },
+    {
+      "id": "carol-obando-derstine",
+      "name": "Carol Obando-Derstine",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA07154"
+    },
+    {
+      "id": "lamont-mcclure",
+      "name": "Lamont Mcclure",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA07147"
+    },
+    {
+      "id": "mark-pinsley",
+      "name": "Mark Pinsley",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA07170"
+    }
+  ]
+}

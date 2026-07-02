@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-CO-08",
+  "cycle": 2026,
+  "title": "CO-08 U.S. House 2026",
+  "office": "house",
+  "state": "CO",
+  "district": 8,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "timothy-gabriel-joseph-evans",
+      "name": "Timothy Gabriel Joseph Evans",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H4CO08034"
+    },
+    {
+      "id": "manny-rutinel",
+      "name": "Manny Rutinel",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CO08013"
+    },
+    {
+      "id": "shannon-kathleen-bird",
+      "name": "Shannon Kathleen Bird",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CO08047"
+    },
+    {
+      "id": "evan-munsing",
+      "name": "Evan Munsing",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CO08088"
+    },
+    {
+      "id": "yadira-caraveo",
+      "name": "Yadira Caraveo",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H2CO08020"
+    },
+    {
+      "id": "david-l-young",
+      "name": "David L. Young",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CO08054"
+    }
+  ]
+}

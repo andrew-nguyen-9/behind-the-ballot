@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "H4PA08124",
+    "race_id": "us-house-2026-PA-08",
+    "party": "R",
+    "receipts": 4519622.57,
+    "disbursements": 2299482.45,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5088,
+    "coverage_end_date": "2026-04-29"
+  },
+  {
+    "candidate_id": "H6PA08293",
+    "race_id": "us-house-2026-PA-08",
+    "party": "D",
+    "receipts": 3102420.42,
+    "disbursements": 852243.1,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2747,
+    "coverage_end_date": "2026-04-29"
+  }
+]

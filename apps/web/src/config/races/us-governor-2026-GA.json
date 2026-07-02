@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-GA",
+  "cycle": 2026,
+  "title": "GA Governor 2026",
+  "office": "governor",
+  "state": "GA",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

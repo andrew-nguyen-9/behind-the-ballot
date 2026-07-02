@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-01",
+  "cycle": 2026,
+  "title": "AZ-01 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 1,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "jonathan-treble",
+      "name": "Jonathan Treble",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ01298"
+    },
+    {
+      "id": "thomas-james-feely",
+      "name": "Thomas James Feely",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ05190"
+    },
+    {
+      "id": "david-s-schweikert",
+      "name": "David S. Schweikert",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H4AZ06045"
+    },
+    {
+      "id": "marlene-galan-woods",
+      "name": "Marlene Galan-Woods",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ01280"
+    },
+    {
+      "id": "amish-shah",
+      "name": "Amish Shah",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H4AZ01194"
+    },
+    {
+      "id": "rick-mccartney",
+      "name": "Rick Mccartney",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ01306"
+    }
+  ]
+}

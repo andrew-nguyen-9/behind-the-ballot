@@ -36,6 +36,7 @@ opens an issue rather than publishing nothing `[R8a]`.
 | Poll results (HoR/Sen/Gov, by race) | polling | 538 polls CSV `[H1a]` ⚠️ **DEAD** (iter 60: endpoint returns ABC HTML shell; replacement pending — PROGRESS Open Q#1) | `projects.fivethirtyeight.com/polls/data/…csv` | 538 terms, attribute | none | daily | 3 d |
 | Pollster quality ratings | polling | 538 pollster ratings `[H?a]` ⚠️ **DEAD** (same) | 538 ratings CSV | 538 terms, attribute | none | weekly | 30 d |
 | Race rosters / candidate lists (supplementary) | tracker | Wikipedia race tables `[H1a]` | per-race wiki page | CC BY-SA, attribute | none | weekly | 30 d |
+| House/Governor competitiveness ratings (which races are Toss-up/Lean → competitive set) | tracker `[E2.2, Q7.2]` | Wikipedia race-ratings tables (2026 House / gubernatorial elections) | `en.wikipedia.org` per-cycle election page | CC BY-SA, attribute | none | weekly | 30 d |
 | ACS demographics per district/state | demographics | Census ACS via Census API `[I2a]` | `api.census.gov/data` | US public domain | `api.data.gov` | yearly (ACS release) `[I7a]` | 400 d |
 | District ↔ geography equivalency (119th Congress) | demographics/geo | Census district equivalency `[I3a]` | census.gov equivalency files | public domain | none | per redistricting `[L547]` | event-driven |
 | District / state boundary shapes | geo / gerrymander-lite | Census TIGER/Line `[K?a,I3a]` | `www2.census.gov/geo/tiger` | public domain | none | yearly + court orders `[L547]` | event-driven |

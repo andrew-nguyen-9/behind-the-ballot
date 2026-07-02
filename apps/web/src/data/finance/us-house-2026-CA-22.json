@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "H2CA20094",
+    "race_id": "us-house-2026-CA-22",
+    "party": "R",
+    "receipts": 4233413.3,
+    "disbursements": 1398371.68,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3303,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA22190",
+    "race_id": "us-house-2026-CA-22",
+    "party": "D",
+    "receipts": 1748192.46,
+    "disbursements": 1411155.63,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8072,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6CA22208",
+    "race_id": "us-house-2026-CA-22",
+    "party": "D",
+    "receipts": 1302739.96,
+    "disbursements": 942955.46,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7238,
+    "coverage_end_date": "2026-05-13"
+  }
+]

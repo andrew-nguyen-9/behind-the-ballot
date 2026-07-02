@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-NM-02",
+  "cycle": 2026,
+  "title": "NM-02 U.S. House 2026",
+  "office": "house",
+  "state": "NM",
+  "district": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "gabriel-vasquez",
+      "name": "Gabriel Vasquez",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H2NM02191"
+    },
+    {
+      "id": "greg-cunningham",
+      "name": "Greg Cunningham",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NM02127"
+    },
+    {
+      "id": "jose-orozco",
+      "name": "Jose Orozco",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6NM02135"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "H2AZ02360",
+    "race_id": "us-house-2026-AZ-06",
+    "party": "R",
+    "receipts": 5083546.72,
+    "disbursements": 1488376.77,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2928,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6AZ06099",
+    "race_id": "us-house-2026-AZ-06",
+    "party": "D",
+    "receipts": 5341037.68,
+    "disbursements": 1830458.04,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3427,
+    "coverage_end_date": "2026-03-31"
+  }
+]

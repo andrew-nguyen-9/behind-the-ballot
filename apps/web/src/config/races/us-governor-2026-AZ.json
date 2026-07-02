@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-AZ",
+  "cycle": 2026,
+  "title": "AZ Governor 2026",
+  "office": "governor",
+  "state": "AZ",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}
