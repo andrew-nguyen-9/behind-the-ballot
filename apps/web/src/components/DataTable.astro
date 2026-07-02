@@ -1,0 +1,38 @@
+---
+import { cn } from "../lib/utils";
+import { alignClass, type Column } from "./dataTable";
+
+// Plain-cell data table (text/number cells only — rich-cell tables like /sources keep their
+// bespoke markup). Horizontal-scroll wrapper, sticky-free. Right-aligned columns get
+// tabular figures. Pass `caption` for an sr-only table caption.
+interface Props {
+  columns: Column[];
+  rows: Record<string, unknown>[];
+  caption?: string;
+  class?: string;
+}
+const { columns, rows, caption, class: className } = Astro.props;
+---
+<div class="overflow-x-auto">
+  <table class={cn("w-full text-sm", className)}>
+    {caption && <caption class="sr-only">{caption}</caption>}
+    <thead class="text-muted">
+      <tr>
+        {columns.map((c) => (
+          <th class={cn("py-2 pr-4 font-medium", alignClass(c.align))}>{c.label}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class="border-t border-[var(--color-border)] align-top">
+          {columns.map((c) => (
+            <td class={cn("py-2 pr-4", alignClass(c.align), c.align === "right" && "tnum")}>
+              {row[c.key] == null ? "" : String(row[c.key])}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

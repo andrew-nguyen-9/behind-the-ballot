@@ -1,0 +1,20 @@
+---
+import { cn } from "../lib/utils";
+
+// A single headline figure with a label and optional sub-line. Tabular figures (Chivo).
+// `size`: md (text-2xl, detail pages) | lg (text-3xl, chamber/forecast headline stats).
+interface Props {
+  value: string | number;
+  label: string;
+  sub?: string;
+  size?: "md" | "lg";
+  class?: string;
+}
+const { value, label, sub, size = "md", class: className } = Astro.props;
+const valueClass = size === "lg" ? "text-3xl" : "text-2xl";
+---
+<div class={cn(className)}>
+  <div class={cn("font-bold tabular-nums", valueClass)}>{value}</div>
+  <div class="mt-0.5 text-sm text-muted">{label}</div>
+  {sub && <div class="text-xs text-muted">{sub}</div>}
+</div>

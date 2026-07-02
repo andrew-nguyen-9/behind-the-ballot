@@ -1,0 +1,23 @@
+---
+import { cn } from "../lib/utils";
+
+// Section heading (Fraunces) + optional source/attribution line. Pass `id` to pair with
+// a `<section aria-labelledby>`. `source` prop = plain text; for a source line with links,
+// use the named `source` slot instead. `level` sets the heading tag (h2–h4).
+interface Props {
+  title: string;
+  id?: string;
+  source?: string;
+  level?: 2 | 3 | 4;
+  class?: string;
+}
+const { title, id, source, level = 2, class: className } = Astro.props;
+const Tag = `h${level}` as "h2" | "h3" | "h4";
+const hasSourceSlot = Astro.slots.has("source");
+---
+<Tag id={id} class={cn("font-serif text-xl", className)}>{title}</Tag>
+{(source || hasSourceSlot) && (
+  <p class="mt-1 text-sm text-muted">
+    {hasSourceSlot ? <slot name="source" /> : source}
+  </p>
+)}

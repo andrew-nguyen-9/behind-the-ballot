@@ -1,0 +1,26 @@
+---
+import { cn } from "../lib/utils";
+
+// Small pill/tag. Variants: default (outline), solid (brand), muted (surface fill — e.g.
+// an "Incumbent" badge). Renders <a> when `href` is set, otherwise <span>.
+interface Props {
+  label: string;
+  href?: string;
+  variant?: "default" | "solid" | "muted";
+  class?: string;
+}
+const { label, href, variant = "default", class: className } = Astro.props;
+const Tag = href ? "a" : "span";
+const variantClass = {
+  default: "border border-[var(--color-border)]",
+  solid: "bg-[var(--color-brand)] text-[var(--color-on-brand)]",
+  muted: "bg-surface text-muted",
+}[variant];
+const base = cn(
+  "inline-block rounded-sm px-2 py-1 text-sm font-medium",
+  variantClass,
+  href && "transition-colors hover:text-[var(--color-brand)]",
+  className,
+);
+---
+<Tag class={base} {...(href ? { href } : {})}>{label}</Tag>

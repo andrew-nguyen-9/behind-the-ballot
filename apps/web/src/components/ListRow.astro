@@ -1,0 +1,33 @@
+---
+import { cn } from "../lib/utils";
+import PartySwatch from "./PartySwatch.astro";
+
+// One row in a divide-y list. Renders an <li> (place inside a <ul role="list">). If `href`
+// is set the row is a link with a hover transition. Leading: a PartySwatch when `party` is
+// given, or override via the named `leading` slot. `meta` is the muted right-aligned text;
+// the named `trailing` slot holds extra end content (chips, dots, arrows).
+interface Props {
+  title: string;
+  href?: string;
+  party?: string;
+  meta?: string;
+  class?: string;
+}
+const { title, href, party, meta, class: className } = Astro.props;
+const hasLeading = Astro.slots.has("leading");
+const hasTrailing = Astro.slots.has("trailing");
+const rowClass = cn(
+  "flex items-center gap-3 py-3",
+  href && "transition-colors hover:text-[var(--color-brand)]",
+  className,
+);
+const Tag = href ? "a" : "div";
+---
+<li>
+  <Tag class={rowClass} {...(href ? { href } : {})}>
+    {hasLeading ? <slot name="leading" /> : party && <PartySwatch party={party} />}
+    <span class="min-w-0 flex-1 font-medium">{title}</span>
+    {meta && <span class="text-sm text-muted">{meta}</span>}
+    {hasTrailing && <slot name="trailing" />}
+  </Tag>
+</li>
