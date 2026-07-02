@@ -1,0 +1,59 @@
+
+ RUN  v4.1.9 /Users/andrew/Documents/GitHub/behind-the-ballot/.claude/worktrees/agent-a5a7a501563476647/apps/web
+
+ ✓ src/components/dataTable.test.ts > alignClass > maps align to the text-align utility 1ms
+ ✓ src/components/dataTable.test.ts > rowCells > returns cells in column order 0ms
+ ✓ src/components/dataTable.test.ts > rowCells > renders blank for missing / null keys 0ms
+ ✓ src/components/partyBar.test.ts > computeSegments > normalises against the segment sum when no max is given (stacked) 2ms
+ ✓ src/components/partyBar.test.ts > computeSegments > scales against an explicit max (single-fill) 0ms
+ ✓ src/components/partyBar.test.ts > computeSegments > clamps values above max to 100 0ms
+ ✓ src/components/partyBar.test.ts > computeSegments > floors negatives to 0 0ms
+ ✓ src/components/partyBar.test.ts > computeSegments > returns 0 widths when the total is 0 (no divide-by-zero) 0ms
+ ✓ src/components/partyBar.test.ts > computeSegments > preserves party and label passthrough 0ms
+ ✓ src/config/nav.test.ts > primaryNav > omits Home (the logo is the home link) 1ms
+ ✓ src/config/nav.test.ts > primaryNav > uses internal absolute paths only 0ms
+ ✓ src/config/nav.test.ts > footerColumns > covers the required link set [Q5.2] 1ms
+ ✓ src/config/nav.test.ts > footerColumns > marks only the repo link external and points it at the repo 0ms
+ ✓ src/config/nav.test.ts > footerColumns > keeps internal footer links as absolute paths 0ms
+ ✓ src/config/nav.test.ts > external anchors > an9.dev + repo are https absolute URLs 0ms
+ ✓ src/config/schema.test.ts > UnitConfig > accepts a real generated race config 3ms
+ ✓ src/config/schema.test.ts > UnitConfig > rejects a house race with no district 1ms
+ ✓ src/config/schema.test.ts > UnitConfig > rejects a senate race with a district 1ms
+ ✓ src/config/schema.test.ts > UnitConfig > rejects a bad state code 1ms
+ ✓ src/lib/finance.test.ts > finance > formats USD compactly 1ms
+ ✓ src/lib/finance.test.ts > finance > loads a real per-race finance artifact joined by FEC id 0ms
+ ✓ src/lib/finance.test.ts > finance > returns null for a race with no finance artifact 0ms
+ ✓ src/lib/demographics.test.ts > demographics > loads a real per-race ACS demographics artifact 1ms
+ ✓ src/lib/demographics.test.ts > demographics > returns null when absent 0ms
+ ✓ src/lib/demographics.test.ts > demographics > formats population and income 16ms
+ ✓ src/lib/forecast.test.ts > forecast > labels signed Dem margins 1ms
+ ✓ src/lib/forecast.test.ts > forecast > serves bounded per-race forecasts; null for unknown races 0ms
+ ✓ src/lib/forecast.test.ts > forecast > publishes a bounded, sourced chamber forecast 0ms
+ ✓ src/lib/geo.test.ts > geo > projects a square ring to an SVG path within the viewBox 1ms
+ ✓ src/lib/geo.test.ts > geo > rejects degenerate rings 0ms
+ ✓ src/lib/geo.test.ts > geo > returns null for an unknown district shape 0ms
+ ✓ src/lib/polling.test.ts > polling > returns null (polling deferred to V1.1) 1ms
+ ✓ src/lib/gerrymander.test.ts > gerrymander > loads + sorts state fairness (empty until sourced) 1ms
+ ✓ src/lib/gerrymander.test.ts > gerrymander > labels efficiency gap with direction + magnitude 0ms
+ ✓ src/lib/gerrymander.test.ts > gerrymander > ranks districts by compactness (least compact first) 29ms
+ ✓ src/lib/members.test.ts > members > loads + sorts the roster by name 17ms
+ ✓ src/lib/members.test.ts > members > finds a member by bioguide id 1ms
+ ✓ src/lib/members.test.ts > members > bands DW-NOMINATE into plain language 0ms
+ ✓ src/lib/members.test.ts > members > computes chamber composition with party counts summing to the total 0ms
+ ✓ src/lib/members.test.ts > members > lists 33 Class II Senate seats for 2026, deduped 0ms
+ ✓ src/lib/members.test.ts > members > matches members to a race seat by state/district 2ms
+ ✓ src/lib/utils.test.ts > cn > joins truthy classes, drops falsy 4ms
+ ✓ src/lib/utils.test.ts > cn > later tailwind class wins on conflict 0ms
+ ✓ src/lib/sources.test.ts > sources contract > lists every V1 source with required contract fields 2ms
+ ✓ src/lib/sources.test.ts > sources contract > covers the core providers 0ms
+ ✓ src/lib/races.test.ts > races > loads + validates all seeded race configs 13ms
+ ✓ src/lib/races.test.ts > races > maps party to colorblind-safe token classes 0ms
+ ✓ src/lib/races.test.ts > races > labels parties 0ms
+ ✓ src/lib/db/snapshots.test.ts > snapshot store > writes and reads back, filtered by unit 1127ms
+ ✓ src/lib/db/snapshots.test.ts > snapshot store > returns most-recent first, capped by limit 699ms
+
+ Test Files  15 passed (15)
+      Tests  50 passed (50)
+   Start at  19:54:40
+   Duration  2.90s (transform 872ms, setup 0ms, import 1.59s, tests 1.95s, environment 1ms)
+
