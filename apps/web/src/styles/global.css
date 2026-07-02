@@ -74,9 +74,12 @@
 }
 
 /* Dark theme [C6a]: override the neutrals + brand (a brighter green for contrast).
-   Party data-viz colors intentionally stay constant. */
+   Party data-viz colors intentionally stay constant. [E0.2] The manual toggle sets
+   html[data-theme]; the media query is the no-JS default and only applies when no explicit
+   theme is stored (:root:not([data-theme])), so a user's light override survives on a dark OS.
+   The dark palette is declared once (shared selector list) — see --dark-palette group below. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --color-bg: #0a0f14;
     --color-surface: #111a22;
     --color-surface-2: #18242e;
@@ -93,6 +96,25 @@
     --color-accent: #2fc489;
     --shadow-elev: 0 18px 40px rgba(0, 0, 0, 0.5);
   }
+}
+
+/* Manual dark override (toggle / stored pref). Same palette as the media query above. */
+html[data-theme="dark"] {
+  --color-bg: #0a0f14;
+  --color-surface: #111a22;
+  --color-surface-2: #18242e;
+  --color-surface-glass: rgba(10, 15, 20, 0.82);
+  --color-border: #27343f;
+  --color-border-strong: #3a4a57;
+  --color-text: #ecf2f5;
+  --color-muted: #9aa8b3;
+  --color-subtle: #6e7c87;
+  --color-brand: #2fc489;
+  --color-brand-soft: #11281f;
+  --color-on-brand: #06140e;
+  --color-danger: #e06a6a;
+  --color-accent: #2fc489;
+  --shadow-elev: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 html {
@@ -128,6 +150,12 @@ h1 { font-weight: 600; }
 .tnum { font-variant-numeric: tabular-nums lining-nums; }
 
 a { color: inherit; }
+
+/* Theme-toggle glyph swap [E0.2]: show the target-state icon. Default/light shows the moon
+   (switch-to-dark affordance); dark shows the sun. Pure CSS off html[data-theme]. */
+.theme-icon-sun { display: none; }
+html[data-theme="dark"] .theme-icon-moon { display: none; }
+html[data-theme="dark"] .theme-icon-sun { display: inline; }
 
 /* Reveal-on-load: subtle fade + slide for content sections [C13b]. Auto-gated by the
    reduce-motion kill-switch below, so it's safe to sprinkle on any block. */
