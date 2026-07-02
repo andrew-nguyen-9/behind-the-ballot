@@ -2,12 +2,20 @@ import pytest
 
 from btb_pipeline.montecarlo import compute_forecast
 from btb_pipeline.race_model import (
+    BASE_SIGMA,
+    HORIZON_SIGMA,
+    INCUMBENCY_MARGIN,
+    MIDTERM_PENALTY,
     blend_margin,
+    finance_margin,
     fundamentals_margin,
+    incumbency_margin,
+    midterm_margin,
     normal_cdf,
     poll_margin,
     predict_race,
     predict_races,
+    sigma_for_days,
 )
 
 
@@ -113,3 +121,63 @@ def test_predict_races_feeds_montecarlo_end_to_end():
 def test_predict_races_empty_raises():
     with pytest.raises(ValueError):
         predict_races([])
+
+
+# --- Q9.1 forecast refinements ------------------------------------------------------------------
+
+def test_incumbency_margin_signs():
+    assert incumbency_margin("D") == pytest.approx(INCUMBENCY_MARGIN)
+    assert incumbency_margin("R") == pytest.approx(-INCUMBENCY_MARGIN)
+    assert incumbency_margin(None) == 0.0
+    assert incumbency_margin("I") == 0.0  # independent → no partisan incumbency nudge
+
+
+def test_finance_margin_scales_and_signs():
+    assert finance_margin(0.0) == 0.0
+    assert finance_margin(1.0) == pytest.approx(0.05)   # full Dem money edge
+    assert finance_margin(-1.0) == pytest.approx(-0.05)  # full Rep money edge
+
+
+def test_midterm_penalty_shifts_away_from_president():
+    # President's party loses ground: R president → shift toward Dems (+), D president → (-).
+    assert midterm_margin("R") == pytest.approx(MIDTERM_PENALTY)
+    assert midterm_margin("D") == pytest.approx(-MIDTERM_PENALTY)
+    assert midterm_margin(None) == 0.0
+
+
+def test_sigma_widens_with_horizon():
+    assert sigma_for_days(None) == pytest.approx(BASE_SIGMA)
+    assert sigma_for_days(0) == pytest.approx(BASE_SIGMA)  # election day
+    assert sigma_for_days(365) == pytest.approx(BASE_SIGMA + HORIZON_SIGMA)  # a year out
+    assert sigma_for_days(999) == pytest.approx(BASE_SIGMA + HORIZON_SIGMA)  # capped
+    # monotonic: farther out is never more certain
+    assert sigma_for_days(30) < sigma_for_days(200) < sigma_for_days(365)
+
+
+def test_predict_race_refinements_compose_onto_margin():
+    # Even PVI, no polls: base margin 0. Add a Dem incumbent (+0.02), a Dem finance edge
+    # (0.5*0.05=0.025), and an R-administration midterm (+0.04) → +0.085.
+    out = predict_race(
+        "senate", fundamentals_pvi=0.0,
+        incumbent_party="D", finance_net=0.5, president_party="R",
+    )
+    assert out["margin"] == pytest.approx(0.085, abs=1e-9)
+    assert out["win_prob"] > 0.5  # the nudges push Dem-favored
+
+
+def test_predict_race_horizon_widens_range_but_not_margin():
+    near = predict_race("senate", fundamentals_pvi=0.10, days_to_election=1)
+    far = predict_race("senate", fundamentals_pvi=0.10, days_to_election=365)
+    assert near["margin"] == far["margin"]  # horizon changes only the uncertainty
+    near_width = near["margin_hi"] - near["margin_lo"]
+    far_width = far["margin_hi"] - far["margin_lo"]
+    assert far_width > near_width  # a year out is less certain
+    # farther out pulls a Dem-leaning race's win prob back toward 0.5
+    assert far["win_prob"] < near["win_prob"]
+
+
+def test_predict_race_defaults_unchanged():
+    # No refinement args → identical to the v1 fundamentals-only behavior (sigma 0.07).
+    out = predict_race("governor", fundamentals_pvi=0.0, poll_dem_share=0.55)
+    assert out["margin"] == pytest.approx(0.06, abs=1e-9)
+    assert out["margin_hi"] == pytest.approx(0.06 + 1.28 * BASE_SIGMA, abs=1e-9)

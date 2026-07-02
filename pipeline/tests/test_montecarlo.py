@@ -1,6 +1,12 @@
 import pytest
 
-from btb_pipeline.montecarlo import compute_forecast, simulate_chamber
+from btb_pipeline.montecarlo import (
+    BASE_NATIONAL_SIGMA,
+    HORIZON_NATIONAL_SIGMA,
+    compute_forecast,
+    national_sigma_for_days,
+    simulate_chamber,
+)
 
 
 def _probs(n: int, p: float) -> dict[str, float]:
@@ -76,3 +82,12 @@ def test_empty_raises():
         simulate_chamber({})
     with pytest.raises(ValueError):
         compute_forecast({})
+
+
+def test_national_sigma_widens_with_horizon():
+    # Q9.1: the shared national swing is wider a year out than on election eve.
+    assert national_sigma_for_days(None) == pytest.approx(BASE_NATIONAL_SIGMA)
+    assert national_sigma_for_days(0) == pytest.approx(BASE_NATIONAL_SIGMA)
+    assert national_sigma_for_days(365) == pytest.approx(BASE_NATIONAL_SIGMA + HORIZON_NATIONAL_SIGMA)
+    assert national_sigma_for_days(999) == pytest.approx(BASE_NATIONAL_SIGMA + HORIZON_NATIONAL_SIGMA)
+    assert national_sigma_for_days(30) < national_sigma_for_days(365)

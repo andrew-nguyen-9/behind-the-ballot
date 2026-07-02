@@ -45,14 +45,16 @@ const isEmpty = chambers.length === 0 && mapData.count === 0;
 <Layout title="Forecast" description="Transparent heuristic + Monte Carlo election forecast.">
   <h1 class="text-3xl font-bold">Forecast</h1>
   <p class="mt-2 max-w-prose text-muted">
-    An early, transparent <strong>fundamentals baseline</strong> for the 2026 Senate, with a Monte
+    An early, transparent <strong>fundamentals model</strong> for the 2026 Senate, with a Monte
     Carlo chamber simulation (correlated national swing) over the 33 contested seats plus the
-    holdover seats not up this cycle. V1 input is <strong>partisan lean only</strong> — each state's
-    2024 two-party presidential margin (<a href="/sources" class="underline">MEDSL</a>) vs the
-    nation. It does <strong>not yet</strong> include polls (no open feed — see
-    <a href="/sources" class="underline">sources</a>), the midterm penalty, incumbency, or candidate
-    quality, so read it as a partisan-lean starting point, not a final prediction. Every figure
-    traces to its source.
+    holdover seats not up this cycle. The lean starts from each state's 2024 two-party presidential
+    margin (<a href="/sources" class="underline">MEDSL</a>) vs the nation, then applies a
+    <strong>midterm penalty</strong> (the president's party typically loses ground),
+    <strong>incumbency</strong>, and a <strong>campaign-finance</strong> signal, with the
+    uncertainty <strong>widening the further out</strong> we are from election day. It still does
+    <strong>not</strong> include polls (no open feed — see
+    <a href="/sources" class="underline">sources</a>) or candidate quality, so read it as an early
+    estimate, not a final prediction. Every figure traces to its source.
   </p>
 
   {isEmpty ? (
