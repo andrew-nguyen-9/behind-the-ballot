@@ -27,6 +27,7 @@ from btb_pipeline.demographics import (
     build_state_changes,
     rollup_by_state,
 )
+from btb_pipeline.fairness import compute_fairness
 from btb_pipeline.finance_aggregates import build_finance, rollup_by_race
 
 WEB_DATA = Path("apps/web/src/data")
@@ -455,6 +456,68 @@ def export_results(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Pa
     return written
 
 
+def export_fairness(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/primary_results (certified House general results) ⋈ gold/tiger → per-state partisan
+    fairness (efficiency gap / mean–median / seats–votes) → src/data/gerrymander/states.json
+    [L3a, E2.5]. The fairness LIVE-JOIN, source-walled through V1 and unblocked by the Wave-3
+    results connector [E3.2/E3.3].
+
+    Honest by construction [repo rule]: fairness is computed for a state ONLY when the FULL set of
+    its current-lines (post-2020) U.S. House districts — the TIGER district set — has reported
+    two-party results, and only for multi-district states (an efficiency gap needs a map). A partial
+    slate, a single-district (at-large) state, or no results at all writes NOTHING, so the page keeps
+    its honest 'pending a sourced House-by-district dataset' state — never a misleading or fabricated
+    number. Real rows appear the moment a state's certified House results land in the results gold."""
+    rows = _gold("primary_results", root)
+    tiger = _gold("tiger", root)
+    if not rows or not tiger:
+        return []
+
+    # Current-lines House district set per state (the completeness requirement).
+    required: dict[str, set[int]] = {}
+    for d in tiger:
+        required.setdefault(d["state"], set()).add(int(d["district"]))
+
+    # Two-party House general-election votes tallied per (state, district).
+    tally: dict[tuple[str, int], dict[str, int]] = {}
+    for r in rows:
+        if r.get("office") != "house" or r.get("election_type") != "general":
+            continue
+        district, party = r.get("district"), r.get("party")
+        if district is None or party not in ("D", "R"):
+            continue
+        agg = tally.setdefault((r["state"], int(district)), {"dem_votes": 0, "rep_votes": 0})
+        agg["dem_votes" if party == "D" else "rep_votes"] += int(r.get("votes") or 0)
+
+    by_state: dict[str, list[dict]] = {}
+    for (state, district), votes in tally.items():
+        by_state.setdefault(state, []).append(
+            {"geoid": f"{state}-{district:02d}", "district": district, **votes}
+        )
+
+    out_rows: list[dict] = []
+    for state, districts in by_state.items():
+        need = required.get(state, set())
+        got = {d["district"] for d in districts}
+        # Require a complete, multi-district, fully-reported state — else stay honestly empty.
+        if len(need) < 2 or not need <= got:
+            continue
+        if any(d["dem_votes"] + d["rep_votes"] <= 0 for d in districts):
+            continue
+        report = compute_fairness(districts)
+        out_rows.append({
+            "state": state,
+            "efficiency_gap": report["efficiency_gap"],
+            "mean_median": report["mean_median"],
+            "dem_seat_share": report["dem_seat_share"],
+            "dem_vote_share": report["dem_vote_share"],
+        })
+    if not out_rows:
+        return []
+    out_rows.sort(key=lambda r: r["state"])
+    return [_write(web_data / "gerrymander" / "states.json", out_rows)]
+
+
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
@@ -465,6 +528,7 @@ EXPORTERS = {
     "forecast": export_forecast,
     "dates": export_dates,
     "results": export_results,
+    "fairness": export_fairness,
 }
 
 

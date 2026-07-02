@@ -709,7 +709,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
 | v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
 | v1.7.1-compactness-metrics | v1.1.2 | done + LIVE (iter 75: real TIGER cb_2023 CD118 → 441 districts reprojected to EPSG:5070 → real Polsby-Popper/Reock/convex-hull on /gerrymander) |
-| v1.7.2-fairness-metrics | v1.7.1 | math done; live join DEFERRED V1.1 (iter 82, Andrew: House-by-CD current-lines source-walled — BACKLOG). Page shows honest pending state. |
+| v1.7.2-fairness-metrics | v1.7.1 | math done; LIVE-JOIN WIRED (E4.1): export_fairness joins gold/primary_results (House general) ⋈ gold/tiger → compute_fairness → states.json, computed only for a fully-reported multi-district state (else honest-empty). Data-pending: results connector ships ACTIVE_STATES=[] so still empty on the live site until a state's House feeds turn on / MEDSL House backfill runs — no more code needed. |
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | done (local gate) |
 | v1.7.4-leaderboard | v1.7.1 | done (on gerrymander page) |
 | v1.7.5-methodology-page | v1.7.2 | done (methodology section) |
