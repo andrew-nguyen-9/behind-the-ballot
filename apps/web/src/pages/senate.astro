@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import USStateMap from "../components/USStateMap.astro";
+import StripeDefs from "../components/StripeDefs.astro";
+import PartyPatternDefs from "../components/PartyPatternDefs.astro";
+import DataTable from "../components/DataTable.astro";
+import { senateMapData, MAP_COLORS } from "../lib/usStates";
+
+// Senate delegation map [E1.1] — a static, 0-JS albers-usa choropleth of each state's two
+// sitting senators, coloured by party (independents caucus-tinted, split delegations striped).
+// The <USStateMap> primitive is reusable (E2.3 house-by-state, E2.5); this page supplies the
+// Senate-specific fills, stripe defs, and the equivalent data-table.
+const { fills, stripes, rows } = senateMapData();
+
+// Legend swatches reuse E0.4's .pf-* CSS overlays so the key matches the map in grayscale.
+const legend = [
+  { label: "Democratic", bg: MAP_COLORS.D, pf: "" },
+  { label: "Republican", bg: MAP_COLORS.R, pf: "pf-hatch" },
+  { label: "Independent (caucus-tinted grey)", bg: MAP_COLORS.indDem, pf: "pf-dots" },
+];
+const splitSwatch =
+  `repeating-linear-gradient(45deg, ${MAP_COLORS.D} 0 5px, ${MAP_COLORS.R} 5px 10px)`;
+---
+
+<Layout
+  title="Senate delegation map"
+  description="A map of the U.S. Senate: each state coloured by the party of its two sitting senators, with split delegations shown as diagonal stripes."
+>
+  <h1 class="text-3xl font-bold">Senate delegation map</h1>
+  <p class="mt-2 text-muted">
+    Each state has two U.S. senators. States are coloured by their delegation — solid where both
+    seats share a party, diagonal stripes where the two seats split. Independents are shown in a
+    grey tinted toward the party they caucus with. Colouring is computed from the tracked member
+    roster.
+  </p>
+
+  <section class="mt-8" aria-labelledby="map">
+    <SectionHeader title="By state" id="map" source="Two senators per state, coloured by party." />
+
+    <PartyPatternDefs />
+    <USStateMap class="mt-3" label="U.S. Senate delegation by state" fills={fills}>
+      <StripeDefs stripes={stripes} />
+    </USStateMap>
+
+    <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm" role="list">
+      {legend.map((l) => (
+        <li class="flex items-center gap-2">
+          <span
+            class={`inline-block size-4 rounded-sm border border-[var(--color-border)] ${l.pf}`}
+            style={`background-color:${l.bg}`}
+            aria-hidden="true"
+          ></span>
+          <span>{l.label}</span>
+        </li>
+      ))}
+      <li class="flex items-center gap-2">
+        <span
+          class="inline-block size-4 rounded-sm border border-[var(--color-border)]"
+          style={`background-image:${splitSwatch}`}
+          aria-hidden="true"
+        ></span>
+        <span>Split delegation</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="mt-10" aria-labelledby="table">
+    <SectionHeader title="Delegation by state" id="table" source="Text equivalent of the map above." />
+    <DataTable
+      class="mt-3"
+      caption="Each state's U.S. Senate delegation by party."
+      columns={[
+        { key: "state", label: "State" },
+        { key: "delegation", label: "Delegation" },
+      ]}
+      rows={rows}
+    />
+  </section>
+</Layout>

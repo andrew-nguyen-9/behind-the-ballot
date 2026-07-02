@@ -76,6 +76,32 @@ export const CLASS_II_2026_STATES = [
   "SC", "SD", "TN", "TX", "VA", "WV", "WY",
 ] as const;
 
+// Senate caucus [Q6.3]. The sample roster has no caucus field, so a small source-honest map
+// covers the sitting independents: both Sanders (VT) and King (ME) caucus with the Democrats.
+// Major-party members caucus with their own party; an unmapped independent caucuses with
+// neither (null) => neutral grey on the map. ponytail: a live roster with a caucus field
+// would replace this constant.
+const SENATE_CAUCUS: Record<string, "D" | "R"> = {
+  S000033: "D", // Bernard Sanders (VT-I)
+  K000383: "D", // Angus S. King, Jr. (ME-I)
+};
+
+export function senateCaucus(member: Pick<Member, "bioguide_id" | "party">): "D" | "R" | null {
+  if (member.party === "D" || member.party === "R") return member.party;
+  return SENATE_CAUCUS[member.bioguide_id] ?? null;
+}
+
+// Senators grouped by state (postal code -> the state's sitting senators, name-sorted) [E1.1].
+// The read-side source of truth for the Senate delegation map's colouring.
+export function senatorsByState(): Record<string, Member[]> {
+  const byState: Record<string, Member[]> = {};
+  for (const m of allMembers()) {
+    if (m.chamber !== "sen") continue;
+    (byState[m.state] ??= []).push(m);
+  }
+  return byState;
+}
+
 // DW-NOMINATE dim1: negative = liberal, positive = conservative [M3a]. Plain-language band.
 export function ideologyLabel(dim1: number | null): string {
   if (dim1 === null) return "Not yet scored";

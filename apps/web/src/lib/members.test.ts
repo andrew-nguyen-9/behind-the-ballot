@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allMembers, chamberComposition, CLASS_II_2026_STATES, ideologyLabel, memberById, membersForRace } from "./members";
+import { allMembers, chamberComposition, CLASS_II_2026_STATES, ideologyLabel, memberById, membersForRace, senateCaucus, senatorsByState } from "./members";
 
 describe("members", () => {
   it("loads + sorts the roster by name", () => {
@@ -53,5 +53,22 @@ describe("members", () => {
     expect(membersForRace(rep.state, "house", 999)).toEqual([]);
     // governor → no congressional seat.
     expect(membersForRace(sen.state, "governor", null)).toEqual([]);
+  });
+
+  it("resolves Senate caucus, tinting sitting independents toward the Democrats [Q6.3]", () => {
+    expect(senateCaucus({ bioguide_id: "X", party: "D" })).toBe("D");
+    expect(senateCaucus({ bioguide_id: "X", party: "R" })).toBe("R");
+    expect(senateCaucus({ bioguide_id: "S000033", party: "I" })).toBe("D"); // Sanders
+    expect(senateCaucus({ bioguide_id: "K000383", party: "I" })).toBe("D"); // King
+    expect(senateCaucus({ bioguide_id: "UNMAPPED", party: "I" })).toBeNull();
+  });
+
+  it("groups senators by state, two per state across 50 states", () => {
+    const byState = senatorsByState();
+    expect(Object.keys(byState)).toHaveLength(50);
+    for (const senators of Object.values(byState)) {
+      expect(senators).toHaveLength(2);
+      expect(senators.every((m) => m.chamber === "sen")).toBe(true);
+    }
   });
 });
