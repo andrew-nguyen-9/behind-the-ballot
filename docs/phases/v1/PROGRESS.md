@@ -709,7 +709,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.6.5-member-crosslink | v1.6.1, v1.3.3 | partial: geographic member↔race links (local gate); finance-identity join pends FEC↔bioguide crosswalk (live data) |
 | v1.6.6-chamber-view | v1.6.1 | done (local gate; composition + Class II 2026) |
 | v1.7.1-compactness-metrics | v1.1.2 | done + LIVE (iter 75: real TIGER cb_2023 CD118 → 441 districts reprojected to EPSG:5070 → real Polsby-Popper/Reock/convex-hull on /gerrymander) |
-| v1.7.2-fairness-metrics | v1.7.1 | math done; live join DEFERRED V1.1 (iter 82, Andrew: House-by-CD current-lines source-walled — BACKLOG). Page shows honest pending state. |
+| v1.7.2-fairness-metrics | v1.7.1 | math done; LIVE-JOIN WIRED (E4.1): export_fairness joins gold/primary_results (House general) ⋈ gold/tiger → compute_fairness → states.json, computed only for a fully-reported multi-district state (else honest-empty). Data-pending: results connector ships ACTIVE_STATES=[] so still empty on the live site until a state's House feeds turn on / MEDSL House backfill runs — no more code needed. |
 | v1.7.3-gerrymander-ui | v1.7.1, v1.7.2 | done (local gate) |
 | v1.7.4-leaderboard | v1.7.1 | done (on gerrymander page) |
 | v1.7.5-methodology-page | v1.7.2 | done (methodology section) |
@@ -727,7 +727,7 @@ all `done` units; `main` untouched `[S5a]`.
 | v1.9.5-home-nav | v1.9.1 | done (local gate; built iter 46) |
 | v1.10.1-coverage-configs | phases 2–8 | done (iter 78: scripts/coverage.mjs per-race data-coverage gate in CI + resume.sh; 33/33 finance+demographics, 537 members, 441 districts) |
 | v1.10.2-nightly-qa | v1.10.1 | done (refresh.yml: nightly bake→export→commit→auto-deploy; cmds live-verified locally w/ real keys iter 70. QA-screenshot sweep folds into v1.10.3) |
-| v1.10.3-regression-alerts | v1.10.2 | pending |
+| v1.10.3-regression-alerts | v1.10.2 | done (E4.1: btb_pipeline/regression.py — deduped GitHub issue + Gmail-SMTP email w/ summary+diff+run-link+severity; canary.mjs emits canary-report.json, canary.yml alerts on failure then fails the job. Pure core + injected HTTP/email, 10 tests) |
 | v1.10.4-budget-alarms | v1.10.2 | done (iter 79: budget.py api.data.gov-quota alarm @80% + budget.yml daily; Actions=unlimited public-repo, R2~0 documented N/A; live quota read 1/60) |
 | v1.10.5-weekly-review-routine | v1.10.2 | done (iter 77: notify.py SMTP digest + weekly-review.yml; pure digest tested, UA-403 bug fixed, dry-run verified) |
 

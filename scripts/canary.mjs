@@ -6,7 +6,11 @@
 //
 //   node scripts/canary.mjs [baseUrl]
 //
-// ponytail: dependency-free (global fetch, redirect:"manual"). Richer SMTP alerts = v1.10.3.
+// Also writes a machine-readable canary-report.json (checks[] with name/ok/detail/severity) that
+// the v1.10.3 regression alerter reads to email + open a deduped GitHub issue with the delta.
+// ponytail: dependency-free (global fetch, redirect:"manual").
+
+import { writeFileSync } from "node:fs";
 
 const BASE = (process.argv[2] || "https://ballot.an9.dev").replace(/\/$/, "");
 
@@ -22,6 +26,12 @@ const REQUIRED_HEADERS = [
 ];
 
 const fails = [];
+const checks = []; // structured, for the regression alerter
+const ok = (name) => checks.push({ name, ok: true, detail: "", severity: "critical" });
+const bad = (name, detail) => {
+  checks.push({ name, ok: false, detail, severity: "critical" });
+  fails.push(`${name}: ${detail}`);
+};
 
 async function check(path) {
   const url = BASE + path;
@@ -29,20 +39,29 @@ async function check(path) {
   try {
     res = await fetch(url, { redirect: "manual" });
   } catch (e) {
-    fails.push(`${path}: fetch error ${e.message}`);
+    bad(`route ${path}`, `fetch error ${e.message}`);
     return;
   }
   if (res.status !== 200) {
-    fails.push(`${path}: expected 200, got ${res.status}${res.headers.get("location") ? ` -> ${res.headers.get("location")}` : ""}`);
+    bad(`route ${path}`, `expected 200, got ${res.status}${res.headers.get("location") ? ` -> ${res.headers.get("location")}` : ""}`);
+  } else {
+    ok(`route ${path}`);
   }
   if (path === "/") {
     for (const h of REQUIRED_HEADERS) {
-      if (!res.headers.get(h)) fails.push(`/: missing security header ${h}`);
+      if (!res.headers.get(h)) bad(`header ${h}`, "missing on /");
+      else ok(`header ${h}`);
     }
   }
 }
 
 for (const p of ROUTES) await check(p);
+
+// Emit the report the regression alerter consumes (run URL from the GH Actions env when present).
+const runUrl = process.env.GITHUB_SERVER_URL && process.env.GITHUB_REPOSITORY && process.env.GITHUB_RUN_ID
+  ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+  : null;
+writeFileSync("canary-report.json", JSON.stringify({ base: BASE, run_url: runUrl, checks }, null, 2));
 
 if (fails.length) {
   console.error(`CANARY FAIL (${BASE}):\n` + fails.map((f) => "  - " + f).join("\n"));

@@ -27,7 +27,8 @@ from btb_pipeline.demographics import (
     build_state_changes,
     rollup_by_state,
 )
-from btb_pipeline.finance_aggregates import build_finance
+from btb_pipeline.fairness import compute_fairness
+from btb_pipeline.finance_aggregates import build_finance, rollup_by_race
 
 WEB_DATA = Path("apps/web/src/data")
 RACES_DIR = Path("apps/web/src/config/races")
@@ -258,15 +259,64 @@ def export_districts(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[
 
 DEM_CONTROL_SEATS = 51  # 2026: Republican VP breaks ties, so Democrats need 51 for Senate control.
 
+# Forecast refinements [Q9.1]. The 2026 midterm falls under a REPUBLICAN administration, so the
+# midterm penalty shifts every race away from the GOP (toward Democrats); the horizon-widened
+# uncertainty is a function of days to the general (fixed by statute at the Tue after the first Mon
+# in Nov). Both are published-heuristic terms — see race_model / montecarlo docstrings [N12a].
+PRESIDENT_PARTY = "R"
+GENERAL_ELECTION_DATE = datetime(2026, 11, 3, tzinfo=timezone.utc)
+
+
+def _days_to_general(now: datetime | None = None) -> int:
+    """Days from now to the 2026 general (clamped at 0 on/after election day)."""
+    now = now or datetime.now(timezone.utc)
+    return max(0, (GENERAL_ELECTION_DATE - now).days)
+
+
+def _incumbent_party(cfg: dict) -> str | None:
+    """Party letter (D/R/I) of the race's incumbent candidate, or None for an open seat."""
+    for cand in cfg.get("candidates", []):
+        if cand.get("incumbent"):
+            return cand.get("party")
+    return None
+
+
+def _finance_net_by_race(root: Path) -> dict[str, float]:
+    """Per-race normalized Dem-minus-Rep receipts signal in [-1, 1] [Q9.1], from gold/fec joined to
+    the race configs' candidate parties. Positive = Dem money edge. Empty when no FEC gold — the
+    finance term then contributes nothing (honest 0.0), never a fabricated edge."""
+    fec = [r for r in (_gold("fec", root) or []) if "candidate_id" in r]
+    if not fec:
+        return {}
+    # candidate_id -> {race_id, party} from every config's fecCandidateId candidates.
+    meta: dict[str, dict] = {}
+    for cfg in _race_configs(RACES_DIR):
+        for cand in cfg.get("candidates", []):
+            cid = cand.get("fecCandidateId")
+            if cid:
+                meta[cid] = {"race_id": cfg["id"], "party": cand.get("party")}
+    net: dict[str, float] = {}
+    for row in rollup_by_race(build_finance(fec, meta)):
+        by_party = row.get("by_party", {})
+        dem = by_party.get("D", 0.0)
+        rep = by_party.get("R", 0.0)
+        total = dem + rep
+        if total > 0:
+            net[row["race_id"]] = round((dem - rep) / total, 4)
+    return net
+
 
 def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
-    """gold/medsl_president → per-Senate-race forecast + chamber control [N1a,N3a,N5a].
+    """gold/medsl_president → per-Senate-race forecast + chamber control [N1a,N3a,N5a,Q9.1].
 
-    Fundamentals-only (no live polls in V1): per state PVI = cook_pvi(state two-party Dem share,
-    national share) → race_model → win prob/margin/range. Chamber control is the REAL Senate math:
-    the Monte Carlo runs over the 33 contested seats, but control needs 51 of 100, so the threshold
-    is 51 minus the Democratic-aligned holdover seats (Class I/III, not up in 2026); reported seats
-    add the holdover back so the figure is total-Senate (0–100), not just the contested slice."""
+    Fundamentals-based (no live polls in V1): per state PVI = cook_pvi(state two-party Dem share,
+    national share) → race_model → win prob/margin/range. The v1.1 refinements [Q9.1] layer on top:
+    the midterm penalty (2026 is a Republican-administration midterm → shift toward Democrats),
+    per-race incumbency (from the config's incumbent), a campaign-finance signal (from gold/fec), and
+    horizon-widened uncertainty (sigma grows with days to the general). Chamber control is the REAL
+    Senate math: the Monte Carlo runs over the 33 contested seats, but control needs 51 of 100, so
+    the threshold is 51 minus the Democratic-aligned holdover seats (Class I/III, not up in 2026);
+    reported seats add the holdover back so the figure is total-Senate (0–100), not just contested."""
     pres = _gold("medsl_president", root)
     members = _gold("members", root)
     if pres is None or members is None:
@@ -289,19 +339,29 @@ def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[P
     holdover_dem = current_dem_aligned - up_dem
     wins_needed = DEM_CONTROL_SEATS - holdover_dem  # Dem wins required AMONG the contested 33
 
+    # Shared refinement inputs [Q9.1].
+    days_out = _days_to_general()
+    finance_net = _finance_net_by_race(root)
+    national_sigma = montecarlo.national_sigma_for_days(days_out)
+
     as_of = datetime.now(timezone.utc).isoformat()
     written: list[Path] = []
     win_probs: dict[str, float] = {}
     for c in races:
         pvi = cook_pvi(state_share[c["state"]], national_share)
-        rf = race_model.predict_race(office="senate", fundamentals_pvi=pvi)
+        rf = race_model.predict_race(
+            office="senate", fundamentals_pvi=pvi,
+            incumbent_party=_incumbent_party(c), finance_net=finance_net.get(c["id"], 0.0),
+            president_party=PRESIDENT_PARTY, days_to_election=days_out,
+        )
         win_probs[c["id"]] = rf["win_prob"]
         written.append(_write(web_data / "forecast" / f"{c['id']}.json", {
             "win_prob": rf["win_prob"], "margin": rf["margin"],
             "margin_lo": rf["margin_lo"], "margin_hi": rf["margin_hi"], "as_of": as_of,
         }))
 
-    mc = montecarlo.compute_forecast(win_probs, majority=wins_needed, seed=0)
+    mc = montecarlo.compute_forecast(
+        win_probs, majority=wins_needed, seed=0, national_sigma=national_sigma)
     written.append(_write(web_data / "forecast" / "chamber-senate.json", {
         "chamber": "Senate", "as_of": as_of, "n_sims": mc["n_sims"], "n_races": len(races),
         "majority": DEM_CONTROL_SEATS,
@@ -323,7 +383,11 @@ def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[P
         if office not in ("house", "governor") or c.get("state") not in state_share:
             continue
         pvi = cook_pvi(state_share[c["state"]], national_share)
-        rf = race_model.predict_race(office=office, fundamentals_pvi=pvi)
+        rf = race_model.predict_race(
+            office=office, fundamentals_pvi=pvi,
+            incumbent_party=_incumbent_party(c), finance_net=finance_net.get(c["id"], 0.0),
+            president_party=PRESIDENT_PARTY, days_to_election=days_out,
+        )
         written.append(_write(web_data / "forecast" / f"{c['id']}.json", {
             "win_prob": rf["win_prob"], "margin": rf["margin"],
             "margin_lo": rf["margin_lo"], "margin_hi": rf["margin_hi"], "as_of": as_of,
@@ -392,6 +456,68 @@ def export_results(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Pa
     return written
 
 
+def export_fairness(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/primary_results (certified House general results) ⋈ gold/tiger → per-state partisan
+    fairness (efficiency gap / mean–median / seats–votes) → src/data/gerrymander/states.json
+    [L3a, E2.5]. The fairness LIVE-JOIN, source-walled through V1 and unblocked by the Wave-3
+    results connector [E3.2/E3.3].
+
+    Honest by construction [repo rule]: fairness is computed for a state ONLY when the FULL set of
+    its current-lines (post-2020) U.S. House districts — the TIGER district set — has reported
+    two-party results, and only for multi-district states (an efficiency gap needs a map). A partial
+    slate, a single-district (at-large) state, or no results at all writes NOTHING, so the page keeps
+    its honest 'pending a sourced House-by-district dataset' state — never a misleading or fabricated
+    number. Real rows appear the moment a state's certified House results land in the results gold."""
+    rows = _gold("primary_results", root)
+    tiger = _gold("tiger", root)
+    if not rows or not tiger:
+        return []
+
+    # Current-lines House district set per state (the completeness requirement).
+    required: dict[str, set[int]] = {}
+    for d in tiger:
+        required.setdefault(d["state"], set()).add(int(d["district"]))
+
+    # Two-party House general-election votes tallied per (state, district).
+    tally: dict[tuple[str, int], dict[str, int]] = {}
+    for r in rows:
+        if r.get("office") != "house" or r.get("election_type") != "general":
+            continue
+        district, party = r.get("district"), r.get("party")
+        if district is None or party not in ("D", "R"):
+            continue
+        agg = tally.setdefault((r["state"], int(district)), {"dem_votes": 0, "rep_votes": 0})
+        agg["dem_votes" if party == "D" else "rep_votes"] += int(r.get("votes") or 0)
+
+    by_state: dict[str, list[dict]] = {}
+    for (state, district), votes in tally.items():
+        by_state.setdefault(state, []).append(
+            {"geoid": f"{state}-{district:02d}", "district": district, **votes}
+        )
+
+    out_rows: list[dict] = []
+    for state, districts in by_state.items():
+        need = required.get(state, set())
+        got = {d["district"] for d in districts}
+        # Require a complete, multi-district, fully-reported state — else stay honestly empty.
+        if len(need) < 2 or not need <= got:
+            continue
+        if any(d["dem_votes"] + d["rep_votes"] <= 0 for d in districts):
+            continue
+        report = compute_fairness(districts)
+        out_rows.append({
+            "state": state,
+            "efficiency_gap": report["efficiency_gap"],
+            "mean_median": report["mean_median"],
+            "dem_seat_share": report["dem_seat_share"],
+            "dem_vote_share": report["dem_vote_share"],
+        })
+    if not out_rows:
+        return []
+    out_rows.sort(key=lambda r: r["state"])
+    return [_write(web_data / "gerrymander" / "states.json", out_rows)]
+
+
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
@@ -402,6 +528,7 @@ EXPORTERS = {
     "forecast": export_forecast,
     "dates": export_dates,
     "results": export_results,
+    "fairness": export_fairness,
 }
 
 

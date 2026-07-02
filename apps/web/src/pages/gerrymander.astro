@@ -46,10 +46,11 @@ const fairnessRows = states.map((s) => ({
     {states.length === 0 ? (
       <p class="mt-3 max-w-prose text-muted">
         Partisan-fairness measures (efficiency gap, mean–median) need each district's election
-        result on the <em>current</em> (post-2020) boundaries. We don't publish placeholder
-        numbers, so this is pending a sourced House-by-district results dataset; compactness
-        below is already computed from real district geometry. See the
-        <a href="/sources" class="underline">sources</a> we use.
+        result on the <em>current</em> (post-2020) boundaries. This is now wired to our
+        <a href="/sources" class="underline">election-results</a> feed and computes a state's
+        metrics once <em>all</em> its U.S. House districts have reported certified results — until
+        then we show nothing rather than a partial or placeholder number. Compactness below is
+        already computed from real district geometry.
       </p>
     ) : (
       <>

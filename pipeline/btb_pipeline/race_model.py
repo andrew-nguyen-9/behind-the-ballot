@@ -38,6 +38,60 @@ OFFICE_WEIGHTS: dict[str, dict[str, float]] = {
     "governor": {"poll": 0.6, "fund": 0.4},
 }
 
+# Refinement terms [N14a, Q9.1] — additive nudges in two-party MARGIN space, applied on top of the
+# poll/fundamentals blend. Deliberately small, signed, and explainable (still a published heuristic,
+# not a fitted model). Each is a fraction of margin (a 0.02 term ≈ 1 point of two-party share).
+INCUMBENCY_MARGIN = 0.02   # incumbents run ahead of the fundamentals; sign follows their party.
+FINANCE_COEF = 0.05        # margin per unit of normalized Dem-minus-Rep finance signal in [-1, 1].
+MIDTERM_PENALTY = 0.04     # the PRESIDENT'S party typically loses ground at a midterm — shift away.
+
+# Forecast-horizon uncertainty [Q9.1]: a race a year out is far less certain than one on election
+# eve, so sigma widens with days-to-election. sigma = BASE_SIGMA on/after election day, growing
+# linearly to BASE_SIGMA + HORIZON_SIGMA a full year (FULL_HORIZON_DAYS) or more out.
+BASE_SIGMA = 0.07
+HORIZON_SIGMA = 0.06
+FULL_HORIZON_DAYS = 365
+
+
+def incumbency_margin(incumbent_party: str | None, bump: float = INCUMBENCY_MARGIN) -> float:
+    """Incumbency nudge in Dem-margin space [Q9.1]: +bump for a Dem incumbent, -bump for a Rep
+    incumbent, 0 for an open seat / independent / unknown. Pure."""
+    if incumbent_party == "D":
+        return bump
+    if incumbent_party == "R":
+        return -bump
+    return 0.0
+
+
+def finance_margin(finance_net: float, coef: float = FINANCE_COEF) -> float:
+    """Campaign-finance nudge in Dem-margin space [Q9.1]: coef * finance_net, where finance_net is
+    a normalized Dem-minus-Rep receipts signal in [-1, 1] (positive = Dem money edge). Pure."""
+    return coef * finance_net
+
+
+def midterm_margin(president_party: str | None, penalty: float = MIDTERM_PENALTY) -> float:
+    """Midterm-penalty nudge in Dem-margin space [Q9.1]: the president's party loses ground, so the
+    shift is AWAY from it — -penalty when the president is a Democrat, +penalty when Republican,
+    0 when unknown. Pure."""
+    if president_party == "D":
+        return -penalty
+    if president_party == "R":
+        return penalty
+    return 0.0
+
+
+def sigma_for_days(
+    days_to_election: int | None,
+    base: float = BASE_SIGMA,
+    horizon: float = HORIZON_SIGMA,
+    full: int = FULL_HORIZON_DAYS,
+) -> float:
+    """Forecast-horizon sigma [Q9.1]: base on/after election day, widening linearly to base+horizon
+    at `full` days out (and capped there). None/<=0 days → base (unchanged v1 behavior). Pure."""
+    if not days_to_election or days_to_election <= 0:
+        return base
+    return base + horizon * min(days_to_election, full) / full
+
 
 def normal_cdf(x: float, mu: float = 0.0, sigma: float = 1.0) -> float:
     """Standard normal CDF via math.erf: 0.5 * (1 + erf((x - mu) / (sigma * sqrt(2)))).
@@ -97,34 +151,55 @@ def predict_race(
     office: str,
     fundamentals_pvi: float,
     poll_dem_share: float | None = None,
-    sigma: float = 0.07,
+    *,
+    incumbent_party: str | None = None,
+    finance_net: float = 0.0,
+    president_party: str | None = None,
+    days_to_election: int | None = None,
+    sigma: float | None = None,
     z: float = 1.28,
 ) -> dict:
-    """Forecast one race [N4a,N14a]: blend polling + fundamentals into win prob, margin, range.
+    """Forecast one race [N4a,N14a,Q9.1]: blend polling + fundamentals, then apply the refinement
+    nudges, into win prob, margin, range.
 
     office selects the blend weights [N14a]. fundamentals_pvi is the signed PVI lean. When
     poll_dem_share is given it is converted to a poll margin and blended; when None the forecast
-    uses fundamentals only. win_prob = normal_cdf(blended_margin, 0, sigma). The reported range is
-    margin +/- z*sigma (z=1.28 ~= 80% interval). All floats rounded to 4dp. Returns model_dump().
+    uses fundamentals only. The blended margin is then adjusted by incumbency, campaign finance,
+    and the midterm penalty [Q9.1] (each a small signed nudge, all no-ops by default). sigma
+    defaults to the horizon-aware sigma_for_days(days_to_election) — wider a year out — unless an
+    explicit sigma is passed. win_prob = normal_cdf(adjusted_margin, 0, sigma); the reported range
+    is margin +/- z*sigma (z=1.28 ~= 80% interval). All floats rounded to 4dp. Returns model_dump().
     """
     poll_m = None if poll_dem_share is None else poll_margin(poll_dem_share)
     fund_m = fundamentals_margin(fundamentals_pvi)
-    margin = blend_margin(poll_m, fund_m, office)
-    win_prob = normal_cdf(margin, 0.0, sigma)
+    margin = (
+        blend_margin(poll_m, fund_m, office)
+        + incumbency_margin(incumbent_party)
+        + finance_margin(finance_net)
+        + midterm_margin(president_party)
+    )
+    s = sigma_for_days(days_to_election) if sigma is None else sigma
+    win_prob = normal_cdf(margin, 0.0, s)
     return RaceForecast(
         race_office=office,
         win_prob=round(win_prob, 4),
         margin=round(margin, 4),
-        margin_lo=round(margin - z * sigma, 4),
-        margin_hi=round(margin + z * sigma, 4),
+        margin_lo=round(margin - z * s, 4),
+        margin_hi=round(margin + z * s, 4),
     ).model_dump()
 
 
-def predict_races(races: list[dict]) -> dict[str, float]:
+def predict_races(
+    races: list[dict],
+    *,
+    president_party: str | None = None,
+    days_to_election: int | None = None,
+) -> dict[str, float]:
     """Forecast many races -> {race_id: win_prob}, ready for montecarlo.compute_forecast [N2a,N5a].
 
-    Each race dict has race_id, office, fundamentals_pvi, and optional poll_dem_share. Returns a
-    mapping of race_id -> Dem win probability in [0, 1]. Raises ValueError on empty races.
+    Each race dict has race_id, office, fundamentals_pvi, and optional poll_dem_share,
+    incumbent_party, finance_net. president_party + days_to_election are shared across the slate
+    [Q9.1]. Returns a mapping of race_id -> Dem win probability in [0, 1]. Raises on empty races.
     """
     if not races:
         raise ValueError("predict_races requires at least one race")
@@ -134,6 +209,10 @@ def predict_races(races: list[dict]) -> dict[str, float]:
             office=r["office"],
             fundamentals_pvi=r["fundamentals_pvi"],
             poll_dem_share=r.get("poll_dem_share"),
+            incumbent_party=r.get("incumbent_party"),
+            finance_net=r.get("finance_net", 0.0),
+            president_party=president_party,
+            days_to_election=days_to_election,
         )
         out[r["race_id"]] = forecast["win_prob"]
     return out

@@ -21,6 +21,6 @@
 |---|---|---|---|
 | `v1.10.1-coverage-configs` | phases 2–8 | config units for all V1 races/states/members; coverage report green `[F4c]` | pending |
 | `v1.10.2-nightly-qa` | 10.1 | scheduled gate vs live site + freshness validation; Playwright+LHCI+link/schema `[S7a,S8a]` | pending |
-| `v1.10.3-regression-alerts` | 10.2 | dedup GitHub issue + Gmail-SMTP email w/ summary+diff+link+severity `[S9c,S10a,S11a]` | pending |
+| `v1.10.3-regression-alerts` | 10.2 | dedup GitHub issue + Gmail-SMTP email w/ summary+diff+link+severity `[S9c,S10a,S11a]` | done (E4.1) |
 | `v1.10.4-budget-alarms` | 10.2 | Actions-minutes + API-quota tracking, alert at 80% `[T9a]` | pending |
 | `v1.10.5-weekly-review-routine` | 10.2 | Claude scheduled routine for higher-level weekly review `[S18a]` | pending |

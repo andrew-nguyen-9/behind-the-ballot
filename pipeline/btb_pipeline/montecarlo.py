@@ -25,6 +25,27 @@ from pydantic import BaseModel, ConfigDict
 
 _EPS = 1e-6
 
+# Horizon-aware national swing [N6a, Q9.1]: the shared national swing is more uncertain a year out
+# than on election eve, so national_sigma widens with days-to-election — the chamber-level analog of
+# the per-race sigma widening in race_model.sigma_for_days. base on/after election day, growing
+# linearly to base+horizon at FULL_HORIZON_DAYS.
+BASE_NATIONAL_SIGMA = 0.05
+HORIZON_NATIONAL_SIGMA = 0.04
+FULL_HORIZON_DAYS = 365
+
+
+def national_sigma_for_days(
+    days_to_election: int | None,
+    base: float = BASE_NATIONAL_SIGMA,
+    horizon: float = HORIZON_NATIONAL_SIGMA,
+    full: int = FULL_HORIZON_DAYS,
+) -> float:
+    """National-swing sigma as a function of days-to-election [Q9.1]. None/<=0 → base (unchanged v1
+    behavior); widens linearly to base+horizon at `full` days out and is capped there. Pure."""
+    if not days_to_election or days_to_election <= 0:
+        return base
+    return base + horizon * min(days_to_election, full) / full
+
 
 def logit(p: np.ndarray | float) -> np.ndarray:
     """Log-odds of p, with p clipped to [1e-6, 1-1e-6] to avoid +/-inf [N6a]."""
