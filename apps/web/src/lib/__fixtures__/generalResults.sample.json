@@ -1,0 +1,16 @@
+{
+  "race_id": "us-senate-2026-OH",
+  "election_type": "general",
+  "as_of": "2026-11-03T23:30:00+00:00",
+  "is_certified": false,
+  "pct_reporting": 78,
+  "is_called": true,
+  "called_by": "Jane Doe",
+  "call_source": "Wikipedia",
+  "source_url": "https://liveresults.ohiosos.gov/general/",
+  "candidates": [
+    { "candidate": "Jane Doe", "party": "D", "votes": 1820344, "pct": 51.4 },
+    { "candidate": "John Roe", "party": "R", "votes": 1671209, "pct": 47.2 },
+    { "candidate": "Pat Green", "party": "G", "votes": 49551, "pct": 1.4 }
+  ]
+}
