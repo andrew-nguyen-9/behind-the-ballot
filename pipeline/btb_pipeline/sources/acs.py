@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import os
+from collections.abc import Sequence
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
@@ -40,6 +41,7 @@ class AcsRow(BaseModel):
     district: str | None = None
     population: int | None = None
     median_income: int | None = None
+    year: int | None = None  # ACS 5-year END year; set by run_years for change-over-time [E2.4]
 
 
 def get_api_key() -> str:
@@ -108,6 +110,13 @@ def _existing(root: Path) -> list[dict]:
     return json.loads(path.read_text()).get("rows", []) if path.exists() else []
 
 
+def _live_fetcher(transport: Transport | None, root: Path) -> CachingFetcher:
+    import requests  # local import: only needed for live runs
+
+    transport = transport or (lambda url, headers: requests.get(url, headers=headers, timeout=30))
+    return CachingFetcher(stage_dir("bronze", SPEC.name, root), transport)
+
+
 def run(
     fetcher: CachingFetcher | None = None,
     transport: Transport | None = None,
@@ -116,14 +125,38 @@ def run(
     root: Path = DATA_ROOT,
 ) -> Path:
     """Fetch -> validate -> upsert by geoid [R4a] -> bake gold [R14a]."""
-    if fetcher is None:
-        import requests  # local import: only needed for live runs
-
-        transport = transport or (lambda url, headers: requests.get(url, headers=headers, timeout=30))
-        fetcher = CachingFetcher(stage_dir("bronze", SPEC.name, root), transport)
-
-    assert fetcher is not None
+    fetcher = fetcher or _live_fetcher(transport, root)
     key = get_api_key()
     incoming = parse_acs(fetcher.get(acs_url(year, key)))
     rows = upsert(_existing(root), incoming, "geoid")
+    return bake(SPEC, AcsRow, rows, as_of or datetime.now(timezone.utc), root)
+
+
+def run_years(
+    years: Sequence[int],
+    fetcher: CachingFetcher | None = None,
+    transport: Transport | None = None,
+    as_of: datetime | None = None,
+    root: Path = DATA_ROOT,
+) -> Path:
+    """Bake ≥2 ACS 5-year endpoints into one gold artifact for change-over-time [E2.4, Q7.5].
+
+    Same fetch -> validate path as run(), but each row is tagged with its ACS end-year and
+    keyed by (geoid, year), so re-runs upsert per (district, year) without clobbering other
+    years. The demographics change transforms diff two years out of this one artifact. Bake
+    with e.g. `acs.run_years((2018, 2022, 2023))`; the export picks the endpoints to compare.
+    """
+    if len(years) < 2:
+        raise ValueError("run_years needs ≥2 ACS endpoints to compare [E2.4]")
+    fetcher = fetcher or _live_fetcher(transport, root)
+    key = get_api_key()
+    # Preserve any previously-baked years; incoming (geoid, year) wins on conflict [R4a].
+    merged: dict[tuple[str, int], dict] = {
+        (r["geoid"], r["year"]): r for r in _existing(root) if r.get("year") is not None
+    }
+    for year in years:
+        for record in parse_acs(fetcher.get(acs_url(year, key))):
+            record["year"] = year
+            merged[(record["geoid"], year)] = record
+    rows = sorted(merged.values(), key=lambda r: (r["year"], r["geoid"]))
     return bake(SPEC, AcsRow, rows, as_of or datetime.now(timezone.utc), root)

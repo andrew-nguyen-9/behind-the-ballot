@@ -107,3 +107,49 @@ def test_export_dates_partitions_by_cycle_sorted_by_state(tmp_path):
 
 def test_export_dates_skips_when_no_gold(tmp_path):
     assert ew.export_dates(root=tmp_path, web_data=tmp_path / "web") == []
+
+
+def test_export_demographics_tables_snapshot(tmp_path):
+    _write_gold(tmp_path, "census_acs", [
+        {"geoid": "3901", "state": "39", "district": "01", "population": 700000, "median_income": 60000},
+        {"geoid": "3902", "state": "39", "district": "02", "population": 300000, "median_income": 80000},
+    ])
+    out = ew.export_demographics_tables(root=tmp_path, web_data=tmp_path / "web")
+    assert len(out) == 2
+    states = json.loads((tmp_path / "web" / "demographics" / "states.json").read_text())
+    oh = next(r for r in states["rows"] if r["state"] == "39")
+    assert oh["area"] == "Ohio"
+    assert oh["population"] == 1_000_000
+    districts = json.loads((tmp_path / "web" / "demographics" / "districts.json").read_text())
+    assert districts["rows"][0]["area"] == "Ohio-01"
+
+
+def test_export_demographic_changes_needs_two_years(tmp_path):
+    # single-year (untagged) gold -> skipped, no placeholder change file
+    _write_gold(tmp_path, "census_acs", [
+        {"geoid": "3901", "state": "39", "district": "01", "population": 700000, "median_income": 60000},
+    ])
+    assert ew.export_demographic_changes(root=tmp_path, web_data=tmp_path / "web") == []
+
+
+def test_export_demographic_changes_diffs_two_endpoints(tmp_path):
+    _write_gold(tmp_path, "census_acs", [
+        {"geoid": "3901", "state": "39", "district": "01", "population": 300000, "median_income": 80000, "year": 2018},
+        {"geoid": "3901", "state": "39", "district": "01", "population": 330000, "median_income": 88000, "year": 2022},
+        {"geoid": "3901", "state": "39", "district": "01", "population": 340000, "median_income": 90000, "year": 2023},
+    ])
+    out = ew.export_demographic_changes(root=tmp_path, web_data=tmp_path / "web")
+    assert len(out) == 3
+    web = tmp_path / "web" / "demographics-change"
+    states = json.loads((web / "states.json").read_text())
+    oh = next(r for r in states if r["state"] == "39")
+    assert oh["area"] == "Ohio"
+    assert oh["population_early"] == 300000  # 2018 endpoint
+    assert oh["population_late"] == 340000   # 2023 endpoint
+    districts = json.loads((web / "districts.json").read_text())
+    assert districts[0]["area"] == "Ohio-01"
+    assert districts[0]["population_delta"] == 10000  # CD diff = 2022 -> 2023 (same boundaries)
+    meta = json.loads((web / "meta.json").read_text())
+    assert meta["state_early_year"] == 2018 and meta["state_late_year"] == 2023
+    assert meta["cd_early_year"] == 2022
+    assert meta["state_crosses_redistricting"] is True

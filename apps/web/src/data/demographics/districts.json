@@ -1,0 +1,3966 @@
+{
+  "acs_release": "2022 ACS 5-year",
+  "geometry_as_of": "2022-01-01",
+  "rows": [
+    {
+      "geoid": "0101",
+      "state": "01",
+      "district": "01",
+      "area": "Alabama-01",
+      "name": "Congressional District 1 (118th Congress), Alabama",
+      "population": 718903,
+      "median_income": 58058
+    },
+    {
+      "geoid": "0102",
+      "state": "01",
+      "district": "02",
+      "area": "Alabama-02",
+      "name": "Congressional District 2 (118th Congress), Alabama",
+      "population": 714527,
+      "median_income": 58193
+    },
+    {
+      "geoid": "0103",
+      "state": "01",
+      "district": "03",
+      "area": "Alabama-03",
+      "name": "Congressional District 3 (118th Congress), Alabama",
+      "population": 717658,
+      "median_income": 55398
+    },
+    {
+      "geoid": "0104",
+      "state": "01",
+      "district": "04",
+      "area": "Alabama-04",
+      "name": "Congressional District 4 (118th Congress), Alabama",
+      "population": 717747,
+      "median_income": 54500
+    },
+    {
+      "geoid": "0105",
+      "state": "01",
+      "district": "05",
+      "area": "Alabama-05",
+      "name": "Congressional District 5 (118th Congress), Alabama",
+      "population": 720871,
+      "median_income": 71270
+    },
+    {
+      "geoid": "0106",
+      "state": "01",
+      "district": "06",
+      "area": "Alabama-06",
+      "name": "Congressional District 6 (118th Congress), Alabama",
+      "population": 711393,
+      "median_income": 77689
+    },
+    {
+      "geoid": "0107",
+      "state": "01",
+      "district": "07",
+      "area": "Alabama-07",
+      "name": "Congressional District 7 (118th Congress), Alabama",
+      "population": 726993,
+      "median_income": 46429
+    },
+    {
+      "geoid": "0200",
+      "state": "02",
+      "district": "00",
+      "area": "Alaska-00",
+      "name": "Congressional District (at Large) (118th Congress), Alaska",
+      "population": 734821,
+      "median_income": 86370
+    },
+    {
+      "geoid": "0401",
+      "state": "04",
+      "district": "01",
+      "area": "Arizona-01",
+      "name": "Congressional District 1 (118th Congress), Arizona",
+      "population": 789173,
+      "median_income": 91347
+    },
+    {
+      "geoid": "0402",
+      "state": "04",
+      "district": "02",
+      "area": "Arizona-02",
+      "name": "Congressional District 2 (118th Congress), Arizona",
+      "population": 798999,
+      "median_income": 61654
+    },
+    {
+      "geoid": "0403",
+      "state": "04",
+      "district": "03",
+      "area": "Arizona-03",
+      "name": "Congressional District 3 (118th Congress), Arizona",
+      "population": 807937,
+      "median_income": 59798
+    },
+    {
+      "geoid": "0404",
+      "state": "04",
+      "district": "04",
+      "area": "Arizona-04",
+      "name": "Congressional District 4 (118th Congress), Arizona",
+      "population": 801287,
+      "median_income": 74362
+    },
+    {
+      "geoid": "0405",
+      "state": "04",
+      "district": "05",
+      "area": "Arizona-05",
+      "name": "Congressional District 5 (118th Congress), Arizona",
+      "population": 787758,
+      "median_income": 100927
+    },
+    {
+      "geoid": "0406",
+      "state": "04",
+      "district": "06",
+      "area": "Arizona-06",
+      "name": "Congressional District 6 (118th Congress), Arizona",
+      "population": 784933,
+      "median_income": 72511
+    },
+    {
+      "geoid": "0407",
+      "state": "04",
+      "district": "07",
+      "area": "Arizona-07",
+      "name": "Congressional District 7 (118th Congress), Arizona",
+      "population": 806472,
+      "median_income": 54086
+    },
+    {
+      "geoid": "0408",
+      "state": "04",
+      "district": "08",
+      "area": "Arizona-08",
+      "name": "Congressional District 8 (118th Congress), Arizona",
+      "population": 784453,
+      "median_income": 75676
+    },
+    {
+      "geoid": "0409",
+      "state": "04",
+      "district": "09",
+      "area": "Arizona-09",
+      "name": "Congressional District 9 (118th Congress), Arizona",
+      "population": 811270,
+      "median_income": 72222
+    },
+    {
+      "geoid": "0501",
+      "state": "05",
+      "district": "01",
+      "area": "Arkansas-01",
+      "name": "Congressional District 1 (118th Congress), Arkansas",
+      "population": 754109,
+      "median_income": 49729
+    },
+    {
+      "geoid": "0502",
+      "state": "05",
+      "district": "02",
+      "area": "Arkansas-02",
+      "name": "Congressional District 2 (118th Congress), Arkansas",
+      "population": 751268,
+      "median_income": 60314
+    },
+    {
+      "geoid": "0503",
+      "state": "05",
+      "district": "03",
+      "area": "Arkansas-03",
+      "name": "Congressional District 3 (118th Congress), Arkansas",
+      "population": 758572,
+      "median_income": 67342
+    },
+    {
+      "geoid": "0504",
+      "state": "05",
+      "district": "04",
+      "area": "Arkansas-04",
+      "name": "Congressional District 4 (118th Congress), Arkansas",
+      "population": 754720,
+      "median_income": 49447
+    },
+    {
+      "geoid": "0601",
+      "state": "06",
+      "district": "01",
+      "area": "California-01",
+      "name": "Congressional District 1 (118th Congress), California",
+      "population": 766231,
+      "median_income": 65460
+    },
+    {
+      "geoid": "0602",
+      "state": "06",
+      "district": "02",
+      "area": "California-02",
+      "name": "Congressional District 2 (118th Congress), California",
+      "population": 763623,
+      "median_income": 93547
+    },
+    {
+      "geoid": "0603",
+      "state": "06",
+      "district": "03",
+      "area": "California-03",
+      "name": "Congressional District 3 (118th Congress), California",
+      "population": 764866,
+      "median_income": 99422
+    },
+    {
+      "geoid": "0604",
+      "state": "06",
+      "district": "04",
+      "area": "California-04",
+      "name": "Congressional District 4 (118th Congress), California",
+      "population": 764345,
+      "median_income": 91956
+    },
+    {
+      "geoid": "0605",
+      "state": "06",
+      "district": "05",
+      "area": "California-05",
+      "name": "Congressional District 5 (118th Congress), California",
+      "population": 761352,
+      "median_income": 85769
+    },
+    {
+      "geoid": "0606",
+      "state": "06",
+      "district": "06",
+      "area": "California-06",
+      "name": "Congressional District 6 (118th Congress), California",
+      "population": 755594,
+      "median_income": 79920
+    },
+    {
+      "geoid": "0607",
+      "state": "06",
+      "district": "07",
+      "area": "California-07",
+      "name": "Congressional District 7 (118th Congress), California",
+      "population": 753515,
+      "median_income": 84801
+    },
+    {
+      "geoid": "0608",
+      "state": "06",
+      "district": "08",
+      "area": "California-08",
+      "name": "Congressional District 8 (118th Congress), California",
+      "population": 752780,
+      "median_income": 93170
+    },
+    {
+      "geoid": "0609",
+      "state": "06",
+      "district": "09",
+      "area": "California-09",
+      "name": "Congressional District 9 (118th Congress), California",
+      "population": 762122,
+      "median_income": 83275
+    },
+    {
+      "geoid": "0610",
+      "state": "06",
+      "district": "10",
+      "area": "California-10",
+      "name": "Congressional District 10 (118th Congress), California",
+      "population": 755993,
+      "median_income": 145537
+    },
+    {
+      "geoid": "0611",
+      "state": "06",
+      "district": "11",
+      "area": "California-11",
+      "name": "Congressional District 11 (118th Congress), California",
+      "population": 735920,
+      "median_income": 139967
+    },
+    {
+      "geoid": "0612",
+      "state": "06",
+      "district": "12",
+      "area": "California-12",
+      "name": "Congressional District 12 (118th Congress), California",
+      "population": 750210,
+      "median_income": 102766
+    },
+    {
+      "geoid": "0613",
+      "state": "06",
+      "district": "13",
+      "area": "California-13",
+      "name": "Congressional District 13 (118th Congress), California",
+      "population": 770975,
+      "median_income": 65438
+    },
+    {
+      "geoid": "0614",
+      "state": "06",
+      "district": "14",
+      "area": "California-14",
+      "name": "Congressional District 14 (118th Congress), California",
+      "population": 751587,
+      "median_income": 135427
+    },
+    {
+      "geoid": "0615",
+      "state": "06",
+      "district": "15",
+      "area": "California-15",
+      "name": "Congressional District 15 (118th Congress), California",
+      "population": 752065,
+      "median_income": 139468
+    },
+    {
+      "geoid": "0616",
+      "state": "06",
+      "district": "16",
+      "area": "California-16",
+      "name": "Congressional District 16 (118th Congress), California",
+      "population": 749237,
+      "median_income": 164557
+    },
+    {
+      "geoid": "0617",
+      "state": "06",
+      "district": "17",
+      "area": "California-17",
+      "name": "Congressional District 17 (118th Congress), California",
+      "population": 751593,
+      "median_income": 168712
+    },
+    {
+      "geoid": "0618",
+      "state": "06",
+      "district": "18",
+      "area": "California-18",
+      "name": "Congressional District 18 (118th Congress), California",
+      "population": 759200,
+      "median_income": 96234
+    },
+    {
+      "geoid": "0619",
+      "state": "06",
+      "district": "19",
+      "area": "California-19",
+      "name": "Congressional District 19 (118th Congress), California",
+      "population": 753931,
+      "median_income": 119310
+    },
+    {
+      "geoid": "0620",
+      "state": "06",
+      "district": "20",
+      "area": "California-20",
+      "name": "Congressional District 20 (118th Congress), California",
+      "population": 762132,
+      "median_income": 84357
+    },
+    {
+      "geoid": "0621",
+      "state": "06",
+      "district": "21",
+      "area": "California-21",
+      "name": "Congressional District 21 (118th Congress), California",
+      "population": 758893,
+      "median_income": 57950
+    },
+    {
+      "geoid": "0622",
+      "state": "06",
+      "district": "22",
+      "area": "California-22",
+      "name": "Congressional District 22 (118th Congress), California",
+      "population": 780816,
+      "median_income": 53016
+    },
+    {
+      "geoid": "0623",
+      "state": "06",
+      "district": "23",
+      "area": "California-23",
+      "name": "Congressional District 23 (118th Congress), California",
+      "population": 758852,
+      "median_income": 67727
+    },
+    {
+      "geoid": "0624",
+      "state": "06",
+      "district": "24",
+      "area": "California-24",
+      "name": "Congressional District 24 (118th Congress), California",
+      "population": 760229,
+      "median_income": 91602
+    },
+    {
+      "geoid": "0625",
+      "state": "06",
+      "district": "25",
+      "area": "California-25",
+      "name": "Congressional District 25 (118th Congress), California",
+      "population": 763179,
+      "median_income": 59337
+    },
+    {
+      "geoid": "0626",
+      "state": "06",
+      "district": "26",
+      "area": "California-26",
+      "name": "Congressional District 26 (118th Congress), California",
+      "population": 757602,
+      "median_income": 106909
+    },
+    {
+      "geoid": "0627",
+      "state": "06",
+      "district": "27",
+      "area": "California-27",
+      "name": "Congressional District 27 (118th Congress), California",
+      "population": 747561,
+      "median_income": 95944
+    },
+    {
+      "geoid": "0628",
+      "state": "06",
+      "district": "28",
+      "area": "California-28",
+      "name": "Congressional District 28 (118th Congress), California",
+      "population": 748192,
+      "median_income": 101267
+    },
+    {
+      "geoid": "0629",
+      "state": "06",
+      "district": "29",
+      "area": "California-29",
+      "name": "Congressional District 29 (118th Congress), California",
+      "population": 742347,
+      "median_income": 69961
+    },
+    {
+      "geoid": "0630",
+      "state": "06",
+      "district": "30",
+      "area": "California-30",
+      "name": "Congressional District 30 (118th Congress), California",
+      "population": 744757,
+      "median_income": 84731
+    },
+    {
+      "geoid": "0631",
+      "state": "06",
+      "district": "31",
+      "area": "California-31",
+      "name": "Congressional District 31 (118th Congress), California",
+      "population": 749679,
+      "median_income": 85555
+    },
+    {
+      "geoid": "0632",
+      "state": "06",
+      "district": "32",
+      "area": "California-32",
+      "name": "Congressional District 32 (118th Congress), California",
+      "population": 764598,
+      "median_income": 107280
+    },
+    {
+      "geoid": "0633",
+      "state": "06",
+      "district": "33",
+      "area": "California-33",
+      "name": "Congressional District 33 (118th Congress), California",
+      "population": 757643,
+      "median_income": 79292
+    },
+    {
+      "geoid": "0634",
+      "state": "06",
+      "district": "34",
+      "area": "California-34",
+      "name": "Congressional District 34 (118th Congress), California",
+      "population": 766809,
+      "median_income": 58409
+    },
+    {
+      "geoid": "0635",
+      "state": "06",
+      "district": "35",
+      "area": "California-35",
+      "name": "Congressional District 35 (118th Congress), California",
+      "population": 767456,
+      "median_income": 82578
+    },
+    {
+      "geoid": "0636",
+      "state": "06",
+      "district": "36",
+      "area": "California-36",
+      "name": "Congressional District 36 (118th Congress), California",
+      "population": 740438,
+      "median_income": 121449
+    },
+    {
+      "geoid": "0637",
+      "state": "06",
+      "district": "37",
+      "area": "California-37",
+      "name": "Congressional District 37 (118th Congress), California",
+      "population": 756145,
+      "median_income": 64726
+    },
+    {
+      "geoid": "0638",
+      "state": "06",
+      "district": "38",
+      "area": "California-38",
+      "name": "Congressional District 38 (118th Congress), California",
+      "population": 754110,
+      "median_income": 93026
+    },
+    {
+      "geoid": "0639",
+      "state": "06",
+      "district": "39",
+      "area": "California-39",
+      "name": "Congressional District 39 (118th Congress), California",
+      "population": 759924,
+      "median_income": 83286
+    },
+    {
+      "geoid": "0640",
+      "state": "06",
+      "district": "40",
+      "area": "California-40",
+      "name": "Congressional District 40 (118th Congress), California",
+      "population": 754432,
+      "median_income": 127956
+    },
+    {
+      "geoid": "0641",
+      "state": "06",
+      "district": "41",
+      "area": "California-41",
+      "name": "Congressional District 41 (118th Congress), California",
+      "population": 770422,
+      "median_income": 95595
+    },
+    {
+      "geoid": "0642",
+      "state": "06",
+      "district": "42",
+      "area": "California-42",
+      "name": "Congressional District 42 (118th Congress), California",
+      "population": 752589,
+      "median_income": 73423
+    },
+    {
+      "geoid": "0643",
+      "state": "06",
+      "district": "43",
+      "area": "California-43",
+      "name": "Congressional District 43 (118th Congress), California",
+      "population": 747415,
+      "median_income": 69766
+    },
+    {
+      "geoid": "0644",
+      "state": "06",
+      "district": "44",
+      "area": "California-44",
+      "name": "Congressional District 44 (118th Congress), California",
+      "population": 756441,
+      "median_income": 77546
+    },
+    {
+      "geoid": "0645",
+      "state": "06",
+      "district": "45",
+      "area": "California-45",
+      "name": "Congressional District 45 (118th Congress), California",
+      "population": 756570,
+      "median_income": 100664
+    },
+    {
+      "geoid": "0646",
+      "state": "06",
+      "district": "46",
+      "area": "California-46",
+      "name": "Congressional District 46 (118th Congress), California",
+      "population": 759331,
+      "median_income": 82751
+    },
+    {
+      "geoid": "0647",
+      "state": "06",
+      "district": "47",
+      "area": "California-47",
+      "name": "Congressional District 47 (118th Congress), California",
+      "population": 753964,
+      "median_income": 119153
+    },
+    {
+      "geoid": "0648",
+      "state": "06",
+      "district": "48",
+      "area": "California-48",
+      "name": "Congressional District 48 (118th Congress), California",
+      "population": 764088,
+      "median_income": 103292
+    },
+    {
+      "geoid": "0649",
+      "state": "06",
+      "district": "49",
+      "area": "California-49",
+      "name": "Congressional District 49 (118th Congress), California",
+      "population": 756381,
+      "median_income": 113308
+    },
+    {
+      "geoid": "0650",
+      "state": "06",
+      "district": "50",
+      "area": "California-50",
+      "name": "Congressional District 50 (118th Congress), California",
+      "population": 735988,
+      "median_income": 110134
+    },
+    {
+      "geoid": "0651",
+      "state": "06",
+      "district": "51",
+      "area": "California-51",
+      "name": "Congressional District 51 (118th Congress), California",
+      "population": 762631,
+      "median_income": 96911
+    },
+    {
+      "geoid": "0652",
+      "state": "06",
+      "district": "52",
+      "area": "California-52",
+      "name": "Congressional District 52 (118th Congress), California",
+      "population": 769351,
+      "median_income": 78922
+    },
+    {
+      "geoid": "0801",
+      "state": "08",
+      "district": "01",
+      "area": "Colorado-01",
+      "name": "Congressional District 1 (118th Congress), Colorado",
+      "population": 717038,
+      "median_income": 85737
+    },
+    {
+      "geoid": "0802",
+      "state": "08",
+      "district": "02",
+      "area": "Colorado-02",
+      "name": "Congressional District 2 (118th Congress), Colorado",
+      "population": 718206,
+      "median_income": 94403
+    },
+    {
+      "geoid": "0803",
+      "state": "08",
+      "district": "03",
+      "area": "Colorado-03",
+      "name": "Congressional District 3 (118th Congress), Colorado",
+      "population": 723027,
+      "median_income": 65374
+    },
+    {
+      "geoid": "0804",
+      "state": "08",
+      "district": "04",
+      "area": "Colorado-04",
+      "name": "Congressional District 4 (118th Congress), Colorado",
+      "population": 727411,
+      "median_income": 107583
+    },
+    {
+      "geoid": "0805",
+      "state": "08",
+      "district": "05",
+      "area": "Colorado-05",
+      "name": "Congressional District 5 (118th Congress), Colorado",
+      "population": 722030,
+      "median_income": 82830
+    },
+    {
+      "geoid": "0806",
+      "state": "08",
+      "district": "06",
+      "area": "Colorado-06",
+      "name": "Congressional District 6 (118th Congress), Colorado",
+      "population": 721810,
+      "median_income": 91455
+    },
+    {
+      "geoid": "0807",
+      "state": "08",
+      "district": "07",
+      "area": "Colorado-07",
+      "name": "Congressional District 7 (118th Congress), Colorado",
+      "population": 719604,
+      "median_income": 95493
+    },
+    {
+      "geoid": "0808",
+      "state": "08",
+      "district": "08",
+      "area": "Colorado-08",
+      "name": "Congressional District 8 (118th Congress), Colorado",
+      "population": 721664,
+      "median_income": 86618
+    },
+    {
+      "geoid": "0901",
+      "state": "09",
+      "district": "01",
+      "area": "Connecticut-01",
+      "name": "Congressional District 1 (118th Congress), Connecticut",
+      "population": 718451,
+      "median_income": 84051
+    },
+    {
+      "geoid": "0902",
+      "state": "09",
+      "district": "02",
+      "area": "Connecticut-02",
+      "name": "Congressional District 2 (118th Congress), Connecticut",
+      "population": 723724,
+      "median_income": 92263
+    },
+    {
+      "geoid": "0903",
+      "state": "09",
+      "district": "03",
+      "area": "Connecticut-03",
+      "name": "Congressional District 3 (118th Congress), Connecticut",
+      "population": 723601,
+      "median_income": 85792
+    },
+    {
+      "geoid": "0904",
+      "state": "09",
+      "district": "04",
+      "area": "Connecticut-04",
+      "name": "Congressional District 4 (118th Congress), Connecticut",
+      "population": 722029,
+      "median_income": 110391
+    },
+    {
+      "geoid": "0905",
+      "state": "09",
+      "district": "05",
+      "area": "Connecticut-05",
+      "name": "Congressional District 5 (118th Congress), Connecticut",
+      "population": 723512,
+      "median_income": 84121
+    },
+    {
+      "geoid": "09ZZ",
+      "state": "09",
+      "district": "ZZ",
+      "area": "Connecticut-ZZ",
+      "name": "Congressional Districts not defined (118th Congress), Connecticut",
+      "population": 0,
+      "median_income": null
+    },
+    {
+      "geoid": "1000",
+      "state": "10",
+      "district": "00",
+      "area": "Delaware-00",
+      "name": "Congressional District (at Large) (118th Congress), Delaware",
+      "population": 993635,
+      "median_income": 79325
+    },
+    {
+      "geoid": "1198",
+      "state": "11",
+      "district": "98",
+      "area": "District of Columbia-98",
+      "name": "Delegate District (at Large) (118th Congress), District of Columbia",
+      "population": 670587,
+      "median_income": 101722
+    },
+    {
+      "geoid": "1201",
+      "state": "12",
+      "district": "01",
+      "area": "Florida-01",
+      "name": "Congressional District 1 (118th Congress), Florida",
+      "population": 772291,
+      "median_income": 70864
+    },
+    {
+      "geoid": "1202",
+      "state": "12",
+      "district": "02",
+      "area": "Florida-02",
+      "name": "Congressional District 2 (118th Congress), Florida",
+      "population": 775769,
+      "median_income": 58839
+    },
+    {
+      "geoid": "1203",
+      "state": "12",
+      "district": "03",
+      "area": "Florida-03",
+      "name": "Congressional District 3 (118th Congress), Florida",
+      "population": 769691,
+      "median_income": 55236
+    },
+    {
+      "geoid": "1204",
+      "state": "12",
+      "district": "04",
+      "area": "Florida-04",
+      "name": "Congressional District 4 (118th Congress), Florida",
+      "population": 775118,
+      "median_income": 65494
+    },
+    {
+      "geoid": "1205",
+      "state": "12",
+      "district": "05",
+      "area": "Florida-05",
+      "name": "Congressional District 5 (118th Congress), Florida",
+      "population": 770573,
+      "median_income": 81914
+    },
+    {
+      "geoid": "1206",
+      "state": "12",
+      "district": "06",
+      "area": "Florida-06",
+      "name": "Congressional District 6 (118th Congress), Florida",
+      "population": 779543,
+      "median_income": 59202
+    },
+    {
+      "geoid": "1207",
+      "state": "12",
+      "district": "07",
+      "area": "Florida-07",
+      "name": "Congressional District 7 (118th Congress), Florida",
+      "population": 771916,
+      "median_income": 74497
+    },
+    {
+      "geoid": "1208",
+      "state": "12",
+      "district": "08",
+      "area": "Florida-08",
+      "name": "Congressional District 8 (118th Congress), Florida",
+      "population": 773536,
+      "median_income": 70417
+    },
+    {
+      "geoid": "1209",
+      "state": "12",
+      "district": "09",
+      "area": "Florida-09",
+      "name": "Congressional District 9 (118th Congress), Florida",
+      "population": 754301,
+      "median_income": 68237
+    },
+    {
+      "geoid": "1210",
+      "state": "12",
+      "district": "10",
+      "area": "Florida-10",
+      "name": "Congressional District 10 (118th Congress), Florida",
+      "population": 785358,
+      "median_income": 65846
+    },
+    {
+      "geoid": "1211",
+      "state": "12",
+      "district": "11",
+      "area": "Florida-11",
+      "name": "Congressional District 11 (118th Congress), Florida",
+      "population": 776905,
+      "median_income": 76408
+    },
+    {
+      "geoid": "1212",
+      "state": "12",
+      "district": "12",
+      "area": "Florida-12",
+      "name": "Congressional District 12 (118th Congress), Florida",
+      "population": 770735,
+      "median_income": 58717
+    },
+    {
+      "geoid": "1213",
+      "state": "12",
+      "district": "13",
+      "area": "Florida-13",
+      "name": "Congressional District 13 (118th Congress), Florida",
+      "population": 768555,
+      "median_income": 65902
+    },
+    {
+      "geoid": "1214",
+      "state": "12",
+      "district": "14",
+      "area": "Florida-14",
+      "name": "Congressional District 14 (118th Congress), Florida",
+      "population": 772661,
+      "median_income": 68014
+    },
+    {
+      "geoid": "1215",
+      "state": "12",
+      "district": "15",
+      "area": "Florida-15",
+      "name": "Congressional District 15 (118th Congress), Florida",
+      "population": 785390,
+      "median_income": 66186
+    },
+    {
+      "geoid": "1216",
+      "state": "12",
+      "district": "16",
+      "area": "Florida-16",
+      "name": "Congressional District 16 (118th Congress), Florida",
+      "population": 774262,
+      "median_income": 76159
+    },
+    {
+      "geoid": "1217",
+      "state": "12",
+      "district": "17",
+      "area": "Florida-17",
+      "name": "Congressional District 17 (118th Congress), Florida",
+      "population": 785836,
+      "median_income": 69580
+    },
+    {
+      "geoid": "1218",
+      "state": "12",
+      "district": "18",
+      "area": "Florida-18",
+      "name": "Congressional District 18 (118th Congress), Florida",
+      "population": 780642,
+      "median_income": 56464
+    },
+    {
+      "geoid": "1219",
+      "state": "12",
+      "district": "19",
+      "area": "Florida-19",
+      "name": "Congressional District 19 (118th Congress), Florida",
+      "population": 772972,
+      "median_income": 74823
+    },
+    {
+      "geoid": "1220",
+      "state": "12",
+      "district": "20",
+      "area": "Florida-20",
+      "name": "Congressional District 20 (118th Congress), Florida",
+      "population": 773320,
+      "median_income": 57464
+    },
+    {
+      "geoid": "1221",
+      "state": "12",
+      "district": "21",
+      "area": "Florida-21",
+      "name": "Congressional District 21 (118th Congress), Florida",
+      "population": 776143,
+      "median_income": 76274
+    },
+    {
+      "geoid": "1222",
+      "state": "12",
+      "district": "22",
+      "area": "Florida-22",
+      "name": "Congressional District 22 (118th Congress), Florida",
+      "population": 768503,
+      "median_income": 73720
+    },
+    {
+      "geoid": "1223",
+      "state": "12",
+      "district": "23",
+      "area": "Florida-23",
+      "name": "Congressional District 23 (118th Congress), Florida",
+      "population": 762506,
+      "median_income": 78226
+    },
+    {
+      "geoid": "1224",
+      "state": "12",
+      "district": "24",
+      "area": "Florida-24",
+      "name": "Congressional District 24 (118th Congress), Florida",
+      "population": 780118,
+      "median_income": 56804
+    },
+    {
+      "geoid": "1225",
+      "state": "12",
+      "district": "25",
+      "area": "Florida-25",
+      "name": "Congressional District 25 (118th Congress), Florida",
+      "population": 765444,
+      "median_income": 78558
+    },
+    {
+      "geoid": "1226",
+      "state": "12",
+      "district": "26",
+      "area": "Florida-26",
+      "name": "Congressional District 26 (118th Congress), Florida",
+      "population": 775185,
+      "median_income": 64075
+    },
+    {
+      "geoid": "1227",
+      "state": "12",
+      "district": "27",
+      "area": "Florida-27",
+      "name": "Congressional District 27 (118th Congress), Florida",
+      "population": 752682,
+      "median_income": 72111
+    },
+    {
+      "geoid": "1228",
+      "state": "12",
+      "district": "28",
+      "area": "Florida-28",
+      "name": "Congressional District 28 (118th Congress), Florida",
+      "population": 764574,
+      "median_income": 72259
+    },
+    {
+      "geoid": "1301",
+      "state": "13",
+      "district": "01",
+      "area": "Georgia-01",
+      "name": "Congressional District 1 (118th Congress), Georgia",
+      "population": 768625,
+      "median_income": 63148
+    },
+    {
+      "geoid": "1302",
+      "state": "13",
+      "district": "02",
+      "area": "Georgia-02",
+      "name": "Congressional District 2 (118th Congress), Georgia",
+      "population": 757675,
+      "median_income": 48475
+    },
+    {
+      "geoid": "1303",
+      "state": "13",
+      "district": "03",
+      "area": "Georgia-03",
+      "name": "Congressional District 3 (118th Congress), Georgia",
+      "population": 767633,
+      "median_income": 74241
+    },
+    {
+      "geoid": "1304",
+      "state": "13",
+      "district": "04",
+      "area": "Georgia-04",
+      "name": "Congressional District 4 (118th Congress), Georgia",
+      "population": 766420,
+      "median_income": 72425
+    },
+    {
+      "geoid": "1305",
+      "state": "13",
+      "district": "05",
+      "area": "Georgia-05",
+      "name": "Congressional District 5 (118th Congress), Georgia",
+      "population": 756319,
+      "median_income": 76066
+    },
+    {
+      "geoid": "1306",
+      "state": "13",
+      "district": "06",
+      "area": "Georgia-06",
+      "name": "Congressional District 6 (118th Congress), Georgia",
+      "population": 767777,
+      "median_income": 121195
+    },
+    {
+      "geoid": "1307",
+      "state": "13",
+      "district": "07",
+      "area": "Georgia-07",
+      "name": "Congressional District 7 (118th Congress), Georgia",
+      "population": 763613,
+      "median_income": 81303
+    },
+    {
+      "geoid": "1308",
+      "state": "13",
+      "district": "08",
+      "area": "Georgia-08",
+      "name": "Congressional District 8 (118th Congress), Georgia",
+      "population": 767071,
+      "median_income": 57791
+    },
+    {
+      "geoid": "1309",
+      "state": "13",
+      "district": "09",
+      "area": "Georgia-09",
+      "name": "Congressional District 9 (118th Congress), Georgia",
+      "population": 768577,
+      "median_income": 74138
+    },
+    {
+      "geoid": "1310",
+      "state": "13",
+      "district": "10",
+      "area": "Georgia-10",
+      "name": "Congressional District 10 (118th Congress), Georgia",
+      "population": 770605,
+      "median_income": 71341
+    },
+    {
+      "geoid": "1311",
+      "state": "13",
+      "district": "11",
+      "area": "Georgia-11",
+      "name": "Congressional District 11 (118th Congress), Georgia",
+      "population": 770928,
+      "median_income": 88118
+    },
+    {
+      "geoid": "1312",
+      "state": "13",
+      "district": "12",
+      "area": "Georgia-12",
+      "name": "Congressional District 12 (118th Congress), Georgia",
+      "population": 764339,
+      "median_income": 56585
+    },
+    {
+      "geoid": "1313",
+      "state": "13",
+      "district": "13",
+      "area": "Georgia-13",
+      "name": "Congressional District 13 (118th Congress), Georgia",
+      "population": 765369,
+      "median_income": 69514
+    },
+    {
+      "geoid": "1314",
+      "state": "13",
+      "district": "14",
+      "area": "Georgia-14",
+      "name": "Congressional District 14 (118th Congress), Georgia",
+      "population": 767374,
+      "median_income": 67562
+    },
+    {
+      "geoid": "1501",
+      "state": "15",
+      "district": "01",
+      "area": "Hawaii-01",
+      "name": "Congressional District 1 (118th Congress), Hawaii",
+      "population": 723185,
+      "median_income": 98503
+    },
+    {
+      "geoid": "1502",
+      "state": "15",
+      "district": "02",
+      "area": "Hawaii-02",
+      "name": "Congressional District 2 (118th Congress), Hawaii",
+      "population": 727404,
+      "median_income": 90677
+    },
+    {
+      "geoid": "1601",
+      "state": "16",
+      "district": "01",
+      "area": "Idaho-01",
+      "name": "Congressional District 1 (118th Congress), Idaho",
+      "population": 931503,
+      "median_income": 71763
+    },
+    {
+      "geoid": "1602",
+      "state": "16",
+      "district": "02",
+      "area": "Idaho-02",
+      "name": "Congressional District 2 (118th Congress), Idaho",
+      "population": 922606,
+      "median_income": 68629
+    },
+    {
+      "geoid": "1701",
+      "state": "17",
+      "district": "01",
+      "area": "Illinois-01",
+      "name": "Congressional District 1 (118th Congress), Illinois",
+      "population": 754024,
+      "median_income": 68067
+    },
+    {
+      "geoid": "1702",
+      "state": "17",
+      "district": "02",
+      "area": "Illinois-02",
+      "name": "Congressional District 2 (118th Congress), Illinois",
+      "population": 755018,
+      "median_income": 59002
+    },
+    {
+      "geoid": "1703",
+      "state": "17",
+      "district": "03",
+      "area": "Illinois-03",
+      "name": "Congressional District 3 (118th Congress), Illinois",
+      "population": 746412,
+      "median_income": 82509
+    },
+    {
+      "geoid": "1704",
+      "state": "17",
+      "district": "04",
+      "area": "Illinois-04",
+      "name": "Congressional District 4 (118th Congress), Illinois",
+      "population": 735314,
+      "median_income": 68516
+    },
+    {
+      "geoid": "1705",
+      "state": "17",
+      "district": "05",
+      "area": "Illinois-05",
+      "name": "Congressional District 5 (118th Congress), Illinois",
+      "population": 753753,
+      "median_income": 110758
+    },
+    {
+      "geoid": "1706",
+      "state": "17",
+      "district": "06",
+      "area": "Illinois-06",
+      "name": "Congressional District 6 (118th Congress), Illinois",
+      "population": 754650,
+      "median_income": 94711
+    },
+    {
+      "geoid": "1707",
+      "state": "17",
+      "district": "07",
+      "area": "Illinois-07",
+      "name": "Congressional District 7 (118th Congress), Illinois",
+      "population": 730552,
+      "median_income": 75645
+    },
+    {
+      "geoid": "1708",
+      "state": "17",
+      "district": "08",
+      "area": "Illinois-08",
+      "name": "Congressional District 8 (118th Congress), Illinois",
+      "population": 753960,
+      "median_income": 94493
+    },
+    {
+      "geoid": "1709",
+      "state": "17",
+      "district": "09",
+      "area": "Illinois-09",
+      "name": "Congressional District 9 (118th Congress), Illinois",
+      "population": 749895,
+      "median_income": 88013
+    },
+    {
+      "geoid": "1710",
+      "state": "17",
+      "district": "10",
+      "area": "Illinois-10",
+      "name": "Congressional District 10 (118th Congress), Illinois",
+      "population": 753313,
+      "median_income": 101623
+    },
+    {
+      "geoid": "1711",
+      "state": "17",
+      "district": "11",
+      "area": "Illinois-11",
+      "name": "Congressional District 11 (118th Congress), Illinois",
+      "population": 750486,
+      "median_income": 103618
+    },
+    {
+      "geoid": "1712",
+      "state": "17",
+      "district": "12",
+      "area": "Illinois-12",
+      "name": "Congressional District 12 (118th Congress), Illinois",
+      "population": 752942,
+      "median_income": 64278
+    },
+    {
+      "geoid": "1713",
+      "state": "17",
+      "district": "13",
+      "area": "Illinois-13",
+      "name": "Congressional District 13 (118th Congress), Illinois",
+      "population": 751712,
+      "median_income": 59779
+    },
+    {
+      "geoid": "1714",
+      "state": "17",
+      "district": "14",
+      "area": "Illinois-14",
+      "name": "Congressional District 14 (118th Congress), Illinois",
+      "population": 757406,
+      "median_income": 89641
+    },
+    {
+      "geoid": "1715",
+      "state": "17",
+      "district": "15",
+      "area": "Illinois-15",
+      "name": "Congressional District 15 (118th Congress), Illinois",
+      "population": 754127,
+      "median_income": 69299
+    },
+    {
+      "geoid": "1716",
+      "state": "17",
+      "district": "16",
+      "area": "Illinois-16",
+      "name": "Congressional District 16 (118th Congress), Illinois",
+      "population": 751284,
+      "median_income": 79456
+    },
+    {
+      "geoid": "1717",
+      "state": "17",
+      "district": "17",
+      "area": "Illinois-17",
+      "name": "Congressional District 17 (118th Congress), Illinois",
+      "population": 752786,
+      "median_income": 55837
+    },
+    {
+      "geoid": "17ZZ",
+      "state": "17",
+      "district": "ZZ",
+      "area": "Illinois-ZZ",
+      "name": "Congressional Districts not defined (118th Congress), Illinois",
+      "population": 0,
+      "median_income": null
+    },
+    {
+      "geoid": "1801",
+      "state": "18",
+      "district": "01",
+      "area": "Indiana-01",
+      "name": "Congressional District 1 (118th Congress), Indiana",
+      "population": 753721,
+      "median_income": 69283
+    },
+    {
+      "geoid": "1802",
+      "state": "18",
+      "district": "02",
+      "area": "Indiana-02",
+      "name": "Congressional District 2 (118th Congress), Indiana",
+      "population": 752670,
+      "median_income": 63768
+    },
+    {
+      "geoid": "1803",
+      "state": "18",
+      "district": "03",
+      "area": "Indiana-03",
+      "name": "Congressional District 3 (118th Congress), Indiana",
+      "population": 753447,
+      "median_income": 66186
+    },
+    {
+      "geoid": "1804",
+      "state": "18",
+      "district": "04",
+      "area": "Indiana-04",
+      "name": "Congressional District 4 (118th Congress), Indiana",
+      "population": 756007,
+      "median_income": 73225
+    },
+    {
+      "geoid": "1805",
+      "state": "18",
+      "district": "05",
+      "area": "Indiana-05",
+      "name": "Congressional District 5 (118th Congress), Indiana",
+      "population": 756125,
+      "median_income": 76715
+    },
+    {
+      "geoid": "1806",
+      "state": "18",
+      "district": "06",
+      "area": "Indiana-06",
+      "name": "Congressional District 6 (118th Congress), Indiana",
+      "population": 752728,
+      "median_income": 70901
+    },
+    {
+      "geoid": "1807",
+      "state": "18",
+      "district": "07",
+      "area": "Indiana-07",
+      "name": "Congressional District 7 (118th Congress), Indiana",
+      "population": 750334,
+      "median_income": 57347
+    },
+    {
+      "geoid": "1808",
+      "state": "18",
+      "district": "08",
+      "area": "Indiana-08",
+      "name": "Congressional District 8 (118th Congress), Indiana",
+      "population": 754480,
+      "median_income": 61799
+    },
+    {
+      "geoid": "1809",
+      "state": "18",
+      "district": "09",
+      "area": "Indiana-09",
+      "name": "Congressional District 9 (118th Congress), Indiana",
+      "population": 754891,
+      "median_income": 67437
+    },
+    {
+      "geoid": "1901",
+      "state": "19",
+      "district": "01",
+      "area": "Iowa-01",
+      "name": "Congressional District 1 (118th Congress), Iowa",
+      "population": 797528,
+      "median_income": 69207
+    },
+    {
+      "geoid": "1902",
+      "state": "19",
+      "district": "02",
+      "area": "Iowa-02",
+      "name": "Congressional District 2 (118th Congress), Iowa",
+      "population": 795900,
+      "median_income": 69490
+    },
+    {
+      "geoid": "1903",
+      "state": "19",
+      "district": "03",
+      "area": "Iowa-03",
+      "name": "Congressional District 3 (118th Congress), Iowa",
+      "population": 799081,
+      "median_income": 76183
+    },
+    {
+      "geoid": "1904",
+      "state": "19",
+      "district": "04",
+      "area": "Iowa-04",
+      "name": "Congressional District 4 (118th Congress), Iowa",
+      "population": 796327,
+      "median_income": 68156
+    },
+    {
+      "geoid": "2001",
+      "state": "20",
+      "district": "01",
+      "area": "Kansas-01",
+      "name": "Congressional District 1 (118th Congress), Kansas",
+      "population": 734313,
+      "median_income": 61490
+    },
+    {
+      "geoid": "2002",
+      "state": "20",
+      "district": "02",
+      "area": "Kansas-02",
+      "name": "Congressional District 2 (118th Congress), Kansas",
+      "population": 734782,
+      "median_income": 61021
+    },
+    {
+      "geoid": "2003",
+      "state": "20",
+      "district": "03",
+      "area": "Kansas-03",
+      "name": "Congressional District 3 (118th Congress), Kansas",
+      "population": 733585,
+      "median_income": 97042
+    },
+    {
+      "geoid": "2004",
+      "state": "20",
+      "district": "04",
+      "area": "Kansas-04",
+      "name": "Congressional District 4 (118th Congress), Kansas",
+      "population": 733242,
+      "median_income": 65286
+    },
+    {
+      "geoid": "2101",
+      "state": "21",
+      "district": "01",
+      "area": "Kentucky-01",
+      "name": "Congressional District 1 (118th Congress), Kentucky",
+      "population": 751426,
+      "median_income": 54757
+    },
+    {
+      "geoid": "2102",
+      "state": "21",
+      "district": "02",
+      "area": "Kentucky-02",
+      "name": "Congressional District 2 (118th Congress), Kentucky",
+      "population": 753141,
+      "median_income": 62297
+    },
+    {
+      "geoid": "2103",
+      "state": "21",
+      "district": "03",
+      "area": "Kentucky-03",
+      "name": "Congressional District 3 (118th Congress), Kentucky",
+      "population": 746481,
+      "median_income": 64645
+    },
+    {
+      "geoid": "2104",
+      "state": "21",
+      "district": "04",
+      "area": "Kentucky-04",
+      "name": "Congressional District 4 (118th Congress), Kentucky",
+      "population": 751457,
+      "median_income": 75658
+    },
+    {
+      "geoid": "2105",
+      "state": "21",
+      "district": "05",
+      "area": "Kentucky-05",
+      "name": "Congressional District 5 (118th Congress), Kentucky",
+      "population": 750027,
+      "median_income": 43420
+    },
+    {
+      "geoid": "2106",
+      "state": "21",
+      "district": "06",
+      "area": "Kentucky-06",
+      "name": "Congressional District 6 (118th Congress), Kentucky",
+      "population": 750403,
+      "median_income": 64367
+    },
+    {
+      "geoid": "2201",
+      "state": "22",
+      "district": "01",
+      "area": "Louisiana-01",
+      "name": "Congressional District 1 (118th Congress), Louisiana",
+      "population": 768258,
+      "median_income": 71036
+    },
+    {
+      "geoid": "2202",
+      "state": "22",
+      "district": "02",
+      "area": "Louisiana-02",
+      "name": "Congressional District 2 (118th Congress), Louisiana",
+      "population": 769243,
+      "median_income": 48648
+    },
+    {
+      "geoid": "2203",
+      "state": "22",
+      "district": "03",
+      "area": "Louisiana-03",
+      "name": "Congressional District 3 (118th Congress), Louisiana",
+      "population": 771697,
+      "median_income": 58893
+    },
+    {
+      "geoid": "2204",
+      "state": "22",
+      "district": "04",
+      "area": "Louisiana-04",
+      "name": "Congressional District 4 (118th Congress), Louisiana",
+      "population": 774854,
+      "median_income": 48817
+    },
+    {
+      "geoid": "2205",
+      "state": "22",
+      "district": "05",
+      "area": "Louisiana-05",
+      "name": "Congressional District 5 (118th Congress), Louisiana",
+      "population": 775396,
+      "median_income": 48061
+    },
+    {
+      "geoid": "2206",
+      "state": "22",
+      "district": "06",
+      "area": "Louisiana-06",
+      "name": "Congressional District 6 (118th Congress), Louisiana",
+      "population": 781098,
+      "median_income": 75399
+    },
+    {
+      "geoid": "2301",
+      "state": "23",
+      "district": "01",
+      "area": "Maine-01",
+      "name": "Congressional District 1 (118th Congress), Maine",
+      "population": 683145,
+      "median_income": 80384
+    },
+    {
+      "geoid": "2302",
+      "state": "23",
+      "district": "02",
+      "area": "Maine-02",
+      "name": "Congressional District 2 (118th Congress), Maine",
+      "population": 683804,
+      "median_income": 58564
+    },
+    {
+      "geoid": "2401",
+      "state": "24",
+      "district": "01",
+      "area": "Maryland-01",
+      "name": "Congressional District 1 (118th Congress), Maryland",
+      "population": 773966,
+      "median_income": 88691
+    },
+    {
+      "geoid": "2402",
+      "state": "24",
+      "district": "02",
+      "area": "Maryland-02",
+      "name": "Congressional District 2 (118th Congress), Maryland",
+      "population": 769431,
+      "median_income": 95710
+    },
+    {
+      "geoid": "2403",
+      "state": "24",
+      "district": "03",
+      "area": "Maryland-03",
+      "name": "Congressional District 3 (118th Congress), Maryland",
+      "population": 770623,
+      "median_income": 124187
+    },
+    {
+      "geoid": "2404",
+      "state": "24",
+      "district": "04",
+      "area": "Maryland-04",
+      "name": "Congressional District 4 (118th Congress), Maryland",
+      "population": 764378,
+      "median_income": 88498
+    },
+    {
+      "geoid": "2405",
+      "state": "24",
+      "district": "05",
+      "area": "Maryland-05",
+      "name": "Congressional District 5 (118th Congress), Maryland",
+      "population": 774011,
+      "median_income": 124709
+    },
+    {
+      "geoid": "2406",
+      "state": "24",
+      "district": "06",
+      "area": "Maryland-06",
+      "name": "Congressional District 6 (118th Congress), Maryland",
+      "population": 777191,
+      "median_income": 96438
+    },
+    {
+      "geoid": "2407",
+      "state": "24",
+      "district": "07",
+      "area": "Maryland-07",
+      "name": "Congressional District 7 (118th Congress), Maryland",
+      "population": 764705,
+      "median_income": 59876
+    },
+    {
+      "geoid": "2408",
+      "state": "24",
+      "district": "08",
+      "area": "Maryland-08",
+      "name": "Congressional District 8 (118th Congress), Maryland",
+      "population": 767402,
+      "median_income": 131468
+    },
+    {
+      "geoid": "2501",
+      "state": "25",
+      "district": "01",
+      "area": "Massachusetts-01",
+      "name": "Congressional District 1 (118th Congress), Massachusetts",
+      "population": 778095,
+      "median_income": 70631
+    },
+    {
+      "geoid": "2502",
+      "state": "25",
+      "district": "02",
+      "area": "Massachusetts-02",
+      "name": "Congressional District 2 (118th Congress), Massachusetts",
+      "population": 771071,
+      "median_income": 90957
+    },
+    {
+      "geoid": "2503",
+      "state": "25",
+      "district": "03",
+      "area": "Massachusetts-03",
+      "name": "Congressional District 3 (118th Congress), Massachusetts",
+      "population": 776406,
+      "median_income": 92845
+    },
+    {
+      "geoid": "2504",
+      "state": "25",
+      "district": "04",
+      "area": "Massachusetts-04",
+      "name": "Congressional District 4 (118th Congress), Massachusetts",
+      "population": 778731,
+      "median_income": 108594
+    },
+    {
+      "geoid": "2505",
+      "state": "25",
+      "district": "05",
+      "area": "Massachusetts-05",
+      "name": "Congressional District 5 (118th Congress), Massachusetts",
+      "population": 776872,
+      "median_income": 119458
+    },
+    {
+      "geoid": "2506",
+      "state": "25",
+      "district": "06",
+      "area": "Massachusetts-06",
+      "name": "Congressional District 6 (118th Congress), Massachusetts",
+      "population": 777375,
+      "median_income": 110464
+    },
+    {
+      "geoid": "2507",
+      "state": "25",
+      "district": "07",
+      "area": "Massachusetts-07",
+      "name": "Congressional District 7 (118th Congress), Massachusetts",
+      "population": 773828,
+      "median_income": 84668
+    },
+    {
+      "geoid": "2508",
+      "state": "25",
+      "district": "08",
+      "area": "Massachusetts-08",
+      "name": "Congressional District 8 (118th Congress), Massachusetts",
+      "population": 772082,
+      "median_income": 109813
+    },
+    {
+      "geoid": "2509",
+      "state": "25",
+      "district": "09",
+      "area": "Massachusetts-09",
+      "name": "Congressional District 9 (118th Congress), Massachusetts",
+      "population": 779745,
+      "median_income": 93322
+    },
+    {
+      "geoid": "2601",
+      "state": "26",
+      "district": "01",
+      "area": "Michigan-01",
+      "name": "Congressional District 1 (118th Congress), Michigan",
+      "population": 777560,
+      "median_income": 59460
+    },
+    {
+      "geoid": "2602",
+      "state": "26",
+      "district": "02",
+      "area": "Michigan-02",
+      "name": "Congressional District 2 (118th Congress), Michigan",
+      "population": 777946,
+      "median_income": 63936
+    },
+    {
+      "geoid": "2603",
+      "state": "26",
+      "district": "03",
+      "area": "Michigan-03",
+      "name": "Congressional District 3 (118th Congress), Michigan",
+      "population": 773965,
+      "median_income": 71895
+    },
+    {
+      "geoid": "2604",
+      "state": "26",
+      "district": "04",
+      "area": "Michigan-04",
+      "name": "Congressional District 4 (118th Congress), Michigan",
+      "population": 774289,
+      "median_income": 69601
+    },
+    {
+      "geoid": "2605",
+      "state": "26",
+      "district": "05",
+      "area": "Michigan-05",
+      "name": "Congressional District 5 (118th Congress), Michigan",
+      "population": 773808,
+      "median_income": 65758
+    },
+    {
+      "geoid": "2606",
+      "state": "26",
+      "district": "06",
+      "area": "Michigan-06",
+      "name": "Congressional District 6 (118th Congress), Michigan",
+      "population": 770957,
+      "median_income": 91059
+    },
+    {
+      "geoid": "2607",
+      "state": "26",
+      "district": "07",
+      "area": "Michigan-07",
+      "name": "Congressional District 7 (118th Congress), Michigan",
+      "population": 773038,
+      "median_income": 76129
+    },
+    {
+      "geoid": "2608",
+      "state": "26",
+      "district": "08",
+      "area": "Michigan-08",
+      "name": "Congressional District 8 (118th Congress), Michigan",
+      "population": 773930,
+      "median_income": 59271
+    },
+    {
+      "geoid": "2609",
+      "state": "26",
+      "district": "09",
+      "area": "Michigan-09",
+      "name": "Congressional District 9 (118th Congress), Michigan",
+      "population": 774580,
+      "median_income": 80532
+    },
+    {
+      "geoid": "2610",
+      "state": "26",
+      "district": "10",
+      "area": "Michigan-10",
+      "name": "Congressional District 10 (118th Congress), Michigan",
+      "population": 772612,
+      "median_income": 72757
+    },
+    {
+      "geoid": "2611",
+      "state": "26",
+      "district": "11",
+      "area": "Michigan-11",
+      "name": "Congressional District 11 (118th Congress), Michigan",
+      "population": 774826,
+      "median_income": 88383
+    },
+    {
+      "geoid": "2612",
+      "state": "26",
+      "district": "12",
+      "area": "Michigan-12",
+      "name": "Congressional District 12 (118th Congress), Michigan",
+      "population": 770452,
+      "median_income": 57096
+    },
+    {
+      "geoid": "2613",
+      "state": "26",
+      "district": "13",
+      "area": "Michigan-13",
+      "name": "Congressional District 13 (118th Congress), Michigan",
+      "population": 769958,
+      "median_income": 47746
+    },
+    {
+      "geoid": "2701",
+      "state": "27",
+      "district": "01",
+      "area": "Minnesota-01",
+      "name": "Congressional District 1 (118th Congress), Minnesota",
+      "population": 712863,
+      "median_income": 75364
+    },
+    {
+      "geoid": "2702",
+      "state": "27",
+      "district": "02",
+      "area": "Minnesota-02",
+      "name": "Congressional District 2 (118th Congress), Minnesota",
+      "population": 713718,
+      "median_income": 104246
+    },
+    {
+      "geoid": "2703",
+      "state": "27",
+      "district": "03",
+      "area": "Minnesota-03",
+      "name": "Congressional District 3 (118th Congress), Minnesota",
+      "population": 707707,
+      "median_income": 104674
+    },
+    {
+      "geoid": "2704",
+      "state": "27",
+      "district": "04",
+      "area": "Minnesota-04",
+      "name": "Congressional District 4 (118th Congress), Minnesota",
+      "population": 708545,
+      "median_income": 85466
+    },
+    {
+      "geoid": "2705",
+      "state": "27",
+      "district": "05",
+      "area": "Minnesota-05",
+      "name": "Congressional District 5 (118th Congress), Minnesota",
+      "population": 707627,
+      "median_income": 79108
+    },
+    {
+      "geoid": "2706",
+      "state": "27",
+      "district": "06",
+      "area": "Minnesota-06",
+      "name": "Congressional District 6 (118th Congress), Minnesota",
+      "population": 715967,
+      "median_income": 98171
+    },
+    {
+      "geoid": "2707",
+      "state": "27",
+      "district": "07",
+      "area": "Minnesota-07",
+      "name": "Congressional District 7 (118th Congress), Minnesota",
+      "population": 713351,
+      "median_income": 69910
+    },
+    {
+      "geoid": "2708",
+      "state": "27",
+      "district": "08",
+      "area": "Minnesota-08",
+      "name": "Congressional District 8 (118th Congress), Minnesota",
+      "population": 715514,
+      "median_income": 70474
+    },
+    {
+      "geoid": "2801",
+      "state": "28",
+      "district": "01",
+      "area": "Mississippi-01",
+      "name": "Congressional District 1 (118th Congress), Mississippi",
+      "population": 741109,
+      "median_income": 58538
+    },
+    {
+      "geoid": "2802",
+      "state": "28",
+      "district": "02",
+      "area": "Mississippi-02",
+      "name": "Congressional District 2 (118th Congress), Mississippi",
+      "population": 738521,
+      "median_income": 42375
+    },
+    {
+      "geoid": "2803",
+      "state": "28",
+      "district": "03",
+      "area": "Mississippi-03",
+      "name": "Congressional District 3 (118th Congress), Mississippi",
+      "population": 738576,
+      "median_income": 56267
+    },
+    {
+      "geoid": "2804",
+      "state": "28",
+      "district": "04",
+      "area": "Mississippi-04",
+      "name": "Congressional District 4 (118th Congress), Mississippi",
+      "population": 740640,
+      "median_income": 56066
+    },
+    {
+      "geoid": "2901",
+      "state": "29",
+      "district": "01",
+      "area": "Missouri-01",
+      "name": "Congressional District 1 (118th Congress), Missouri",
+      "population": 766456,
+      "median_income": 57493
+    },
+    {
+      "geoid": "2902",
+      "state": "29",
+      "district": "02",
+      "area": "Missouri-02",
+      "name": "Congressional District 2 (118th Congress), Missouri",
+      "population": 764420,
+      "median_income": 96151
+    },
+    {
+      "geoid": "2903",
+      "state": "29",
+      "district": "03",
+      "area": "Missouri-03",
+      "name": "Congressional District 3 (118th Congress), Missouri",
+      "population": 770039,
+      "median_income": 76833
+    },
+    {
+      "geoid": "2904",
+      "state": "29",
+      "district": "04",
+      "area": "Missouri-04",
+      "name": "Congressional District 4 (118th Congress), Missouri",
+      "population": 771882,
+      "median_income": 62643
+    },
+    {
+      "geoid": "2905",
+      "state": "29",
+      "district": "05",
+      "area": "Missouri-05",
+      "name": "Congressional District 5 (118th Congress), Missouri",
+      "population": 768398,
+      "median_income": 64023
+    },
+    {
+      "geoid": "2906",
+      "state": "29",
+      "district": "06",
+      "area": "Missouri-06",
+      "name": "Congressional District 6 (118th Congress), Missouri",
+      "population": 769064,
+      "median_income": 68728
+    },
+    {
+      "geoid": "2907",
+      "state": "29",
+      "district": "07",
+      "area": "Missouri-07",
+      "name": "Congressional District 7 (118th Congress), Missouri",
+      "population": 771969,
+      "median_income": 57220
+    },
+    {
+      "geoid": "2908",
+      "state": "29",
+      "district": "08",
+      "area": "Missouri-08",
+      "name": "Congressional District 8 (118th Congress), Missouri",
+      "population": 772194,
+      "median_income": 55599
+    },
+    {
+      "geoid": "3001",
+      "state": "30",
+      "district": "01",
+      "area": "Montana-01",
+      "name": "Congressional District 1 (118th Congress), Montana",
+      "population": 547233,
+      "median_income": 66110
+    },
+    {
+      "geoid": "3002",
+      "state": "30",
+      "district": "02",
+      "area": "Montana-02",
+      "name": "Congressional District 2 (118th Congress), Montana",
+      "population": 544607,
+      "median_income": 66546
+    },
+    {
+      "geoid": "3101",
+      "state": "31",
+      "district": "01",
+      "area": "Nebraska-01",
+      "name": "Congressional District 1 (118th Congress), Nebraska",
+      "population": 653295,
+      "median_income": 74148
+    },
+    {
+      "geoid": "3102",
+      "state": "31",
+      "district": "02",
+      "area": "Nebraska-02",
+      "name": "Congressional District 2 (118th Congress), Nebraska",
+      "population": 652597,
+      "median_income": 79112
+    },
+    {
+      "geoid": "3103",
+      "state": "31",
+      "district": "03",
+      "area": "Nebraska-03",
+      "name": "Congressional District 3 (118th Congress), Nebraska",
+      "population": 653047,
+      "median_income": 63735
+    },
+    {
+      "geoid": "3201",
+      "state": "32",
+      "district": "01",
+      "area": "Nevada-01",
+      "name": "Congressional District 1 (118th Congress), Nevada",
+      "population": 756838,
+      "median_income": 63060
+    },
+    {
+      "geoid": "3202",
+      "state": "32",
+      "district": "02",
+      "area": "Nevada-02",
+      "name": "Congressional District 2 (118th Congress), Nevada",
+      "population": 777013,
+      "median_income": 79517
+    },
+    {
+      "geoid": "3203",
+      "state": "32",
+      "district": "03",
+      "area": "Nevada-03",
+      "name": "Congressional District 3 (118th Congress), Nevada",
+      "population": 783412,
+      "median_income": 77067
+    },
+    {
+      "geoid": "3204",
+      "state": "32",
+      "district": "04",
+      "area": "Nevada-04",
+      "name": "Congressional District 4 (118th Congress), Nevada",
+      "population": 787554,
+      "median_income": 67669
+    },
+    {
+      "geoid": "3301",
+      "state": "33",
+      "district": "01",
+      "area": "New Hampshire-01",
+      "name": "Congressional District 1 (118th Congress), New Hampshire",
+      "population": 689659,
+      "median_income": 92184
+    },
+    {
+      "geoid": "3302",
+      "state": "33",
+      "district": "02",
+      "area": "New Hampshire-02",
+      "name": "Congressional District 2 (118th Congress), New Hampshire",
+      "population": 689951,
+      "median_income": 89506
+    },
+    {
+      "geoid": "33ZZ",
+      "state": "33",
+      "district": "ZZ",
+      "area": "New Hampshire-ZZ",
+      "name": "Congressional Districts not defined (118th Congress), New Hampshire",
+      "population": 0,
+      "median_income": null
+    },
+    {
+      "geoid": "3401",
+      "state": "34",
+      "district": "01",
+      "area": "New Jersey-01",
+      "name": "Congressional District 1 (118th Congress), New Jersey",
+      "population": 770451,
+      "median_income": 84705
+    },
+    {
+      "geoid": "3402",
+      "state": "34",
+      "district": "02",
+      "area": "New Jersey-02",
+      "name": "Congressional District 2 (118th Congress), New Jersey",
+      "population": 777770,
+      "median_income": 79216
+    },
+    {
+      "geoid": "3403",
+      "state": "34",
+      "district": "03",
+      "area": "New Jersey-03",
+      "name": "Congressional District 3 (118th Congress), New Jersey",
+      "population": 777191,
+      "median_income": 110486
+    },
+    {
+      "geoid": "3404",
+      "state": "34",
+      "district": "04",
+      "area": "New Jersey-04",
+      "name": "Congressional District 4 (118th Congress), New Jersey",
+      "population": 774829,
+      "median_income": 92038
+    },
+    {
+      "geoid": "3405",
+      "state": "34",
+      "district": "05",
+      "area": "New Jersey-05",
+      "name": "Congressional District 5 (118th Congress), New Jersey",
+      "population": 771690,
+      "median_income": 126438
+    },
+    {
+      "geoid": "3406",
+      "state": "34",
+      "district": "06",
+      "area": "New Jersey-06",
+      "name": "Congressional District 6 (118th Congress), New Jersey",
+      "population": 772409,
+      "median_income": 98739
+    },
+    {
+      "geoid": "3407",
+      "state": "34",
+      "district": "07",
+      "area": "New Jersey-07",
+      "name": "Congressional District 7 (118th Congress), New Jersey",
+      "population": 775299,
+      "median_income": 128637
+    },
+    {
+      "geoid": "3408",
+      "state": "34",
+      "district": "08",
+      "area": "New Jersey-08",
+      "name": "Congressional District 8 (118th Congress), New Jersey",
+      "population": 760708,
+      "median_income": 78486
+    },
+    {
+      "geoid": "3409",
+      "state": "34",
+      "district": "09",
+      "area": "New Jersey-09",
+      "name": "Congressional District 9 (118th Congress), New Jersey",
+      "population": 765162,
+      "median_income": 83962
+    },
+    {
+      "geoid": "3410",
+      "state": "34",
+      "district": "10",
+      "area": "New Jersey-10",
+      "name": "Congressional District 10 (118th Congress), New Jersey",
+      "population": 764061,
+      "median_income": 68261
+    },
+    {
+      "geoid": "3411",
+      "state": "34",
+      "district": "11",
+      "area": "New Jersey-11",
+      "name": "Congressional District 11 (118th Congress), New Jersey",
+      "population": 769976,
+      "median_income": 130337
+    },
+    {
+      "geoid": "3412",
+      "state": "34",
+      "district": "12",
+      "area": "New Jersey-12",
+      "name": "Congressional District 12 (118th Congress), New Jersey",
+      "population": 769517,
+      "median_income": 104629
+    },
+    {
+      "geoid": "3501",
+      "state": "35",
+      "district": "01",
+      "area": "New Mexico-01",
+      "name": "Congressional District 1 (118th Congress), New Mexico",
+      "population": 707680,
+      "median_income": 64655
+    },
+    {
+      "geoid": "3502",
+      "state": "35",
+      "district": "02",
+      "area": "New Mexico-02",
+      "name": "Congressional District 2 (118th Congress), New Mexico",
+      "population": 703136,
+      "median_income": 53926
+    },
+    {
+      "geoid": "3503",
+      "state": "35",
+      "district": "03",
+      "area": "New Mexico-03",
+      "name": "Congressional District 3 (118th Congress), New Mexico",
+      "population": 701647,
+      "median_income": 57377
+    },
+    {
+      "geoid": "3601",
+      "state": "36",
+      "district": "01",
+      "area": "New York-01",
+      "name": "Congressional District 1 (118th Congress), New York",
+      "population": 778417,
+      "median_income": 129170
+    },
+    {
+      "geoid": "3602",
+      "state": "36",
+      "district": "02",
+      "area": "New York-02",
+      "name": "Congressional District 2 (118th Congress), New York",
+      "population": 772462,
+      "median_income": 117404
+    },
+    {
+      "geoid": "3603",
+      "state": "36",
+      "district": "03",
+      "area": "New York-03",
+      "name": "Congressional District 3 (118th Congress), New York",
+      "population": 776626,
+      "median_income": 132794
+    },
+    {
+      "geoid": "3604",
+      "state": "36",
+      "district": "04",
+      "area": "New York-04",
+      "name": "Congressional District 4 (118th Congress), New York",
+      "population": 773437,
+      "median_income": 131830
+    },
+    {
+      "geoid": "3605",
+      "state": "36",
+      "district": "05",
+      "area": "New York-05",
+      "name": "Congressional District 5 (118th Congress), New York",
+      "population": 800945,
+      "median_income": 83338
+    },
+    {
+      "geoid": "3606",
+      "state": "36",
+      "district": "06",
+      "area": "New York-06",
+      "name": "Congressional District 6 (118th Congress), New York",
+      "population": 755796,
+      "median_income": 77561
+    },
+    {
+      "geoid": "3607",
+      "state": "36",
+      "district": "07",
+      "area": "New York-07",
+      "name": "Congressional District 7 (118th Congress), New York",
+      "population": 748880,
+      "median_income": 84917
+    },
+    {
+      "geoid": "3608",
+      "state": "36",
+      "district": "08",
+      "area": "New York-08",
+      "name": "Congressional District 8 (118th Congress), New York",
+      "population": 778365,
+      "median_income": 60011
+    },
+    {
+      "geoid": "3609",
+      "state": "36",
+      "district": "09",
+      "area": "New York-09",
+      "name": "Congressional District 9 (118th Congress), New York",
+      "population": 761493,
+      "median_income": 70344
+    },
+    {
+      "geoid": "3610",
+      "state": "36",
+      "district": "10",
+      "area": "New York-10",
+      "name": "Congressional District 10 (118th Congress), New York",
+      "population": 738425,
+      "median_income": 110126
+    },
+    {
+      "geoid": "3611",
+      "state": "36",
+      "district": "11",
+      "area": "New York-11",
+      "name": "Congressional District 11 (118th Congress), New York",
+      "population": 759570,
+      "median_income": 87661
+    },
+    {
+      "geoid": "3612",
+      "state": "36",
+      "district": "12",
+      "area": "New York-12",
+      "name": "Congressional District 12 (118th Congress), New York",
+      "population": 711829,
+      "median_income": 140037
+    },
+    {
+      "geoid": "3613",
+      "state": "36",
+      "district": "13",
+      "area": "New York-13",
+      "name": "Congressional District 13 (118th Congress), New York",
+      "population": 813765,
+      "median_income": 52096
+    },
+    {
+      "geoid": "3614",
+      "state": "36",
+      "district": "14",
+      "area": "New York-14",
+      "name": "Congressional District 14 (118th Congress), New York",
+      "population": 727966,
+      "median_income": 65768
+    },
+    {
+      "geoid": "3615",
+      "state": "36",
+      "district": "15",
+      "area": "New York-15",
+      "name": "Congressional District 15 (118th Congress), New York",
+      "population": 764377,
+      "median_income": 43687
+    },
+    {
+      "geoid": "3616",
+      "state": "36",
+      "district": "16",
+      "area": "New York-16",
+      "name": "Congressional District 16 (118th Congress), New York",
+      "population": 773881,
+      "median_income": 100634
+    },
+    {
+      "geoid": "3617",
+      "state": "36",
+      "district": "17",
+      "area": "New York-17",
+      "name": "Congressional District 17 (118th Congress), New York",
+      "population": 775256,
+      "median_income": 121384
+    },
+    {
+      "geoid": "3618",
+      "state": "36",
+      "district": "18",
+      "area": "New York-18",
+      "name": "Congressional District 18 (118th Congress), New York",
+      "population": 778056,
+      "median_income": 89349
+    },
+    {
+      "geoid": "3619",
+      "state": "36",
+      "district": "19",
+      "area": "New York-19",
+      "name": "Congressional District 19 (118th Congress), New York",
+      "population": 774864,
+      "median_income": 66171
+    },
+    {
+      "geoid": "3620",
+      "state": "36",
+      "district": "20",
+      "area": "New York-20",
+      "name": "Congressional District 20 (118th Congress), New York",
+      "population": 779088,
+      "median_income": 81897
+    },
+    {
+      "geoid": "3621",
+      "state": "36",
+      "district": "21",
+      "area": "New York-21",
+      "name": "Congressional District 21 (118th Congress), New York",
+      "population": 777284,
+      "median_income": 68515
+    },
+    {
+      "geoid": "3622",
+      "state": "36",
+      "district": "22",
+      "area": "New York-22",
+      "name": "Congressional District 22 (118th Congress), New York",
+      "population": 772136,
+      "median_income": 69833
+    },
+    {
+      "geoid": "3623",
+      "state": "36",
+      "district": "23",
+      "area": "New York-23",
+      "name": "Congressional District 23 (118th Congress), New York",
+      "population": 776787,
+      "median_income": 67942
+    },
+    {
+      "geoid": "3624",
+      "state": "36",
+      "district": "24",
+      "area": "New York-24",
+      "name": "Congressional District 24 (118th Congress), New York",
+      "population": 777980,
+      "median_income": 68195
+    },
+    {
+      "geoid": "3625",
+      "state": "36",
+      "district": "25",
+      "area": "New York-25",
+      "name": "Congressional District 25 (118th Congress), New York",
+      "population": 774084,
+      "median_income": 71157
+    },
+    {
+      "geoid": "3626",
+      "state": "36",
+      "district": "26",
+      "area": "New York-26",
+      "name": "Congressional District 26 (118th Congress), New York",
+      "population": 772610,
+      "median_income": 61957
+    },
+    {
+      "geoid": "3701",
+      "state": "37",
+      "district": "01",
+      "area": "North Carolina-01",
+      "name": "Congressional District 1 (118th Congress), North Carolina",
+      "population": 748754,
+      "median_income": 52563
+    },
+    {
+      "geoid": "3702",
+      "state": "37",
+      "district": "02",
+      "area": "North Carolina-02",
+      "name": "Congressional District 2 (118th Congress), North Carolina",
+      "population": 738814,
+      "median_income": 97421
+    },
+    {
+      "geoid": "3703",
+      "state": "37",
+      "district": "03",
+      "area": "North Carolina-03",
+      "name": "Congressional District 3 (118th Congress), North Carolina",
+      "population": 746908,
+      "median_income": 59511
+    },
+    {
+      "geoid": "3704",
+      "state": "37",
+      "district": "04",
+      "area": "North Carolina-04",
+      "name": "Congressional District 4 (118th Congress), North Carolina",
+      "population": 743550,
+      "median_income": 71299
+    },
+    {
+      "geoid": "3705",
+      "state": "37",
+      "district": "05",
+      "area": "North Carolina-05",
+      "name": "Congressional District 5 (118th Congress), North Carolina",
+      "population": 747107,
+      "median_income": 55647
+    },
+    {
+      "geoid": "3706",
+      "state": "37",
+      "district": "06",
+      "area": "North Carolina-06",
+      "name": "Congressional District 6 (118th Congress), North Carolina",
+      "population": 745094,
+      "median_income": 60858
+    },
+    {
+      "geoid": "3707",
+      "state": "37",
+      "district": "07",
+      "area": "North Carolina-07",
+      "name": "Congressional District 7 (118th Congress), North Carolina",
+      "population": 754700,
+      "median_income": 60203
+    },
+    {
+      "geoid": "3708",
+      "state": "37",
+      "district": "08",
+      "area": "North Carolina-08",
+      "name": "Congressional District 8 (118th Congress), North Carolina",
+      "population": 748980,
+      "median_income": 67940
+    },
+    {
+      "geoid": "3709",
+      "state": "37",
+      "district": "09",
+      "area": "North Carolina-09",
+      "name": "Congressional District 9 (118th Congress), North Carolina",
+      "population": 747637,
+      "median_income": 61164
+    },
+    {
+      "geoid": "3710",
+      "state": "37",
+      "district": "10",
+      "area": "North Carolina-10",
+      "name": "Congressional District 10 (118th Congress), North Carolina",
+      "population": 749703,
+      "median_income": 62871
+    },
+    {
+      "geoid": "3711",
+      "state": "37",
+      "district": "11",
+      "area": "North Carolina-11",
+      "name": "Congressional District 11 (118th Congress), North Carolina",
+      "population": 746329,
+      "median_income": 60182
+    },
+    {
+      "geoid": "3712",
+      "state": "37",
+      "district": "12",
+      "area": "North Carolina-12",
+      "name": "Congressional District 12 (118th Congress), North Carolina",
+      "population": 742097,
+      "median_income": 72523
+    },
+    {
+      "geoid": "3713",
+      "state": "37",
+      "district": "13",
+      "area": "North Carolina-13",
+      "name": "Congressional District 13 (118th Congress), North Carolina",
+      "population": 760678,
+      "median_income": 78658
+    },
+    {
+      "geoid": "3714",
+      "state": "37",
+      "district": "14",
+      "area": "North Carolina-14",
+      "name": "Congressional District 14 (118th Congress), North Carolina",
+      "population": 749863,
+      "median_income": 82202
+    },
+    {
+      "geoid": "3800",
+      "state": "38",
+      "district": "00",
+      "area": "North Dakota-00",
+      "name": "Congressional District (at Large) (118th Congress), North Dakota",
+      "population": 776874,
+      "median_income": 73959
+    },
+    {
+      "geoid": "3901",
+      "state": "39",
+      "district": "01",
+      "area": "Ohio-01",
+      "name": "Congressional District 1 (118th Congress), Ohio",
+      "population": 785183,
+      "median_income": 75382
+    },
+    {
+      "geoid": "3902",
+      "state": "39",
+      "district": "02",
+      "area": "Ohio-02",
+      "name": "Congressional District 2 (118th Congress), Ohio",
+      "population": 786866,
+      "median_income": 62427
+    },
+    {
+      "geoid": "3903",
+      "state": "39",
+      "district": "03",
+      "area": "Ohio-03",
+      "name": "Congressional District 3 (118th Congress), Ohio",
+      "population": 785445,
+      "median_income": 68220
+    },
+    {
+      "geoid": "3904",
+      "state": "39",
+      "district": "04",
+      "area": "Ohio-04",
+      "name": "Congressional District 4 (118th Congress), Ohio",
+      "population": 787372,
+      "median_income": 73132
+    },
+    {
+      "geoid": "3905",
+      "state": "39",
+      "district": "05",
+      "area": "Ohio-05",
+      "name": "Congressional District 5 (118th Congress), Ohio",
+      "population": 785703,
+      "median_income": 65940
+    },
+    {
+      "geoid": "3906",
+      "state": "39",
+      "district": "06",
+      "area": "Ohio-06",
+      "name": "Congressional District 6 (118th Congress), Ohio",
+      "population": 784426,
+      "median_income": 57443
+    },
+    {
+      "geoid": "3907",
+      "state": "39",
+      "district": "07",
+      "area": "Ohio-07",
+      "name": "Congressional District 7 (118th Congress), Ohio",
+      "population": 783302,
+      "median_income": 81600
+    },
+    {
+      "geoid": "3908",
+      "state": "39",
+      "district": "08",
+      "area": "Ohio-08",
+      "name": "Congressional District 8 (118th Congress), Ohio",
+      "population": 784012,
+      "median_income": 74133
+    },
+    {
+      "geoid": "3909",
+      "state": "39",
+      "district": "09",
+      "area": "Ohio-09",
+      "name": "Congressional District 9 (118th Congress), Ohio",
+      "population": 784857,
+      "median_income": 62315
+    },
+    {
+      "geoid": "3910",
+      "state": "39",
+      "district": "10",
+      "area": "Ohio-10",
+      "name": "Congressional District 10 (118th Congress), Ohio",
+      "population": 784983,
+      "median_income": 64250
+    },
+    {
+      "geoid": "3911",
+      "state": "39",
+      "district": "11",
+      "area": "Ohio-11",
+      "name": "Congressional District 11 (118th Congress), Ohio",
+      "population": 781356,
+      "median_income": 48928
+    },
+    {
+      "geoid": "3912",
+      "state": "39",
+      "district": "12",
+      "area": "Ohio-12",
+      "name": "Congressional District 12 (118th Congress), Ohio",
+      "population": 788205,
+      "median_income": 70890
+    },
+    {
+      "geoid": "3913",
+      "state": "39",
+      "district": "13",
+      "area": "Ohio-13",
+      "name": "Congressional District 13 (118th Congress), Ohio",
+      "population": 785253,
+      "median_income": 66623
+    },
+    {
+      "geoid": "3914",
+      "state": "39",
+      "district": "14",
+      "area": "Ohio-14",
+      "name": "Congressional District 14 (118th Congress), Ohio",
+      "population": 785932,
+      "median_income": 67156
+    },
+    {
+      "geoid": "3915",
+      "state": "39",
+      "district": "15",
+      "area": "Ohio-15",
+      "name": "Congressional District 15 (118th Congress), Ohio",
+      "population": 781788,
+      "median_income": 73679
+    },
+    {
+      "geoid": "4001",
+      "state": "40",
+      "district": "01",
+      "area": "Oklahoma-01",
+      "name": "Congressional District 1 (118th Congress), Oklahoma",
+      "population": 792397,
+      "median_income": 67183
+    },
+    {
+      "geoid": "4002",
+      "state": "40",
+      "district": "02",
+      "area": "Oklahoma-02",
+      "name": "Congressional District 2 (118th Congress), Oklahoma",
+      "population": 797693,
+      "median_income": 52537
+    },
+    {
+      "geoid": "4003",
+      "state": "40",
+      "district": "03",
+      "area": "Oklahoma-03",
+      "name": "Congressional District 3 (118th Congress), Oklahoma",
+      "population": 792662,
+      "median_income": 55764
+    },
+    {
+      "geoid": "4004",
+      "state": "40",
+      "district": "04",
+      "area": "Oklahoma-04",
+      "name": "Congressional District 4 (118th Congress), Oklahoma",
+      "population": 794112,
+      "median_income": 63525
+    },
+    {
+      "geoid": "4005",
+      "state": "40",
+      "district": "05",
+      "area": "Oklahoma-05",
+      "name": "Congressional District 5 (118th Congress), Oklahoma",
+      "population": 793633,
+      "median_income": 70189
+    },
+    {
+      "geoid": "4101",
+      "state": "41",
+      "district": "01",
+      "area": "Oregon-01",
+      "name": "Congressional District 1 (118th Congress), Oregon",
+      "population": 703447,
+      "median_income": 92063
+    },
+    {
+      "geoid": "4102",
+      "state": "41",
+      "district": "02",
+      "area": "Oregon-02",
+      "name": "Congressional District 2 (118th Congress), Oregon",
+      "population": 705019,
+      "median_income": 62648
+    },
+    {
+      "geoid": "4103",
+      "state": "41",
+      "district": "03",
+      "area": "Oregon-03",
+      "name": "Congressional District 3 (118th Congress), Oregon",
+      "population": 701275,
+      "median_income": 82928
+    },
+    {
+      "geoid": "4104",
+      "state": "41",
+      "district": "04",
+      "area": "Oregon-04",
+      "name": "Congressional District 4 (118th Congress), Oregon",
+      "population": 705794,
+      "median_income": 63255
+    },
+    {
+      "geoid": "4105",
+      "state": "41",
+      "district": "05",
+      "area": "Oregon-05",
+      "name": "Congressional District 5 (118th Congress), Oregon",
+      "population": 707199,
+      "median_income": 84334
+    },
+    {
+      "geoid": "4106",
+      "state": "41",
+      "district": "06",
+      "area": "Oregon-06",
+      "name": "Congressional District 6 (118th Congress), Oregon",
+      "population": 706640,
+      "median_income": 79801
+    },
+    {
+      "geoid": "4201",
+      "state": "42",
+      "district": "01",
+      "area": "Pennsylvania-01",
+      "name": "Congressional District 1 (118th Congress), Pennsylvania",
+      "population": 763498,
+      "median_income": 106744
+    },
+    {
+      "geoid": "4202",
+      "state": "42",
+      "district": "02",
+      "area": "Pennsylvania-02",
+      "name": "Congressional District 2 (118th Congress), Pennsylvania",
+      "population": 762893,
+      "median_income": 56537
+    },
+    {
+      "geoid": "4203",
+      "state": "42",
+      "district": "03",
+      "area": "Pennsylvania-03",
+      "name": "Congressional District 3 (118th Congress), Pennsylvania",
+      "population": 756676,
+      "median_income": 59056
+    },
+    {
+      "geoid": "4204",
+      "state": "42",
+      "district": "04",
+      "area": "Pennsylvania-04",
+      "name": "Congressional District 4 (118th Congress), Pennsylvania",
+      "population": 764402,
+      "median_income": 103961
+    },
+    {
+      "geoid": "4205",
+      "state": "42",
+      "district": "05",
+      "area": "Pennsylvania-05",
+      "name": "Congressional District 5 (118th Congress), Pennsylvania",
+      "population": 763043,
+      "median_income": 83666
+    },
+    {
+      "geoid": "4206",
+      "state": "42",
+      "district": "06",
+      "area": "Pennsylvania-06",
+      "name": "Congressional District 6 (118th Congress), Pennsylvania",
+      "population": 766664,
+      "median_income": 100086
+    },
+    {
+      "geoid": "4207",
+      "state": "42",
+      "district": "07",
+      "area": "Pennsylvania-07",
+      "name": "Congressional District 7 (118th Congress), Pennsylvania",
+      "population": 766617,
+      "median_income": 76812
+    },
+    {
+      "geoid": "4208",
+      "state": "42",
+      "district": "08",
+      "area": "Pennsylvania-08",
+      "name": "Congressional District 8 (118th Congress), Pennsylvania",
+      "population": 764480,
+      "median_income": 65239
+    },
+    {
+      "geoid": "4209",
+      "state": "42",
+      "district": "09",
+      "area": "Pennsylvania-09",
+      "name": "Congressional District 9 (118th Congress), Pennsylvania",
+      "population": 765339,
+      "median_income": 65625
+    },
+    {
+      "geoid": "4210",
+      "state": "42",
+      "district": "10",
+      "area": "Pennsylvania-10",
+      "name": "Congressional District 10 (118th Congress), Pennsylvania",
+      "population": 766732,
+      "median_income": 76477
+    },
+    {
+      "geoid": "4211",
+      "state": "42",
+      "district": "11",
+      "area": "Pennsylvania-11",
+      "name": "Congressional District 11 (118th Congress), Pennsylvania",
+      "population": 765641,
+      "median_income": 81948
+    },
+    {
+      "geoid": "4212",
+      "state": "42",
+      "district": "12",
+      "area": "Pennsylvania-12",
+      "name": "Congressional District 12 (118th Congress), Pennsylvania",
+      "population": 763762,
+      "median_income": 66676
+    },
+    {
+      "geoid": "4213",
+      "state": "42",
+      "district": "13",
+      "area": "Pennsylvania-13",
+      "name": "Congressional District 13 (118th Congress), Pennsylvania",
+      "population": 765340,
+      "median_income": 65012
+    },
+    {
+      "geoid": "4214",
+      "state": "42",
+      "district": "14",
+      "area": "Pennsylvania-14",
+      "name": "Congressional District 14 (118th Congress), Pennsylvania",
+      "population": 763254,
+      "median_income": 64549
+    },
+    {
+      "geoid": "4215",
+      "state": "42",
+      "district": "15",
+      "area": "Pennsylvania-15",
+      "name": "Congressional District 15 (118th Congress), Pennsylvania",
+      "population": 765029,
+      "median_income": 61122
+    },
+    {
+      "geoid": "4216",
+      "state": "42",
+      "district": "16",
+      "area": "Pennsylvania-16",
+      "name": "Congressional District 16 (118th Congress), Pennsylvania",
+      "population": 765331,
+      "median_income": 63947
+    },
+    {
+      "geoid": "4217",
+      "state": "42",
+      "district": "17",
+      "area": "Pennsylvania-17",
+      "name": "Congressional District 17 (118th Congress), Pennsylvania",
+      "population": 760507,
+      "median_income": 78954
+    },
+    {
+      "geoid": "4401",
+      "state": "44",
+      "district": "01",
+      "area": "Rhode Island-01",
+      "name": "Congressional District 1 (118th Congress), Rhode Island",
+      "population": 545354,
+      "median_income": 76378
+    },
+    {
+      "geoid": "4402",
+      "state": "44",
+      "district": "02",
+      "area": "Rhode Island-02",
+      "name": "Congressional District 2 (118th Congress), Rhode Island",
+      "population": 548896,
+      "median_income": 85961
+    },
+    {
+      "geoid": "4501",
+      "state": "45",
+      "district": "01",
+      "area": "South Carolina-01",
+      "name": "Congressional District 1 (118th Congress), South Carolina",
+      "population": 734138,
+      "median_income": 84023
+    },
+    {
+      "geoid": "4502",
+      "state": "45",
+      "district": "02",
+      "area": "South Carolina-02",
+      "name": "Congressional District 2 (118th Congress), South Carolina",
+      "population": 735646,
+      "median_income": 68648
+    },
+    {
+      "geoid": "4503",
+      "state": "45",
+      "district": "03",
+      "area": "South Carolina-03",
+      "name": "Congressional District 3 (118th Congress), South Carolina",
+      "population": 731595,
+      "median_income": 58176
+    },
+    {
+      "geoid": "4504",
+      "state": "45",
+      "district": "04",
+      "area": "South Carolina-04",
+      "name": "Congressional District 4 (118th Congress), South Carolina",
+      "population": 737328,
+      "median_income": 67514
+    },
+    {
+      "geoid": "4505",
+      "state": "45",
+      "district": "05",
+      "area": "South Carolina-05",
+      "name": "Congressional District 5 (118th Congress), South Carolina",
+      "population": 733429,
+      "median_income": 65431
+    },
+    {
+      "geoid": "4506",
+      "state": "45",
+      "district": "06",
+      "area": "South Carolina-06",
+      "name": "Congressional District 6 (118th Congress), South Carolina",
+      "population": 732601,
+      "median_income": 51412
+    },
+    {
+      "geoid": "4507",
+      "state": "45",
+      "district": "07",
+      "area": "South Carolina-07",
+      "name": "Congressional District 7 (118th Congress), South Carolina",
+      "population": 738013,
+      "median_income": 54907
+    },
+    {
+      "geoid": "4600",
+      "state": "46",
+      "district": "00",
+      "area": "South Dakota-00",
+      "name": "Congressional District (at Large) (118th Congress), South Dakota",
+      "population": 890342,
+      "median_income": 69457
+    },
+    {
+      "geoid": "4701",
+      "state": "47",
+      "district": "01",
+      "area": "Tennessee-01",
+      "name": "Congressional District 1 (118th Congress), Tennessee",
+      "population": 769366,
+      "median_income": 53745
+    },
+    {
+      "geoid": "4702",
+      "state": "47",
+      "district": "02",
+      "area": "Tennessee-02",
+      "name": "Congressional District 2 (118th Congress), Tennessee",
+      "population": 771752,
+      "median_income": 66372
+    },
+    {
+      "geoid": "4703",
+      "state": "47",
+      "district": "03",
+      "area": "Tennessee-03",
+      "name": "Congressional District 3 (118th Congress), Tennessee",
+      "population": 771173,
+      "median_income": 62960
+    },
+    {
+      "geoid": "4704",
+      "state": "47",
+      "district": "04",
+      "area": "Tennessee-04",
+      "name": "Congressional District 4 (118th Congress), Tennessee",
+      "population": 771866,
+      "median_income": 64472
+    },
+    {
+      "geoid": "4705",
+      "state": "47",
+      "district": "05",
+      "area": "Tennessee-05",
+      "name": "Congressional District 5 (118th Congress), Tennessee",
+      "population": 767227,
+      "median_income": 88348
+    },
+    {
+      "geoid": "4706",
+      "state": "47",
+      "district": "06",
+      "area": "Tennessee-06",
+      "name": "Congressional District 6 (118th Congress), Tennessee",
+      "population": 773165,
+      "median_income": 63158
+    },
+    {
+      "geoid": "4707",
+      "state": "47",
+      "district": "07",
+      "area": "Tennessee-07",
+      "name": "Congressional District 7 (118th Congress), Tennessee",
+      "population": 766775,
+      "median_income": 68801
+    },
+    {
+      "geoid": "4708",
+      "state": "47",
+      "district": "08",
+      "area": "Tennessee-08",
+      "name": "Congressional District 8 (118th Congress), Tennessee",
+      "population": 765143,
+      "median_income": 64413
+    },
+    {
+      "geoid": "4709",
+      "state": "47",
+      "district": "09",
+      "area": "Tennessee-09",
+      "name": "Congressional District 9 (118th Congress), Tennessee",
+      "population": 767305,
+      "median_income": 51326
+    },
+    {
+      "geoid": "4801",
+      "state": "48",
+      "district": "01",
+      "area": "Texas-01",
+      "name": "Congressional District 1 (118th Congress), Texas",
+      "population": 769305,
+      "median_income": 61361
+    },
+    {
+      "geoid": "4802",
+      "state": "48",
+      "district": "02",
+      "area": "Texas-02",
+      "name": "Congressional District 2 (118th Congress), Texas",
+      "population": 761434,
+      "median_income": 98603
+    },
+    {
+      "geoid": "4803",
+      "state": "48",
+      "district": "03",
+      "area": "Texas-03",
+      "name": "Congressional District 3 (118th Congress), Texas",
+      "population": 780231,
+      "median_income": 113405
+    },
+    {
+      "geoid": "4804",
+      "state": "48",
+      "district": "04",
+      "area": "Texas-04",
+      "name": "Congressional District 4 (118th Congress), Texas",
+      "population": 773348,
+      "median_income": 90031
+    },
+    {
+      "geoid": "4805",
+      "state": "48",
+      "district": "05",
+      "area": "Texas-05",
+      "name": "Congressional District 5 (118th Congress), Texas",
+      "population": 773020,
+      "median_income": 73561
+    },
+    {
+      "geoid": "4806",
+      "state": "48",
+      "district": "06",
+      "area": "Texas-06",
+      "name": "Congressional District 6 (118th Congress), Texas",
+      "population": 763185,
+      "median_income": 74007
+    },
+    {
+      "geoid": "4807",
+      "state": "48",
+      "district": "07",
+      "area": "Texas-07",
+      "name": "Congressional District 7 (118th Congress), Texas",
+      "population": 781231,
+      "median_income": 73777
+    },
+    {
+      "geoid": "4808",
+      "state": "48",
+      "district": "08",
+      "area": "Texas-08",
+      "name": "Congressional District 8 (118th Congress), Texas",
+      "population": 771642,
+      "median_income": 84845
+    },
+    {
+      "geoid": "4809",
+      "state": "48",
+      "district": "09",
+      "area": "Texas-09",
+      "name": "Congressional District 9 (118th Congress), Texas",
+      "population": 757232,
+      "median_income": 62349
+    },
+    {
+      "geoid": "4810",
+      "state": "48",
+      "district": "10",
+      "area": "Texas-10",
+      "name": "Congressional District 10 (118th Congress), Texas",
+      "population": 765079,
+      "median_income": 80105
+    },
+    {
+      "geoid": "4811",
+      "state": "48",
+      "district": "11",
+      "area": "Texas-11",
+      "name": "Congressional District 11 (118th Congress), Texas",
+      "population": 760697,
+      "median_income": 68610
+    },
+    {
+      "geoid": "4812",
+      "state": "48",
+      "district": "12",
+      "area": "Texas-12",
+      "name": "Congressional District 12 (118th Congress), Texas",
+      "population": 771857,
+      "median_income": 81339
+    },
+    {
+      "geoid": "4813",
+      "state": "48",
+      "district": "13",
+      "area": "Texas-13",
+      "name": "Congressional District 13 (118th Congress), Texas",
+      "population": 769816,
+      "median_income": 63507
+    },
+    {
+      "geoid": "4814",
+      "state": "48",
+      "district": "14",
+      "area": "Texas-14",
+      "name": "Congressional District 14 (118th Congress), Texas",
+      "population": 768073,
+      "median_income": 74664
+    },
+    {
+      "geoid": "4815",
+      "state": "48",
+      "district": "15",
+      "area": "Texas-15",
+      "name": "Congressional District 15 (118th Congress), Texas",
+      "population": 764599,
+      "median_income": 54058
+    },
+    {
+      "geoid": "4816",
+      "state": "48",
+      "district": "16",
+      "area": "Texas-16",
+      "name": "Congressional District 16 (118th Congress), Texas",
+      "population": 771490,
+      "median_income": 55933
+    },
+    {
+      "geoid": "4817",
+      "state": "48",
+      "district": "17",
+      "area": "Texas-17",
+      "name": "Congressional District 17 (118th Congress), Texas",
+      "population": 777093,
+      "median_income": 62537
+    },
+    {
+      "geoid": "4818",
+      "state": "48",
+      "district": "18",
+      "area": "Texas-18",
+      "name": "Congressional District 18 (118th Congress), Texas",
+      "population": 768562,
+      "median_income": 58805
+    },
+    {
+      "geoid": "4819",
+      "state": "48",
+      "district": "19",
+      "area": "Texas-19",
+      "name": "Congressional District 19 (118th Congress), Texas",
+      "population": 766171,
+      "median_income": 60263
+    },
+    {
+      "geoid": "4820",
+      "state": "48",
+      "district": "20",
+      "area": "Texas-20",
+      "name": "Congressional District 20 (118th Congress), Texas",
+      "population": 797033,
+      "median_income": 59459
+    },
+    {
+      "geoid": "4821",
+      "state": "48",
+      "district": "21",
+      "area": "Texas-21",
+      "name": "Congressional District 21 (118th Congress), Texas",
+      "population": 764786,
+      "median_income": 86851
+    },
+    {
+      "geoid": "4822",
+      "state": "48",
+      "district": "22",
+      "area": "Texas-22",
+      "name": "Congressional District 22 (118th Congress), Texas",
+      "population": 781040,
+      "median_income": 104438
+    },
+    {
+      "geoid": "4823",
+      "state": "48",
+      "district": "23",
+      "area": "Texas-23",
+      "name": "Congressional District 23 (118th Congress), Texas",
+      "population": 745532,
+      "median_income": 73911
+    },
+    {
+      "geoid": "4824",
+      "state": "48",
+      "district": "24",
+      "area": "Texas-24",
+      "name": "Congressional District 24 (118th Congress), Texas",
+      "population": 756184,
+      "median_income": 109014
+    },
+    {
+      "geoid": "4825",
+      "state": "48",
+      "district": "25",
+      "area": "Texas-25",
+      "name": "Congressional District 25 (118th Congress), Texas",
+      "population": 778250,
+      "median_income": 75258
+    },
+    {
+      "geoid": "4826",
+      "state": "48",
+      "district": "26",
+      "area": "Texas-26",
+      "name": "Congressional District 26 (118th Congress), Texas",
+      "population": 775735,
+      "median_income": 108948
+    },
+    {
+      "geoid": "4827",
+      "state": "48",
+      "district": "27",
+      "area": "Texas-27",
+      "name": "Congressional District 27 (118th Congress), Texas",
+      "population": 768203,
+      "median_income": 63966
+    },
+    {
+      "geoid": "4828",
+      "state": "48",
+      "district": "28",
+      "area": "Texas-28",
+      "name": "Congressional District 28 (118th Congress), Texas",
+      "population": 764122,
+      "median_income": 60924
+    },
+    {
+      "geoid": "4829",
+      "state": "48",
+      "district": "29",
+      "area": "Texas-29",
+      "name": "Congressional District 29 (118th Congress), Texas",
+      "population": 774018,
+      "median_income": 52275
+    },
+    {
+      "geoid": "4830",
+      "state": "48",
+      "district": "30",
+      "area": "Texas-30",
+      "name": "Congressional District 30 (118th Congress), Texas",
+      "population": 771989,
+      "median_income": 66346
+    },
+    {
+      "geoid": "4831",
+      "state": "48",
+      "district": "31",
+      "area": "Texas-31",
+      "name": "Congressional District 31 (118th Congress), Texas",
+      "population": 780858,
+      "median_income": 87568
+    },
+    {
+      "geoid": "4832",
+      "state": "48",
+      "district": "32",
+      "area": "Texas-32",
+      "name": "Congressional District 32 (118th Congress), Texas",
+      "population": 758895,
+      "median_income": 66920
+    },
+    {
+      "geoid": "4833",
+      "state": "48",
+      "district": "33",
+      "area": "Texas-33",
+      "name": "Congressional District 33 (118th Congress), Texas",
+      "population": 776063,
+      "median_income": 58953
+    },
+    {
+      "geoid": "4834",
+      "state": "48",
+      "district": "34",
+      "area": "Texas-34",
+      "name": "Congressional District 34 (118th Congress), Texas",
+      "population": 774101,
+      "median_income": 48035
+    },
+    {
+      "geoid": "4835",
+      "state": "48",
+      "district": "35",
+      "area": "Texas-35",
+      "name": "Congressional District 35 (118th Congress), Texas",
+      "population": 768499,
+      "median_income": 66078
+    },
+    {
+      "geoid": "4836",
+      "state": "48",
+      "district": "36",
+      "area": "Texas-36",
+      "name": "Congressional District 36 (118th Congress), Texas",
+      "population": 762290,
+      "median_income": 71314
+    },
+    {
+      "geoid": "4837",
+      "state": "48",
+      "district": "37",
+      "area": "Texas-37",
+      "name": "Congressional District 37 (118th Congress), Texas",
+      "population": 767538,
+      "median_income": 88843
+    },
+    {
+      "geoid": "4838",
+      "state": "48",
+      "district": "38",
+      "area": "Texas-38",
+      "name": "Congressional District 38 (118th Congress), Texas",
+      "population": 764141,
+      "median_income": 101505
+    },
+    {
+      "geoid": "4901",
+      "state": "49",
+      "district": "01",
+      "area": "Utah-01",
+      "name": "Congressional District 1 (118th Congress), Utah",
+      "population": 822008,
+      "median_income": 85519
+    },
+    {
+      "geoid": "4902",
+      "state": "49",
+      "district": "02",
+      "area": "Utah-02",
+      "name": "Congressional District 2 (118th Congress), Utah",
+      "population": 823538,
+      "median_income": 78777
+    },
+    {
+      "geoid": "4903",
+      "state": "49",
+      "district": "03",
+      "area": "Utah-03",
+      "name": "Congressional District 3 (118th Congress), Utah",
+      "population": 813368,
+      "median_income": 86734
+    },
+    {
+      "geoid": "4904",
+      "state": "49",
+      "district": "04",
+      "area": "Utah-04",
+      "name": "Congressional District 4 (118th Congress), Utah",
+      "population": 824895,
+      "median_income": 96722
+    },
+    {
+      "geoid": "5000",
+      "state": "50",
+      "district": "00",
+      "area": "Vermont-00",
+      "name": "Congressional District (at Large) (118th Congress), Vermont",
+      "population": 643816,
+      "median_income": 74014
+    },
+    {
+      "geoid": "5101",
+      "state": "51",
+      "district": "01",
+      "area": "Virginia-01",
+      "name": "Congressional District 1 (118th Congress), Virginia",
+      "population": 789933,
+      "median_income": 99506
+    },
+    {
+      "geoid": "5102",
+      "state": "51",
+      "district": "02",
+      "area": "Virginia-02",
+      "name": "Congressional District 2 (118th Congress), Virginia",
+      "population": 783084,
+      "median_income": 88833
+    },
+    {
+      "geoid": "5103",
+      "state": "51",
+      "district": "03",
+      "area": "Virginia-03",
+      "name": "Congressional District 3 (118th Congress), Virginia",
+      "population": 778421,
+      "median_income": 63317
+    },
+    {
+      "geoid": "5104",
+      "state": "51",
+      "district": "04",
+      "area": "Virginia-04",
+      "name": "Congressional District 4 (118th Congress), Virginia",
+      "population": 784211,
+      "median_income": 65195
+    },
+    {
+      "geoid": "5105",
+      "state": "51",
+      "district": "05",
+      "area": "Virginia-05",
+      "name": "Congressional District 5 (118th Congress), Virginia",
+      "population": 789918,
+      "median_income": 67225
+    },
+    {
+      "geoid": "5106",
+      "state": "51",
+      "district": "06",
+      "area": "Virginia-06",
+      "name": "Congressional District 6 (118th Congress), Virginia",
+      "population": 783906,
+      "median_income": 67266
+    },
+    {
+      "geoid": "5107",
+      "state": "51",
+      "district": "07",
+      "area": "Virginia-07",
+      "name": "Congressional District 7 (118th Congress), Virginia",
+      "population": 786030,
+      "median_income": 106405
+    },
+    {
+      "geoid": "5108",
+      "state": "51",
+      "district": "08",
+      "area": "Virginia-08",
+      "name": "Congressional District 8 (118th Congress), Virginia",
+      "population": 778819,
+      "median_income": 125652
+    },
+    {
+      "geoid": "5109",
+      "state": "51",
+      "district": "09",
+      "area": "Virginia-09",
+      "name": "Congressional District 9 (118th Congress), Virginia",
+      "population": 785903,
+      "median_income": 54576
+    },
+    {
+      "geoid": "5110",
+      "state": "51",
+      "district": "10",
+      "area": "Virginia-10",
+      "name": "Congressional District 10 (118th Congress), Virginia",
+      "population": 783536,
+      "median_income": 151061
+    },
+    {
+      "geoid": "5111",
+      "state": "51",
+      "district": "11",
+      "area": "Virginia-11",
+      "name": "Congressional District 11 (118th Congress), Virginia",
+      "population": 780750,
+      "median_income": 152845
+    },
+    {
+      "geoid": "5301",
+      "state": "53",
+      "district": "01",
+      "area": "Washington-01",
+      "name": "Congressional District 1 (118th Congress), Washington",
+      "population": 768493,
+      "median_income": 126251
+    },
+    {
+      "geoid": "5302",
+      "state": "53",
+      "district": "02",
+      "area": "Washington-02",
+      "name": "Congressional District 2 (118th Congress), Washington",
+      "population": 770694,
+      "median_income": 83063
+    },
+    {
+      "geoid": "5303",
+      "state": "53",
+      "district": "03",
+      "area": "Washington-03",
+      "name": "Congressional District 3 (118th Congress), Washington",
+      "population": 770201,
+      "median_income": 82569
+    },
+    {
+      "geoid": "5304",
+      "state": "53",
+      "district": "04",
+      "area": "Washington-04",
+      "name": "Congressional District 4 (118th Congress), Washington",
+      "population": 769380,
+      "median_income": 71010
+    },
+    {
+      "geoid": "5305",
+      "state": "53",
+      "district": "05",
+      "area": "Washington-05",
+      "name": "Congressional District 5 (118th Congress), Washington",
+      "population": 773672,
+      "median_income": 68164
+    },
+    {
+      "geoid": "5306",
+      "state": "53",
+      "district": "06",
+      "area": "Washington-06",
+      "name": "Congressional District 6 (118th Congress), Washington",
+      "population": 771582,
+      "median_income": 82341
+    },
+    {
+      "geoid": "5307",
+      "state": "53",
+      "district": "07",
+      "area": "Washington-07",
+      "name": "Congressional District 7 (118th Congress), Washington",
+      "population": 765336,
+      "median_income": 115761
+    },
+    {
+      "geoid": "5308",
+      "state": "53",
+      "district": "08",
+      "area": "Washington-08",
+      "name": "Congressional District 8 (118th Congress), Washington",
+      "population": 768045,
+      "median_income": 117524
+    },
+    {
+      "geoid": "5309",
+      "state": "53",
+      "district": "09",
+      "area": "Washington-09",
+      "name": "Congressional District 9 (118th Congress), Washington",
+      "population": 762237,
+      "median_income": 94267
+    },
+    {
+      "geoid": "5310",
+      "state": "53",
+      "district": "10",
+      "area": "Washington-10",
+      "name": "Congressional District 10 (118th Congress), Washington",
+      "population": 768909,
+      "median_income": 86399
+    },
+    {
+      "geoid": "5401",
+      "state": "54",
+      "district": "01",
+      "area": "West Virginia-01",
+      "name": "Congressional District 1 (118th Congress), West Virginia",
+      "population": 893959,
+      "median_income": 50232
+    },
+    {
+      "geoid": "5402",
+      "state": "54",
+      "district": "02",
+      "area": "West Virginia-02",
+      "name": "Congressional District 2 (118th Congress), West Virginia",
+      "population": 899008,
+      "median_income": 60224
+    },
+    {
+      "geoid": "5501",
+      "state": "55",
+      "district": "01",
+      "area": "Wisconsin-01",
+      "name": "Congressional District 1 (118th Congress), Wisconsin",
+      "population": 733336,
+      "median_income": 74228
+    },
+    {
+      "geoid": "5502",
+      "state": "55",
+      "district": "02",
+      "area": "Wisconsin-02",
+      "name": "Congressional District 2 (118th Congress), Wisconsin",
+      "population": 735105,
+      "median_income": 81786
+    },
+    {
+      "geoid": "5503",
+      "state": "55",
+      "district": "03",
+      "area": "Wisconsin-03",
+      "name": "Congressional District 3 (118th Congress), Wisconsin",
+      "population": 735541,
+      "median_income": 67776
+    },
+    {
+      "geoid": "5504",
+      "state": "55",
+      "district": "04",
+      "area": "Wisconsin-04",
+      "name": "Congressional District 4 (118th Congress), Wisconsin",
+      "population": 731384,
+      "median_income": 55469
+    },
+    {
+      "geoid": "5505",
+      "state": "55",
+      "district": "05",
+      "area": "Wisconsin-05",
+      "name": "Congressional District 5 (118th Congress), Wisconsin",
+      "population": 738618,
+      "median_income": 91116
+    },
+    {
+      "geoid": "5506",
+      "state": "55",
+      "district": "06",
+      "area": "Wisconsin-06",
+      "name": "Congressional District 6 (118th Congress), Wisconsin",
+      "population": 734872,
+      "median_income": 71212
+    },
+    {
+      "geoid": "5507",
+      "state": "55",
+      "district": "07",
+      "area": "Wisconsin-07",
+      "name": "Congressional District 7 (118th Congress), Wisconsin",
+      "population": 737082,
+      "median_income": 68329
+    },
+    {
+      "geoid": "5508",
+      "state": "55",
+      "district": "08",
+      "area": "Wisconsin-08",
+      "name": "Congressional District 8 (118th Congress), Wisconsin",
+      "population": 736190,
+      "median_income": 74024
+    },
+    {
+      "geoid": "5600",
+      "state": "56",
+      "district": "00",
+      "area": "Wyoming-00",
+      "name": "Congressional District (at Large) (118th Congress), Wyoming",
+      "population": 577929,
+      "median_income": 72495
+    },
+    {
+      "geoid": "7298",
+      "state": "72",
+      "district": "98",
+      "area": "72-98",
+      "name": "Resident Commissioner District (at Large) (118th Congress), Puerto Rico",
+      "population": 3272382,
+      "median_income": 24002
+    }
+  ]
+}
