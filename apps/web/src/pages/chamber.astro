@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import PartyBar from "../components/PartyBar.astro";
 import PartyLegend from "../components/PartyLegend.astro";
+import HouseArc from "../components/HouseArc.astro";
 import Chip from "../components/Chip.astro";
 import { chamberComposition, CLASS_II_2026_STATES } from "../lib/members";
 import { partyLabel } from "../lib/races";
@@ -24,7 +25,9 @@ const class2 = [...CLASS_II_2026_STATES].sort();
   {composition.map((c) => (
     <section class="mt-8" aria-labelledby={c.chamber}>
       <SectionHeader title={c.label} id={c.chamber} source={`${c.total} seat${c.total === 1 ? "" : "s"} tracked`} />
-      {c.total > 0 && (
+      {c.total > 0 && (c.chamber === "rep" ? (
+        <HouseArc class="mt-4" byParty={c.byParty} total={c.total} />
+      ) : (
         <>
           <PartyBar
             class="mt-3"
@@ -40,7 +43,7 @@ const class2 = [...CLASS_II_2026_STATES].sort();
             items={c.byParty.map((p) => ({ party: p.party, label: partyLabel(p.party), count: p.count }))}
           />
         </>
-      )}
+      ))}
     </section>
   ))}
 

@@ -1,0 +1,70 @@
+---
+import { cn } from "../lib/utils";
+import PartyPatternDefs from "./PartyPatternDefs.astro";
+import PartyLegend from "./PartyLegend.astro";
+import DataTable from "./DataTable.astro";
+import type { Column } from "./dataTable";
+import { houseArcLayout, assignSeatParties } from "../lib/houseArc";
+import { partyColorVar, partyLabel, partyPatternFill } from "../lib/races";
+
+// Traditional semicircle hemicycle of House seats [Q6.4], colored by chamber composition.
+// 0-JS: seat geometry is baked at build (houseArcLayout) into static SVG <circle>s. The SVG is
+// decorative (aria-hidden); the accessible equivalent is the party→seat-count DataTable [Q6.6].
+// Colorblind pattern overlays reuse E0.4's shared defs so the arc reads in grayscale [C5a].
+interface Props {
+  byParty: { party: string; count: number }[];
+  total: number;
+  class?: string;
+}
+const { byParty, total, class: className } = Astro.props;
+
+const layout = houseArcLayout(total);
+const seats = assignSeatParties(layout.seats, byParty);
+
+const legendItems = byParty.map((p) => ({ party: p.party, label: partyLabel(p.party), count: p.count }));
+
+const tableColumns: Column[] = [
+  { key: "party", label: "Party" },
+  { key: "seats", label: "Seats", align: "right" },
+];
+const tableRows = [
+  ...byParty.map((p) => ({ party: partyLabel(p.party), seats: p.count })),
+  { party: "Total", seats: total },
+];
+
+const majority = Math.floor(total / 2) + 1;
+---
+<figure class={cn("m-0", className)}>
+  <PartyPatternDefs />
+  <svg
+    viewBox={`0 0 ${layout.width} ${layout.height}`}
+    class="block h-auto w-full max-w-[var(--container-md)]"
+    role="img"
+    aria-label={`Semicircle of ${total} U.S. House seats colored by party. ${majority} seats make a majority.`}
+  >
+    {seats.map((s) => {
+      const fill = partyPatternFill(s.party);
+      return (
+        <>
+          <circle
+            cx={s.x}
+            cy={s.y}
+            r={layout.seatRadius}
+            fill={s.party ? partyColorVar(s.party) : "var(--color-border)"}
+          />
+          {fill && <circle cx={s.x} cy={s.y} r={layout.seatRadius} fill={fill} />}
+        </>
+      );
+    })}
+  </svg>
+  <PartyLegend class="mt-4 justify-center" items={legendItems} pattern />
+  <figcaption class="sr-only">
+    U.S. House hemicycle: {total} seats, {majority} needed for a majority. Party seat counts follow.
+  </figcaption>
+  <DataTable
+    class="mt-4"
+    columns={tableColumns}
+    rows={tableRows}
+    caption={`U.S. House seats by party (${total} total)`}
+  />
+</figure>
