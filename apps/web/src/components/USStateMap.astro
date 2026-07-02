@@ -1,0 +1,47 @@
+---
+import { cn } from "../lib/utils";
+import { STATE_GEO, type StateFill } from "../lib/usStates";
+
+// Reusable 0-JS US state choropleth [E1.1, Q6.1/Q6.6]. Geometry is fixed (precomputed albers-usa
+// paths, AK/HI insets baked in); the colouring is fully injectable via `fills` so any state->fill
+// map reuses it (E2.3 house-by-state, E2.5, …). Each state gets a native <title> for hover/AT and
+// an optional texture overlay path for grayscale legibility. Pass stripe/pattern <defs> as slot
+// children; they land inside this SVG's <defs>. The equivalent data-table is the caller's job.
+interface Props {
+  fills: Record<string, StateFill>;
+  label: string; // accessible name for the whole map (svg role=img)
+  class?: string;
+  emptyFill?: string; // fill for a state with no entry in `fills`
+}
+const { fills, label, class: className, emptyFill = "var(--color-surface-2)" } = Astro.props;
+const { viewBox, paths } = STATE_GEO;
+const codes = Object.keys(paths).sort();
+---
+<svg
+  viewBox={viewBox}
+  class={cn("h-auto w-full", className)}
+  role="img"
+  aria-label={label}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>{label}</title>
+  <defs><slot /></defs>
+  {codes.map((code) => {
+    const f = fills[code];
+    const d = paths[code];
+    return (
+      <g>
+        <path
+          d={d}
+          fill={f?.fill ?? emptyFill}
+          stroke="var(--color-surface)"
+          stroke-width="1"
+          stroke-linejoin="round"
+        >
+          <title>{f?.title ?? code}</title>
+        </path>
+        {f?.overlay && <path d={d} fill={f.overlay} stroke="none" aria-hidden="true" />}
+      </g>
+    );
+  })}
+</svg>

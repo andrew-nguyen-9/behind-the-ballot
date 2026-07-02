@@ -1,0 +1,17 @@
+---
+import type { StripeDef } from "../lib/usStates";
+
+// Two-colour diagonal-stripe <pattern> defs for split delegations [E1.1, Q6.2]. Reuses E0.4's
+// SVG <defs> mechanism (referenced by `fill="url(#id)"`). Drop as a child of <USStateMap> so the
+// patterns land in the map's <defs>; ids come from senateMapData().stripes.
+interface Props {
+  stripes: StripeDef[];
+}
+const { stripes } = Astro.props;
+---
+{stripes.map((s) => (
+  <pattern id={s.id} patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill={s.a}></rect>
+    <rect width="4" height="8" fill={s.b}></rect>
+  </pattern>
+))}
