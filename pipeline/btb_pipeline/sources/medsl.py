@@ -39,26 +39,33 @@ class PresidentStateRow(BaseModel):
 def parse_president(csv_text: str) -> list[dict]:
     """Aggregate the MEDSL per-candidate rows into per-state D/R two-party totals.
 
-    Sums `votes` by (state_po, party_simplified) over the TOTAL mode rows (the standardized
-    state aggregate; filtering avoids double-counting per-mode breakdowns). Returns one row per
-    state that has both a Democrat and a Republican total, sorted by state."""
+    Prefers each state's `TOTAL` mode row (the standardized aggregate; ignoring the per-mode
+    breakdowns avoids double-counting). A few states have no TOTAL row — e.g. Arizona 2024, whose
+    rows carry mode `NA` — so for a state lacking any TOTAL we fall back to summing its remaining
+    rows (one per candidate, so no double-count). Returns one row per state that has both a
+    Democrat and a Republican total, sorted by state."""
+    rows_by_state: dict[str, list[dict]] = defaultdict(list)
+    for r in csv.DictReader(io.StringIO(csv_text)):
+        st = r.get("state_po")
+        if st:
+            rows_by_state[st].append(r)
+
     dem: dict[str, int] = defaultdict(int)
     rep: dict[str, int] = defaultdict(int)
-    for r in csv.DictReader(io.StringIO(csv_text)):
-        if (r.get("mode") or "").upper() != "TOTAL":
-            continue
-        st = r.get("state_po")
-        if not st:
-            continue
-        party = (r.get("party_simplified") or "").upper()
-        try:
-            votes = int(r.get("votes") or 0)
-        except ValueError:
-            continue
-        if party == "DEMOCRAT":
-            dem[st] += votes
-        elif party == "REPUBLICAN":
-            rep[st] += votes
+    for st, state_rows in rows_by_state.items():
+        has_total = any((r.get("mode") or "").upper() == "TOTAL" for r in state_rows)
+        for r in state_rows:
+            if has_total and (r.get("mode") or "").upper() != "TOTAL":
+                continue
+            party = (r.get("party_simplified") or "").upper()
+            try:
+                votes = int(r.get("votes") or 0)
+            except ValueError:
+                continue
+            if party == "DEMOCRAT":
+                dem[st] += votes
+            elif party == "REPUBLICAN":
+                rep[st] += votes
     rows = [
         {"state": st, "dem_votes": dem[st], "rep_votes": rep[st]}
         for st in sorted(set(dem) & set(rep))

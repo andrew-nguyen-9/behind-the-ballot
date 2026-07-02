@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-NH",
+  "cycle": 2026,
+  "title": "NH Governor 2026",
+  "office": "governor",
+  "state": "NH",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

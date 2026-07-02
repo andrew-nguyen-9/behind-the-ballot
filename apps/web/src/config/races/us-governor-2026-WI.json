@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-WI",
+  "cycle": 2026,
+  "title": "WI Governor 2026",
+  "office": "governor",
+  "state": "WI",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

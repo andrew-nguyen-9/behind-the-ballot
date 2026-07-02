@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-CA-45",
+  "cycle": 2026,
+  "title": "CA-45 U.S. House 2026",
+  "office": "house",
+  "state": "CA",
+  "district": 45,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "derek-tran",
+      "name": "Derek Tran",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H4CA45170"
+    },
+    {
+      "id": "michelle-steel",
+      "name": "Michelle Steel",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H0CA48198"
+    },
+    {
+      "id": "thomas-ky-phong-vo",
+      "name": "Thomas Ky-Phong Vo",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6CA45209"
+    },
+    {
+      "id": "chi-charlie-nguyen",
+      "name": "Chi Charlie Nguyen",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6CA45167"
+    },
+    {
+      "id": "chuong-vo",
+      "name": "Chuong Vo",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6CA45191"
+    },
+    {
+      "id": "amy-phan-west",
+      "name": "Amy Phan West",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6CA45183"
+    }
+  ]
+}

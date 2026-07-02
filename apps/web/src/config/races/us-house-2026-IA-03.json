@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-IA-03",
+  "cycle": 2026,
+  "title": "IA-03 U.S. House 2026",
+  "office": "house",
+  "state": "IA",
+  "district": 3,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "zach-nunn",
+      "name": "Zach Nunn",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2IA03119"
+    },
+    {
+      "id": "sarah-trone-garriott",
+      "name": "Sarah Trone Garriott",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6IA03268"
+    },
+    {
+      "id": "jennifer-konfrst",
+      "name": "Jennifer Konfrst",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6IA03276"
+    }
+  ]
+}

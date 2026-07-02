@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-MN-02",
+  "cycle": 2026,
+  "title": "MN-02 U.S. House 2026",
+  "office": "house",
+  "state": "MN",
+  "district": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "angela-dawn-craig",
+      "name": "Angela Dawn Craig",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H6MN02131"
+    },
+    {
+      "id": "matt-little",
+      "name": "Matt Little",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MN02230"
+    },
+    {
+      "id": "matthew-david-klein",
+      "name": "Matthew David Klein",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MN02248"
+    },
+    {
+      "id": "tyler-kistner",
+      "name": "Tyler Kistner",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6MN02255"
+    },
+    {
+      "id": "eric-pratt",
+      "name": "Eric Pratt",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6MN02263"
+    },
+    {
+      "id": "kaela-jo-berg",
+      "name": "Kaela Jo Berg",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6MN02271"
+    }
+  ]
+}

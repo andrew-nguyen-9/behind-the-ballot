@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-PA",
+  "cycle": 2026,
+  "title": "PA Governor 2026",
+  "office": "governor",
+  "state": "PA",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

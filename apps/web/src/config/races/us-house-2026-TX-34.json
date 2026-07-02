@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-TX-34",
+  "cycle": 2026,
+  "title": "TX-34 U.S. House 2026",
+  "office": "house",
+  "state": "TX",
+  "district": 34,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "vicente-gonzalez",
+      "name": "Vicente Gonzalez",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H6TX15162"
+    },
+    {
+      "id": "eric-flores",
+      "name": "Eric Flores",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6TX34080"
+    },
+    {
+      "id": "mayra-nohemi-flores",
+      "name": "Mayra Nohemi Flores",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H2TX34113"
+    },
+    {
+      "id": "charles-mandel",
+      "name": "Charles Mandel",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4TX27105"
+    },
+    {
+      "id": "etienne-ph-d-rosas",
+      "name": "Etienne Ph.D. Rosas",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6TX34064"
+    },
+    {
+      "id": "keith-allen",
+      "name": "Keith Allen",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6TX34049"
+    }
+  ]
+}

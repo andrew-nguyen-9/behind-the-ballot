@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-CA-41",
+  "cycle": 2026,
+  "title": "CA-41 U.S. House 2026",
+  "office": "house",
+  "state": "CA",
+  "district": 41,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "linda-sanchez",
+      "name": "Linda Sanchez",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H2CA39078"
+    },
+    {
+      "id": "hector-de-la-torre",
+      "name": "Hector De La Torre",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H2CA39086"
+    },
+    {
+      "id": "katherine-aleman",
+      "name": "Katherine Aleman",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CA41315"
+    },
+    {
+      "id": "tim-myers",
+      "name": "Tim Myers",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CA41273"
+    },
+    {
+      "id": "shonique-williams",
+      "name": "Shonique Williams",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6CA41356"
+    }
+  ]
+}

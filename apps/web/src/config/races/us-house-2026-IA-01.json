@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-IA-01",
+  "cycle": 2026,
+  "title": "IA-01 U.S. House 2026",
+  "office": "house",
+  "state": "IA",
+  "district": 1,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "mariannette-jane-miller-meeks",
+      "name": "Mariannette Jane Miller-Meeks",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H8IA02043"
+    },
+    {
+      "id": "christina-bohannan",
+      "name": "Christina Bohannan",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H2IA02111"
+    },
+    {
+      "id": "taylor-wettach",
+      "name": "Taylor Wettach",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6IA01197"
+    },
+    {
+      "id": "david-alfred-pautsch",
+      "name": "David Alfred Pautsch",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4IA01127"
+    }
+  ]
+}

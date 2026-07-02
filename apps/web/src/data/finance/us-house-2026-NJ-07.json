@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H0NJ07261",
+    "race_id": "us-house-2026-NJ-07",
+    "party": "R",
+    "receipts": 4542249.87,
+    "disbursements": 1199845.94,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2642,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H2NJ08265",
+    "race_id": "us-house-2026-NJ-07",
+    "party": "D",
+    "receipts": 1961359.53,
+    "disbursements": 1602867.05,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8172,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6NJ07201",
+    "race_id": "us-house-2026-NJ-07",
+    "party": "D",
+    "receipts": 2944137.78,
+    "disbursements": 2180069.53,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7405,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6NJ07235",
+    "race_id": "us-house-2026-NJ-07",
+    "party": "D",
+    "receipts": 1231819.78,
+    "disbursements": 546416.95,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4436,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6NJ07250",
+    "race_id": "us-house-2026-NJ-07",
+    "party": "D",
+    "receipts": 2148461.26,
+    "disbursements": 1541109.74,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7173,
+    "coverage_end_date": "2026-05-13"
+  },
+  {
+    "candidate_id": "H6NJ07276",
+    "race_id": "us-house-2026-NJ-07",
+    "party": "D",
+    "receipts": 570130.45,
+    "disbursements": 535214.56,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9388,
+    "coverage_end_date": "2026-03-31"
+  }
+]

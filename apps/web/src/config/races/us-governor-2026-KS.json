@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-KS",
+  "cycle": 2026,
+  "title": "KS Governor 2026",
+  "office": "governor",
+  "state": "KS",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

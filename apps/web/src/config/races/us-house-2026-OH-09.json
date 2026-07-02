@@ -1,0 +1,58 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-OH-09",
+  "cycle": 2026,
+  "title": "OH-09 U.S. House 2026",
+  "office": "house",
+  "state": "OH",
+  "district": 9,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "marcy-m-c-kaptur",
+      "name": "Marcy M.C. Kaptur",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H2OH09031"
+    },
+    {
+      "id": "josh-williams",
+      "name": "Josh Williams",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6OH09131"
+    },
+    {
+      "id": "derek-merrin",
+      "name": "Derek Merrin",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4OH09169"
+    },
+    {
+      "id": "alea-nadeem",
+      "name": "Alea Nadeem",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6OH09115"
+    },
+    {
+      "id": "madison-sheahan",
+      "name": "Madison Sheahan",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6OH09172"
+    },
+    {
+      "id": "wayne-charles-kinsel",
+      "name": "Wayne Charles Kinsel",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6OH09123"
+    }
+  ]
+}

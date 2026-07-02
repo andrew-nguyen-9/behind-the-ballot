@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H4AZ01194",
+    "race_id": "us-house-2026-AZ-01",
+    "party": "D",
+    "receipts": 1290455.53,
+    "disbursements": 675157.88,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5232,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H4AZ06045",
+    "race_id": "us-house-2026-AZ-01",
+    "party": "R",
+    "receipts": 1703578.65,
+    "disbursements": 1690739.62,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9925,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6AZ01280",
+    "race_id": "us-house-2026-AZ-01",
+    "party": "D",
+    "receipts": 1566624.76,
+    "disbursements": 740817.35,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4729,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6AZ01298",
+    "race_id": "us-house-2026-AZ-01",
+    "party": "D",
+    "receipts": 2482934.9,
+    "disbursements": 815875.86,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3286,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6AZ01306",
+    "race_id": "us-house-2026-AZ-01",
+    "party": "D",
+    "receipts": 871280.98,
+    "disbursements": 414382.86,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4756,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6AZ05190",
+    "race_id": "us-house-2026-AZ-01",
+    "party": "R",
+    "receipts": 1797546.45,
+    "disbursements": 543367.58,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.3023,
+    "coverage_end_date": "2026-03-31"
+  }
+]

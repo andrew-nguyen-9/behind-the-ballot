@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H6NE02125",
+    "race_id": "us-house-2026-NE-02",
+    "party": "R",
+    "receipts": 1467114.18,
+    "disbursements": 1201093.34,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8187,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6NE02174",
+    "race_id": "us-house-2026-NE-02",
+    "party": "D",
+    "receipts": 1617997.46,
+    "disbursements": 1294016.03,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7998,
+    "coverage_end_date": "2026-04-22"
+  },
+  {
+    "candidate_id": "H6NE02190",
+    "race_id": "us-house-2026-NE-02",
+    "party": "D",
+    "receipts": 1140783.49,
+    "disbursements": 981800.96,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8606,
+    "coverage_end_date": "2026-04-22"
+  },
+  {
+    "candidate_id": "H6NE02208",
+    "race_id": "us-house-2026-NE-02",
+    "party": "R",
+    "receipts": 1279186.99,
+    "disbursements": 630501.07,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4929,
+    "coverage_end_date": "2026-05-29"
+  },
+  {
+    "candidate_id": "H6NE02224",
+    "race_id": "us-house-2026-NE-02",
+    "party": "D",
+    "receipts": 583723.48,
+    "disbursements": 445681.63,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7635,
+    "coverage_end_date": "2026-04-22"
+  },
+  {
+    "candidate_id": "H6NE02240",
+    "race_id": "us-house-2026-NE-02",
+    "party": "D",
+    "receipts": 389590.58,
+    "disbursements": 219848.89,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.5643,
+    "coverage_end_date": "2026-04-22"
+  }
+]

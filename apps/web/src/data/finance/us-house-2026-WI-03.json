@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "H0WI03175",
+    "race_id": "us-house-2026-WI-03",
+    "party": "R",
+    "receipts": 5677514.78,
+    "disbursements": 2385497.22,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.4202,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H4WI03169",
+    "race_id": "us-house-2026-WI-03",
+    "party": "D",
+    "receipts": 6491571.36,
+    "disbursements": 2077081.69,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.32,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6WI03172",
+    "race_id": "us-house-2026-WI-03",
+    "party": "D",
+    "receipts": 565651.05,
+    "disbursements": 468773.01,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.8287,
+    "coverage_end_date": "2026-03-31"
+  }
+]

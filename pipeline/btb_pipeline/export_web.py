@@ -220,6 +220,23 @@ def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[P
         "dem_seat_p90": mc["dem_seat_p90"] + holdover_dem,
         "dem_control_prob": mc["dem_control_prob"],
     }))
+
+    # House + Governor per-race forecasts [E2.2, N4a]: fundamentals-only, using the STATE-level
+    # PVI as the lean proxy (district-level presidential results are not yet in gold — the
+    # medsl_president gold is state-granularity, so a house district inherits its state's PVI).
+    # No chamber-control rollup for these offices in V1: house control needs the full 435-seat
+    # baseline, but only the competitive subset is configured. race_model office weights differ
+    # (house fundamentals-heavy, governor in between) [N14a].
+    for c in _race_configs(RACES_DIR):
+        office = c.get("office")
+        if office not in ("house", "governor") or c.get("state") not in state_share:
+            continue
+        pvi = cook_pvi(state_share[c["state"]], national_share)
+        rf = race_model.predict_race(office=office, fundamentals_pvi=pvi)
+        written.append(_write(web_data / "forecast" / f"{c['id']}.json", {
+            "win_prob": rf["win_prob"], "margin": rf["margin"],
+            "margin_lo": rf["margin_lo"], "margin_hi": rf["margin_hi"], "as_of": as_of,
+        }))
     return written
 
 

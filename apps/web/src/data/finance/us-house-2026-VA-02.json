@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "H2VA02064",
+    "race_id": "us-house-2026-VA-02",
+    "party": "R",
+    "receipts": 4746033.32,
+    "disbursements": 1760599.89,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.371,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6VA02149",
+    "race_id": "us-house-2026-VA-02",
+    "party": "D",
+    "receipts": 410811.62,
+    "disbursements": 326226.64,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7941,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6VA02156",
+    "race_id": "us-house-2026-VA-02",
+    "party": "D",
+    "receipts": 346203.13,
+    "disbursements": 323368.18,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.934,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6VA02172",
+    "race_id": "us-house-2026-VA-02",
+    "party": "D",
+    "receipts": 230406.0,
+    "disbursements": 164720.46,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.7149,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6VA02180",
+    "race_id": "us-house-2026-VA-02",
+    "party": "D",
+    "receipts": 305964.52,
+    "disbursements": 138605.16,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.453,
+    "coverage_end_date": "2026-03-31"
+  },
+  {
+    "candidate_id": "H6VA02198",
+    "race_id": "us-house-2026-VA-02",
+    "party": "D",
+    "receipts": 2868163.1,
+    "disbursements": 576428.73,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.201,
+    "coverage_end_date": "2026-03-31"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-PA-10",
+  "cycle": 2026,
+  "title": "PA-10 U.S. House 2026",
+  "office": "house",
+  "state": "PA",
+  "district": 10,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "janelle-stelson",
+      "name": "Janelle Stelson",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H4PA10104"
+    },
+    {
+      "id": "scott-perry",
+      "name": "Scott Perry",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2PA04135"
+    },
+    {
+      "id": "justin-douglas",
+      "name": "Justin Douglas",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6PA10182"
+    },
+    {
+      "id": "isabelle-a-harman",
+      "name": "Isabelle A Harman",
+      "party": "I",
+      "incumbent": false,
+      "fecCandidateId": "H6PA10174"
+    }
+  ]
+}

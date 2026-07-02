@@ -1,0 +1,32 @@
+[
+  {
+    "candidate_id": "H2NY04244",
+    "race_id": "us-house-2026-NY-04",
+    "party": "D",
+    "receipts": 4587184.65,
+    "disbursements": 1188925.83,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.2592,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H6NY04195",
+    "race_id": "us-house-2026-NY-04",
+    "party": "R",
+    "receipts": 130081.95,
+    "disbursements": 126875.55,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.9754,
+    "coverage_end_date": "2026-06-03"
+  },
+  {
+    "candidate_id": "H6NY04211",
+    "race_id": "us-house-2026-NY-04",
+    "party": "R",
+    "receipts": 187761.69,
+    "disbursements": 4938.62,
+    "cash_on_hand": 0.0,
+    "burn_rate": 0.0263,
+    "coverage_end_date": "2026-06-03"
+  }
+]

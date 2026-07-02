@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-ME-02",
+  "cycle": 2026,
+  "title": "ME-02 U.S. House 2026",
+  "office": "house",
+  "state": "ME",
+  "district": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "jordan-wood",
+      "name": "Jordan Wood",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6ME02197"
+    },
+    {
+      "id": "jared-golden",
+      "name": "Jared Golden",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H8ME02185"
+    },
+    {
+      "id": "paul-lepage",
+      "name": "Paul Lepage",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6ME02148"
+    },
+    {
+      "id": "matt-dunlap",
+      "name": "Matt Dunlap",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6ME02171"
+    },
+    {
+      "id": "joseph-baldacci",
+      "name": "Joseph Baldacci",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6ME02213"
+    }
+  ]
+}

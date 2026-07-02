@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-WI-03",
+  "cycle": 2026,
+  "title": "WI-03 U.S. House 2026",
+  "office": "house",
+  "state": "WI",
+  "district": 3,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "rebecca-cooke",
+      "name": "Rebecca Cooke",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H4WI03169"
+    },
+    {
+      "id": "derrick-f-van-orden",
+      "name": "Derrick F. Van Orden",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H0WI03175"
+    },
+    {
+      "id": "emily-berge",
+      "name": "Emily Berge",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6WI03172"
+    }
+  ]
+}

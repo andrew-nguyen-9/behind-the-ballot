@@ -1,0 +1,13 @@
+{
+  "kind": "race",
+  "id": "us-governor-2026-OH",
+  "cycle": 2026,
+  "title": "OH Governor 2026",
+  "office": "governor",
+  "state": "OH",
+  "status": "upcoming",
+  "sources": [
+    "forecast"
+  ],
+  "candidates": []
+}

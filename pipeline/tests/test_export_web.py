@@ -56,3 +56,35 @@ def test_export_demographics_state_rollup_and_district(tmp_path, monkeypatch):
     pa = json.loads((web / "pa-05.json").read_text())
     assert pa["area"] == "Pennsylvania District 5"
     assert pa["population"] == 500000
+
+
+def test_export_forecast_covers_house_and_governor(tmp_path, monkeypatch):
+    # State-level presidential margins -> per-race fundamentals PVI [E2.2].
+    _write_gold(tmp_path, "medsl_president", [
+        {"state": "TX", "dem_votes": 45, "rep_votes": 55},
+        {"state": "PA", "dem_votes": 50, "rep_votes": 50},
+        {"state": "NV", "dem_votes": 52, "rep_votes": 48},
+    ])
+    _write_gold(tmp_path, "members", [
+        {"bioguide_id": "A1", "party": "Democrat", "chamber": "sen", "state": "TX"},
+    ])
+    races = tmp_path / "races"
+    races.mkdir()
+    (races / "us-senate-2026-TX.json").write_text(json.dumps(
+        {"id": "us-senate-2026-TX", "office": "senate", "state": "TX",
+         "candidates": [{"party": "D", "incumbent": True}]}))
+    (races / "us-house-2026-PA-07.json").write_text(json.dumps(
+        {"id": "us-house-2026-PA-07", "office": "house", "state": "PA", "district": 7}))
+    (races / "us-governor-2026-NV.json").write_text(json.dumps(
+        {"id": "us-governor-2026-NV", "office": "governor", "state": "NV"}))
+    monkeypatch.setattr(ew, "RACES_DIR", races)
+
+    out = ew.export_forecast(root=tmp_path, web_data=tmp_path / "web")
+    written = {p.name for p in out}
+    assert {"us-house-2026-PA-07.json", "us-governor-2026-NV.json"} <= written
+    fc = tmp_path / "web" / "forecast"
+    house = json.loads((fc / "us-house-2026-PA-07.json").read_text())
+    assert set(house) == {"win_prob", "margin", "margin_lo", "margin_hi", "as_of"}
+    assert 0.0 <= house["win_prob"] <= 1.0
+    gov = json.loads((fc / "us-governor-2026-NV.json").read_text())
+    assert gov["win_prob"] > 0.5  # NV leans Dem in the fixture -> Dem-favored governor race
