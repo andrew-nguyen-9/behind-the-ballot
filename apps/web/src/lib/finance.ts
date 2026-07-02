@@ -24,3 +24,9 @@ export function fmtUSD(n: number): string {
   if (abs >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
   return `$${n.toFixed(0)}`;
 }
+
+// Burn rate is a ratio from the pipeline (disbursements ÷ receipts); render as a percent,
+// e.g. 0.7462 -> "75%". Never fabricated — callers pass null through to an honest empty.
+export function fmtPct(ratio: number): string {
+  return `${Math.round(ratio * 100)}%`;
+}

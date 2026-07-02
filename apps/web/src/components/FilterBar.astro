@@ -1,0 +1,171 @@
+---
+import { cn } from "../lib/utils";
+
+// Directory filter/group island [Q6.7]. Progressive enhancement only: it renders `hidden`
+// and the inline script reveals + wires it, so the server-rendered grouped list is the
+// fully working 0-JS fallback. Place inside a `<div data-directory>` that also holds a
+// `<div data-groups>` (the server sections, each `<section data-group>` of `<li data-row>`)
+// and an optional `<div data-empty hidden>`. Native `<select>`/`<input>` keep it keyboard-
+// operable (axe-clean). Config (group dimensions + labels) is passed via `data-config`.
+export interface FacetControl {
+  key: string; // matches the row's data-<key> attribute (single lowercase word)
+  label: string;
+  options: { value: string; label: string }[];
+}
+export interface GroupDim {
+  key: string; // matches the row's data-<key> attribute; first entry is the server default
+  label: string;
+  labels?: Record<string, string>; // value -> heading label (defaults to the raw value)
+}
+interface Props {
+  facets: FacetControl[];
+  groups?: GroupDim[];
+  noun: string; // singular, e.g. "race" — used in the search placeholder
+  class?: string;
+}
+const { facets, groups = [], noun, class: className } = Astro.props;
+const config = JSON.stringify({ groups });
+const controlClass =
+  "rounded-md border border-[var(--color-border)] bg-surface px-2 py-1 text-sm text-[var(--color-fg)]";
+---
+<div
+  data-filterbar
+  data-config={config}
+  hidden
+  class={cn("mt-4 flex flex-wrap items-end gap-3", className)}
+>
+  <label class="flex flex-col gap-1 text-xs text-muted">
+    <span>Search</span>
+    <input type="search" data-filter-search placeholder={`Filter ${noun}s…`} class={cn(controlClass, "w-44")} />
+  </label>
+
+  {groups.length > 1 && (
+    <label class="flex flex-col gap-1 text-xs text-muted">
+      <span>Group by</span>
+      <select data-filter-group class={controlClass}>
+        {groups.map((g) => <option value={g.key}>{g.label}</option>)}
+      </select>
+    </label>
+  )}
+
+  {facets.map((f) => (
+    <label class="flex flex-col gap-1 text-xs text-muted">
+      <span>{f.label}</span>
+      <select data-filter={f.key} class={controlClass}>
+        <option value="">All</option>
+        {f.options.map((o) => <option value={o.value}>{o.label}</option>)}
+      </select>
+    </label>
+  ))}
+
+  <button type="button" data-filter-reset class={cn(controlClass, "hover:text-[var(--color-brand)]")}>
+    Reset
+  </button>
+</div>
+
+<script>
+  interface GroupDim { key: string; label: string; labels?: Record<string, string> }
+
+  function initDirectory(root: HTMLElement): void {
+    const bar = root.querySelector<HTMLElement>("[data-filterbar]");
+    const groupsQuery = root.querySelector<HTMLElement>("[data-groups]");
+    const empty = root.querySelector<HTMLElement>("[data-empty]");
+    if (!bar || !groupsQuery) return;
+    const groupsEl: HTMLElement = groupsQuery;
+
+    const cfg = JSON.parse(bar.dataset.config ?? "{}") as { groups?: GroupDim[] };
+    const groupDims = cfg.groups ?? [];
+    const defaultDim = groupDims[0]?.key ?? null;
+
+    const search = bar.querySelector<HTMLInputElement>("[data-filter-search]");
+    const groupSel = bar.querySelector<HTMLSelectElement>("[data-filter-group]");
+    const facetSels = Array.from(bar.querySelectorAll<HTMLSelectElement>("[data-filter]"));
+    const reset = bar.querySelector<HTMLButtonElement>("[data-filter-reset]");
+
+    // Live row nodes — moved (never recreated) when regrouping, so styling is preserved.
+    const allRows = Array.from(groupsEl.querySelectorAll<HTMLElement>("[data-row]"));
+
+    const labelFor = (dimKey: string, value: string): string =>
+      groupDims.find((d) => d.key === dimKey)?.labels?.[value] ?? value;
+
+    function regroup(dimKey: string | null): void {
+      if (!dimKey) return;
+      const order: string[] = [];
+      const byValue = new Map<string, HTMLElement[]>();
+      for (const row of allRows) {
+        const v = row.dataset[dimKey] ?? "";
+        let arr = byValue.get(v);
+        if (!arr) {
+          arr = [];
+          byValue.set(v, arr);
+          order.push(v);
+        }
+        arr.push(row);
+      }
+      // Keep the server order for the default dimension; sort others by heading label.
+      if (dimKey !== defaultDim) {
+        order.sort((a, b) => labelFor(dimKey, a).localeCompare(labelFor(dimKey, b)));
+      }
+      groupsEl.textContent = "";
+      for (const v of order) {
+        const section = document.createElement("section");
+        section.dataset.group = v;
+        section.className = "mt-8";
+        const label = labelFor(dimKey, v);
+        section.setAttribute("aria-label", label);
+        const heading = document.createElement("h2");
+        heading.className = "font-serif text-xl";
+        heading.textContent = label;
+        const ul = document.createElement("ul");
+        ul.className = "mt-3 divide-y divide-[var(--color-border)]";
+        ul.setAttribute("role", "list");
+        for (const row of byValue.get(v)!) ul.appendChild(row);
+        section.append(heading, ul);
+        groupsEl.appendChild(section);
+      }
+    }
+
+    function apply(): void {
+      const q = (search?.value ?? "").trim().toLowerCase();
+      const filters: Record<string, string> = {};
+      for (const sel of facetSels) {
+        const key = sel.dataset.filter;
+        if (key && sel.value) filters[key] = sel.value;
+      }
+      let anyVisible = false;
+      for (const row of allRows) {
+        let ok = true;
+        for (const [k, v] of Object.entries(filters)) if (row.dataset[k] !== v) ok = false;
+        if (q && !(row.dataset.search ?? "").includes(q)) ok = false;
+        row.hidden = !ok;
+        if (ok) anyVisible = true;
+      }
+      for (const section of Array.from(groupsEl.querySelectorAll<HTMLElement>("[data-group]"))) {
+        section.hidden =
+          section.querySelectorAll<HTMLElement>("[data-row]:not([hidden])").length === 0;
+      }
+      if (empty) empty.hidden = anyVisible;
+    }
+
+    groupSel?.addEventListener("change", () => {
+      regroup(groupSel.value);
+      apply();
+    });
+    search?.addEventListener("input", apply);
+    for (const sel of facetSels) sel.addEventListener("change", apply);
+    reset?.addEventListener("click", () => {
+      if (search) search.value = "";
+      for (const sel of facetSels) sel.value = "";
+      if (groupSel && defaultDim) groupSel.value = defaultDim;
+      regroup(defaultDim);
+      apply();
+    });
+
+    bar.hidden = false;
+    apply();
+  }
+
+  for (const root of Array.from(document.querySelectorAll<HTMLElement>("[data-directory]"))) {
+    initDirectory(root);
+  }
+</script>

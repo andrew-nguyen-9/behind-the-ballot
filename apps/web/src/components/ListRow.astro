@@ -12,8 +12,9 @@ interface Props {
   party?: string;
   meta?: string;
   class?: string;
+  data?: Record<string, string | number | boolean>; // extra attrs on the <li> (e.g. data-* for filtering)
 }
-const { title, href, party, meta, class: className } = Astro.props;
+const { title, href, party, meta, class: className, data } = Astro.props;
 const hasLeading = Astro.slots.has("leading");
 const hasTrailing = Astro.slots.has("trailing");
 const rowClass = cn(
@@ -23,7 +24,7 @@ const rowClass = cn(
 );
 const Tag = href ? "a" : "div";
 ---
-<li>
+<li {...(data ?? {})}>
   <Tag class={rowClass} {...(href ? { href } : {})}>
     {hasLeading ? <slot name="leading" /> : party && <PartySwatch party={party} />}
     <span class="min-w-0 flex-1 font-medium">{title}</span>
