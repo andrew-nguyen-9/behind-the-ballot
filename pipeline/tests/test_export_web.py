@@ -109,6 +109,35 @@ def test_export_dates_skips_when_no_gold(tmp_path):
     assert ew.export_dates(root=tmp_path, web_data=tmp_path / "web") == []
 
 
+def test_export_results_groups_by_race_with_race_level_fields(tmp_path):
+    _write_gold(tmp_path, "primary_results", [
+        {"race_id": "us-senate-2026-OH", "candidate": "Jane Doe", "party": "D", "votes": 600,
+         "pct": 60.0, "election_type": "primary", "as_of": "2026-08-04T23:30:00+00:00",
+         "is_certified": False, "pct_reporting": 90.0, "is_called": True, "called_by": "Jane Doe",
+         "call_source": "Wikipedia", "source_url": "https://sos.oh/"},
+        {"race_id": "us-senate-2026-OH", "candidate": "John Roe", "party": "R", "votes": 400,
+         "pct": 40.0, "election_type": "primary", "as_of": "2026-08-04T23:30:00+00:00",
+         "is_certified": False, "pct_reporting": 90.0, "is_called": True, "called_by": "Jane Doe",
+         "call_source": "Wikipedia", "source_url": "https://sos.oh/"},
+    ])
+    out = ew.export_results(root=tmp_path, web_data=tmp_path / "web")
+    assert {p.name for p in out} == {"us-senate-2026-OH.json"}
+    rec = json.loads((tmp_path / "web" / "results" / "us-senate-2026-OH.json").read_text())
+    assert rec["is_called"] is True and rec["called_by"] == "Jane Doe"
+    assert rec["pct_reporting"] == 90.0 and rec["is_certified"] is False
+    # candidates sorted by votes desc, race-level fields hoisted off the rows
+    assert [c["candidate"] for c in rec["candidates"]] == ["Jane Doe", "John Roe"]
+    assert rec["candidates"][0]["pct"] == 60.0
+
+
+def test_export_results_skips_when_no_gold_or_empty(tmp_path):
+    # no gold at all
+    assert ew.export_results(root=tmp_path, web_data=tmp_path / "web") == []
+    # honest-empty gold artifact (zero rows) → still nothing written, no invented numbers
+    _write_gold(tmp_path, "primary_results", [])
+    assert ew.export_results(root=tmp_path, web_data=tmp_path / "web") == []
+
+
 def test_export_demographics_tables_snapshot(tmp_path):
     _write_gold(tmp_path, "census_acs", [
         {"geoid": "3901", "state": "39", "district": "01", "population": 700000, "median_income": 60000},

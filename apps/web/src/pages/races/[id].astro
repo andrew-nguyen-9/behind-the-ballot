@@ -9,6 +9,13 @@ import Chip from "../../components/Chip.astro";
 import EmptyState from "../../components/EmptyState.astro";
 import { allRaces, partyLabel } from "../../lib/races";
 import { membersForRace } from "../../lib/members";
+import {
+  certificationLabel,
+  fmtAsOf,
+  fmtVotes,
+  reportingLabel,
+  resultsForRace,
+} from "../../lib/results";
 import { financeForRace, fmtPct, fmtUSD } from "../../lib/finance";
 import { pollingForRace } from "../../lib/polling";
 import { forecastForRace, marginLabel } from "../../lib/forecast";
@@ -28,6 +35,14 @@ const officeLabel = { senate: "U.S. Senate", house: "U.S. House", governor: "Gov
 ];
 const seat =
   race.office === "house" ? `${race.state}-${String(race.district).padStart(2, "0")}` : race.state;
+
+// Election results [E3.2] — live SoS vote totals, provisional until MEDSL certification.
+// Baked per race by export_results ONLY once a real feed reports; until then this is null
+// and the section shows an honest empty state (no fabricated numbers, repo rule). The
+// "called" flag is borrowed from Wikipedia (CC BY-SA) — SoS feeds carry no projection.
+const results = resultsForRace(race.id);
+const resultsCandidates = results?.candidates ?? [];
+const resultsCalledName = results?.is_called ? results.called_by : null;
 
 // Finance figures [G13a] — join candidates by FEC id; bars scale to the max receipts.
 // ponytail: accessible CSS bars (0 JS) over a chart island for a 2-way money compare.
@@ -79,6 +94,74 @@ const seatMembers = membersForRace(race.state, race.office, race.office === "hou
           </li>
         ))}
       </ul>
+    )}
+  </section>
+
+  <section class="mt-10" aria-labelledby="results">
+    <SectionHeader title="Results" id="results">
+      <Fragment slot="source">
+        {results ? (
+          <>
+            {certificationLabel(results)} · {reportingLabel(results)} · as of {fmtAsOf(results.as_of)}.
+            Source: <a href="/sources" class="underline">state election officials</a>
+            {results.is_called && results.call_source ? (
+              <> · race call via {results.call_source} (CC BY-SA)</>
+            ) : null}.
+          </>
+        ) : (
+          <>Live vote totals from state election officials. Source: <a href="/sources" class="underline">state SoS feeds</a>.</>
+        )}
+      </Fragment>
+    </SectionHeader>
+
+    {!results || resultsCandidates.length === 0 ? (
+      <EmptyState
+        class="mt-4"
+        title="No results yet"
+        body="Vote totals will appear here once this race is held and state election officials begin reporting. Numbers are never estimated."
+      />
+    ) : (
+      <>
+        {!results.is_certified && (
+          <p class="mt-4 rounded-lg border border-[var(--color-border)] bg-surface px-3 py-2 text-sm text-muted">
+            <strong class="text-[var(--color-text)]">Unofficial results.</strong> Provisional
+            counts from state officials, still moving as ballots are counted. Superseded by
+            certified totals later.
+          </p>
+        )}
+        {resultsCalledName && (
+          <p class="mt-3 text-sm">
+            <Chip label={`Called: ${resultsCalledName}`} variant="solid" class="py-0.5 text-xs" />
+          </p>
+        )}
+        <ul class="mt-4 space-y-3" role="list">
+          {resultsCandidates.map((c) => (
+            <li>
+              <div class="flex items-center justify-between gap-3 text-sm">
+                <span class="flex items-center gap-2 font-medium">
+                  <PartySwatch party={c.party ?? "?"} size="sm" />
+                  {c.candidate}
+                  {resultsCalledName === c.candidate && (
+                    <span class="text-muted">· winner</span>
+                  )}
+                </span>
+                <span class="tabular-nums text-muted">
+                  {fmtVotes(c.votes)} {c.pct !== null ? `· ${c.pct.toFixed(1)}%` : ""}
+                </span>
+              </div>
+              <PartyBar
+                class="mt-1 h-2"
+                max={100}
+                segments={[{
+                  party: c.party ?? "?",
+                  value: c.pct ?? 0,
+                  label: `${c.candidate}: ${c.pct !== null ? `${c.pct.toFixed(1)} percent` : `${fmtVotes(c.votes)} votes`}`,
+                }]}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
     )}
   </section>
 

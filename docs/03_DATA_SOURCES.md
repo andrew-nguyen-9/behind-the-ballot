@@ -50,6 +50,7 @@ opens an issue rather than publishing nothing `[R8a]`.
 | Ideology scores (DW-NOMINATE) | member analytics | Voteview `[Q?a]` | `voteview.com/data` | academic, free, attribute | none | per Congress | event-driven |
 | Incumbents for race tracker | tracker | FEC filers + Congress.gov + Ballotpedia/Wikipedia `[F?→A]` | (above) | (above) | (above) | weekly | 30 d |
 | Election dates (primary / runoff / general, per state) | calendar | Hand-curated from state election authorities, aggregated via **NCSL 2026 State Primary Election Dates** `[E2.1]` | `ncsl.org/elections-and-campaigns/2026-state-primary-election-dates` | public reference, credit NCSL | none | per cycle (event) | event-driven |
+| Live primary / general results (votes, precincts reporting, per candidate per race) | results | **State SoS live results** feeds — one adapter per competitive-race state (SoS / Board-of-Elections live feed) `[E3.2, E3.1]`; **Wikipedia** race tables supply ONLY the "race called" flag `[H1a]`; **MEDSL** certified backfill supersedes provisional numbers `[N3a]` | per-state SoS portal (e.g. `liveresults.ohiosos.gov`, `dp.electionresults.sos.ca.gov`) / `en.wikipedia.org` / `github.com/MEDSL` | state gov data (public records, per-state terms) · Wikipedia CC BY-SA · MEDSL CC BY | none | election night 1–5 min, then hourly for days; MEDSL one-shot on certification | event-driven (provisional → certified) |
 
 > Forecast (module) publishes **derived** figures — it has no upstream row of its own;
 > its inputs are the polling + finance + demographics rows above, plus prior-cycle

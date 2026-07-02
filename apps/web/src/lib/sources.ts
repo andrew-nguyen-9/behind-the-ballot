@@ -22,4 +22,5 @@ export const SOURCES: Source[] = [
   { label: "Roll-call votes", provider: "Congress.gov + GovTrack", url: "https://www.congress.gov", license: "US public domain / GovTrack terms", cadence: "daily (in session)", freshnessFloor: "7 days", modules: "Member analytics" },
   { label: "Ideology", provider: "Voteview DW-NOMINATE", url: "https://voteview.com", license: "Academic, free (attributed)", cadence: "per Congress", freshnessFloor: "event-driven", modules: "Member analytics" },
   { label: "Election dates", provider: "NCSL 2026 primary dates", url: "https://www.ncsl.org/elections-and-campaigns/2026-state-primary-election-dates", license: "Public reference (credited)", cadence: "per cycle", freshnessFloor: "event-driven", modules: "Election calendar" },
+  { label: "Election results", provider: "State SoS live feeds + Wikipedia (call status) + MEDSL (certified)", url: "https://www.nass.org/can-i-vote/election-results", license: "State gov data · Wikipedia CC BY-SA · MEDSL CC BY", cadence: "election night 1–5 min, then hourly", freshnessFloor: "event-driven (provisional → certified)", modules: "Race results" },
 ];
