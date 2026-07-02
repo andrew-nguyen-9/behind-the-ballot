@@ -1,12 +1,12 @@
 ---
 import { cn } from "../lib/utils";
-import { partyColorClass, partyLabel } from "../lib/races";
+import { partyColorClass, partyLabel, partyPatternClass } from "../lib/races";
 import { computeSegments, type BarSegment } from "./partyBar";
 
 // Horizontal party bar. One call = one bar. Stacked (byParty, no `max`) or single-fill
 // (one segment scaled to `max`, e.g. finance/polling). Bar widths stay inline
 // `style={width:%}` per spec. Default height h-4 — pass `class="h-2"` for thin bars.
-// `pattern` is the E0.4 hatch seam (no-op today). [C5a]
+// `pattern` (E0.4) overlays a per-party hatch/dots/crosshatch for grayscale legibility. [C5a]
 interface Props {
   segments: BarSegment[];
   max?: number;
@@ -24,7 +24,7 @@ const ariaLabel = computed.map((s) => s.label ?? `${partyLabel(s.party)}: ${s.va
 >
   {computed.map((s) => (
     <span
-      class={cn("block h-full", partyColorClass(s.party))}
+      class={cn("block h-full", partyColorClass(s.party), pattern ? partyPatternClass(s.party) : undefined)}
       style={`width:${s.pct}%`}
       data-pattern={pattern ? "" : undefined}
     ></span>

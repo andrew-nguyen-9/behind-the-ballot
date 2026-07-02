@@ -1,10 +1,10 @@
 ---
 import { cn } from "../lib/utils";
-import { partyColorClass, partyLabel } from "../lib/races";
+import { partyColorClass, partyLabel, partyPatternClass } from "../lib/races";
 
 // Atomic party colour chip. The shared party-colour surface that ListRow / PartyLegend /
-// PartyBar compose. `pattern` is the E0.4 seam: today a no-op (data-pattern marker only);
-// E0.4 wires the SVG hatch fill inside this atom so callers never change. [C5a]
+// PartyBar compose. `pattern` (E0.4) overlays a colorblind hatch/dots/crosshatch on the
+// party fill so viz reads in grayscale — mapping lives in partyPatternClass(). [C5a]
 interface Props {
   party: string;
   size?: "sm" | "md" | "lg";
@@ -13,9 +13,10 @@ interface Props {
 }
 const { party, size = "sm", pattern = false, class: className } = Astro.props;
 const sizeClass = { sm: "size-3", md: "size-4", lg: "size-5" }[size];
+const patternClass = pattern ? partyPatternClass(party) : undefined;
 ---
 <span
-  class={cn("inline-block shrink-0 rounded-sm", sizeClass, partyColorClass(party), className)}
+  class={cn("inline-block shrink-0 rounded-sm", sizeClass, partyColorClass(party), patternClass, className)}
   data-pattern={pattern ? "" : undefined}
   title={partyLabel(party)}
   aria-hidden="true"></span>

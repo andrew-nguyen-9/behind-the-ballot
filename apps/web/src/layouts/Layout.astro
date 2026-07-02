@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import TextSizeControl from "../components/TextSizeControl.astro";
 
 // Base shell: meta + OG + JSON-LD + nav + footer [U3a,U5a]. Every page renders through
 // this. ponytail: static default OG now; per-page generated OG cards [C14a] land in a
@@ -47,6 +48,17 @@ const nav = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- No-FOUC text-size [Q4.3]: apply the saved rem-scale step before first paint. Mirror
+         of the theme no-FOUC pattern (E0.2). Guarded for storage-blocked contexts. -->
+    <script is:inline>
+      (function () {
+        try {
+          var s = localStorage.getItem("btb-text-size");
+          if (s === "m" || s === "l") document.documentElement.setAttribute("data-text-size", s);
+        } catch (e) {}
+      })();
+    </script>
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -112,6 +124,10 @@ const nav = [
             </li>
           ))}
         </ul>
+        <!-- A11y cluster [Q4.4]: text-size control (+ theme toggle from E0.2 on merge). -->
+        <div class="flex items-center" aria-label="Accessibility options">
+          <TextSizeControl />
+        </div>
       </nav>
     </header>
 

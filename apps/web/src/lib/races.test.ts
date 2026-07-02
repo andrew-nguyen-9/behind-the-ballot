@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { allRaces, partyColorClass, partyLabel } from "./races";
+import {
+  allRaces,
+  partyColorClass,
+  partyLabel,
+  partyPatternClass,
+  partyPatternFill,
+  partyPatternKind,
+} from "./races";
 
 describe("races", () => {
   it("loads + validates all seeded race configs", () => {
@@ -20,5 +27,27 @@ describe("races", () => {
   it("labels parties", () => {
     expect(partyLabel("D")).toBe("Democrat");
     expect(partyLabel("X")).toBe("Other");
+  });
+
+  it("maps party to a colorblind pattern kind [Q4.2]", () => {
+    expect(partyPatternKind("D")).toBe("solid");
+    expect(partyPatternKind("R")).toBe("hatch");
+    expect(partyPatternKind("I")).toBe("dots");
+    expect(partyPatternKind("G")).toBe("crosshatch"); // Other fallback
+    expect(partyPatternKind("X")).toBe("crosshatch");
+  });
+
+  it("derives the CSS overlay class (solid => none)", () => {
+    expect(partyPatternClass("D")).toBe("");
+    expect(partyPatternClass("R")).toBe("pf-hatch");
+    expect(partyPatternClass("I")).toBe("pf-dots");
+    expect(partyPatternClass("X")).toBe("pf-crosshatch");
+  });
+
+  it("derives the SVG fill ref for maps (solid => undefined)", () => {
+    expect(partyPatternFill("D")).toBeUndefined();
+    expect(partyPatternFill("R")).toBe("url(#pf-hatch)");
+    expect(partyPatternFill("I")).toBe("url(#pf-dots)");
+    expect(partyPatternFill("X")).toBe("url(#pf-crosshatch)");
   });
 });

@@ -1,0 +1,24 @@
+---
+// Shared colorblind pattern defs [C5a, Q4.1] for SVG viz (W1 maps). Renders once per page
+// that draws SVG party shapes; reference the marks by id via partyPatternFill(party) ->
+// fill="url(#pf-hatch|pf-dots|pf-crosshatch)". Dem = solid => plain party color (no def).
+//
+// Usage (maps): fill the shape with the party COLOR first, then overlay the SAME shape with
+// the pattern fill so the mark sits on top of the color (patterns are transparent-bg + dark
+// strokes, mirroring the .pf-* CSS overlays). Ids match partyPatternFill() exactly.
+//
+// Pure-CSS viz (PartySwatch/PartyBar) do NOT need this — they use the .pf-* CSS classes.
+---
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <pattern id="pf-hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+      <rect width="2" height="4" fill="rgba(0,0,0,0.5)"></rect>
+    </pattern>
+    <pattern id="pf-dots" patternUnits="userSpaceOnUse" width="4" height="4">
+      <circle cx="2" cy="2" r="1.1" fill="rgba(0,0,0,0.55)"></circle>
+    </pattern>
+    <pattern id="pf-crosshatch" patternUnits="userSpaceOnUse" width="4" height="4">
+      <path d="M0 0 L4 4 M4 0 L0 4" stroke="rgba(0,0,0,0.45)" stroke-width="0.9"></path>
+    </pattern>
+  </defs>
+</svg>

@@ -1,0 +1,69 @@
+---
+import { cn } from "../lib/utils";
+
+// Text-size control [Q4.3]: 3 steps (100 / 112 / 125%) that scale the root rem, persisted to
+// localStorage (btb-text-size). The no-FOUC read runs in the Layout <head>; this component
+// wires the click handlers and reflects the active step. Lives in the header a11y cluster
+// [Q4.4] beside the theme toggle (E0.2). 0 deps, one small bundled script.
+const steps = [
+  { size: "s", label: "Default text size", cls: "text-xs" },
+  { size: "m", label: "Large text size", cls: "text-sm" },
+  { size: "l", label: "Larger text size", cls: "text-base" },
+];
+---
+<div
+  class="flex items-center gap-0.5"
+  role="group"
+  aria-label="Text size"
+  data-text-size-control
+>
+  {steps.map((s) => (
+    <button
+      type="button"
+      data-size={s.size}
+      aria-label={s.label}
+      class={cn(
+        "flex size-7 items-center justify-center rounded font-semibold leading-none text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface-2)] hover:text-[var(--color-brand)] aria-pressed:bg-[var(--color-surface-2)] aria-pressed:text-[var(--color-brand)]",
+        s.cls,
+      )}
+    >A</button>
+  ))}
+</div>
+
+<script>
+  const KEY = "btb-text-size";
+  const root = document.documentElement;
+  const control = document.querySelector<HTMLElement>("[data-text-size-control]");
+
+  if (control) {
+    const buttons = Array.from(control.querySelectorAll<HTMLButtonElement>("button[data-size]"));
+    const current = (): string => root.getAttribute("data-text-size") ?? "s";
+    const sync = (): void => {
+      const active = current();
+      for (const b of buttons) {
+        b.setAttribute("aria-pressed", String(b.dataset.size === active));
+      }
+    };
+
+    for (const b of buttons) {
+      b.addEventListener("click", () => {
+        const size = b.dataset.size;
+        if (!size) return;
+        if (size === "s") {
+          root.removeAttribute("data-text-size");
+        } else {
+          root.setAttribute("data-text-size", size);
+        }
+        try {
+          if (size === "s") localStorage.removeItem(KEY);
+          else localStorage.setItem(KEY, size);
+        } catch {
+          /* private mode / storage blocked — control still works for the session */
+        }
+        sync();
+      });
+    }
+
+    sync();
+  }
+</script>
