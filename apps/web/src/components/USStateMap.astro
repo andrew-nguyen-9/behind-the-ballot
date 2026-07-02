@@ -29,8 +29,8 @@ const codes = Object.keys(paths).sort();
   {codes.map((code) => {
     const f = fills[code];
     const d = paths[code];
-    return (
-      <g>
+    const shapes = (
+      <>
         <path
           d={d}
           fill={f?.fill ?? emptyFill}
@@ -41,7 +41,9 @@ const codes = Object.keys(paths).sort();
           <title>{f?.title ?? code}</title>
         </path>
         {f?.overlay && <path d={d} fill={f.overlay} stroke="none" aria-hidden="true" />}
-      </g>
+      </>
     );
+    // A linked state (E2.3) wraps its shape in an SVG <a>; unlinked states (Senate) stay a <g>.
+    return f?.href ? <a href={f.href} aria-label={f.title}>{shapes}</a> : <g>{shapes}</g>;
   })}
 </svg>
