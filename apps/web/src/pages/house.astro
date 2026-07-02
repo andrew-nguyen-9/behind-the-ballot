@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import USStateMap from "../components/USStateMap.astro";
+import PartyPatternDefs from "../components/PartyPatternDefs.astro";
+import DataTable from "../components/DataTable.astro";
+import { houseByState, houseStateFills, leanFill } from "../lib/houseMap";
+import { ringsToSvg } from "../lib/geo";
+import { MAP_COLORS } from "../lib/usStates";
+
+// House-by-state district map [E2.3] — competitive 2026 U.S. House races grouped by state, each
+// district drawn from its TIGER congressional-district boundary (baked into src/data/districts/
+// by scripts/gen-districts.mjs) and linked to its race. Districts are coloured by FORECAST lean
+// (E2.2), not by the competitiveness rating. Static, 0-JS: the national <USStateMap> overview is
+// clickable through to each state's section, and every per-state map is a text-equivalent table.
+const groups = houseByState();
+const fills = houseStateFills(groups);
+const nDistricts = groups.reduce((n, g) => n + g.districts.length, 0);
+
+// Per-state district maps: shared-bounds projection so districts keep their relative position.
+const stateMaps = groups.map((g) => {
+  const entries = g.districts
+    .filter((d) => d.shape)
+    .map((d) => ({ key: d.id, ring: d.shape!.ring }));
+  const svg = entries.length ? ringsToSvg(entries) : null;
+  const byId = new Map(g.districts.map((d) => [d.id, d]));
+  return { group: g, svg, byId };
+});
+
+// Legend swatches reuse E0.4's .pf-* CSS overlays so the key matches the map in grayscale.
+const legend = [
+  { label: "Leans Democratic", bg: MAP_COLORS.D, pf: "" },
+  { label: "Leans Republican", bg: MAP_COLORS.R, pf: "pf-hatch" },
+  { label: "Even / no forecast", bg: "var(--color-surface-2)", pf: "" },
+];
+---
+
+<Layout
+  title="House district map"
+  description="A map of the competitive 2026 U.S. House races, grouped by state and drawn from each congressional district's boundary, coloured by forecast lean."
+>
+  <h1 class="text-3xl font-bold">House district map</h1>
+  <p class="mt-2 text-muted">
+    The {nDistricts} competitive 2026 U.S. House races, grouped by state. Each district is drawn from
+    its congressional-district boundary and coloured by the forecast lean — the direction the model
+    favours, not how competitive the seat is. Select a state to jump to its districts; select a
+    district to open its race.
+  </p>
+
+  <section class="mt-8" aria-labelledby="overview">
+    <SectionHeader
+      title="States with competitive races"
+      id="overview"
+      source="Coloured by the majority lean of each state's competitive districts."
+    />
+    <PartyPatternDefs />
+    <USStateMap
+      class="mt-3"
+      label="U.S. states with competitive 2026 House races"
+      fills={fills}
+    />
+    <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm" role="list">
+      {legend.map((l) => (
+        <li class="flex items-center gap-2">
+          <span
+            class={`inline-block size-4 rounded-sm border border-[var(--color-border)] ${l.pf}`}
+            style={`background-color:${l.bg}`}
+            aria-hidden="true"
+          ></span>
+          <span>{l.label}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {stateMaps.map(({ group, svg, byId }) => (
+    <section class="mt-12" aria-labelledby={`state-${group.state}`}>
+      <SectionHeader
+        title={`${group.name} (${group.districts.length})`}
+        id={`state-${group.state}`}
+      />
+      <div id={group.state} class="mt-4 grid gap-6 sm:grid-cols-[minmax(0,20rem)_1fr] sm:items-start">
+        {svg && (
+          <svg
+            viewBox={svg.viewBox}
+            class="h-auto w-full max-w-[20rem]"
+            role="img"
+            aria-label={`${group.name} competitive congressional districts`}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>{`${group.name} competitive congressional districts`}</title>
+            {svg.paths.map((p) => {
+              const d = byId.get(p.key)!;
+              const { fill, overlay } = leanFill(d.lean);
+              const desc = `${d.seat} — forecast ${d.marginText}`;
+              return (
+                <a href={`/races/${d.id}`} aria-label={`${desc}, open race`}>
+                  <path
+                    d={p.d}
+                    fill={fill}
+                    stroke="var(--color-surface)"
+                    stroke-width="1"
+                    stroke-linejoin="round"
+                  >
+                    <title>{desc}</title>
+                  </path>
+                  {overlay && <path d={p.d} fill={overlay} stroke="none" aria-hidden="true" />}
+                </a>
+              );
+            })}
+          </svg>
+        )}
+        <DataTable
+          caption={`${group.name} competitive House districts by forecast lean.`}
+          columns={[
+            { key: "seat", label: "District" },
+            { key: "favored", label: "Favored" },
+            { key: "margin", label: "Forecast margin", align: "right" },
+          ]}
+          rows={group.districts.map((d) => ({
+            seat: d.seat,
+            favored: d.lean === "D" ? "Democratic" : d.lean === "R" ? "Republican" : "Even",
+            margin: d.marginText,
+          }))}
+        />
+      </div>
+    </section>
+  ))}
+</Layout>

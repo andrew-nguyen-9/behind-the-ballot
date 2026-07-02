@@ -45,3 +45,43 @@ export function ringToSvg(
       .join(" ") + " Z";
   return { d, viewBox: `0 0 ${size} ${size}` };
 }
+
+/** Project several lon/lat rings into one shared SVG space [E2.3] — the per-state district map.
+ * Same equirectangular fit-to-bounds as `ringToSvg`, but the bounds span ALL rings so districts
+ * keep their true relative position and size. viewBox is true-aspect (longest side => `size`).
+ * Returns a path `d` per keyed ring, in input order. Rings with < 3 points are skipped. */
+export function ringsToSvg(
+  entries: { key: string; ring: [number, number][] }[],
+  size = 320,
+  pad = 8,
+): { viewBox: string; paths: { key: string; d: string }[] } {
+  const usable = entries.filter((e) => e.ring.length >= 3);
+  if (usable.length === 0) throw new Error("ringsToSvg needs at least one ring of >= 3 points");
+  const pts = usable.flatMap((e) => e.ring);
+  const lons = pts.map((p) => p[0]);
+  const lats = pts.map((p) => p[1]);
+  const minLon = Math.min(...lons);
+  const maxLon = Math.max(...lons);
+  const minLat = Math.min(...lats);
+  const maxLat = Math.max(...lats);
+  const w = maxLon - minLon || 1;
+  const h = maxLat - minLat || 1;
+  const scale = (size - 2 * pad) / Math.max(w, h);
+  const vbW = w * scale + 2 * pad;
+  const vbH = h * scale + 2 * pad;
+  const project = ([lon, lat]: [number, number]): [number, number] => [
+    pad + (lon - minLon) * scale,
+    pad + (maxLat - lat) * scale, // flip y
+  ];
+  const paths = usable.map((e) => ({
+    key: e.key,
+    d:
+      e.ring
+        .map((p, i) => {
+          const [x, y] = project(p);
+          return `${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+        })
+        .join(" ") + " Z",
+  }));
+  return { viewBox: `0 0 ${vbW.toFixed(1)} ${vbH.toFixed(1)}`, paths };
+}
