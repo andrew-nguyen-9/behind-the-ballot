@@ -169,3 +169,17 @@ html[data-theme="dark"] .theme-icon-sun { display: inline; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Pagefind search UI [E0.3] — map the library's theming vars onto our design tokens so the
+   /search page and the header overlay island read as one system (and follow dark mode, since
+   the tokens do). Applied wherever the Pagefind bundle mounts. */
+:root {
+  --pagefind-ui-primary: var(--color-brand);
+  --pagefind-ui-text: var(--color-text);
+  --pagefind-ui-background: var(--color-surface);
+  --pagefind-ui-border: var(--color-border);
+  --pagefind-ui-tag: var(--color-surface-2);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: var(--radius-md);
+  --pagefind-ui-font: var(--font-sans);
+}
