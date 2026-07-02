@@ -48,6 +48,7 @@ export const footerColumns: readonly FooterColumn[] = [
     title: "Understand",
     links: [
       { href: "/sources", label: "Sources" },
+      { href: "/demographics", label: "Demographics" },
       { href: "/forecast", label: "Methodology" },
       { href: "/articles", label: "Articles" },
     ],

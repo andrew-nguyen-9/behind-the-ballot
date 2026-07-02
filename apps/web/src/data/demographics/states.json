@@ -1,0 +1,318 @@
+{
+  "acs_release": "2022 ACS 5-year",
+  "geometry_as_of": "2022-01-01",
+  "rows": [
+    {
+      "state": "01",
+      "area": "Alabama",
+      "population": 5028092,
+      "median_income": 60180
+    },
+    {
+      "state": "02",
+      "area": "Alaska",
+      "population": 734821,
+      "median_income": 86370
+    },
+    {
+      "state": "04",
+      "area": "Arizona",
+      "population": 7172282,
+      "median_income": 73512
+    },
+    {
+      "state": "05",
+      "area": "Arkansas",
+      "population": 3018669,
+      "median_income": 56719
+    },
+    {
+      "state": "06",
+      "area": "California",
+      "population": 39356104,
+      "median_income": 95108
+    },
+    {
+      "state": "08",
+      "area": "Colorado",
+      "population": 5770790,
+      "median_income": 88696
+    },
+    {
+      "state": "09",
+      "area": "Connecticut",
+      "population": 3611317,
+      "median_income": 91326
+    },
+    {
+      "state": "10",
+      "area": "Delaware",
+      "population": 993635,
+      "median_income": 79325
+    },
+    {
+      "state": "11",
+      "area": "District of Columbia",
+      "population": 670587,
+      "median_income": 101722
+    },
+    {
+      "state": "12",
+      "area": "Florida",
+      "population": 21634529,
+      "median_income": 68272
+    },
+    {
+      "state": "13",
+      "area": "Georgia",
+      "population": 10722325,
+      "median_income": 73020
+    },
+    {
+      "state": "15",
+      "area": "Hawaii",
+      "population": 1450589,
+      "median_income": 94579
+    },
+    {
+      "state": "16",
+      "area": "Idaho",
+      "population": 1854109,
+      "median_income": 70204
+    },
+    {
+      "state": "17",
+      "area": "Illinois",
+      "population": 12757634,
+      "median_income": 80331
+    },
+    {
+      "state": "18",
+      "area": "Indiana",
+      "population": 6784403,
+      "median_income": 67417
+    },
+    {
+      "state": "19",
+      "area": "Iowa",
+      "population": 3188836,
+      "median_income": 70763
+    },
+    {
+      "state": "20",
+      "area": "Kansas",
+      "population": 2935922,
+      "median_income": 71204
+    },
+    {
+      "state": "21",
+      "area": "Kentucky",
+      "population": 4502935,
+      "median_income": 60858
+    },
+    {
+      "state": "22",
+      "area": "Louisiana",
+      "population": 4640546,
+      "median_income": 58491
+    },
+    {
+      "state": "23",
+      "area": "Maine",
+      "population": 1366949,
+      "median_income": 69469
+    },
+    {
+      "state": "24",
+      "area": "Maryland",
+      "population": 6161707,
+      "median_income": 101236
+    },
+    {
+      "state": "25",
+      "area": "Massachusetts",
+      "population": 6984205,
+      "median_income": 97862
+    },
+    {
+      "state": "26",
+      "area": "Michigan",
+      "population": 10057921,
+      "median_income": 69512
+    },
+    {
+      "state": "27",
+      "area": "Minnesota",
+      "population": 5695292,
+      "median_income": 85917
+    },
+    {
+      "state": "28",
+      "area": "Mississippi",
+      "population": 2958846,
+      "median_income": 53318
+    },
+    {
+      "state": "29",
+      "area": "Missouri",
+      "population": 6154422,
+      "median_income": 67308
+    },
+    {
+      "state": "30",
+      "area": "Montana",
+      "population": 1091840,
+      "median_income": 66327
+    },
+    {
+      "state": "31",
+      "area": "Nebraska",
+      "population": 1958939,
+      "median_income": 72330
+    },
+    {
+      "state": "32",
+      "area": "Nevada",
+      "population": 3104817,
+      "median_income": 71882
+    },
+    {
+      "state": "33",
+      "area": "New Hampshire",
+      "population": 1379610,
+      "median_income": 90845
+    },
+    {
+      "state": "34",
+      "area": "New Jersey",
+      "population": 9249063,
+      "median_income": 98886
+    },
+    {
+      "state": "35",
+      "area": "New Mexico",
+      "population": 2112463,
+      "median_income": 58666
+    },
+    {
+      "state": "36",
+      "area": "New York",
+      "population": 19994379,
+      "median_income": 86492
+    },
+    {
+      "state": "37",
+      "area": "North Carolina",
+      "population": 10470214,
+      "median_income": 67344
+    },
+    {
+      "state": "38",
+      "area": "North Dakota",
+      "population": 776874,
+      "median_income": 73959
+    },
+    {
+      "state": "39",
+      "area": "Ohio",
+      "population": 11774683,
+      "median_income": 67478
+    },
+    {
+      "state": "40",
+      "area": "Oklahoma",
+      "population": 3970497,
+      "median_income": 61830
+    },
+    {
+      "state": "41",
+      "area": "Oregon",
+      "population": 4229374,
+      "median_income": 77496
+    },
+    {
+      "state": "42",
+      "area": "Pennsylvania",
+      "population": 12989208,
+      "median_income": 75094
+    },
+    {
+      "state": "44",
+      "area": "Rhode Island",
+      "population": 1094250,
+      "median_income": 81185
+    },
+    {
+      "state": "45",
+      "area": "South Carolina",
+      "population": 5142750,
+      "median_income": 64304
+    },
+    {
+      "state": "46",
+      "area": "South Dakota",
+      "population": 890342,
+      "median_income": 69457
+    },
+    {
+      "state": "47",
+      "area": "Tennessee",
+      "population": 6923772,
+      "median_income": 64838
+    },
+    {
+      "state": "48",
+      "area": "Texas",
+      "population": 29243342,
+      "median_income": 74799
+    },
+    {
+      "state": "49",
+      "area": "Utah",
+      "population": 3283809,
+      "median_income": 86943
+    },
+    {
+      "state": "50",
+      "area": "Vermont",
+      "population": 643816,
+      "median_income": 74014
+    },
+    {
+      "state": "51",
+      "area": "Virginia",
+      "population": 8624511,
+      "median_income": 94672
+    },
+    {
+      "state": "53",
+      "area": "Washington",
+      "population": 7688549,
+      "median_income": 92694
+    },
+    {
+      "state": "54",
+      "area": "West Virginia",
+      "population": 1792967,
+      "median_income": 55242
+    },
+    {
+      "state": "55",
+      "area": "Wisconsin",
+      "population": 5882128,
+      "median_income": 73012
+    },
+    {
+      "state": "56",
+      "area": "Wyoming",
+      "population": 577929,
+      "median_income": 72495
+    },
+    {
+      "state": "72",
+      "area": "72",
+      "population": 3272382,
+      "median_income": 24002
+    }
+  ]
+}

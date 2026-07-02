@@ -22,7 +22,11 @@ import btb_pipeline.montecarlo as montecarlo
 import btb_pipeline.race_model as race_model
 from btb_pipeline.baseline import cook_pvi
 from btb_pipeline.core import DATA_ROOT, stage_dir
-from btb_pipeline.demographics import rollup_by_state
+from btb_pipeline.demographics import (
+    build_district_changes,
+    build_state_changes,
+    rollup_by_state,
+)
 from btb_pipeline.finance_aggregates import build_finance
 
 WEB_DATA = Path("apps/web/src/data")
@@ -53,6 +57,21 @@ STATES: dict[str, tuple[str, str]] = {
 
 ACS_RELEASE = "2022 ACS 5-year"   # connector bakes ACS5 year=2022
 ACS_GEOMETRY = "2022-01-01"       # 118th-Congress district boundaries [L547]
+
+# Demographic change-over-time endpoints [E2.4, Q7.5 = 2 endpoints]. States are boundary-stable
+# so a longer 2018->latest horizon is valid; CDs must stay on ONE boundary regime, and the first
+# ACS 5-year on 118th-Congress maps is 2022 — so a valid CD diff is 2022->latest [L547].
+CHANGE_STATE_EARLY = 2018
+CHANGE_CD_EARLY = 2022
+CHANGE_REDISTRICTING_YEAR = 2022  # first ACS on post-2020 district maps
+
+
+def _acs_release(year: int) -> str:
+    return f"{year} ACS 5-year"
+
+
+def _state_names_by_fips() -> dict[str, str]:
+    return {fips: name for fips, name in STATES.values()}
 
 
 def _race_configs(races_dir: Path = RACES_DIR) -> list[dict]:
@@ -133,6 +152,78 @@ def export_demographics(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> li
             "urbanization": None, "acs_release": ACS_RELEASE, "geometry_as_of": ACS_GEOMETRY,
         }))
     return written
+
+
+def export_demographics_tables(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/census_acs → demographics/{states,districts}.json — the full per-state + per-CD ACS
+    snapshot the /demographics page renders (ALL states/CDs, not just race geographies) [E2.4,I7a].
+
+    Uses the latest baked ACS year (or untagged single-year gold). Real figures only; no gold →
+    the domain is skipped and the committed sample stays."""
+    acs = _gold("census_acs", root)
+    if acs is None:
+        return []
+    years = sorted({r["year"] for r in acs if r.get("year") is not None})
+    latest = years[-1] if years else None
+    rows = [r for r in acs if latest is None or r.get("year") == latest]
+    names = _state_names_by_fips()
+    states = [
+        {"state": s["state"], "area": names.get(s["state"], s["state"]),
+         "population": s["population"], "median_income": s["median_income"]}
+        for s in rollup_by_state(rows)
+    ]
+    districts = sorted(
+        ({"geoid": r["geoid"], "state": r.get("state"), "district": r.get("district"),
+          "area": f"{names.get(r.get('state'), r.get('state'))}-{r.get('district')}",
+          "name": r.get("name"), "population": r.get("population"),
+          "median_income": r.get("median_income")} for r in rows),
+        key=lambda r: r["geoid"],
+    )
+    release = _acs_release(latest) if latest is not None else ACS_RELEASE
+    meta = {"acs_release": release, "geometry_as_of": ACS_GEOMETRY}
+    return [
+        _write(web_data / "demographics" / "states.json", {**meta, "rows": states}),
+        _write(web_data / "demographics" / "districts.json", {**meta, "rows": districts}),
+    ]
+
+
+def export_demographic_changes(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/census_acs (multi-year) → demographics-change/{states,districts,meta}.json [E2.4,Q7.5].
+
+    Needs ≥2 ACS end-years in gold (bake via `acs.run_years`). With <2 the domain is skipped and
+    the /demographics change section shows an honest empty state — never placeholder numbers. States
+    diff 2018->latest (boundary-stable); CDs diff 2022->latest (same 118th-Congress maps) [L547]."""
+    acs = _gold("census_acs", root)
+    if acs is None:
+        return []
+    years = sorted({r["year"] for r in acs if r.get("year") is not None})
+    if len(years) < 2:
+        return []
+    late = years[-1]
+    state_early = CHANGE_STATE_EARLY if CHANGE_STATE_EARLY in years else years[0]
+    cd_early = CHANGE_CD_EARLY if CHANGE_CD_EARLY in years and CHANGE_CD_EARLY < late else years[-2]
+    names = _state_names_by_fips()
+    states = build_state_changes(acs, state_early, late)
+    for s in states:
+        s["area"] = names.get(s["state"], s["state"])
+    districts = build_district_changes(acs, cd_early, late)
+    for d in districts:
+        d["area"] = f"{names.get(d.get('state'), d.get('state'))}-{d.get('district')}"
+    meta = {
+        "state_early_year": state_early, "state_late_year": late,
+        "cd_early_year": cd_early, "cd_late_year": late,
+        "acs_release_state_early": _acs_release(state_early),
+        "acs_release_cd_early": _acs_release(cd_early),
+        "acs_release_late": _acs_release(late),
+        # True when the state horizon straddles the 2020 redistricting — surface the caveat in UI.
+        "state_crosses_redistricting": state_early < CHANGE_REDISTRICTING_YEAR <= late,
+        "geometry_as_of": ACS_GEOMETRY,
+    }
+    return [
+        _write(web_data / "demographics-change" / "states.json", states),
+        _write(web_data / "demographics-change" / "districts.json", districts),
+        _write(web_data / "demographics-change" / "meta.json", meta),
+    ]
 
 
 def export_finance(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
@@ -226,6 +317,8 @@ def export_forecast(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[P
 EXPORTERS = {
     "members": export_members,
     "demographics": export_demographics,
+    "demographics_tables": export_demographics_tables,
+    "demographic_changes": export_demographic_changes,
     "finance": export_finance,
     "districts": export_districts,
     "forecast": export_forecast,
