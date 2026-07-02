@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 import { allRaces } from "../lib/races";
 import { allChamberForecasts } from "../lib/forecast";
 
@@ -41,13 +42,9 @@ const sections = [
 
   <section class="mt-6 grid gap-4 sm:grid-cols-2" aria-label="Explore">
     {sections.map((s) => (
-      <a
-        href={s.href}
-        class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-colors hover:border-[var(--color-brand)]"
-      >
-        <h2 class="font-serif text-xl">{s.title}</h2>
+      <Card href={s.href} title={s.title}>
         <p class="mt-1 text-sm text-[var(--color-muted)]">{s.body}</p>
-      </a>
+      </Card>
     ))}
   </section>
 </Layout>

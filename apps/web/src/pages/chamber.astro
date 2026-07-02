@@ -1,7 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PartyBar from "../components/PartyBar.astro";
+import PartyLegend from "../components/PartyLegend.astro";
+import Chip from "../components/Chip.astro";
 import { chamberComposition, CLASS_II_2026_STATES } from "../lib/members";
-import { partyColorClass, partyLabel } from "../lib/races";
+import { partyLabel } from "../lib/races";
 
 const composition = chamberComposition();
 const class2 = [...CLASS_II_2026_STATES].sort();
@@ -19,39 +23,36 @@ const class2 = [...CLASS_II_2026_STATES].sort();
 
   {composition.map((c) => (
     <section class="mt-8" aria-labelledby={c.chamber}>
-      <h2 id={c.chamber} class="font-serif text-xl">{c.label}</h2>
-      <p class="mt-1 text-sm text-muted">{c.total} seat{c.total === 1 ? "" : "s"} tracked</p>
+      <SectionHeader title={c.label} id={c.chamber} source={`${c.total} seat${c.total === 1 ? "" : "s"} tracked`} />
       {c.total > 0 && (
         <>
-          <div class="mt-3 flex h-4 w-full overflow-hidden rounded-sm" role="img"
-            aria-label={c.byParty.map((p) => `${p.count} ${partyLabel(p.party)}`).join(", ")}>
-            {c.byParty.map((p) => (
-              <span class={partyColorClass(p.party)} style={`width:${(p.count / c.total) * 100}%`}></span>
-            ))}
-          </div>
-          <ul class="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm" role="list">
-            {c.byParty.map((p) => (
-              <li class="flex items-center gap-2">
-                <span class={`inline-block size-3 rounded-sm ${partyColorClass(p.party)}`} aria-hidden="true"></span>
-                <span class="font-medium">{partyLabel(p.party)}</span>
-                <span class="text-muted">{p.count}</span>
-              </li>
-            ))}
-          </ul>
+          <PartyBar
+            class="mt-3"
+            max={c.total}
+            segments={c.byParty.map((p) => ({
+              party: p.party,
+              value: p.count,
+              label: `${p.count} ${partyLabel(p.party)}`,
+            }))}
+          />
+          <PartyLegend
+            class="mt-3"
+            items={c.byParty.map((p) => ({ party: p.party, label: partyLabel(p.party), count: p.count }))}
+          />
         </>
       )}
     </section>
   ))}
 
   <section class="mt-10" aria-labelledby="class2">
-    <h2 id="class2" class="font-serif text-xl">Senate seats up in 2026 (Class II)</h2>
-    <p class="mt-1 text-sm text-muted">
-      Senate seats are elected for six-year terms staggered into three classes. The 33 Class II
-      seats below are on the ballot in 2026.
-    </p>
+    <SectionHeader
+      title="Senate seats up in 2026 (Class II)"
+      id="class2"
+      source="Senate seats are elected for six-year terms staggered into three classes. The 33 Class II seats below are on the ballot in 2026."
+    />
     <ul class="mt-3 flex flex-wrap gap-2" role="list">
       {class2.map((st) => (
-        <li class="rounded-sm border border-[var(--color-border)] px-2 py-1 text-sm font-medium">{st}</li>
+        <li><Chip label={st} /></li>
       ))}
     </ul>
   </section>

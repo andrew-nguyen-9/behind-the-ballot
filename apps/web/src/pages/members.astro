@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ListRow from "../components/ListRow.astro";
 import { allMembers } from "../lib/members";
-import { partyColorClass, partyLabel } from "../lib/races";
+import { partyLabel } from "../lib/races";
 
 const members = allMembers();
 const chambers: { key: "sen" | "rep"; label: string }[] = [
@@ -21,16 +23,15 @@ const seat = (m: (typeof members)[number]) =>
     if (group.length === 0) return null;
     return (
       <section class="mt-8" aria-labelledby={key}>
-        <h2 id={key} class="font-serif text-xl">{label}</h2>
+        <SectionHeader title={label} id={key} />
         <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
           {group.map((m) => (
-            <li>
-              <a href={`/members/${m.bioguide_id}`} class="flex items-center gap-3 py-3 hover:text-[var(--color-accent)]">
-                <span class={`inline-block size-3 rounded-sm ${partyColorClass(m.party)}`} aria-hidden="true"></span>
-                <span class="flex-1 font-medium">{m.name}</span>
-                <span class="text-sm text-muted">{partyLabel(m.party)} · {seat(m)}</span>
-              </a>
-            </li>
+            <ListRow
+              href={`/members/${m.bioguide_id}`}
+              party={m.party}
+              title={m.name}
+              meta={`${partyLabel(m.party)} · ${seat(m)}`}
+            />
           ))}
         </ul>
       </section>

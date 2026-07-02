@@ -1,5 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import StatBlock from "../components/StatBlock.astro";
+import EmptyState from "../components/EmptyState.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import { allChamberForecasts } from "../lib/forecast";
 
 // Chamber forecast [N5a]: Monte Carlo seat distribution + control probability. Derived
@@ -23,33 +27,29 @@ const pct = (p: number) => `${Math.round(p * 100)}%`;
   </p>
 
   {chambers.length === 0 ? (
-    <div class="mt-8 rounded-lg border border-[var(--color-border)] p-5">
-      <p class="text-muted">
-        The forecast is not yet published. The engine is built and backtested, but a forecast
-        is only shown once its inputs trace to a public source — the partisan-lean baseline
-        (prior-election results) is still being sourced. We don't publish placeholder numbers.
-        See the <a href="/sources" class="underline">sources</a> we use.
+    <EmptyState class="mt-8" title="The forecast is not yet published">
+      <p class="mt-1 text-muted">
+        The engine is built and backtested, but a forecast is only shown once its inputs trace
+        to a public source — the partisan-lean baseline (prior-election results) is still being
+        sourced. We don't publish placeholder numbers. See the
+        <a href="/sources" class="underline">sources</a> we use.
       </p>
-    </div>
+    </EmptyState>
   ) : (
     chambers.map((c) => (
-      <section class="mt-8 rounded-lg border border-[var(--color-border)] p-5" aria-labelledby={c.chamber}>
-        <h2 id={c.chamber} class="font-serif text-xl">{c.chamber}</h2>
-        <p class="mt-1 text-sm text-muted">As of {c.as_of} · {c.n_sims.toLocaleString()} simulations</p>
-        <div class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
-          <div>
-            <div class="text-3xl font-bold tabular-nums">{pct(c.dem_control_prob)}</div>
-            <div class="text-sm text-muted">Democratic control probability</div>
+      <section class="mt-8" aria-labelledby={c.chamber}>
+        <Card>
+          <SectionHeader
+            title={c.chamber}
+            id={c.chamber}
+            source={`As of ${c.as_of} · ${c.n_sims.toLocaleString()} simulations`}
+          />
+          <div class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
+            <StatBlock size="lg" value={pct(c.dem_control_prob)} label="Democratic control probability" />
+            <StatBlock size="lg" value={c.expected_dem_seats.toFixed(1)} label={`expected Dem seats (need ${c.majority})`} />
+            <StatBlock size="lg" value={`${c.dem_seat_p10}–${c.dem_seat_p90}`} label={`80% range (median ${c.dem_seat_p50})`} />
           </div>
-          <div>
-            <div class="text-3xl font-bold tabular-nums">{c.expected_dem_seats.toFixed(1)}</div>
-            <div class="text-sm text-muted">expected Dem seats (need {c.majority})</div>
-          </div>
-          <div>
-            <div class="text-3xl font-bold tabular-nums">{c.dem_seat_p10}–{c.dem_seat_p90}</div>
-            <div class="text-sm text-muted">80% range (median {c.dem_seat_p50})</div>
-          </div>
-        </div>
+        </Card>
       </section>
     ))
   )}

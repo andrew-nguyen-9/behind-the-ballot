@@ -1,7 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import StatBlock from "../../components/StatBlock.astro";
+import ListRow from "../../components/ListRow.astro";
+import PartySwatch from "../../components/PartySwatch.astro";
 import { allMembers, chamberLabel, ideologyLabel, type Member } from "../../lib/members";
-import { allRaces, partyColorClass, partyLabel } from "../../lib/races";
+import { allRaces, partyLabel } from "../../lib/races";
 
 export function getStaticPaths() {
   return allMembers().map((m) => ({ params: { id: m.bioguide_id }, props: { member: m } }));
@@ -33,37 +37,32 @@ const personSchema = {
 >
   <nav class="text-sm text-muted"><a href="/members" class="hover:underline">Members</a> / {member.state}</nav>
   <div class="mt-2 flex items-center gap-3">
-    <span class={`inline-block size-5 rounded-sm ${partyColorClass(member.party)}`} aria-hidden="true"></span>
+    <PartySwatch party={member.party} size="lg" />
     <h1 class="text-3xl font-bold">{member.name}</h1>
   </div>
   <p class="mt-1 text-muted">{partyLabel(member.party)} · {chamberLabel(member.chamber)} · {seat}</p>
 
   <section class="mt-8" aria-labelledby="ideology">
-    <h2 id="ideology" class="font-serif text-xl">Ideology</h2>
-    <p class="mt-1 text-sm text-muted">
-      DW-NOMINATE (1st dimension). Source: <a href="/sources" class="underline">Voteview</a>.
-    </p>
+    <SectionHeader title="Ideology" id="ideology">
+      <Fragment slot="source">
+        DW-NOMINATE (1st dimension). Source: <a href="/sources" class="underline">Voteview</a>.
+      </Fragment>
+    </SectionHeader>
     {member.nominate_dim1 === null ? (
       <p class="mt-2 text-muted">Not yet scored.</p>
     ) : (
-      <p class="mt-2">
-        <span class="text-2xl font-bold tabular-nums">{member.nominate_dim1.toFixed(2)}</span>
-        <span class="ml-2 text-muted">{ideologyLabel(member.nominate_dim1)}</span>
-      </p>
+      <StatBlock class="mt-2" value={member.nominate_dim1.toFixed(2)} label={ideologyLabel(member.nominate_dim1)} />
     )}
   </section>
 
   {stateRaces.length > 0 && (
     <section class="mt-8" aria-labelledby="races">
-      <h2 id="races" class="font-serif text-xl">2026 races in {member.state}</h2>
+      <SectionHeader title={`2026 races in ${member.state}`} id="races" />
       <ul class="mt-3 divide-y divide-[var(--color-border)]" role="list">
         {stateRaces.map((r) => (
-          <li>
-            <a href={`/races/${r.id}`} class="flex items-center justify-between py-3 hover:text-[var(--color-accent)]">
-              <span class="font-medium">{r.title}</span>
-              <span class="text-sm text-muted">View race →</span>
-            </a>
-          </li>
+          <ListRow href={`/races/${r.id}`} title={r.title}>
+            <span slot="trailing" class="text-sm text-muted">View race →</span>
+          </ListRow>
         ))}
       </ul>
     </section>
