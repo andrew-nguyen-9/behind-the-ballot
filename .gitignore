@@ -23,6 +23,9 @@ __pycache__/
 # os
 .DS_Store
 
+# scratch / working notes (never commit)
+scratchpad_*.txt
+
 # local tooling state (not shared)
 .claude/ralph-loop.local.md
 .serena/

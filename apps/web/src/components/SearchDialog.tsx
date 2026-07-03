@@ -89,6 +89,7 @@ export default function SearchDialog() {
       <button
         type="button"
         onClick={() => setOpen(true)}
+        aria-label="Search"
         aria-haspopup="dialog"
         aria-keyshortcuts="Meta+K Control+K"
         className="inline-flex items-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-1.5 text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-brand)]"
@@ -107,7 +108,7 @@ export default function SearchDialog() {
           <circle cx="11" cy="11" r="7" />
           <path d="m21 21-4.3-4.3" />
         </svg>
-        <span>Search</span>
+        <span className="hidden sm:inline">Search</span>
         <kbd className="eyebrow ml-1 hidden rounded-sm border border-[var(--color-border)] px-1.5 py-0.5 text-[0.65rem] text-[var(--color-subtle)] sm:inline">
           ⌘K
         </kbd>

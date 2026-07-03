@@ -138,12 +138,14 @@ def test_export_results_skips_when_no_gold_or_empty(tmp_path):
     assert ew.export_results(root=tmp_path, web_data=tmp_path / "web") == []
 
 
-def _house(state, district, dem, rep):
+def _house(state, district, dem, rep, is_certified=True):
     return [
         {"race_id": f"us-house-2026-{state}-{district:02d}", "state": state, "office": "house",
-         "district": district, "election_type": "general", "party": "D", "votes": dem},
+         "district": district, "election_type": "general", "party": "D", "votes": dem,
+         "is_certified": is_certified},
         {"race_id": f"us-house-2026-{state}-{district:02d}", "state": state, "office": "house",
-         "district": district, "election_type": "general", "party": "R", "votes": rep},
+         "district": district, "election_type": "general", "party": "R", "votes": rep,
+         "is_certified": is_certified},
     ]
 
 
@@ -185,6 +187,21 @@ def test_export_fairness_computes_for_a_complete_multi_district_state(tmp_path):
     assert set(rows[0]) == {"state", "efficiency_gap", "mean_median", "dem_seat_share", "dem_vote_share"}
     assert rows[0]["dem_seat_share"] == round(1 / 3, 4)
     assert -1.0 <= rows[0]["efficiency_gap"] <= 1.0
+
+
+def test_export_fairness_skips_provisional_uncertified_results(tmp_path):
+    # A complete, fully-reported state whose results are still provisional (is_certified=False)
+    # must stay honest-empty — no efficiency gap is published until results are certified [E4.2 QA].
+    _write_gold(tmp_path, "tiger", [
+        {"state": "AA", "district": 1, "geoid": "AA01"},
+        {"state": "AA", "district": 2, "geoid": "AA02"},
+        {"state": "AA", "district": 3, "geoid": "AA03"},
+    ])
+    _write_gold(tmp_path, "primary_results",
+                _house("AA", 1, 80, 20, is_certified=False)
+                + _house("AA", 2, 30, 70, is_certified=False)
+                + _house("AA", 3, 35, 65, is_certified=False))
+    assert ew.export_fairness(root=tmp_path, web_data=tmp_path / "web") == []
 
 
 def test_export_demographics_tables_snapshot(tmp_path):

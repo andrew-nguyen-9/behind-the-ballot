@@ -74,7 +74,7 @@ const stChangeRows = stChanges.map((r: ChangeRow) => ({
   area: r.area ?? r.state,
   pop: fmtDelta(r.population_delta),
   popPct: fmtPct(r.population_pct),
-  inc: r.median_income_delta == null ? "—" : `${r.median_income_delta > 0 ? "+" : "-"}${fmtIncome(Math.abs(r.median_income_delta)).slice(1)}`,
+  inc: r.median_income_delta == null ? "—" : `${r.median_income_delta > 0 ? "+" : r.median_income_delta < 0 ? "-" : ""}${fmtIncome(Math.abs(r.median_income_delta))}`,
   incPct: fmtPct(r.median_income_pct),
 }));
 ---

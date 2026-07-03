@@ -481,7 +481,9 @@ def export_fairness(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[P
     # Two-party House general-election votes tallied per (state, district).
     tally: dict[tuple[str, int], dict[str, int]] = {}
     for r in rows:
-        if r.get("office") != "house" or r.get("election_type") != "general":
+        # Only certified general results feed the fairness metrics — provisional (uncertified)
+        # counts must never publish an efficiency gap / mean-median figure [E4.2 QA].
+        if r.get("office") != "house" or r.get("election_type") != "general" or not r.get("is_certified"):
             continue
         district, party = r.get("district"), r.get("party")
         if district is None or party not in ("D", "R"):

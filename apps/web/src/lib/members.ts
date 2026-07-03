@@ -49,10 +49,19 @@ export interface Composition {
 // D first, R second, everything else after (alphabetical). Missing → after, not before.
 const rank = (party: string) => (party === "D" ? 0 : party === "R" ? 1 : 2);
 
+// The U.S. House has 435 voting seats; a majority is 218. Fixed constitutional facts.
+export const HOUSE_SEATS = 435;
+
+// The 6 House delegates (DC + 5 territories) sit in the roster but hold no floor vote, so they
+// are not House "seats" — excluded from chamber composition and the hemicycle [E4.2 QA].
+const NON_VOTING_HOUSE_STATES = new Set(["DC", "PR", "GU", "VI", "AS", "MP"]);
+
 export function chamberComposition(): Composition[] {
   const chambers: Member["chamber"][] = ["sen", "rep"];
   return chambers.map((chamber) => {
-    const group = roster.filter((m) => m.chamber === chamber);
+    const group = roster.filter(
+      (m) => m.chamber === chamber && !(chamber === "rep" && NON_VOTING_HOUSE_STATES.has(m.state)),
+    );
     const counts = new Map<string, number>();
     for (const m of group) counts.set(m.party, (counts.get(m.party) ?? 0) + 1);
     return {

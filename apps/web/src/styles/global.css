@@ -173,7 +173,11 @@ h1 { font-weight: 600; }
 /* Tabular figures for results & tables [C7a]. */
 .tnum { font-variant-numeric: tabular-nums lining-nums; }
 
-a { color: inherit; }
+/* Links default to the inherited text colour, but stay in @layer base so Tailwind text-*
+   utilities (e.g. the on-brand CTA, muted nav links) still win the cascade [E4.2 QA]. */
+@layer base {
+  a { color: inherit; }
+}
 
 /* Theme-toggle glyph swap [E0.2]: show the target-state icon. Default/light shows the moon
    (switch-to-dark affordance); dark shows the sun. Pure CSS off html[data-theme]. */

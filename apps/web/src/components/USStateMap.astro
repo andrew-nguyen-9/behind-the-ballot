@@ -16,11 +16,14 @@ interface Props {
 const { fills, label, class: className, emptyFill = "var(--color-surface-2)" } = Astro.props;
 const { viewBox, paths } = STATE_GEO;
 const codes = Object.keys(paths).sort();
+// A linked map (E2.3) carries real <a> navigation; role="img" would flatten the subtree and
+// hide those links from AT, so drop it there and expose the links as a labelled group [E4.2 QA].
+const linked = Object.values(fills).some((f) => f?.href);
 ---
 <svg
   viewBox={viewBox}
   class={cn("h-auto w-full", className)}
-  role="img"
+  role={linked ? "group" : "img"}
   aria-label={label}
   xmlns="http://www.w3.org/2000/svg"
 >

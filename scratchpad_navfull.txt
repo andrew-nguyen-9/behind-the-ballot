@@ -1,9 +1,0 @@
-
- RUN  v4.1.9 /Users/andrew/Documents/GitHub/behind-the-ballot/.claude/worktrees/agent-a5a7a501563476647/apps/web
-
-
- Test Files  15 failed (15)
-      Tests  no tests
-   Start at  19:53:55
-   Duration  674ms (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 1ms)
-

@@ -27,8 +27,12 @@ const tableColumns: Column[] = [
   { key: "party", label: "Party" },
   { key: "seats", label: "Seats", align: "right" },
 ];
+// Seats not assigned to a tracked party are vacant/uncalled — surfaced so the table sums to total.
+const assigned = byParty.reduce((sum, p) => sum + p.count, 0);
+const vacant = total - assigned;
 const tableRows = [
   ...byParty.map((p) => ({ party: partyLabel(p.party), seats: p.count })),
+  ...(vacant > 0 ? [{ party: "Vacant / uncalled", seats: vacant }] : []),
   { party: "Total", seats: total },
 ];
 

@@ -150,10 +150,14 @@ def run(argv: list[str] | None = None) -> int:
         print(subject + "\n\n" + body)
         return 0
 
-    # Two independent channels — a missing secret on one never suppresses the other [S9c, S11a].
+    # Two independent channels — a missing secret OR a runtime send failure on one never
+    # suppresses the other [S9c, S11a].
     if all(os.environ.get(k) for k in ("SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "ALERT_EMAIL_TO")):
-        notify.send_email(subject, body)
-        print("email sent")
+        try:
+            notify.send_email(subject, body)
+            print("email sent")
+        except Exception as exc:  # noqa: BLE001 — isolate the channel; the issue path must still run
+            print(f"email failed — {exc}")
     else:
         print("email skipped — SMTP env not set")
 

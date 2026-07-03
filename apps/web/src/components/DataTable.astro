@@ -13,7 +13,7 @@ interface Props {
 }
 const { columns, rows, caption, class: className } = Astro.props;
 ---
-<div class="overflow-x-auto">
+<div class="overflow-x-auto" tabindex="0" role="region" aria-label={caption ?? "Data table"}>
   <table class={cn("w-full text-sm", className)}>
     {caption && <caption class="sr-only">{caption}</caption>}
     <thead class="text-muted">

@@ -2,6 +2,38 @@
 
 Items deferred out of V1 scope. New ideas land here, not in V1 `[scope discipline]`.
 
+## Session-D review — parked findings (E4.2 integration review)
+Surfaced during the `dev..integration` code review + browser QA. All are latent (guard-tightening on
+data paths that ship honest-empty today), so parked rather than fixed at promotion. Fixed items (brand
+CTA contrast, mobile-header overflow, table keyboard access, SVG-map link a11y, House 435/218,
+alert-channel isolation, certified-only fairness gate) landed on `integration`.
+
+- **CD demographic-change can cross a redistricting boundary** (`export_web.py` `export_demographic_changes`):
+  when `CHANGE_CD_EARLY` (2022) is absent from baked ACS years, `cd_early` falls back to `years[-2]`,
+  which can be a pre-2020-lines vintage → joins the same geoid across different geography (the [L547]
+  error the 2022 constant exists to prevent), with no `cd_crosses_redistricting` caveat flag (states
+  have one). **Fix:** require `cd_early >= CHANGE_REDISTRICTING_YEAR`; else skip CD changes / stay
+  honest-empty. Latent until a multi-year CD ACS bake runs (ties to the CENSUS_API_KEY multi-year work).
+- **FEC fetch failure masquerades as an empty candidate list** (`generate_races.py`): `json.loads(...).get("results", [])`
+  turns any FEC error/rate-limit body into `[]`, committing a race that looks honest-empty but is a
+  fetch failure. **Fix:** assert HTTP 200 / a `results` key and raise-or-skip-and-warn. Bake-time only.
+- **Primary-results bake has no per-state isolation** (`sources/primary_results.py` `run()`): one state's
+  fetch/parse exception aborts the whole election-night bake. **Fix:** try/except per state, log + continue.
+  Election-night-ops hardening; `ACTIVE_STATES=[]` today so unreachable.
+- **Fairness race-level fields taken from an arbitrary row** (`export_web.py` `export_results`, `rs[0]`):
+  mixed provisional/certified rows inherit the top-vote row's `is_certified`/`pct_reporting`/`as_of`.
+  **Fix:** derive from a consistent source (all-certified check / max `as_of`). Results empty today.
+- **National demographic totals coalesce missing population to 0** (`demographicChange.ts` `nationalTotals`):
+  `r.population ?? 0` understates the sum shown as an authoritative total. **Fix:** skip null-population
+  rows (as median-income already does) or flag "partial". Data-gated (needs 2nd ACS year).
+- **Search overlay swallows all Pagefind errors** (`SearchDialog.tsx` `.catch(() => {})`): intended for
+  the dev-404 case but also hides real prod init failures with no user feedback. **Fix:** narrow to the
+  expected 404; surface other errors. Low — progressive-enhancement overlay, `/search` page is the fallback.
+- **SVG party fills use `fill="var(--color-party-*)"` presentation attributes** (`USStateMap.astro`,
+  `HouseArc.astro`): var() in an SVG presentation attribute is unsupported pre-Safari 16.2 → falls back
+  to black. **Verified rendering correct in current Chromium AND WebKit** — not a defect today; noted so
+  a future very-old-Safari report has a paper trail. Upgrade path: apply fills via `style="fill:…"` / a class.
+
 ## Polling source (deferred from V1 — decision iter 66)
 538's public poll CSVs were discontinued post-ABC (verified iter 60: endpoints serve an HTML
 shell; last real update Sept 2024). No open aggregator has both a machine-readable feed AND a

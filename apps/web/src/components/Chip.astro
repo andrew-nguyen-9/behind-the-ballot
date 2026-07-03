@@ -13,7 +13,7 @@ const { label, href, variant = "default", class: className } = Astro.props;
 const Tag = href ? "a" : "span";
 const variantClass = {
   default: "border border-[var(--color-border)]",
-  solid: "bg-[var(--color-brand)] text-[var(--color-on-brand)]",
+  solid: "bg-[var(--color-brand)] text-[color:var(--color-on-brand)]",
   muted: "bg-surface text-muted",
 }[variant];
 const base = cn(
