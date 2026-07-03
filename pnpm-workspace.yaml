@@ -3,6 +3,11 @@ packages:
 overrides:
   # ponytail: pin es-module-lexer below Vercel minimumReleaseAge cutoff; remove once 2.2.0+ ages past policy
   es-module-lexer: "2.1.0"
+  # security: force patched transitive deps (Dependabot). esbuild@0.18.20 (drizzle-kit's legacy
+  # esbuild-kit) is intentionally NOT bumped — it breaks the loader and the CVE (dev-server SSRF)
+  # is unreachable: esbuild-kit only bundles configs and prod is static SSG.
+  yaml@2.7.1: "2.9.0"
+  esbuild@0.27.7: "0.28.1"
 allowBuilds:
   esbuild: true
   sharp: true
