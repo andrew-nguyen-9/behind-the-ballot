@@ -1,0 +1,67 @@
+# Election-night results rebake -> deploy [E-F2] — at polls-close cadence, re-bakes the live
+# results source, re-exports the committed per-race JSON (apps/web/src/data/results/*), gates on
+# integrity, then builds + deploys the site to Cloudflare Pages PRODUCTION so live totals reach
+# voters within minutes. Distinct from refresh.yml (nightly, commits to dev): this is the tight
+# election-night loop that ships straight to prod.
+#
+# SHIPPED DISABLED — `workflow_dispatch` only. The `schedule:` block is COMMENTED OUT and is
+# flipped on by E-R10 at go-live (search `# ENABLED BY E-R10`). It MUST NOT run on a schedule
+# until then. Honest-empty until then too: with ACTIVE_STATES empty the bake fetches nothing,
+# so a manual dry run is a green no-op that exercises the full path without real feeds.
+name: results
+
+on:
+  workflow_dispatch: {} # manual only until go-live
+  # ENABLED BY E-R10 — uncomment to arm the election-night cadence (tight during the count,
+  # hourly after as late/mail ballots land). Two crons so we do not hammer feeds post-count.
+  # schedule:
+  #   - cron: "*/5 * * * *"   # every 5 min during the count
+  #   - cron: "0 * * * *"     # hourly after (E-R10 trims to whichever window is live)
+
+# Never run two deploys at once (avoids a Pages deploy race / interleaved partial totals).
+concurrency:
+  group: results
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  results:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4
+        with:
+          version: 10
+      - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: uv sync --project pipeline
+      - run: pnpm install --frozen-lockfile
+
+      - name: bake results + export web JSON (integrity-gated)
+        env:
+          DATA_GOV_API_KEY: ${{ secrets.DATA_GOV_API_KEY }}
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+        run: |
+          set -euo pipefail
+          # Honest-empty when ACTIVE_STATES is empty: fetches nothing, bakes zero rows, still
+          # exits 0 — a manual dispatch is a valid no-op deploy of the "no results yet" state.
+          uv run --project pipeline python -m btb_pipeline.cli bake primary_results
+          uv run --project pipeline python -m btb_pipeline.export_web
+          # Gate the deploy on integrity exit 0 [R14a] — a stale/failed bake fails here BEFORE
+          # any build or deploy, so we never ship broken or fabricated totals to prod.
+          uv run --project pipeline python -m btb_pipeline.integrity
+
+      - name: build site (SSG + Pagefind)
+        run: pnpm --filter web build
+
+      - name: deploy to Cloudflare Pages (production)
+        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/web/dist --project-name=behind-the-ballot --branch=main

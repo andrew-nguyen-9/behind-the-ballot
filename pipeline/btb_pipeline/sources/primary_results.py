@@ -74,6 +74,11 @@ class ResultRow(BaseModel):
     state: str  # USPS postal
     office: str  # senate | house | governor
     district: int | None = None  # house only
+    # Optional county tag [E-F2]: 5-digit county FIPS (e.g. "04013" = Maricopa), matching the
+    # geometry keys in apps/web/src/data/geo/az-counties.json. Null (honest-empty) for a
+    # statewide/untagged feed; E-R1's AZ parser populates it so aggregate_to_county can roll
+    # county-tagged rows into per-county totals. Never invented — absent county → None.
+    county: str | None = None
     cycle: int
     election_type: str  # primary | general
     candidate: str
@@ -142,6 +147,7 @@ def build_rows(
                 "election_type": election_type,
                 "candidate": c["candidate"],
                 "party": c.get("party"),
+                "county": c.get("county"),  # county FIPS passthrough [E-F2]; None if untagged
                 "votes": votes,
                 "pct": round(votes / total * 100, 1) if total else None,
                 "precincts_reporting": pr,
@@ -152,6 +158,81 @@ def build_rows(
                 "is_certified": is_certified,
             })
     return rows
+
+
+# ---- County-level rollup [E-F2] ---------------------------------------------------------
+# The county field name/type + this signature are the schema E-R1's AZ parser populates and
+# E-R9's CountyMap consumes: county = 5-digit county FIPS str (nullable), keyed identically to
+# apps/web/src/data/geo/az-counties.json. This rolls county-tagged (or precinct-split) rows up
+# to per-county candidate totals. Honest-empty [repo rule]: rows without a county are dropped,
+# never bucketed into an invented county.
+
+
+def aggregate_to_county(rows: list[dict]) -> list[dict]:
+    """Roll county-tagged `ResultRow`s up to per-county candidate totals [E-F2].
+
+    Input rows carry an optional `county` (5-digit county FIPS str). Rows with no county are
+    skipped (honest-empty — never a fabricated bucket). Rows sharing `(county, race_id,
+    candidate)` are summed on `votes` (e.g. precinct-split or early/day-of batches merged into
+    one county figure). `pct` is re-derived as each candidate's share of that county's race by
+    votes. `pct_reporting` is derived ONCE per county from the county's most-complete contest
+    (largest `precincts_total`) — counties share their precinct set across contests, so the
+    fullest contest's coverage represents the county — and is None when no precinct counts
+    reported (honest "not reported", never zero-filled).
+
+    Returns one dict per `(county, race_id, candidate)`, sorted by
+    `(county, race_id, -votes, candidate)` for deterministic output:
+        {county, race_id, state, office, district, cycle, election_type, candidate, party,
+         votes, pct, pct_reporting}
+    """
+    # county -> race_id -> candidate -> accumulated row
+    by_county: dict[str, dict[str, dict[str, dict]]] = defaultdict(
+        lambda: defaultdict(dict)
+    )
+    # county -> best (largest total) precinct pair seen: (precincts_reporting, precincts_total)
+    county_reporting: dict[str, tuple[int, int]] = {}
+
+    for r in rows:
+        county = r.get("county")
+        if not county:  # honest-empty: an untagged row does not belong to any county
+            continue
+        cand = by_county[county][r["race_id"]].setdefault(
+            r["candidate"],
+            {
+                "county": county,
+                "race_id": r["race_id"],
+                "state": r.get("state"),
+                "office": r.get("office"),
+                "district": r.get("district"),
+                "cycle": r.get("cycle"),
+                "election_type": r.get("election_type"),
+                "candidate": r["candidate"],
+                "party": r.get("party"),
+                "votes": 0,
+            },
+        )
+        cand["votes"] += int(r.get("votes") or 0)
+
+        pt = r.get("precincts_total")
+        if pt:
+            pr = int(r.get("precincts_reporting") or 0)
+            best = county_reporting.get(county)
+            if best is None or int(pt) > best[1]:
+                county_reporting[county] = (pr, int(pt))
+
+    out: list[dict] = []
+    for county, by_race in by_county.items():
+        report = county_reporting.get(county)
+        pct_reporting = round(report[0] / report[1] * 100, 1) if report else None
+        for race_id_, cands in by_race.items():
+            total = sum(c["votes"] for c in cands.values())
+            for c in cands.values():
+                c["pct"] = round(c["votes"] / total * 100, 1) if total else None
+                c["pct_reporting"] = pct_reporting
+                out.append(c)
+
+    out.sort(key=lambda c: (c["county"], c["race_id"], -c["votes"], c["candidate"]))
+    return out
 
 
 # ---- Native-format parsers (the per-state work) -----------------------------------------
