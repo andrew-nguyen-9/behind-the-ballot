@@ -1,0 +1,37 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-08",
+  "cycle": 2026,
+  "title": "AZ-08 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 8,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "abraham-hamadeh",
+      "name": "Abraham Hamadeh",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H4AZ08108"
+    },
+    {
+      "id": "bernadette-greene-placentia",
+      "name": "Bernadette Greene-Placentia",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H4AZ08082"
+    },
+    {
+      "id": "raymond-keeler",
+      "name": "Raymond Keeler",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ08269"
+    }
+  ]
+}

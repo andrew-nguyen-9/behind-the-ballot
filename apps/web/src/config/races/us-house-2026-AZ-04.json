@@ -1,0 +1,44 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-04",
+  "cycle": 2026,
+  "title": "AZ-04 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 4,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "greg-stanton",
+      "name": "Greg Stanton",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H8AZ09040"
+    },
+    {
+      "id": "kai-newkirk",
+      "name": "Kai Newkirk",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ04250"
+    },
+    {
+      "id": "jerone-davison",
+      "name": "Jerone Davison",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ04227"
+    },
+    {
+      "id": "zuhdi-jasser",
+      "name": "Zuhdi Jasser",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H4AZ04115"
+    }
+  ]
+}

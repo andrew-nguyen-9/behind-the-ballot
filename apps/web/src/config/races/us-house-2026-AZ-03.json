@@ -1,0 +1,29 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-03",
+  "cycle": 2026,
+  "title": "AZ-03 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 3,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "yassamin-ansari",
+      "name": "Yassamin Ansari",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H4AZ03109"
+    },
+    {
+      "id": "alan-aversa",
+      "name": "Alan Aversa",
+      "party": "other",
+      "incumbent": false
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-05",
+  "cycle": 2026,
+  "title": "AZ-05 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 5,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "mark-lamb",
+      "name": "Mark Lamb",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ05265"
+    },
+    {
+      "id": "daniel-keenan",
+      "name": "Daniel Keenan",
+      "party": "R",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ05182"
+    },
+    {
+      "id": "brian-hualde",
+      "name": "Brian Hualde",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ05224"
+    },
+    {
+      "id": "chris-james",
+      "name": "Chris James",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ05216"
+    },
+    {
+      "id": "elizabeth-lee",
+      "name": "Elizabeth Lee",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ05240"
+    }
+  ]
+}

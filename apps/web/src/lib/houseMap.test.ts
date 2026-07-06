@@ -10,9 +10,10 @@ describe("houseDistricts", () => {
     for (const d of districts) {
       expect(d.id.startsWith("us-house-2026-")).toBe(true);
       expect(d.seat).toBe(`${d.state}-${String(d.district).padStart(2, "0")}`);
-      // every competitive House race has a baked TIGER district shape (E2.3)
-      expect(d.shape).not.toBeNull();
-      expect(d.shape!.ring.length).toBeGreaterThanOrEqual(3);
+      // Baked TIGER geometry is OPTIONAL (E2.3/E-4): a results-tracked race (e.g. a safe-seat
+      // primary added for results resolution) may have no shape yet — the map + race page skip
+      // it (honest-empty), so shape is nullable. When present it must be a valid ring.
+      if (d.shape !== null) expect(d.shape.ring.length).toBeGreaterThanOrEqual(3);
     }
     const ids = districts.map((d) => d.id);
     expect([...ids].sort()).toEqual(ids);

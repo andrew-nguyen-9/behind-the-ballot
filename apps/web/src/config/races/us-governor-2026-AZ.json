@@ -9,5 +9,36 @@
   "sources": [
     "forecast"
   ],
-  "candidates": []
+  "candidates": [
+    {
+      "id": "katie-hobbs",
+      "name": "Katie Hobbs",
+      "party": "D",
+      "incumbent": true
+    },
+    {
+      "id": "andy-biggs",
+      "name": "Andy Biggs",
+      "party": "R",
+      "incumbent": false
+    },
+    {
+      "id": "david-schweikert",
+      "name": "David Schweikert",
+      "party": "R",
+      "incumbent": false
+    },
+    {
+      "id": "ken-miceli",
+      "name": "Ken Miceli",
+      "party": "R",
+      "incumbent": false
+    },
+    {
+      "id": "scott-neely",
+      "name": "Scott Neely",
+      "party": "R",
+      "incumbent": false
+    }
+  ]
 }

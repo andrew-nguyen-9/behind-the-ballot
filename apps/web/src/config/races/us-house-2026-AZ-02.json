@@ -1,0 +1,36 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-02",
+  "cycle": 2026,
+  "title": "AZ-02 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 2,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "eli-crane",
+      "name": "Eli Crane",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H2AZ01354"
+    },
+    {
+      "id": "jonathan-nez",
+      "name": "Jonathan Nez",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H4AZ02184"
+    },
+    {
+      "id": "eric-descheenie",
+      "name": "Eric Descheenie",
+      "party": "D",
+      "incumbent": false
+    }
+  ]
+}

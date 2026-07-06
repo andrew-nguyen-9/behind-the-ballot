@@ -1,0 +1,30 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-09",
+  "cycle": 2026,
+  "title": "AZ-09 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 9,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "paul-gosar",
+      "name": "Paul Gosar",
+      "party": "R",
+      "incumbent": true,
+      "fecCandidateId": "H0AZ01259"
+    },
+    {
+      "id": "danielle-sterbinsky",
+      "name": "Danielle Sterbinsky",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ09085"
+    }
+  ]
+}

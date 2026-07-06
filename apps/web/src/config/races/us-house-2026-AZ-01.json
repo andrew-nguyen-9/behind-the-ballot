@@ -13,11 +13,11 @@
   ],
   "candidates": [
     {
-      "id": "jonathan-treble",
-      "name": "Jonathan Treble",
-      "party": "D",
+      "id": "joseph-chaplik",
+      "name": "Joseph Chaplik",
+      "party": "R",
       "incumbent": false,
-      "fecCandidateId": "H6AZ01298"
+      "fecCandidateId": "H6AZ01454"
     },
     {
       "id": "thomas-james-feely",
@@ -27,15 +27,15 @@
       "fecCandidateId": "H6AZ05190"
     },
     {
-      "id": "david-s-schweikert",
-      "name": "David S. Schweikert",
+      "id": "john-trobough",
+      "name": "John Trobough",
       "party": "R",
-      "incumbent": true,
-      "fecCandidateId": "H4AZ06045"
+      "incumbent": false,
+      "fecCandidateId": "H6AZ01447"
     },
     {
       "id": "marlene-galan-woods",
-      "name": "Marlene Galan-Woods",
+      "name": "Marlene Galán-Woods",
       "party": "D",
       "incumbent": false,
       "fecCandidateId": "H6AZ01280"
@@ -49,10 +49,17 @@
     },
     {
       "id": "rick-mccartney",
-      "name": "Rick Mccartney",
+      "name": "Rick McCartney",
       "party": "D",
       "incumbent": false,
       "fecCandidateId": "H6AZ01306"
+    },
+    {
+      "id": "jonathan-treble",
+      "name": "Jonathan Treble",
+      "party": "D",
+      "incumbent": false,
+      "fecCandidateId": "H6AZ01298"
     }
   ]
 }

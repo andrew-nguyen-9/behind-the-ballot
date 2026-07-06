@@ -1,0 +1,29 @@
+{
+  "kind": "race",
+  "id": "us-house-2026-AZ-07",
+  "cycle": 2026,
+  "title": "AZ-07 U.S. House 2026",
+  "office": "house",
+  "state": "AZ",
+  "district": 7,
+  "status": "upcoming",
+  "sources": [
+    "fec",
+    "forecast"
+  ],
+  "candidates": [
+    {
+      "id": "adelita-grijalva",
+      "name": "Adelita Grijalva",
+      "party": "D",
+      "incumbent": true,
+      "fecCandidateId": "H6AZ07121"
+    },
+    {
+      "id": "daniel-butierez",
+      "name": "Daniel Butierez",
+      "party": "R",
+      "incumbent": false
+    }
+  ]
+}
