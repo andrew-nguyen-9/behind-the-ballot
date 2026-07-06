@@ -59,7 +59,7 @@ CYCLE = 2026
 # election-night ops enables a state (keeps the committed build honest-empty — no invented
 # results). Flip a state on by listing it here once its adapter is validated against the
 # state's pre-published test feed [E3.1].
-ACTIVE_STATES: list[str] = []
+ACTIVE_STATES: list[str] = ["AZ"]  # go-live [E-R10]: AZ Clarity ENR feed on (adapter E-R1)
 
 # Which election the scheduled CLI bake is counting: "primary" or "general". Ops flips this
 # to "general" (alongside ACTIVE_STATES) for the Nov 2026 general so the unchanged scheduled

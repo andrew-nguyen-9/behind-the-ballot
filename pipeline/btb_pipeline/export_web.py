@@ -29,6 +29,7 @@ from btb_pipeline.demographics import (
 )
 from btb_pipeline.fairness import compute_fairness
 from btb_pipeline.finance_aggregates import build_finance, rollup_by_race
+from btb_pipeline.sources.primary_results import aggregate_to_county
 
 WEB_DATA = Path("apps/web/src/data")
 RACES_DIR = Path("apps/web/src/config/races")
@@ -456,6 +457,77 @@ def export_results(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Pa
     return written
 
 
+def export_county_results(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/primary_results (county-tagged) → per-state src/data/county-results/<STATE>.json
+    [E-R9 schema, E-F2 rollup]. Wires E-F2's `aggregate_to_county` (county FIPS rollup) into the
+    committed JSON the /results county choropleth reads — the go-live wiring E-R9 routed to E-R10.
+
+    One file per state that has ≥1 county-tagged, reported race. Honest-empty [repo rule]: no
+    gold, zero rows, or rows with no `county` tag (statewide-only feed) writes NOTHING, so the
+    county map keeps its 'no results yet' state — never an invented county bucket. Shape mirrors
+    StateCountyResults in apps/web/src/lib/countyResults.ts (state meta + races[].counties[]),
+    with candidates already votes-desc from aggregate_to_county."""
+    rows = _gold("primary_results", root)
+    if not rows:
+        return []
+    county_rows = aggregate_to_county(rows)  # per (county, race_id, candidate), votes-desc within
+    if not county_rows:
+        return []
+
+    # State-level meta (as_of/certification/call/source) lives on the raw ResultRows — the county
+    # rollup drops it — so key it off the raw rows per state (shared within one bake) [E-R9 schema].
+    meta_by_state: dict[str, dict] = {}
+    for r in rows:
+        st = r.get("state")
+        if st and st not in meta_by_state:
+            meta_by_state[st] = {
+                "as_of": r.get("as_of"),
+                "is_certified": r.get("is_certified", False),
+                "is_called": r.get("is_called", False),
+                "called_by": r.get("called_by"),
+                "call_source": r.get("call_source"),
+                "source_url": r.get("source_url"),
+            }
+
+    # state -> race_id -> {office, district, election_type, county FIPS -> county record}
+    by_state: dict[str, dict[str, dict]] = {}
+    for c in county_rows:
+        state = c["state"]
+        race = by_state.setdefault(state, {}).setdefault(
+            c["race_id"],
+            {"race_id": c["race_id"], "office": c["office"], "district": c["district"],
+             "election_type": c["election_type"], "_counties": {}},
+        )
+        county = race["_counties"].setdefault(
+            c["county"], {"county": c["county"], "pct_reporting": c["pct_reporting"], "candidates": []}
+        )
+        county["candidates"].append(
+            {"candidate": c["candidate"], "party": c.get("party"),
+             "votes": c["votes"], "pct": c.get("pct")}
+        )
+
+    written: list[Path] = []
+    for state, races in by_state.items():
+        meta = meta_by_state.get(state, {})
+        record = {
+            "state": state,
+            "as_of": meta.get("as_of"),
+            "is_certified": meta.get("is_certified", False),
+            "is_called": meta.get("is_called", False),
+            "called_by": meta.get("called_by"),
+            "call_source": meta.get("call_source"),
+            "source_url": meta.get("source_url"),
+            "races": [
+                {"race_id": r["race_id"], "office": r["office"], "district": r["district"],
+                 "election_type": r["election_type"],
+                 "counties": sorted(r["_counties"].values(), key=lambda c: c["county"])}
+                for r in sorted(races.values(), key=lambda r: r["race_id"])
+            ],
+        }
+        written.append(_write(web_data / "county-results" / f"{state}.json", record))
+    return written
+
+
 def export_fairness(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
     """gold/primary_results (certified House general results) ⋈ gold/tiger → per-state partisan
     fairness (efficiency gap / mean–median / seats–votes) → src/data/gerrymander/states.json
@@ -530,6 +602,7 @@ EXPORTERS = {
     "forecast": export_forecast,
     "dates": export_dates,
     "results": export_results,
+    "county_results": export_county_results,
     "fairness": export_fairness,
 }
 

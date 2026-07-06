@@ -108,9 +108,12 @@ def test_merge_results_upserts_by_race_and_candidate(tmp_path):
     assert "_uid" not in merged[0]  # transient key stripped
 
 
-def test_run_default_is_honest_empty_no_network(tmp_path):
-    # ACTIVE_STATES is empty → no fetch, zero rows, artifact still bakes + clears integrity.
-    path = pr.run(root=tmp_path)
+def test_run_no_targets_is_honest_empty_no_network(tmp_path):
+    # No active targets → no fetch, zero rows, artifact still bakes + clears integrity. Post
+    # go-live [E-R10] ACTIVE_STATES=["AZ"], so pass states=[] to exercise the honest-empty bake
+    # path itself, decoupled from the ops on-switch; a live AZ fetch needs E-R1's fetch-layer
+    # wiring (current_ver.txt resolution + detailxml.zip unzip), routed to runbook §1.
+    path = pr.run(root=tmp_path, states=[])
     payload = json.loads(path.read_text())
     assert payload["source"] == "primary_results"
     assert payload["rows"] == []

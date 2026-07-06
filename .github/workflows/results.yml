@@ -11,12 +11,14 @@
 name: results
 
 on:
-  workflow_dispatch: {} # manual only until go-live
-  # ENABLED BY E-R10 — uncomment to arm the election-night cadence (tight during the count,
-  # hourly after as late/mail ballots land). Two crons so we do not hammer feeds post-count.
-  # schedule:
-  #   - cron: "*/5 * * * *"   # every 5 min during the count
-  #   - cron: "0 * * * *"     # hourly after (E-R10 trims to whichever window is live)
+  workflow_dispatch: {} # manual bake still available alongside the schedule
+  # ENABLED BY E-R10 — election-night cadence armed at go-live (tight during the count, hourly
+  # after as late/mail ballots land). Two crons so we do not hammer feeds post-count. Honest-empty
+  # is preserved: with no real feed reporting the bake fetches nothing and each run is a green
+  # no-op. Arming has prod effect ONLY once this lands on main (D ff + human-gated cutover).
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 min during the count
+    - cron: "0 * * * *"     # hourly after
 
 # Never run two deploys at once (avoids a Pages deploy race / interleaved partial totals).
 concurrency:
