@@ -87,3 +87,29 @@ delete its `apps/web/src/data/results/<raceId>.json` and rebuild — the page re
   a scheduler concern, deliberately not an integrity failure when honest-empty.
 - **Source name:** the artifact/source is historically named `primary_results` but is the
   general results connector too — `election_type` distinguishes; no rename needed.
+
+## 5. County results + scheduled election-night deploy [E-F2]
+
+Foundation for the county map (E-R9) and the automated go-live (E-R10). No live flip here —
+all three pieces ship framework-shaped and disabled/honest-empty.
+
+- **County schema.** `ResultRow` carries an optional `county: str | None` (5-digit county
+  FIPS, e.g. `"04013"` = Maricopa; `None`/honest-empty for a statewide/untagged feed).
+  `build_rows` passes a Contest's `county` key straight through, so E-R1's AZ adapter just
+  tags each Contest with its county FIPS — no other change. `aggregate_to_county(rows) ->
+  list[dict]` rolls county-tagged (or precinct-split) rows up to per-county candidate totals:
+  votes summed per `(county, race_id, candidate)`, `pct` re-derived as the county-race share,
+  `pct_reporting` derived once per county from its most-complete contest (`None` when no
+  precinct counts — never zero-filled). Rows with no `county` roll up to nothing.
+- **County geometry.** `apps/web/scripts/gen-us-counties.mjs` bakes the us-atlas counties
+  TopoJSON to committed per-state JSON (`node scripts/gen-us-counties.mjs`), AZ first ->
+  `apps/web/src/data/geo/az-counties.json` (`{ state, viewBox, counties: { <fips>: { name,
+  d } } }`, viewBox cropped to the state). Add a state = one row in the script's `STATES`
+  map + re-run. This JSON is what E-R9's `CountyMap` renders; the FIPS keys match the schema
+  `county` field so results join geometry by FIPS.
+- **Scheduled deploy.** `.github/workflows/results.yml` runs the tight election-night loop
+  (bake `primary_results` -> `export_web` -> integrity gate -> `pnpm --filter web build` ->
+  Cloudflare Pages **prod** deploy). **Shipped disabled** (`workflow_dispatch` only; the
+  `schedule:` block is commented with a `# ENABLED BY E-R10` marker). A manual dispatch while
+  `ACTIVE_STATES` is empty is a green no-op (honest-empty). E-R10 uncomments the schedule to
+  arm the cadence at go-live.
