@@ -1,0 +1,81 @@
+---
+import { cn } from "../lib/utils";
+import { skeletonBars, type SkeletonVariant } from "./skeleton";
+
+// Loading placeholder [E-F1] — skeleton over spinner. Reserves the final layout box and shows
+// the content's shape so hydration/live-refresh lands with zero layout shift (CLS is a gate).
+// Distinct from EmptyState: a skeleton means "data is coming", EmptyState means "there is
+// honestly no data". Never use a skeleton where the truth is empty.
+//
+// Motion: a subtle shimmer driven by the shared motion tokens. `prefers-reduced-motion` is a
+// hard kill-switch (global.css) — reduced-motion users see the final static bar instantly,
+// zero animation. So the placeholder is fully functional (layout reserved) with motion off.
+//
+// a11y: role=status + aria-busy announces "Loading" to AT once; the bars themselves are
+// decorative (aria-hidden). 0-JS, pure CSS.
+interface Props {
+  variant?: SkeletonVariant; // "text" (default) | "block" | "circle"
+  lines?: number;            // text: line count (default 3)
+  width?: string;            // block/circle size or text line width
+  height?: string;           // block/circle height or text line height
+  label?: string;            // sr-only status text
+  class?: string;
+}
+const {
+  variant = "text",
+  lines,
+  width,
+  height,
+  label = "Loading",
+  class: className,
+} = Astro.props;
+
+const bars = skeletonBars({ variant, lines, width, height });
+---
+<div
+  role="status"
+  aria-busy="true"
+  aria-label={label}
+  class={cn("btb-skel flex flex-col gap-2", className)}
+>
+  {bars.map((b) => (
+    <span
+      class="btb-skel__bar block"
+      aria-hidden="true"
+      style={`width:${b.width};height:${b.height};border-radius:${b.radius}`}
+    />
+  ))}
+  <span class="sr-only">{label}</span>
+</div>
+
+<style>
+  /* Base (also the reduced-motion final state): a static surface tint the size of the bar.
+     The shimmer layers a moving highlight on top; when the global prefers-reduced-motion rule
+     sets `animation: none !important`, the sweep parks and only this base tint remains. */
+  .btb-skel__bar {
+    background-color: var(--color-surface-2);
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-text) 8%, transparent) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    background-position: -150% 0;
+    animation: btb-skel-sweep var(--duration-slow) var(--ease-standard) infinite;
+  }
+  @keyframes btb-skel-sweep {
+    to {
+      background-position: 250% 0;
+    }
+  }
+  /* Belt-and-suspenders: local reduced-motion kill in case this component is ever used
+     outside the global stylesheet. Final state = the static base tint above. */
+  @media (prefers-reduced-motion: reduce) {
+    .btb-skel__bar {
+      animation: none;
+      background-image: none;
+    }
+  }
+</style>
