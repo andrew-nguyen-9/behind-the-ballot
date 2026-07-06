@@ -1,0 +1,176 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import EmptyState from "../components/EmptyState.astro";
+import DataTable from "../components/DataTable.astro";
+import CountyMap from "../components/CountyMap.astro";
+import PartyPatternDefs from "../components/PartyPatternDefs.astro";
+import PartyBar from "../components/PartyBar.astro";
+import PartySwatch from "../components/PartySwatch.astro";
+import {
+  countyCertificationLabel,
+  countyMapData,
+  countyResultsForState,
+  statewideTotals,
+} from "../lib/countyResults";
+import { fmtAsOf, fmtVotes } from "../lib/results";
+import { partyLabel } from "../lib/races";
+import { STATE_NAMES, MAP_COLORS } from "../lib/usStates";
+import azCounties from "../data/geo/az-counties.json";
+
+// County results + election-night view [E-R9]. Static 0-JS SVG choropleth (same technique as
+// USStateMap) with its accessible data-table twin, honest-empty until a real SoS feed reports.
+// AZ is the state with baked county geometry (E-F2); the page reads its county rollup and stays
+// on its "No results yet" state until the pipeline bakes one — never fabricated numbers.
+const STATE = "AZ";
+const stateName = STATE_NAMES[STATE];
+const geo = azCounties as {
+  state: string;
+  viewBox: string;
+  counties: Record<string, { name: string; d: string }>;
+};
+const names: Record<string, string> = Object.fromEntries(
+  Object.entries(geo.counties).map(([fips, c]) => [fips, c.name]),
+);
+
+const county = countyResultsForState(STATE);
+
+const officeLabel = (office: string, district: number | null): string => {
+  if (office === "governor") return "Governor";
+  if (office === "senate") return "U.S. Senate";
+  if (office === "house") return `U.S. House ${STATE}-${String(district ?? 0).padStart(2, "0")}`;
+  return office;
+};
+
+// Legend swatches reuse E0.4's .pf-* CSS overlays so the key matches the map in grayscale.
+const legend = [
+  { label: "Democratic lead", bg: MAP_COLORS.D, pf: "" },
+  { label: "Republican lead", bg: MAP_COLORS.R, pf: "pf-hatch" },
+  { label: "Other / independent lead", bg: MAP_COLORS.indNeutral, pf: "pf-crosshatch" },
+];
+---
+
+<Layout
+  title="Election results"
+  description="Live county-level results for tracked 2026 races — a static, colourblind-safe county choropleth with a full text-equivalent table. Unofficial and provisional until state officials certify."
+>
+  <h1 class="text-3xl font-bold">Election results</h1>
+  <p class="mt-2 text-muted">
+    County-level vote totals for tracked {stateName} races, shown on a map and in a text-equivalent
+    table. All figures come straight from state election officials and are
+    <strong class="text-[var(--color-text)]">unofficial and provisional</strong> until certified —
+    numbers move as ballots are counted and are never estimated.
+  </p>
+
+  {!county || county.races.length === 0 ? (
+    <EmptyState
+      class="mt-8"
+      title="No results yet"
+      body={`County results for ${stateName} will appear here once polls close and state election officials begin reporting. Nothing is shown until then — no placeholder or estimated numbers.`}
+    />
+  ) : (
+    <>
+      <p class="mt-6 rounded-lg border border-[var(--color-border)] bg-surface px-3 py-2 text-sm text-muted">
+        <strong class="text-[var(--color-text)]">{countyCertificationLabel(county)}.</strong>
+        {" "}Provisional counts from {stateName} election officials, as of {fmtAsOf(county.as_of)}.
+        Source: <a href="/sources" class="underline">state election officials</a>
+        {county.is_called && county.call_source ? (
+          <> · race calls via {county.call_source} (CC BY-SA)</>
+        ) : null}. Superseded by certified totals later.
+      </p>
+
+      <PartyPatternDefs />
+
+      {county.races.map((race) => {
+        const { fills, rows } = countyMapData(race, names);
+        const totals = statewideTotals(race);
+        const maxVotes = Math.max(1, ...totals.map((t) => t.votes));
+        const title = officeLabel(race.office, race.district);
+        const anchor = race.race_id;
+        return (
+          <section class="mt-10" aria-labelledby={anchor}>
+            <SectionHeader title={title} id={anchor}>
+              <Fragment slot="source">
+                {countyCertificationLabel(county)} · as of {fmtAsOf(county.as_of)}. County vote
+                totals from <a href="/sources" class="underline">state election officials</a>.
+              </Fragment>
+            </SectionHeader>
+
+            <h3 class="mt-5 font-serif text-lg">Statewide totals</h3>
+            <ul class="mt-3 space-y-3" role="list">
+              {totals.map((c) => (
+                <li>
+                  <div class="flex items-center justify-between gap-3 text-sm">
+                    <span class="flex items-center gap-2 font-medium">
+                      <PartySwatch party={c.party ?? "?"} size="sm" />
+                      {c.candidate}
+                      <span class="text-muted">{partyLabel(c.party ?? "?")}</span>
+                    </span>
+                    <span class="tabular-nums text-muted">
+                      {fmtVotes(c.votes)} {c.pct !== null ? `· ${c.pct.toFixed(1)}%` : ""}
+                    </span>
+                  </div>
+                  <PartyBar
+                    class="mt-1 h-2"
+                    max={maxVotes}
+                    segments={[{
+                      party: c.party ?? "?",
+                      value: c.votes,
+                      label: `${c.candidate}: ${fmtVotes(c.votes)} votes${c.pct !== null ? `, ${c.pct.toFixed(1)} percent` : ""}`,
+                    }]}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <h3 class="mt-8 font-serif text-lg">County map</h3>
+            <p class="mt-1 text-sm text-muted">
+              Each county is coloured by its leading candidate; darker shading marks a wider margin.
+              Counties with nothing reported yet stay blank. A colourblind-safe pattern overlay
+              carries the party. The table below is the exact text equivalent.
+            </p>
+            <CountyMap
+              class="mt-3 max-w-2xl"
+              geo={geo}
+              fills={fills}
+              label={`${title}: ${stateName} county results by leading candidate`}
+            />
+            <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm" role="list">
+              {legend.map((l) => (
+                <li class="flex items-center gap-2">
+                  <span
+                    class={`inline-block size-4 rounded-sm border border-[var(--color-border)] ${l.pf}`}
+                    style={`background-color:${l.bg}`}
+                    aria-hidden="true"
+                  ></span>
+                  <span>{l.label}</span>
+                </li>
+              ))}
+              <li class="flex items-center gap-2">
+                <span
+                  class="inline-block size-4 rounded-sm border border-[var(--color-border)]"
+                  style="background-color:var(--color-surface-2)"
+                  aria-hidden="true"
+                ></span>
+                <span>Nothing reported</span>
+              </li>
+            </ul>
+
+            <h3 class="mt-8 font-serif text-lg">County results table</h3>
+            <DataTable
+              class="mt-3"
+              caption={`${title}: leading candidate, margin, and precincts reporting by ${stateName} county — text equivalent of the map above.`}
+              columns={[
+                { key: "county", label: "County" },
+                { key: "leader", label: "Leading candidate" },
+                { key: "margin", label: "Margin (pts)", align: "right" },
+                { key: "reporting", label: "Precincts reporting", align: "right" },
+              ]}
+              rows={rows}
+            />
+          </section>
+        );
+      })}
+    </>
+  )}
+</Layout>
