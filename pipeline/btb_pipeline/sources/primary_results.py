@@ -33,6 +33,9 @@ from __future__ import annotations
 import csv
 import io
 import json
+import re
+import warnings
+import xml.etree.ElementTree as ET
 from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -287,6 +290,124 @@ def _int_or_none(v: str | None) -> int | None:
     return int(v) if v else None
 
 
+# ---- Arizona adapter: Clarity ENR feed [E-R1] -------------------------------------------
+# AZ election-night results run on the Clarity Elections ENR platform — public record
+# (A.R.S. §39-121), no API key [E-R0]. Each county publishes its OWN Clarity site whose
+# detail.xml carries <Region>{county}</Region>, so a county's feed IS that county's total; the
+# parser tags every Contest with that county's 5-digit FIPS [E-F2] so aggregate_to_county can
+# roll it up (and the county map joins geometry by FIPS). Only new per-state code is this one
+# parser — the shared build_rows/normalizer/upsert are reused unchanged.
+#
+# Feed resolution (live, done by the fetch layer at go-live [E-R10], NOT here): GET
+# .../AZ/<County>/<electionid>/current_ver.txt -> substitute <ver> -> GET
+# .../<ver>/reports/detailxml.zip -> unzip -> this parser. The CachingFetcher returns text and
+# Clarity serves a zip, so the ver-resolution + unzip (+ statewide-vs-15-county fan-out, still
+# unconfirmed — E-R0 §Ambiguities) is remaining go-live wiring, out of this unit's boundary.
+
+# AZ county name -> 5-digit FIPS, keyed identically to apps/web/src/data/geo/az-counties.json
+# [E-F2] so county-tagged results join the county geometry by FIPS.
+_AZ_COUNTY_FIPS: dict[str, str] = {
+    "apache": "04001", "cochise": "04003", "coconino": "04005", "gila": "04007",
+    "graham": "04009", "greenlee": "04011", "la paz": "04012", "maricopa": "04013",
+    "mohave": "04015", "navajo": "04017", "pima": "04019", "pinal": "04021",
+    "santa cruz": "04023", "yavapai": "04025", "yuma": "04027",
+}
+
+# Contest `text` -> office/district. Clarity's numeric `key` is per-county/per-cycle and NOT
+# stable, so map on the free-form `text` [E-R0]. `text` is truncated/typo'd in real feeds
+# (2024 sample: "...Congressional District 2 Congression"), so the regexes are lenient.
+# House REQUIRES a "congress" token so state-legislative "Representative District N" contests
+# are NOT mis-mapped to U.S. House.
+_AZ_HOUSE_RE = re.compile(r"congress.*?district\s*0*(\d+)", re.I | re.S)
+_AZ_GOV_RE = re.compile(r"\bgovernor\b", re.I)
+
+
+def _az_office(text: str) -> tuple[str, int | None] | None:
+    """Map a Clarity contest `text` to (office, district) for the AZ tracker scope — Governor +
+    U.S. House (no U.S. Senate: AZ Senate seats are 2028/2030) [E-R0]. Returns None for
+    out-of-scope contests (Senate/state exec/legislature/questions) so the caller surfaces +
+    skips them. `text` may be truncated; whitespace is normalized first."""
+    t = " ".join(text.split())
+    m = _AZ_HOUSE_RE.search(t)
+    if m:
+        return "house", int(m.group(1))
+    if _AZ_GOV_RE.search(t):
+        return "governor", None
+    return None
+
+
+def parse_az_clarity_xml(text: str) -> list[Contest]:
+    """Parse a Clarity ENR **detail.xml** feed (AZ SoS, one site per county) into Contests for
+    the AZ tracker scope (Governor + U.S. House) [E-R0].
+
+    Reads <Region> -> the county's 5-digit FIPS [E-F2] and tags every emitted Contest with it,
+    so aggregate_to_county can roll the county's rows up. Each <Contest> maps by its free-form,
+    truncation-tolerant `text` (NOT the unstable numeric `key`); out-of-scope contests are
+    surfaced via a warning and skipped, never silently dropped. Each <Choice> ->
+    candidate/party/votes (Choice.totalVotes is the roll-up; per-precinct <VoteType> children
+    are ignored). Contest precinct attrs -> precincts_reporting/total -> pct_reporting (derived
+    downstream in build_rows).
+
+    Partisan-primary note [E-R0]: a primary feed splits a race into separate per-party contests.
+    Both are emitted, but two contests mapping to the SAME (office, district) raise a warning —
+    disambiguating them in the id is owned by E-R7, because race_id() has no party axis today,
+    so they otherwise collapse into one race_id."""
+    root = ET.fromstring(text)
+    region = (root.findtext("Region") or "").strip()
+    county = _AZ_COUNTY_FIPS.get(region.lower())
+    if region and county is None:
+        warnings.warn(
+            f"AZ Clarity: unknown Region {region!r} — county tag left null (honest-empty)",
+            stacklevel=2,
+        )
+
+    out: list[Contest] = []
+    contests_per_race: dict[tuple[str, int | None], int] = defaultdict(int)
+    skipped: list[str] = []
+    for contest in root.iter("Contest"):
+        ctext = contest.get("text") or ""
+        mapped = _az_office(ctext)
+        if mapped is None:
+            skipped.append(" ".join(ctext.split()))
+            continue
+        office, district = mapped
+        contests_per_race[(office, district)] += 1
+        pr = _int_or_none(contest.get("precinctsReporting"))
+        pt = (
+            _int_or_none(contest.get("precinctsParticipating"))
+            or _int_or_none(contest.get("precinctsReported"))
+            or _int_or_none(contest.get("precinctsTotal"))
+        )
+        for choice in contest.findall("Choice"):
+            out.append({
+                "office": office,
+                "district": district,
+                "candidate": (choice.get("text") or "").strip(),
+                "party": (choice.get("party") or "").strip() or None,
+                "votes": _int_or_none(choice.get("totalVotes")) or 0,
+                "precincts_reporting": pr,
+                "precincts_total": pt,
+                "county": county,  # 5-digit FIPS tag for aggregate_to_county [E-F2]
+            })
+
+    collisions = [k for k, n in contests_per_race.items() if n > 1]
+    if collisions:
+        labels = [f"{o}-{d:02d}" if d is not None else o for o, d in collisions]
+        warnings.warn(
+            f"AZ Clarity: partisan-primary contest collision on {labels} — race_id() has no "
+            "party axis; multiple party primaries collapse into one race_id, owned by E-R7 "
+            "[E-R0]",
+            stacklevel=2,
+        )
+    if skipped:
+        warnings.warn(
+            f"AZ Clarity: {len(skipped)} out-of-scope contest(s) surfaced + skipped (tracker "
+            f"scope = Governor + U.S. House): {skipped}",
+            stacklevel=2,
+        )
+    return out
+
+
 @dataclass(frozen=True)
 class StateAdapter:
     """Binds a state to its live feed + native parser + which election is running. Adding a
@@ -304,6 +425,11 @@ class StateAdapter:
 STATE_ADAPTERS: dict[str, StateAdapter] = {
     "OH": StateAdapter("OH", "https://liveresults.ohiosos.gov/", "primary", parse_json_contests),
     "CA": StateAdapter("CA", "https://dp.electionresults.sos.ca.gov/", "primary", parse_csv_contests),
+    # AZ SoS Clarity ENR feed [E-R1]. election_type="primary" for the 2026 statewide primary
+    # (2026-07-21). URL = Clarity host base (per-county/<electionid>/<ver>/reports/detailxml.zip
+    # resolved by the fetch layer at go-live [E-R10]; see parse_az_clarity_xml). NOT yet ACTIVE
+    # — E-R10 lists AZ in ACTIVE_STATES to turn it on. Validated against real-shape feed bytes.
+    "AZ": StateAdapter("AZ", "https://results.enr.clarityelections.com/AZ/", "primary", parse_az_clarity_xml),
 }
 
 # General-election adapters [E3.3] — Nov 2026 readiness. Same per-state pattern as the

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AZ SoS Clarity ENR detail.xml — parser-validation fixture for E-R1 (parse_az_clarity_xml).
+     Shape reconstructed faithfully to E-R0's verified Clarity bytes (AZ/Pinal 2024-General,
+     electionid 122318 — real Choice/Contest/Region attrs) but populated with the 2026-primary
+     scope (Governor on the ballot, party-split contests) the adapter actually targets; the live
+     2024 CDN bytes are Cloudflare-403 to non-browser clients from the build sandbox, so this is
+     the trimmed shape reference E-R10's runbook §1 re-validates against real 2026 bytes.
+     Trimmed to a handful of contests; only one Choice keeps its per-precinct <VoteType> nesting
+     (to prove the parser reads Choice.totalVotes, not the VoteType split). -->
+<ElectionResult>
+  <Timestamp>7/21/2026 9:14:22 PM MST</Timestamp>
+  <ElectionName>2026 Statewide Primary Election</ElectionName>
+  <ElectionDate>7/21/2026</ElectionDate>
+  <Region>Pinal</Region>
+  <Contest key="0007" text="Governor - REP" voteFor="1" isQuestion="false"
+           precinctsParticipating="109" precinctsReporting="40" precinctsReportingPercent="36.70">
+    <Choice key="1" text="ROBSON, KARRIN TAYLOR" party="REP" totalVotes="18422">
+      <VoteType name="Early Voting" votes="14000"/>
+      <VoteType name="Election Day" votes="4422"/>
+    </Choice>
+    <Choice key="2" text="LAKE, KARI" party="REP" totalVotes="15980"/>
+  </Contest>
+  <Contest key="0008" text="Governor - DEM" voteFor="1" isQuestion="false"
+           precinctsParticipating="109" precinctsReporting="40" precinctsReportingPercent="36.70">
+    <Choice key="1" text="HOBBS, KATIE" party="DEM" totalVotes="22001"/>
+  </Contest>
+  <Contest key="0015" text="U.S. Representative Congressional District 2 Congression - REP" voteFor="1" isQuestion="false"
+           precinctsParticipating="60" precinctsReporting="60" precinctsReportingPercent="100.00">
+    <Choice key="1" text="CRANE, ELI" party="REP" totalVotes="30112"/>
+    <Choice key="2" text="SMITH, PAT" party="REP" totalVotes="8004"/>
+  </Contest>
+  <Contest key="0016" text="U.S. Representative in Congress District 6 - DEM" voteFor="1" isQuestion="false"
+           precinctsParticipating="109" precinctsReporting="109" precinctsReportingPercent="100.00">
+    <Choice key="1" text="ENGEL, KIRSTEN" party="DEM" totalVotes="41230"/>
+  </Contest>
+  <Contest key="0002" text="U.S. Senator (Vote For 1) - REP" voteFor="1" isQuestion="false"
+           precinctsParticipating="109" precinctsReporting="109" precinctsReportingPercent="100.00">
+    <Choice key="1" text="DOE, JANE" party="REP" totalVotes="500"/>
+  </Contest>
+  <Contest key="0031" text="State Representative District 8 - REP" voteFor="2" isQuestion="false"
+           precinctsParticipating="12" precinctsReporting="12" precinctsReportingPercent="100.00">
+    <Choice key="1" text="ROE, SAM" party="REP" totalVotes="900"/>
+  </Contest>
+</ElectionResult>

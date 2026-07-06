@@ -4,10 +4,16 @@ honest-empty bake. Transport is injected → no network; NO fabricated committed
 from __future__ import annotations
 
 import json
+import warnings
 from datetime import datetime, timezone
+from pathlib import Path
+
+import pytest
 
 from btb_pipeline.integrity import assert_artifact
 from btb_pipeline.sources import primary_results as pr
+
+AZ_FIXTURE = (Path(__file__).parent / "fixtures" / "az_clarity_detail.xml").read_text()
 
 AS_OF = datetime(2026, 8, 4, 23, 30, tzinfo=timezone.utc)
 
@@ -224,3 +230,78 @@ def test_certify_without_csv_is_honest_empty(tmp_path):
     payload = json.loads(path.read_text())
     assert payload["rows"] == []
     assert_artifact(payload)
+
+
+# ---- E-R1 Arizona adapter (Clarity ENR detail.xml) ---------------------------------------
+# Validated against real-SHAPE AZ Clarity bytes (fixtures/az_clarity_detail.xml) via injected
+# transport — no live network. Proves: office/district mapping by free-form `text`, county-FIPS
+# tagging [E-F2], out-of-scope surfacing, and end-to-end normalized bake.
+
+
+def test_az_parser_maps_scope_offices_and_tags_county_fips():
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        contests = pr.parse_az_clarity_xml(AZ_FIXTURE)
+    # Every emitted contest tagged with Pinal's 5-digit FIPS (matches az-counties.json [E-F2]).
+    assert {c["county"] for c in contests} == {"04021"}
+    offices = {(c["office"], c["district"]) for c in contests}
+    # Governor + U.S. House CD2 (truncated "…District 2 Congression") + CD6 mapped.
+    assert ("governor", None) in offices
+    assert ("house", 2) in offices  # truncation/typo tolerated
+    assert ("house", 6) in offices
+    # U.S. Senate and STATE Representative (no "congress" token) are OUT of scope → not emitted.
+    assert all(c["office"] in {"governor", "house"} for c in contests)
+    assert all(c["district"] != 8 for c in contests)  # state-leg "District 8" not mis-mapped
+    # Choice roll-up read from totalVotes, not the per-precinct VoteType split.
+    robson = next(c for c in contests if c["candidate"] == "ROBSON, KARRIN TAYLOR")
+    assert robson["votes"] == 18422 and robson["party"] == "REP"
+
+
+def test_az_parser_surfaces_out_of_scope_and_primary_collisions():
+    # "Surface, don't silently drop": out-of-scope contests + partisan-primary collisions warn.
+    with pytest.warns(UserWarning) as rec:
+        pr.parse_az_clarity_xml(AZ_FIXTURE)
+    msgs = " ".join(str(w.message) for w in rec)
+    assert "out-of-scope" in msgs  # Senate + State-rep surfaced
+    assert "U.S. Senator" in msgs and "State Representative" in msgs
+    # REP + DEM Governor primaries collide on the same race_id (E-R7 owns disambiguation).
+    assert "collision" in msgs and "governor" in msgs
+
+
+def test_az_run_bakes_valid_county_tagged_rows_with_calls(tmp_path):
+    class Resp:
+        def __init__(self, body):
+            self.status_code, self.headers, self.text = 200, {}, body
+
+    transport = lambda url, headers: Resp(AZ_FIXTURE)  # noqa: E731
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        path = pr.run(
+            transport=transport,
+            calls={"us-house-2026-AZ-06": {"called_by": "ENGEL, KIRSTEN"}},
+            as_of=AS_OF, root=tmp_path, states=["AZ"],
+        )
+    payload = json.loads(path.read_text())
+    rows = payload["rows"]
+    assert rows, "AZ run should bake rows"
+    rids = {r["race_id"] for r in rows}
+    assert {"us-governor-2026-AZ", "us-house-2026-AZ-02", "us-house-2026-AZ-06"} <= rids
+    assert not any("senate" in r or "SEN" in r for r in rids)  # Senate skipped
+    # Every row validates the published schema, carries the county FIPS, and pct_reporting derives.
+    for r in rows:
+        pr.ResultRow.model_validate(r)
+        assert r["county"] == "04021"
+    cd2 = next(r for r in rows if r["race_id"] == "us-house-2026-AZ-02")
+    assert cd2["pct_reporting"] == 100.0  # 60/60
+    gov = next(r for r in rows if r["race_id"] == "us-governor-2026-AZ")
+    assert gov["pct_reporting"] == 36.7  # 40/109
+    # Wikipedia call layer stamps the attributed race (SoS feed carries no projection).
+    cd6 = [r for r in rows if r["race_id"] == "us-house-2026-AZ-06"]
+    assert all(r["is_called"] and r["call_source"] == "Wikipedia" for r in cd6)
+    assert_artifact(payload)
+
+    # County-tagged rows roll up through E-F2's aggregate_to_county (join key = FIPS 04021).
+    agg = pr.aggregate_to_county(rows)
+    assert agg and {a["county"] for a in agg} == {"04021"}
+    engel = next(a for a in agg if a["candidate"] == "ENGEL, KIRSTEN")
+    assert engel["votes"] == 41230
