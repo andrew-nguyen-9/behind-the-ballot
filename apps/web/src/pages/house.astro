@@ -4,6 +4,7 @@ import SectionHeader from "../components/SectionHeader.astro";
 import USStateMap from "../components/USStateMap.astro";
 import PartyPatternDefs from "../components/PartyPatternDefs.astro";
 import DataTable from "../components/DataTable.astro";
+import ChartReadout from "../components/charts/ChartReadout.astro";
 import { houseByState, houseStateFills, leanFill } from "../lib/houseMap";
 import { ringsToSvg } from "../lib/geo";
 import { MAP_COLORS } from "../lib/usStates";
@@ -81,34 +82,42 @@ const legend = [
       />
       <div id={group.state} class="mt-4 grid gap-6 sm:grid-cols-[minmax(0,20rem)_1fr] sm:items-start">
         {svg && (
-          <svg
-            viewBox={svg.viewBox}
-            class="h-auto w-full max-w-[20rem]"
-            role="group"
-            aria-label={`${group.name} competitive congressional districts`}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>{`${group.name} competitive congressional districts`}</title>
-            {svg.paths.map((p) => {
-              const d = byId.get(p.key)!;
-              const { fill, overlay } = leanFill(d.lean);
-              const desc = `${d.seat} — forecast ${d.marginText}`;
-              return (
-                <a href={`/races/${d.id}`} aria-label={`${desc}, open race`}>
-                  <path
-                    d={p.d}
-                    fill={fill}
-                    stroke="var(--color-surface)"
-                    stroke-width="1"
-                    stroke-linejoin="round"
+          <ChartReadout label={`${group.name} district readout`} class="max-w-[20rem]">
+            <svg
+              viewBox={svg.viewBox}
+              class="h-auto w-full max-w-[20rem]"
+              role="group"
+              aria-label={`${group.name} competitive congressional districts`}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>{`${group.name} competitive congressional districts`}</title>
+              {svg.paths.map((p) => {
+                const d = byId.get(p.key)!;
+                const { fill, overlay } = leanFill(d.lean);
+                const desc = `${d.seat} — forecast ${d.marginText}`;
+                return (
+                  <a
+                    href={`/races/${d.id}`}
+                    aria-label={`${desc}, open race`}
+                    data-readout
+                    data-readout-label={d.seat}
+                    data-readout-value={`Forecast ${d.marginText}`}
                   >
-                    <title>{desc}</title>
-                  </path>
-                  {overlay && <path d={p.d} fill={overlay} stroke="none" aria-hidden="true" />}
-                </a>
-              );
-            })}
-          </svg>
+                    <path
+                      d={p.d}
+                      fill={fill}
+                      stroke="var(--color-surface)"
+                      stroke-width="1"
+                      stroke-linejoin="round"
+                    >
+                      <title>{desc}</title>
+                    </path>
+                    {overlay && <path d={p.d} fill={overlay} stroke="none" aria-hidden="true" />}
+                  </a>
+                );
+              })}
+            </svg>
+          </ChartReadout>
         )}
         <DataTable
           caption={`${group.name} competitive House districts by forecast lean.`}

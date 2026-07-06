@@ -1,0 +1,72 @@
+---
+import { cn } from "../../lib/utils";
+
+// Animated reveal-on-scroll island [E-3 Tier 1.3]. Wrap a surface; descendants marked
+// `data-reveal` fade + rise into place the first time the wrapper scrolls into view
+// (IntersectionObserver), with a light stagger.
+//
+// Progressive enhancement + a11y: the hidden pre-state is applied ONLY when the script adds
+// `data-armed`, so 0-JS the content is rendered in its final state. The script never arms under
+// `prefers-reduced-motion` or without IntersectionObserver support → final state instantly.
+// This is the reveal island E-6 (forecast) / E-5 embed; here it grows the chamber bars on view.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+<div data-reveal-root class={cn(className)}>
+  <slot />
+</div>
+
+<style>
+  /* Hidden pre-state exists only once JS arms the root (progressive enhancement). */
+  [data-reveal-root][data-armed] :global([data-reveal]) {
+    opacity: 0;
+    transform: translateY(8px);
+    will-change: opacity, transform;
+  }
+  [data-reveal-root][data-armed][data-revealed] :global([data-reveal]) {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--duration-slow) var(--ease-decelerate),
+      transform var(--duration-slow) var(--ease-decelerate);
+  }
+</style>
+
+<script>
+  import { prefersReducedMotion, shouldArm, staggerDelay } from "./revealOnView";
+
+  const reduced = prefersReducedMotion(
+    typeof matchMedia === "function" ? matchMedia("(prefers-reduced-motion: reduce)") : null,
+  );
+  const supportsObserver = typeof IntersectionObserver === "function";
+
+  function initReveal(root: HTMLElement): void {
+    if (!shouldArm({ reducedMotion: reduced, supportsObserver })) return; // final state as-is
+    const targets = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (targets.length === 0) return;
+
+    targets.forEach((el, i) => {
+      el.style.transitionDelay = `${staggerDelay(i)}ms`;
+    });
+    root.dataset.armed = "";
+
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          root.dataset.revealed = "";
+          obs.disconnect();
+          break;
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(root);
+  }
+
+  for (const root of document.querySelectorAll<HTMLElement>("[data-reveal-root]")) {
+    initReveal(root);
+  }
+</script>

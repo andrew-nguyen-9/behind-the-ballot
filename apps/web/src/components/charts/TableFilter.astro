@@ -1,0 +1,114 @@
+---
+import { cn } from "../../lib/utils";
+
+// Client-side filter + sort island over a DataTable [E-3 Tier 1.2]. Wrap a server-rendered
+// <DataTable> (or any plain <table>) in a slot; the island adds an instant search box and
+// makes the column headers sortable (asc → desc → server order).
+//
+// Progressive enhancement: the control bar renders `hidden` and the script reveals + wires it,
+// so 0-JS the full, unfiltered, server-ordered table is present and usable. Reuses tableFilter.ts
+// (the DOM-free filter/sort maths). Reusable: E-5 embeds it on dashboard tables.
+interface Props {
+  /** Plural noun for the search placeholder, e.g. "state" → "Filter states…". */
+  noun: string;
+  /** Make column headers sortable (default true). */
+  sortable?: boolean;
+  class?: string;
+}
+const { noun, sortable = true, class: className } = Astro.props;
+const controlClass =
+  "rounded-md border border-[var(--color-border)] bg-surface px-2 py-1 text-sm text-[var(--color-text)]";
+---
+<div data-table-filter-scope data-sortable={sortable ? "" : undefined} class={cn(className)}>
+  <div
+    data-table-filter
+    hidden
+    class="mb-3 flex flex-wrap items-end gap-3"
+  >
+    <label class="flex flex-col gap-1 text-xs text-muted">
+      <span>Search</span>
+      <input
+        type="search"
+        data-table-search
+        placeholder={`Filter ${noun}s…`}
+        class={cn(controlClass, "w-44")}
+      />
+    </label>
+    <p data-table-status aria-live="polite" class="text-xs text-muted"></p>
+  </div>
+  <slot />
+</div>
+
+<script>
+  import { filterRowIndices, nextSort, sortIndices, type SortDir } from "./tableFilter";
+
+  function initTableFilter(scope: HTMLElement): void {
+    const bar = scope.querySelector<HTMLElement>("[data-table-filter]");
+    const table = scope.querySelector<HTMLTableElement>("table");
+    const search = scope.querySelector<HTMLInputElement>("[data-table-search]");
+    const status = scope.querySelector<HTMLElement>("[data-table-status]");
+    const tbody = table?.tBodies[0];
+    if (!bar || !table || !tbody) return;
+
+    const sortable = scope.dataset.sortable !== undefined;
+    const rowEls = Array.from(tbody.rows);
+    // Snapshot cell text once (rows never change) as string[][] for the pure filter/sort maths.
+    const rowText = rowEls.map((tr) =>
+      Array.from(tr.cells).map((td) => (td.textContent ?? "").trim()),
+    );
+    const total = rowEls.length;
+    let sort: { col: number; dir: SortDir } | null = null;
+
+    function render(): void {
+      const visible = new Set(filterRowIndices(rowText, search?.value ?? ""));
+      const order = sort ? sortIndices(rowText, sort.col, sort.dir) : rowEls.map((_, i) => i);
+      for (const i of order) {
+        rowEls[i].hidden = !visible.has(i);
+        tbody!.appendChild(rowEls[i]); // reorder in place (appending a live node moves it)
+      }
+      if (status) {
+        status.textContent =
+          visible.size === total
+            ? `${total} row${total === 1 ? "" : "s"}`
+            : `${visible.size} of ${total} shown`;
+      }
+    }
+
+    search?.addEventListener("input", render);
+
+    if (sortable) {
+      const heads = table.tHead ? Array.from(table.tHead.rows[0]?.cells ?? []) : [];
+      heads.forEach((th, col) => {
+        const text = th.textContent ?? "";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "inline-flex items-center gap-1 hover:text-[var(--color-brand)]";
+        btn.innerHTML = `<span>${text}</span><span data-sort-caret aria-hidden="true"></span>`;
+        th.textContent = "";
+        th.appendChild(btn);
+        th.setAttribute("aria-sort", "none");
+        btn.addEventListener("click", () => {
+          sort = nextSort(sort, col);
+          for (const h of heads) {
+            h.setAttribute("aria-sort", "none");
+            const c = h.querySelector<HTMLElement>("[data-sort-caret]");
+            if (c) c.textContent = "";
+          }
+          if (sort) {
+            th.setAttribute("aria-sort", sort.dir === "asc" ? "ascending" : "descending");
+            const caret = btn.querySelector<HTMLElement>("[data-sort-caret]");
+            if (caret) caret.textContent = sort.dir === "asc" ? "▲" : "▼";
+          }
+          render();
+        });
+      });
+    }
+
+    bar.hidden = false;
+    render();
+  }
+
+  for (const scope of document.querySelectorAll<HTMLElement>("[data-table-filter-scope]")) {
+    initTableFilter(scope);
+  }
+</script>

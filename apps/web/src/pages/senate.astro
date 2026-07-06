@@ -5,6 +5,7 @@ import USStateMap from "../components/USStateMap.astro";
 import StripeDefs from "../components/StripeDefs.astro";
 import PartyPatternDefs from "../components/PartyPatternDefs.astro";
 import DataTable from "../components/DataTable.astro";
+import TableFilter from "../components/charts/TableFilter.astro";
 import { senateMapData, MAP_COLORS } from "../lib/usStates";
 
 // Senate delegation map [E1.1] — a static, 0-JS albers-usa choropleth of each state's two
@@ -67,14 +68,15 @@ const splitSwatch =
 
   <section class="mt-10" aria-labelledby="table">
     <SectionHeader title="Delegation by state" id="table" source="Text equivalent of the map above." />
-    <DataTable
-      class="mt-3"
-      caption="Each state's U.S. Senate delegation by party."
-      columns={[
-        { key: "state", label: "State" },
-        { key: "delegation", label: "Delegation" },
-      ]}
-      rows={rows}
-    />
+    <TableFilter noun="state" class="mt-3">
+      <DataTable
+        caption="Each state's U.S. Senate delegation by party."
+        columns={[
+          { key: "state", label: "State" },
+          { key: "delegation", label: "Delegation" },
+        ]}
+        rows={rows}
+      />
+    </TableFilter>
   </section>
 </Layout>

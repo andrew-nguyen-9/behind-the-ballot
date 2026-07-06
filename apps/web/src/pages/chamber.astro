@@ -5,6 +5,7 @@ import PartyBar from "../components/PartyBar.astro";
 import PartyLegend from "../components/PartyLegend.astro";
 import HouseArc from "../components/HouseArc.astro";
 import Chip from "../components/Chip.astro";
+import RevealOnView from "../components/charts/RevealOnView.astro";
 import { chamberComposition, CLASS_II_2026_STATES, HOUSE_SEATS } from "../lib/members";
 import { partyLabel } from "../lib/races";
 
@@ -22,8 +23,9 @@ const class2 = [...CLASS_II_2026_STATES].sort();
     data lands; figures here reflect the current roster.
   </p>
 
+  <RevealOnView>
   {composition.map((c) => (
-    <section class="mt-8" aria-labelledby={c.chamber}>
+    <section class="mt-8" aria-labelledby={c.chamber} data-reveal>
       <SectionHeader title={c.label} id={c.chamber} source={`${c.total} seat${c.total === 1 ? "" : "s"} tracked`} />
       {c.total > 0 && (c.chamber === "rep" ? (
         <HouseArc class="mt-4" byParty={c.byParty} total={HOUSE_SEATS} />
@@ -47,7 +49,7 @@ const class2 = [...CLASS_II_2026_STATES].sort();
     </section>
   ))}
 
-  <section class="mt-10" aria-labelledby="class2">
+  <section class="mt-10" aria-labelledby="class2" data-reveal>
     <SectionHeader
       title="Senate seats up in 2026 (Class II)"
       id="class2"
@@ -59,4 +61,5 @@ const class2 = [...CLASS_II_2026_STATES].sort();
       ))}
     </ul>
   </section>
+  </RevealOnView>
 </Layout>

@@ -1,0 +1,98 @@
+---
+import { cn } from "../../lib/utils";
+
+// Chart hover/scrub readout island [E-3 Tier 1.1]. Wrap any server-rendered chart; marks inside
+// opt in with `data-readout` (+ optional `data-readout-label` / `data-readout-value`, or a
+// child <title>). On hover / keyboard-focus a small tooltip shows the exact value, and the tip
+// doubles as an aria-live status so screen-reader + keyboard users hear it too.
+//
+// Progressive enhancement: 0-JS the tip never shows — the companion DataTable already carries
+// every value, and native SVG <title>s still give a browser tooltip. The inline module script
+// only *adds* the tip; nothing here renders content client-only. Reusable: E-5/E-D1 embed it
+// around dashboard charts.
+interface Props {
+  /** Accessible name for the live region (e.g. "House district readout"). */
+  label?: string;
+  class?: string;
+}
+const { label = "Chart readout", class: className } = Astro.props;
+---
+<div data-chart-readout class={cn("relative", className)}>
+  <slot />
+  <div
+    data-readout-tip
+    role="status"
+    aria-live="polite"
+    aria-label={label}
+    hidden
+    class="pointer-events-none absolute left-0 top-0 z-10 max-w-[16rem] rounded-md border border-[var(--color-border)] bg-surface px-2 py-1 text-xs text-[var(--color-text)] shadow-[var(--shadow-elev)] opacity-0 [transition:opacity_var(--duration-fast)_var(--ease-standard)] data-[show]:opacity-100"
+  >
+    <span data-readout-label class="block text-[var(--color-muted)]"></span>
+    <span data-readout-value class="block font-medium tnum"></span>
+  </div>
+</div>
+
+<script>
+  import { clampTooltip, readReadout } from "./chartReadout";
+
+  function initReadout(root: HTMLElement): void {
+    const tip = root.querySelector<HTMLElement>("[data-readout-tip]");
+    if (!tip) return;
+    const labelEl = tip.querySelector<HTMLElement>("[data-readout-label]");
+    const valueEl = tip.querySelector<HTMLElement>("[data-readout-value]");
+
+    function hide(): void {
+      tip!.hidden = true;
+      delete tip!.dataset.show;
+    }
+
+    function showFor(mark: HTMLElement, pointer: { x: number; y: number }): void {
+      const titleText = mark.querySelector("title")?.textContent ?? undefined;
+      const data = readReadout(
+        { label: mark.dataset.readoutLabel, value: mark.dataset.readoutValue },
+        titleText,
+      );
+      if (!data) {
+        hide();
+        return;
+      }
+      if (labelEl) {
+        labelEl.textContent = data.label;
+        labelEl.hidden = data.label === "";
+      }
+      if (valueEl) valueEl.textContent = data.value;
+
+      tip!.hidden = false;
+      const box = root.getBoundingClientRect();
+      const tipBox = tip!.getBoundingClientRect();
+      const { x, y } = clampTooltip(
+        { w: box.width, h: box.height },
+        { x: pointer.x - box.left, y: pointer.y - box.top },
+        { w: tipBox.width, h: tipBox.height },
+      );
+      tip!.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
+      tip!.dataset.show = "";
+    }
+
+    root.addEventListener("pointermove", (e) => {
+      const mark = (e.target as Element | null)?.closest<HTMLElement>("[data-readout]");
+      if (mark && root.contains(mark)) showFor(mark, { x: e.clientX, y: e.clientY });
+      else hide();
+    });
+    root.addEventListener("pointerleave", hide);
+
+    // Keyboard: focusing a mark (if it is focusable, e.g. a linked district) reads it out,
+    // anchored to the mark's own box rather than a pointer.
+    root.addEventListener("focusin", (e) => {
+      const mark = (e.target as Element | null)?.closest<HTMLElement>("[data-readout]");
+      if (!mark || !root.contains(mark)) return;
+      const b = mark.getBoundingClientRect();
+      showFor(mark, { x: b.left + b.width / 2, y: b.top });
+    });
+    root.addEventListener("focusout", hide);
+  }
+
+  for (const root of document.querySelectorAll<HTMLElement>("[data-chart-readout]")) {
+    initReadout(root);
+  }
+</script>

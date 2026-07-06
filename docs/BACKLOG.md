@@ -100,3 +100,19 @@ state is complete today → fairness is still honestly empty on the live site. R
 moment election-night ops turns on a state's House feeds (or runs the MEDSL certified House backfill)
 and a full state reports — no further code needed. A future nicety: a nationwide MEDSL House backfill
 (Harvard Dataverse token) to populate all 50 states at once instead of per-state as they certify.
+
+## E-3 interactivity — deferred tiers (Wave-2a)
+
+E-3 shipped `docs/design/INTERACTIVITY.md` **Tier 1** (chart readout, table filter/sort, reveal-on-view
+islands under `apps/web/src/components/charts/`). Deferred:
+
+- **Tier 2.4 — Scrubbable forecast timeline** over `forecast_snapshots` (slider swaps a pre-baked
+  snapshot; all snapshots already static). No-JS: latest snapshot shown. Deferred to keep per-route JS
+  in the Lighthouse budget; a natural fit for E-6 (owns `forecast.astro`) to embed a future
+  `SnapshotScrubber` island.
+- **Tier 2.5 — Map hover highlight** on the results/gerrymander choropleths (county name + value on
+  hover/focus). The `ChartReadout` island already delivered by E-3 covers this pattern — E-4 (maps) can
+  adopt it by adding `data-readout` marks to the county paths; deferred here only because those pages
+  are outside E-3's ownership seam.
+- **Tier 3 (do-not-build)** — cross-filtering/brushing between charts, real-time websocket updates,
+  anything needing a runtime API or third-party JS. Breaks the static-first + no-tracking invariants.
