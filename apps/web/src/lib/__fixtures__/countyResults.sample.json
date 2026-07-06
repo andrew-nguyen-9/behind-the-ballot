@@ -1,0 +1,43 @@
+{
+  "state": "AZ",
+  "as_of": "2026-08-04T23:30:00+00:00",
+  "is_certified": false,
+  "is_called": false,
+  "called_by": null,
+  "call_source": null,
+  "source_url": "https://results.arizona.vote/",
+  "races": [
+    {
+      "race_id": "us-governor-2026-AZ",
+      "office": "governor",
+      "district": null,
+      "election_type": "primary",
+      "counties": [
+        {
+          "county": "04013",
+          "pct_reporting": 62.0,
+          "candidates": [
+            { "candidate": "Jane Doe", "party": "D", "votes": 240100, "pct": 55.2 },
+            { "candidate": "John Roe", "party": "R", "votes": 194900, "pct": 44.8 }
+          ]
+        },
+        {
+          "county": "04021",
+          "pct_reporting": 36.7,
+          "candidates": [
+            { "candidate": "John Roe", "party": "R", "votes": 41200, "pct": 58.1 },
+            { "candidate": "Jane Doe", "party": "D", "votes": 29700, "pct": 41.9 }
+          ]
+        },
+        {
+          "county": "04015",
+          "pct_reporting": null,
+          "candidates": [
+            { "candidate": "Jane Doe", "party": "D", "votes": 0, "pct": null },
+            { "candidate": "John Roe", "party": "R", "votes": 0, "pct": null }
+          ]
+        }
+      ]
+    }
+  ]
+}

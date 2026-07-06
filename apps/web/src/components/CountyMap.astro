@@ -1,0 +1,58 @@
+---
+import { cn } from "../lib/utils";
+import type { CountyFill } from "../lib/countyResults";
+
+// Reusable 0-JS county choropleth [E-R9] — same technique as USStateMap.astro. Geometry is a
+// per-state precomputed path set (az-counties.json from E-F2, keyed by 5-digit county FIPS); the
+// colouring is fully injectable via `fills` (countyMapData builds the leader-hue/margin-alpha
+// paints + party pattern overlays). Each county gets a native <title> for hover/AT and an
+// optional texture overlay path for grayscale legibility. Drop <PartyPatternDefs> on the page so
+// the overlay ids (url(#pf-…)) resolve. The equivalent data-table is the caller's job.
+interface CountyGeo {
+  state: string;
+  viewBox: string;
+  counties: Record<string, { name: string; d: string }>;
+}
+interface Props {
+  geo: CountyGeo;
+  fills: Record<string, CountyFill>;
+  label: string; // accessible name for the whole map (svg role=img)
+  class?: string;
+  emptyFill?: string; // fill for a county with no entry in `fills` (nothing reported)
+}
+const {
+  geo,
+  fills,
+  label,
+  class: className,
+  emptyFill = "var(--color-surface-2)",
+} = Astro.props;
+const codes = Object.keys(geo.counties).sort();
+---
+<svg
+  viewBox={geo.viewBox}
+  class={cn("h-auto w-full", className)}
+  role="img"
+  aria-label={label}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>{label}</title>
+  {codes.map((code) => {
+    const f = fills[code];
+    const g = geo.counties[code];
+    return (
+      <g>
+        <path
+          d={g.d}
+          fill={f?.fill ?? emptyFill}
+          stroke="var(--color-surface)"
+          stroke-width="0.5"
+          stroke-linejoin="round"
+        >
+          <title>{f?.title ?? g.name}</title>
+        </path>
+        {f?.overlay && <path d={g.d} fill={f.overlay} stroke="none" aria-hidden="true" />}
+      </g>
+    );
+  })}
+</svg>
