@@ -50,6 +50,23 @@
   --radius-sm: 0.25rem; /* 4px */
   --radius-md: 0.5rem;  /* 8px */
   --radius-lg: 0.75rem; /* 12px */
+
+  /* Motion [E-F1 North Star] — one small scale so components reference tokens, never
+     hardcode ms. Retune the whole feel here. Every transition/animation using these is
+     killed to its final state by the prefers-reduced-motion rule below (hard switch, not a
+     dimmer). ponytail: ~4 durations, ~3 easings — deliberately not an animation library.
+     --duration-instant: state feedback that must feel immediate (taps, toggles).
+     --duration-fast: hovers, small enter/exit.  --duration-base: default UI transition.
+     --duration-slow: larger reveals (bars growing, counts filling — E-R9/E-D1 reuse these). */
+  --duration-instant: 90ms;
+  --duration-fast: 160ms;
+  --duration-base: 240ms;
+  --duration-slow: 420ms;
+  /* Easings — standard (symmetric, most UI), decelerate (enter: fast→settle),
+     accelerate (exit: rest→leave). Named for intent, not curve numbers. */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
 }
 
 /* Spacing (4px base) + content-container widths, exposed as design tokens for raw CSS and

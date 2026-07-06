@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo.astro";
+import Skeleton from "../components/Skeleton.astro";
+import Card from "../components/Card.astro";
+
+// Throwaway proof page for the E-F1 design foundation — NOT a nav entry. Shows the Civic
+// Lattice mark (theme-aware, 16px→large), the motion tokens driving a CSS transition
+// (killed by prefers-reduced-motion), and the skeleton loader. E-D1 owns the real rollout.
+---
+<Layout
+  title="Design system demo"
+  description="Internal preview of the Behind the Ballot design foundation (logo, motion, loading)."
+>
+  <p class="eyebrow mb-2">Foundation preview</p>
+  <h1 class="text-3xl">Civic Lattice design system</h1>
+  <p class="mt-2 max-w-prose text-muted">
+    Internal demo of the E-F1 foundation. Not linked from navigation. Rollout is E-D1.
+  </p>
+
+  <section class="mt-8" aria-labelledby="logo-h">
+    <h2 id="logo-h" class="font-serif text-xl">Logo — theme-aware, one component</h2>
+    <p class="mt-1 text-sm text-muted">
+      12 modules, a rising trend to one highlighted apex. Paints in <code>currentColor</code>,
+      so the same mark reads on any surface and follows light/dark.
+    </p>
+    <div class="mt-4 flex flex-wrap items-end gap-8">
+      <span class="flex items-center gap-2 text-[var(--color-brand)]">
+        <Logo size={16} /> <span class="text-xs text-muted">16px</span>
+      </span>
+      <span class="flex items-center gap-2 text-[var(--color-brand)]">
+        <Logo size={32} /> <span class="text-xs text-muted">32px</span>
+      </span>
+      <span class="flex items-center gap-2 text-[var(--color-text)]">
+        <Logo size={56} /> <span class="text-xs text-muted">56px · currentColor=text</span>
+      </span>
+      <span class="flex items-center gap-2 rounded-md bg-[var(--color-brand)] p-3 text-[var(--color-on-brand)]">
+        <Logo size={40} accent="var(--color-party-ind)" />
+        <span class="text-xs">40px · accent apex</span>
+      </span>
+    </div>
+  </section>
+
+  <section class="mt-10" aria-labelledby="motion-h">
+    <h2 id="motion-h" class="font-serif text-xl">Motion — tokens, cuttable</h2>
+    <p class="mt-1 text-sm text-muted">
+      Durations (<code>instant/fast/base/slow</code>) + easings (<code>standard/decelerate/accelerate</code>).
+      Hover or focus the tile: it lifts using <code>--duration-base</code> +
+      <code>--ease-standard</code>. With <em>prefers-reduced-motion</em> the transition is a
+      hard kill — the tile just sits at rest, no movement.
+    </p>
+    <div class="mt-4 flex flex-wrap gap-4">
+      <button type="button" class="motion-tile rounded-md border border-[var(--color-border-strong)] bg-surface px-5 py-4 text-sm font-semibold">
+        Hover / focus me
+      </button>
+      <div class="reveal rounded-md border border-[var(--color-border)] bg-surface px-5 py-4 text-sm text-muted">
+        <code>.reveal</code> — fades in on load (also auto-killed under reduced-motion)
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10" aria-labelledby="load-h">
+    <h2 id="load-h" class="font-serif text-xl">Loading — skeleton over spinner</h2>
+    <p class="mt-1 text-sm text-muted">
+      Reserves the final layout (no CLS), shimmer honors reduced-motion. Distinct from the
+      honest-empty state.
+    </p>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+      <Card title="Text block">
+        <Skeleton class="mt-3" lines={4} />
+      </Card>
+      <Card title="Media + meta">
+        <div class="mt-3 flex gap-3">
+          <Skeleton variant="circle" width="3rem" />
+          <Skeleton class="flex-1" lines={3} />
+        </div>
+        <Skeleton class="mt-4" variant="block" height="5rem" />
+      </Card>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .motion-tile {
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
+  }
+  .motion-tile:hover,
+  .motion-tile:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elev);
+    border-color: var(--color-brand);
+  }
+</style>

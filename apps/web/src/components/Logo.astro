@@ -1,0 +1,69 @@
+---
+import { cn } from "../lib/utils";
+
+// Civic Lattice mark [E-F1]. 12 identical rounded-rect modules on a disciplined 4×3 grid;
+// a rising set steps bottom-left→top-right (upward trend) with one highlighted apex module,
+// while the ghosted lattice + gaps let negative space read as ballot-into-slot / capitol
+// dome without drawing any literally (see docs/brainstorming/LOGO.md §"The Civic Lattice").
+//
+// Theme-aware by construction: modules paint in `currentColor`, so the mark inherits whatever
+// color the parent sets (brand green in the header, white on the favicon tile, etc.) and
+// follows light/dark automatically. Emphasis is opacity-only → still monochrome-safe. Pass
+// `accent` (any CSS color) to tint just the highlighted module; leave it null to stay mono.
+//
+// Purely static SVG, no motion, no dependency. Reads clean at 16px and reveals structure large.
+interface Props {
+  size?: number;        // px, sets width & height (square). Default 24 — header scale.
+  title?: string;       // accessible name; ignored when decorative.
+  decorative?: boolean; // aria-hidden mark that sits beside a text wordmark.
+  accent?: string;      // optional CSS color for the highlighted apex module.
+  class?: string;
+}
+const { size = 24, title = "Behind the Ballot", decorative = false, accent, class: className } =
+  Astro.props;
+
+// Grid geometry — module 8, gap 3, radius 2.5 on a 48-box; centered both axes.
+const M = 8, R = 2.5;
+const x = (c: number) => 3.5 + c * 11;
+const y = (r: number) => 9 + r * 11;
+
+// The rising "trend" columns (one module per column, rows 2→0) and the highlighted apex.
+const trend = new Set(["0,2", "1,1", "2,1", "3,0"]);
+const apex = "3,0";
+
+// All 12 modules with their paint role. ghost = translucent lattice; trend = solid;
+// apex = the one highlighted module (accent tint if provided, else solid currentColor).
+const modules = [] as { cx: number; cy: number; op: number; hi: boolean }[];
+for (let r = 0; r < 3; r++) {
+  for (let c = 0; c < 4; c++) {
+    const key = `${c},${r}`;
+    const hi = key === apex;
+    const op = hi || trend.has(key) ? 1 : 0.24;
+    modules.push({ cx: x(c), cy: y(r), op, hi });
+  }
+}
+
+const a11y = decorative
+  ? { "aria-hidden": "true" as const }
+  : { role: "img" as const, "aria-label": title };
+---
+<svg
+  viewBox="0 0 48 48"
+  width={size}
+  height={size}
+  fill="currentColor"
+  class={cn("shrink-0", className)}
+  {...a11y}
+>
+  {modules.map((m) => (
+    <rect
+      x={m.cx}
+      y={m.cy}
+      width={M}
+      height={M}
+      rx={R}
+      opacity={m.op}
+      fill={m.hi && accent ? accent : "currentColor"}
+    />
+  ))}
+</svg>
