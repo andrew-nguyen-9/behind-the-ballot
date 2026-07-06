@@ -34,3 +34,6 @@ scratchpad_*.txt
 # Lighthouse CI local reports
 .lighthouseci/
 docs/.DS_Store
+
+# archived orchestrator cycles (kept for reference, never committed)
+.orchestrator.stale-*/
