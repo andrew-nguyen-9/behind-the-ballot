@@ -69,6 +69,14 @@ interactive map [P8a] is a V1.1 enhancement. **V1.1 tasks:** (1) generate PMTile
 Census Geocoder call or a precomputed address→district lookup (the site is static-assets-only, no
 Worker handler), and depends on House races to be useful. Both deferred from V1.
 
+**V2 re-confirmed (E-4, `docs/design/MAP_EXTENT.md`):** stayed 0-JS this cycle — the fairness
+data-wiring is the durable win and is fully static; a MapLibre+PMTiles island is high-JS/high-risk
+against the Lighthouse ≥90 mobile gate for marginal value, so it stays a budget-gated stretch, not
+shipped. The 0-JS baseline (static SVG district shapes + a11y data tables) remains the source of
+truth. Geometry completeness closed this cycle: baked the previously-unbaked
+AZ-02/03/04/05/07/08/09 U.S. House district shapes from TIGER cb_2023 CD118 (`gen-districts.mjs`),
+so the E-R7 shape-optional graceful-degrade no longer trips for AZ.
+
 ## Forecast model refinement (V1.1) — fundamentals beyond partisan lean
 V1 forecast (iter 81) is partisan-lean-only: per-state 2024 presidential two-party margin → PVI →
 race model → MC chamber sim (real Senate holdover math, Dems need 51). It does NOT yet include the
