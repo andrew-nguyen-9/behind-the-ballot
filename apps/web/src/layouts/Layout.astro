@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Logo from "../components/Logo.astro";
 import SearchDialog from "../components/SearchDialog.tsx";
 import TextSizeControl from "../components/TextSizeControl.astro";
 import {
@@ -26,8 +27,9 @@ const {
 
 const fullTitle = title === "Behind the Ballot" ? title : `${title} · Behind the Ballot`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-// ponytail: per-page OG card images [C14a] land in v1.9.2; until then no og:image meta
-// (pointing at a missing asset is worse than omitting it).
+// Static OG/social mark [E-D1] — the shipped E-F1 Civic Lattice card (1200×630). One
+// default image site-wide; per-page generated OG cards [C14a] remain a later SEO unit.
+const ogImage = new URL("/og.png", Astro.site).href;
 
 // JSON-LD WebSite [U3a]. Per-type schema (Person/Place/etc.) added per module.
 const jsonLd = {
@@ -116,7 +118,12 @@ const shell = "mx-auto w-full max-w-4xl px-4 sm:px-6";
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Behind the Ballot — the data beneath democracy" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
     {schema && (
@@ -134,14 +141,9 @@ const shell = "mx-auto w-full max-w-4xl px-4 sm:px-6";
       >
         <a href="/" class="flex items-center gap-2.5" aria-label="Behind the Ballot — home">
           <span class="flex text-[var(--color-brand)]">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="10" width="16" height="10" rx="1.5"></rect>
-              <path d="M4 13h16"></path>
-              <rect x="9" y="3.5" width="6" height="7" rx="1"></rect>
-              <path d="M10.3 7l1.4 1.4 2-2.2"></path>
-              <path d="M7 16.5h2M15 16.5h2" opacity="0.45"></path>
-            </svg>
+            {/* Civic Lattice identity mark [E-D1 rollout of E-F1] — replaces the legacy
+                inline ballot-box glyph; decorative since the wordmark carries the name. */}
+            <Logo size={26} decorative />
           </span>
           <span class="font-serif text-lg leading-none tracking-tight">
             <span class="font-normal">Behind the</span> <span class="font-semibold">Ballot</span>
