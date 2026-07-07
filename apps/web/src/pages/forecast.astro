@@ -11,6 +11,7 @@ import PartyPatternDefs from "../components/PartyPatternDefs.astro";
 import DataTable from "../components/DataTable.astro";
 import { allChamberForecasts } from "../lib/forecast";
 import {
+  CHAMBER_SEATS,
   chamberSeatSegments,
   majorityMarkerPct,
   senateForecastMapData,
@@ -25,6 +26,14 @@ import {
 const chambers = allChamberForecasts();
 const mapData = senateForecastMapData();
 const pct = (p: number) => `${Math.round(p * 100)}%`;
+
+// Seat-distribution depth [E-6]: place the Monte Carlo 80% seat range (p10–p90) on the seat bar,
+// reusing the published ChamberForecast scalars + the exported CHAMBER_SEATS constant (no invented
+// totals, 0-JS). Null when the chamber size is unknown — the band is simply omitted.
+const seatPct = (seats: number, chamber: string): number | null => {
+  const total = CHAMBER_SEATS[chamber];
+  return total ? Math.max(0, Math.min(100, (seats / total) * 100)) : null;
+};
 
 // Ramp legend — sampled from the same winProbColor() the map uses, so the key matches the map
 // (Republican-favoured swatches carry the E0.4 hatch overlay, mirroring the map, for grayscale).
@@ -71,6 +80,9 @@ const isEmpty = chambers.length === 0 && mapData.count === 0;
       {chambers.map((c) => {
         const segments = chamberSeatSegments(c);
         const majPct = majorityMarkerPct(c);
+        const loPct = seatPct(c.dem_seat_p10, c.chamber);
+        const hiPct = seatPct(c.dem_seat_p90, c.chamber);
+        const seatGap = c.majority - c.expected_dem_seats;
         return (
           <section class="mt-8" aria-labelledby={c.chamber}>
             <Card>
@@ -93,6 +105,13 @@ const isEmpty = chambers.length === 0 && mapData.count === 0;
                   </div>
                   <div class="relative">
                     <PartyBar segments={segments} pattern class="h-6" />
+                    {loPct != null && hiPct != null && (
+                      <div
+                        class="absolute inset-y-0 border-x-2 border-[var(--color-text)]/50 bg-[var(--color-text)]/10"
+                        style={`left:${loPct}%;width:${Math.max(0, hiPct - loPct)}%`}
+                        aria-hidden="true"
+                      ></div>
+                    )}
                     {majPct != null && (
                       <div
                         class="absolute inset-y-0 w-0.5 bg-[var(--color-text)]"
@@ -109,6 +128,22 @@ const isEmpty = chambers.length === 0 && mapData.count === 0;
                       { party: "R", label: "Republicans / others" },
                     ]}
                   />
+                  <p class="mt-2 text-xs text-muted">
+                    Shaded band = the 80% simulation range ({c.dem_seat_p10}–{c.dem_seat_p90} Dem
+                    seats; median {c.dem_seat_p50}); the line marks the {c.majority}-seat majority.
+                  </p>
+                  <details class="mt-3 text-sm">
+                    <summary class="cursor-pointer font-medium">What would flip control?</summary>
+                    <p class="mt-2 max-w-prose text-muted">
+                      Democrats average <strong>{c.expected_dem_seats.toFixed(1)}</strong> seats and
+                      need <strong>{c.majority}</strong> for a majority — a gap of
+                      {" "}<strong>{seatGap > 0 ? seatGap.toFixed(1) : "0"}</strong>. Control lands
+                      Democratic in <strong>{pct(c.dem_control_prob)}</strong> of the
+                      {" "}{c.n_sims.toLocaleString()} simulations; the rest keep it Republican. The
+                      80% range ({c.dem_seat_p10}–{c.dem_seat_p90}) reflects a single correlated
+                      national swing moving every seat together — the tails a toss-up chamber turns on.
+                    </p>
+                  </details>
                 </div>
               )}
             </Card>

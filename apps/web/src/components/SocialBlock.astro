@@ -1,0 +1,52 @@
+---
+import { cn } from "../lib/utils";
+import { formatDate } from "../lib/dates";
+import { linkableProfiles, platformLabel, type SocialProfile } from "../lib/social";
+
+// Official social profiles for an entity [E-6]. Static curated links + baked metadata ONLY —
+// NO platform API, NO runtime JS, NO tracking, NO live embeds (spec invariant): every entry is a
+// plain <a> to a manually verified official account. Honest-empty when no verified handle is set
+// (never a fabricated link). Provenance: the "Curated official-handle" row on /sources [R14a].
+// Consumed by the forecast page and (later) E-5's [id] dashboards.
+interface Props {
+  profiles: SocialProfile[];
+  heading?: string;
+  class?: string;
+}
+const { profiles, heading = "Official social", class: className } = Astro.props;
+const links = linkableProfiles(profiles);
+---
+<div class={cn("text-sm", className)}>
+  <p class="eyebrow mb-2">{heading}</p>
+  {links.length === 0 ? (
+    <p class="text-muted">
+      No official social links published.
+      <a href="/sources" class="underline">Why</a>.
+    </p>
+  ) : (
+    <ul class="flex flex-col gap-1.5" role="list">
+      {links.map((p) => (
+        <li class="flex flex-wrap items-baseline gap-x-2">
+          <a
+            href={p.profile_url!}
+            class="font-medium underline transition-colors hover:text-[var(--color-brand)]"
+            rel="noopener nofollow"
+            target="_blank"
+          >
+            {platformLabel(p.platform)}: @{p.handle}
+          </a>
+          {p.latest_post_url && (
+            <a
+              href={p.latest_post_url}
+              class="text-muted underline transition-colors hover:text-[var(--color-brand)]"
+              rel="noopener nofollow"
+              target="_blank"
+            >
+              latest post{p.latest_post_at ? ` (${formatDate(p.latest_post_at.slice(0, 10))})` : ""}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>

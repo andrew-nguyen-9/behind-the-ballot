@@ -54,6 +54,9 @@ SOURCES: dict[str, Source] = {
     # numbers are timestamped facts superseded by MEDSL certification → event-driven, no
     # floor (the tight election-night cadence is a scheduler concern, see DATA_SOURCES.md).
     "primary_results": Source(None, "State SoS live results"),
+    # Curated social profiles [E-6]: official handles are static links (no platform API, no
+    # tracking); a handle changes rarely → event-driven, no floor. Honest-empty when unset.
+    "social": Source(None, "Curated official-handle"),
 }
 
 
