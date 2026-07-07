@@ -109,6 +109,34 @@ def test_export_dates_skips_when_no_gold(tmp_path):
     assert ew.export_dates(root=tmp_path, web_data=tmp_path / "web") == []
 
 
+def test_export_social_bridges_curated_row_to_web_json(tmp_path):
+    # A curated (linkable) row round-trips gold -> src/data/social/profiles.json with the exact
+    # SocialProfile field shape apps/web/src/lib/social.ts reads at build [E-6 bridge].
+    _write_gold(tmp_path, "social", [
+        {"entity_id": "S001185", "entity_name": "Jane Doe", "role": "incumbent", "state": "AZ",
+         "platform": "x", "handle": "@janedoe", "profile_url": "https://x.com/janedoe",
+         "latest_post_url": None, "latest_post_at": None},
+    ])
+    [out] = ew.export_social(root=tmp_path, web_data=tmp_path / "web")
+    assert out == tmp_path / "web" / "social" / "profiles.json"
+    rows = json.loads(out.read_text())
+    assert len(rows) == 1
+    assert set(rows[0]) >= {"entity_id", "entity_name", "role", "state", "platform", "handle",
+                            "profile_url", "latest_post_url", "latest_post_at"}
+    assert rows[0]["handle"] == "@janedoe" and rows[0]["profile_url"] == "https://x.com/janedoe"
+
+
+def test_export_social_empty_gold_stays_honest_empty(tmp_path):
+    # Empty gold (the meanwhile state) writes `[]` — bridge exists, zero fabricated links.
+    _write_gold(tmp_path, "social", [])
+    [out] = ew.export_social(root=tmp_path, web_data=tmp_path / "web")
+    assert json.loads(out.read_text()) == []
+
+
+def test_export_social_skips_when_no_gold(tmp_path):
+    assert ew.export_social(root=tmp_path, web_data=tmp_path / "web") == []
+
+
 def test_export_results_groups_by_race_with_race_level_fields(tmp_path):
     _write_gold(tmp_path, "primary_results", [
         {"race_id": "us-senate-2026-OH", "candidate": "Jane Doe", "party": "D", "votes": 600,

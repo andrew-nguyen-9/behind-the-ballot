@@ -412,6 +412,23 @@ def export_dates(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path
     ]
 
 
+def export_social(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
+    """gold/social → src/data/social/profiles.json [E-6]. The pipeline→web bridge for the curated
+    official-handle table: bakes the exact row shape SocialProfile (apps/web/src/lib/social.ts)
+    reads at build (entity_id, entity_name, role, state, platform, handle, profile_url,
+    latest_post_url, latest_post_at — the SocialProfileRow gold dump, verbatim, so field parity is
+    guaranteed by the model, not restated here).
+
+    Honest-empty [E-6 invariant]: no gold → nothing written (committed sample stays). An empty gold
+    (zero curated handles, the meanwhile state) writes `[]` — the file exists so real rows later
+    flow unchanged, and a null handle can never become a link (isLinkable stays false on []). One
+    file, source order preserved."""
+    rows = _gold("social", root)
+    if rows is None:
+        return []
+    return [_write(web_data / "social" / "profiles.json", rows)]
+
+
 def export_results(root: Path = DATA_ROOT, web_data: Path = WEB_DATA) -> list[Path]:
     """gold/primary_results → per-race src/data/results/<raceId>.json [E3.2]. One committed
     file per race that has ≥1 ingested candidate result; each file is a
@@ -601,6 +618,7 @@ EXPORTERS = {
     "districts": export_districts,
     "forecast": export_forecast,
     "dates": export_dates,
+    "social": export_social,
     "results": export_results,
     "county_results": export_county_results,
     "fairness": export_fairness,
