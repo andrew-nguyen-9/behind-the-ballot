@@ -1,0 +1,38 @@
+---
+import { cn } from "../../lib/utils";
+import { ideologyPosition } from "./forecastTrend";
+
+// DW-NOMINATE position scale [E-5], a 0-JS visual for a member's 1st-dimension ideology score
+// (−1 liberal … +1 conservative). Reuses the Voteview figure the caller already sources. The
+// marker is a data-readout mark: wrapped in the E-3 <ChartReadout> island it gains a hover/focus
+// value tooltip, and 0-JS the aria-label + the numeric StatBlock alongside still carry the value.
+interface Props {
+  dim1: number;
+  label: string; // plain-language band, e.g. "Center-left"
+  class?: string;
+}
+const { dim1, label, class: className } = Astro.props;
+const pos = ideologyPosition(dim1);
+---
+<div class={cn("max-w-md", className)}>
+  <div
+    class="relative h-2 rounded-full"
+    style="background:linear-gradient(90deg,var(--color-party-dem,#2563eb),var(--color-border),var(--color-party-rep,#dc2626))"
+  >
+    <span
+      data-readout
+      data-readout-label={`${label} · DW-NOMINATE`}
+      data-readout-value={dim1.toFixed(2)}
+      tabindex="0"
+      role="img"
+      aria-label={`${label}. DW-NOMINATE first dimension ${dim1.toFixed(2)}`}
+      class="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--color-surface)] bg-[var(--color-text)] outline-offset-2 shadow-[var(--shadow-elev)]"
+      style={`left:${pos}%`}
+    ></span>
+  </div>
+  <div class="mt-1 flex justify-between text-xs text-muted">
+    <span>Liberal −1</span>
+    <span>0</span>
+    <span>Conservative +1</span>
+  </div>
+</div>

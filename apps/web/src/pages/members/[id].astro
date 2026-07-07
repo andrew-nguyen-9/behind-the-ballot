@@ -4,8 +4,14 @@ import SectionHeader from "../../components/SectionHeader.astro";
 import StatBlock from "../../components/StatBlock.astro";
 import ListRow from "../../components/ListRow.astro";
 import PartySwatch from "../../components/PartySwatch.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import ChartReadout from "../../components/charts/ChartReadout.astro";
+import IdeologyScale from "../../components/dashboard/IdeologyScale.astro";
+import SocialBlock from "../../components/SocialBlock.astro";
 import { allMembers, chamberLabel, ideologyLabel, type Member } from "../../lib/members";
 import { allRaces, partyLabel } from "../../lib/races";
+import { demographicsForRace, fmtIncome, fmtPop } from "../../lib/demographics";
+import { socialForEntity } from "../../lib/social";
 
 export function getStaticPaths() {
   return allMembers().map((m) => ({ params: { id: m.bioguide_id }, props: { member: m } }));
@@ -18,6 +24,21 @@ const seat =
   member.chamber === "rep"
     ? `${member.state}-${String(member.district).padStart(2, "0")}`
     : member.state;
+
+// District/state demographics [I7a] via the seat's 2026 race geometry — reuses the per-race ACS
+// loader (no FEC↔bioguide/postal↔geoid crosswalk needed). House: same state+district race;
+// Senate: the state's Senate race. No matching 2026 race (e.g. a seat not up this cycle) →
+// honest-empty until a direct member↔geography crosswalk lands. Never a fabricated figure.
+const seatRace = allRaces().find(
+  (r) =>
+    r.state === member.state &&
+    ((member.chamber === "rep" && r.office === "house" && r.district === member.district) ||
+      (member.chamber === "sen" && r.office === "senate")),
+);
+const demo = seatRace ? demographicsForRace(seatRace.id) : null;
+
+// Official social profiles [E-6] — curated verified handles only; honest-empty until linked.
+const social = socialForEntity(member.bioguide_id);
 
 // Per-type JSON-LD: a Person for the member [U3a].
 const personSchema = {
@@ -51,8 +72,55 @@ const personSchema = {
     {member.nominate_dim1 === null ? (
       <p class="mt-2 text-muted">Not yet scored.</p>
     ) : (
-      <StatBlock class="mt-2" value={member.nominate_dim1.toFixed(2)} label={ideologyLabel(member.nominate_dim1)} />
+      <>
+        <StatBlock class="mt-2" value={member.nominate_dim1.toFixed(2)} label={ideologyLabel(member.nominate_dim1)} />
+        <ChartReadout label="Ideology readout" class="mt-4">
+          <IdeologyScale dim1={member.nominate_dim1} label={ideologyLabel(member.nominate_dim1)} />
+        </ChartReadout>
+      </>
     )}
+  </section>
+
+  <section class="mt-10" aria-labelledby="voting">
+    <SectionHeader title="Voting record" id="voting">
+      <Fragment slot="source">
+        Roll-call votes, sponsorship, and committee assignments. Source:
+        <a href="/sources" class="underline">Congress.gov</a>.
+      </Fragment>
+    </SectionHeader>
+    <EmptyState
+      class="mt-4"
+      title="No voting record loaded yet"
+      body="Key votes, sponsored bills, and committee assignments attach here as the Congress.gov vote feed lands, joined on this member's bioguide id. Records are never estimated."
+    />
+  </section>
+
+  {demo && (
+    <section class="mt-10" aria-labelledby="demographics">
+      <SectionHeader title={member.chamber === "rep" ? "District demographics" : "State demographics"} id="demographics">
+        <Fragment slot="source">
+          {demo.area} · {demo.acs_release}. Source: <a href="/sources" class="underline">Census ACS</a>.
+        </Fragment>
+      </SectionHeader>
+      <div class="mt-3 flex flex-wrap gap-x-10 gap-y-2">
+        <StatBlock value={fmtPop(demo.population)} label="Population" />
+        <StatBlock value={fmtIncome(demo.median_income)} label="Median income" />
+        {demo.urbanization && (
+          <StatBlock value={demo.urbanization} label="Urbanization" class="capitalize" />
+        )}
+      </div>
+    </section>
+  )}
+
+  <section class="mt-10" aria-labelledby="social">
+    <SectionHeader title="Official social" id="social">
+      <Fragment slot="source">
+        Manually verified links to this member's official public accounts; shown only where a
+        handle is verified, never fabricated. Source:
+        <a href="/sources" class="underline">curated official-handle list</a>.
+      </Fragment>
+    </SectionHeader>
+    <SocialBlock class="mt-4" profiles={social} heading="" />
   </section>
 
   {stateRaces.length > 0 && (
