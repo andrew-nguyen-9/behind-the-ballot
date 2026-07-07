@@ -28,6 +28,17 @@ For each competitive-race state:
    map to our race ids (`us-{office}-2026-{ST}[-DD]`), that `pct`/`pct_reporting` derive
    correctly, and that every row validates against `ResultRow`.
 
+> **AZ (schedule armed, live fetch not built).** `STATE_ADAPTERS["AZ"]` (Clarity ENR),
+> county aggregation, the `export_county_results` exporter, the `/results` display, and the
+> armed `results.yml` schedule all ship DoD-green — but only against a reconstructed fixture.
+> The live fetch is **unbuilt**: the AZ `feed_url` is the bare Clarity host, so a real bake
+> still needs (a) `current_ver.txt` resolution, (b) `detailxml.zip` download + unzip, (c)
+> statewide-vs-15-county fan-out, then (d) re-validation against real 2026 bytes (the sandbox
+> hit Cloudflare-403 on the live CDN, so the fixture is reconstructed to the E-R0 schema).
+> Until that lands the parser fails closed on non-XML and the scheduled workflow yields
+> honest-empty — no bad data, but no live totals. Feed pattern, contest-mapping quirks, and
+> parser gotchas: `docs/research/AZ_RESULTS_SOURCES.md`.
+
 ## 2. Go live (election night)
 
 1. **Flip the switches** in `primary_results.py`:

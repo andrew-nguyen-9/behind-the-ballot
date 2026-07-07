@@ -2,6 +2,19 @@
 
 Items deferred out of V1 scope. New ideas land here, not in V1 `[scope discipline]`.
 
+## E-8 extended simulations — parked, temporal gate (V2 land 2026-07-06)
+
+Gated on primary reporting being complete (post-2026-07-21, user-attested), **not** on code, and
+not on the go-live critical path. When the gate opens, dispatch E-8 off then-current `integration`,
+upstream `E-R10`'s results wiring (schema + exporter in git history / `RESULTS_GO_LIVE.md`).
+
+## AZ live-results fetch wiring — go-live blocker (V2 land 2026-07-06)
+
+Clarity adapter, county aggregation, exporter, `/results` display, and the armed `results.yml`
+schedule all ship green against a fixture — but the **live** Clarity fetch is unbuilt, so scheduled
+bakes stay honest-empty until it lands. Steps (`current_ver.txt` → `detailxml.zip` unzip →
+statewide/15-county fan-out → real-2026-bytes validation): `docs/RESULTS_GO_LIVE.md` §1 AZ note.
+
 ## Session-D review — parked findings (E4.2 integration review)
 Surfaced during the `dev..integration` code review + browser QA. All are latent (guard-tightening on
 data paths that ship honest-empty today), so parked rather than fixed at promotion. Fixed items (brand
